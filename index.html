@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#f5f5f5"
+    >
 
     <title>Gestione Soldi</title>
 
@@ -10,521 +21,844 @@
 
         * {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
-            --sfondo: #f4f5f7;
-            --scheda: #ffffff;
-            --testo: #171717;
-            --secondario: #737373;
-            --bordo: #e8e8e8;
-            --verde: #16803c;
-            --verde-bg: #e4f7eb;
-            --rosso: #d32f2f;
-            --rosso-bg: #ffebeb;
-            --nero: #171717;
-            --ombra: 0 8px 30px rgba(0, 0, 0, 0.07);
+
+            --bg: #f4f5f7;
+            --card: #ffffff;
+            --text: #171717;
+            --secondary: #777777;
+            --border: #e8e8e8;
+
+            --green: #159447;
+            --green-bg: #e4f7eb;
+
+            --red: #d93636;
+            --red-bg: #ffebeb;
+
+            --blue: #3478f6;
+            --blue-bg: #eaf1ff;
+
+            --shadow:
+                0 5px 25px rgba(0, 0, 0, 0.06);
         }
 
-        body.scuro {
-            --sfondo: #111214;
-            --scheda: #1b1d20;
-            --testo: #f5f5f5;
-            --secondario: #a5a5a5;
-            --bordo: #2d3034;
-            --verde: #42c978;
-            --verde-bg: #183624;
-            --rosso: #ff6464;
-            --rosso-bg: #3a2020;
-            --nero: #f5f5f5;
-            --ombra: 0 8px 30px rgba(0, 0, 0, 0.25);
+        body.dark {
+
+            --bg: #101112;
+            --card: #1b1d20;
+            --text: #f5f5f5;
+            --secondary: #a3a3a3;
+            --border: #2b2e32;
+
+            --green: #42d47b;
+            --green-bg: #173725;
+
+            --red: #ff6868;
+            --red-bg: #3b2020;
+
+            --blue: #6c9cff;
+            --blue-bg: #202e4a;
+
+            --shadow:
+                0 5px 25px rgba(0, 0, 0, 0.25);
         }
+
+
+        html {
+            background: var(--bg);
+        }
+
 
         body {
+
             margin: 0;
-            padding: 24px 16px 40px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            background: var(--sfondo);
-            color: var(--testo);
-            transition: background 0.25s, color 0.25s;
+
+            padding:
+                calc(12px + env(safe-area-inset-top))
+                14px
+                calc(30px + env(safe-area-inset-bottom));
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            transition:
+                background 0.25s,
+                color 0.25s;
+
+            min-height: 100vh;
+
+            overscroll-behavior-y: none;
         }
 
+
+        button,
+        input,
+        select {
+
+            font-family: inherit;
+        }
+
+
+        button {
+
+            border: none;
+
+            cursor: pointer;
+
+            color: var(--text);
+
+            font-weight: 650;
+
+            transition:
+                transform 0.12s,
+                opacity 0.12s,
+                background 0.2s;
+        }
+
+
+        button:active {
+
+            transform: scale(0.96);
+        }
+
+
         .app {
+
             width: 100%;
+
             max-width: 520px;
+
             margin: auto;
         }
+
 
         /* =========================
            HEADER
         ========================= */
 
         .header {
-            height: 55px;
+
+            height: 54px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             position: relative;
-            margin-bottom: 20px;
+
+            margin-bottom: 15px;
         }
 
-        .titolo {
-            margin: 0;
-            font-size: 25px;
-            font-weight: 750;
+
+        .title {
+
+            font-size: 23px;
+
+            font-weight: 800;
+
             letter-spacing: -0.5px;
+
+            margin: 0;
         }
+
 
         .menu-button {
+
             position: absolute;
+
             left: 0;
 
-            width: 46px;
-            height: 46px;
+            width: 44px;
 
-            padding: 0;
+            height: 44px;
 
             border-radius: 14px;
-            border: 1px solid var(--bordo);
 
-            background: var(--scheda);
-            color: var(--testo);
+            background: var(--card);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid var(--border);
 
-            font-size: 22px;
+            box-shadow: var(--shadow);
 
-            box-shadow: var(--ombra);
-
-            transition: 0.2s;
+            font-size: 21px;
         }
 
-        .menu-button:active {
-            transform: scale(0.94);
-        }
 
         /* =========================
-           MENU LATERALE
+           MENU
         ========================= */
 
         .overlay {
+
             position: fixed;
+
             inset: 0;
 
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.4);
 
             opacity: 0;
+
             pointer-events: none;
 
-            transition: opacity 0.3s;
+            transition: opacity 0.25s;
 
             z-index: 998;
         }
 
-        .overlay.aperto {
+
+        .overlay.open {
+
             opacity: 1;
+
             pointer-events: auto;
         }
 
-        .menu-laterale {
+
+        .side-menu {
+
             position: fixed;
 
             left: 0;
+
             top: 0;
+
             bottom: 0;
 
-            width: min(340px, 82vw);
+            width: min(330px, 84vw);
 
-            background: var(--scheda);
-
-            transform: translateX(-100%);
-
-            transition: transform 0.3s ease;
+            background: var(--card);
 
             z-index: 999;
 
-            padding: 25px 20px;
+            transform: translateX(-100%);
 
-            box-shadow: 10px 0 35px rgba(0, 0, 0, 0.18);
+            transition:
+                transform 0.28s ease;
 
-            display: flex;
-            flex-direction: column;
+            padding:
+                calc(20px + env(safe-area-inset-top))
+                18px
+                25px;
+
+            box-shadow:
+                8px 0 30px rgba(0,0,0,0.18);
         }
 
-        .menu-laterale.aperto {
+
+        .side-menu.open {
+
             transform: translateX(0);
         }
 
+
         .menu-header {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
-            padding-bottom: 20px;
+            padding-bottom: 18px;
 
-            border-bottom: 1px solid var(--bordo);
+            border-bottom:
+                1px solid var(--border);
         }
 
-        .menu-titolo {
+
+        .menu-title {
+
             font-size: 22px;
-            font-weight: 750;
+
+            font-weight: 800;
         }
 
-        .chiudi-menu {
-            width: 42px;
-            height: 42px;
 
-            padding: 0;
+        .close-menu {
+
+            width: 42px;
+
+            height: 42px;
 
             border-radius: 12px;
 
-            background: var(--sfondo);
-            color: var(--testo);
+            background: var(--bg);
 
-            font-size: 22px;
+            font-size: 23px;
         }
 
-        .menu-contenuto {
-            padding-top: 22px;
-        }
 
-        .menu-sezione {
+        .menu-section {
+
+            color: var(--secondary);
+
             font-size: 12px;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
 
-            color: var(--secondario);
-
-            margin-bottom: 10px;
+            margin:
+                22px 0 8px;
         }
 
-        .menu-voce {
+
+        .menu-item {
+
             width: 100%;
 
             display: flex;
+
             align-items: center;
+
             gap: 12px;
 
             padding: 14px;
 
-            margin-bottom: 8px;
-
             border-radius: 13px;
 
             background: transparent;
-            color: var(--testo);
 
             text-align: left;
+
+            font-size: 15px;
         }
 
-        .menu-voce:hover {
-            background: var(--sfondo);
+
+        .menu-item:active {
+
+            background: var(--bg);
         }
 
-        .menu-icona {
+
+        .menu-icon {
+
             font-size: 20px;
         }
 
+
         /* =========================
-           SCHEDE
+           CARD
         ========================= */
 
-        .scheda {
-            background: var(--scheda);
+        .card {
 
-            border: 1px solid var(--bordo);
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
 
             border-radius: 22px;
 
-            box-shadow: var(--ombra);
+            box-shadow: var(--shadow);
         }
+
 
         /* =========================
            SALDO
         ========================= */
 
-        .saldo-card {
+        .balance-card {
+
+            padding: 25px 20px;
+
             text-align: center;
 
-            padding: 28px 20px;
-
-            margin-bottom: 12px;
+            margin-bottom: 11px;
         }
 
-        .saldo-label {
-            color: var(--secondario);
+
+        .balance-label {
+
+            color: var(--secondary);
 
             font-size: 14px;
 
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .saldo {
+
+        .balance {
+
             font-size: 42px;
-            font-weight: 800;
+
+            font-weight: 850;
 
             letter-spacing: -1.5px;
+
+            overflow-wrap: anywhere;
         }
+
 
         /* =========================
-           ENTRATE / SPESE
+           STATISTICHE
         ========================= */
 
-        .statistiche {
+        .stats {
+
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
-            gap: 12px;
+            gap: 11px;
 
-            margin-bottom: 16px;
+            margin-bottom: 13px;
         }
 
-        .stat-card {
-            padding: 18px;
+
+        .stat {
+
+            padding: 17px;
 
             min-width: 0;
         }
 
+
         .stat-label {
-            color: var(--secondario);
+
+            color: var(--secondary);
 
             font-size: 13px;
 
-            margin-bottom: 7px;
+            margin-bottom: 6px;
         }
 
-        .stat-valore {
-            font-size: 21px;
-            font-weight: 750;
+
+        .stat-value {
+
+            font-size: 20px;
+
+            font-weight: 800;
 
             overflow: hidden;
+
             text-overflow: ellipsis;
         }
 
-        .verde {
-            color: var(--verde);
+
+        .green {
+            color: var(--green);
         }
 
-        .rosso {
-            color: var(--rosso);
+
+        .red {
+            color: var(--red);
         }
+
 
         /* =========================
            AZZERA
         ========================= */
 
-        .azzera {
+        .reset {
+
             width: 100%;
-
-            margin-bottom: 16px;
-
-            background: var(--rosso-bg);
-            color: var(--rosso);
-
-            border: 1px solid transparent;
 
             padding: 13px;
 
-            font-size: 14px;
+            margin-bottom: 12px;
 
             border-radius: 14px;
+
+            background: var(--red-bg);
+
+            color: var(--red);
+
+            font-size: 14px;
         }
 
-        .azzera:hover {
-            border-color: var(--rosso);
-        }
 
         /* =========================
-           BOTTONI PRINCIPALI
+           AZIONI
         ========================= */
 
-        .azioni {
+        .actions {
+
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
-            gap: 12px;
+            gap: 11px;
 
-            margin-bottom: 16px;
+            margin-bottom: 13px;
         }
 
-        .azione {
-            min-height: 58px;
+
+        .action {
+
+            height: 58px;
 
             border-radius: 16px;
 
             font-size: 16px;
         }
 
-        .azione-entrata {
-            background: var(--verde-bg);
-            color: var(--verde);
+
+        .income {
+
+            background: var(--green-bg);
+
+            color: var(--green);
         }
 
-        .azione-spesa {
-            background: var(--rosso-bg);
-            color: var(--rosso);
+
+        .expense {
+
+            background: var(--red-bg);
+
+            color: var(--red);
         }
+
 
         /* =========================
            FORM
         ========================= */
 
-        .modulo {
-            padding: 20px;
+        .form {
 
-            margin-bottom: 16px;
+            padding: 19px;
+
+            margin-bottom: 13px;
         }
 
-        .modulo-titolo {
-            margin: 0 0 18px;
 
-            font-size: 20px;
+        .form-title {
+
+            margin:
+                0 0 16px;
+
+            font-size: 19px;
+
+            font-weight: 800;
         }
+
 
         input,
         select {
+
             width: 100%;
 
             height: 52px;
 
-            padding: 0 15px;
+            border:
+                1px solid var(--border);
 
             border-radius: 13px;
 
-            border: 1px solid var(--bordo);
+            background: var(--bg);
 
-            background: var(--sfondo);
+            color: var(--text);
 
-            color: var(--testo);
+            padding:
+                0 14px;
 
             font-size: 16px;
 
             outline: none;
 
             margin-bottom: 10px;
+
+            appearance: none;
         }
+
 
         input:focus,
         select:focus {
-            border-color: var(--secondario);
+
+            border-color:
+                var(--blue);
         }
 
-        .salva {
+
+        input[type="date"] {
+
+            color-scheme: light;
+        }
+
+
+        body.dark input[type="date"] {
+
+            color-scheme: dark;
+        }
+
+
+        .save {
+
             width: 100%;
 
             height: 52px;
 
-            background: var(--testo);
-            color: var(--sfondo);
+            border-radius: 13px;
 
-            margin-top: 4px;
+            background: var(--text);
+
+            color: var(--card);
+
+            font-size: 15px;
         }
 
-        .annulla {
+
+        .cancel {
+
             width: 100%;
 
             height: 48px;
 
-            background: var(--sfondo);
-            color: var(--testo);
-
             margin-top: 8px;
+
+            border-radius: 13px;
+
+            background: var(--bg);
+
+            font-size: 14px;
         }
+
+
+        /* =========================
+           SEZIONI
+        ========================= */
+
+        .section {
+
+            padding: 19px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .section-title {
+
+            margin:
+                0 0 15px;
+
+            font-size: 19px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           MESE
+        ========================= */
+
+        .month-summary {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            padding: 14px;
+
+            border-radius: 14px;
+
+            background: var(--bg);
+
+            margin-bottom: 15px;
+        }
+
+
+        .month-name {
+
+            font-weight: 700;
+        }
+
+
+        .month-total {
+
+            color: var(--red);
+
+            font-weight: 800;
+        }
+
 
         /* =========================
            CATEGORIE
         ========================= */
 
-        .sezione {
-            padding: 20px;
+        .category-row {
 
-            margin-bottom: 16px;
+            margin-bottom: 15px;
         }
 
-        .sezione-titolo {
-            margin: 0 0 15px;
 
-            font-size: 19px;
-        }
+        .category-header {
 
-        .categoria-riga {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
 
-            padding: 13px 0;
+            justify-content:
+                space-between;
 
-            border-bottom: 1px solid var(--bordo);
+            margin-bottom: 7px;
+
+            font-size: 14px;
         }
 
-        .categoria-riga:last-child {
-            border-bottom: none;
+
+        .category-name {
+
+            font-weight: 650;
         }
 
-        .categoria-nome {
-            font-weight: 600;
-        }
 
-        .categoria-importo {
-            color: var(--rosso);
+        .category-amount {
+
+            color: var(--secondary);
+
             font-weight: 700;
         }
 
-        .nessuna-categoria,
-        .nessun-movimento {
-            color: var(--secondario);
+
+        .bar {
+
+            height: 8px;
+
+            background: var(--bg);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .bar-fill {
+
+            height: 100%;
+
+            background: var(--red);
+
+            border-radius: 20px;
+
+            transition: width 0.3s;
+        }
+
+
+        .empty {
 
             text-align: center;
 
-            padding: 10px 0;
+            color: var(--secondary);
+
+            padding: 8px 0;
         }
+
+
+        /* =========================
+           RICERCA
+        ========================= */
+
+        .search {
+
+            position: relative;
+
+            margin-bottom: 15px;
+        }
+
+
+        .search input {
+
+            margin: 0;
+
+            padding-left: 43px;
+        }
+
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 15px;
+
+            font-size: 18px;
+
+            color: var(--secondary);
+
+            pointer-events: none;
+        }
+
 
         /* =========================
            MOVIMENTI
         ========================= */
 
-        .movimento {
+        .movement {
+
             padding: 15px 0;
 
-            border-bottom: 1px solid var(--bordo);
+            border-bottom:
+                1px solid var(--border);
         }
 
-        .movimento:last-child {
+
+        .movement:last-child {
+
             border-bottom: none;
         }
 
-        .movimento-top {
+
+        .movement-top {
+
             display: flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
+
             align-items: flex-start;
 
             gap: 10px;
         }
 
-        .movimento-info {
+
+        .movement-info {
+
             min-width: 0;
+
+            flex: 1;
         }
 
-        .movimento-tipo {
+
+        .movement-title {
+
             font-weight: 700;
+
+            font-size: 15px;
 
             overflow-wrap: anywhere;
         }
 
-        .movimento-data {
-            color: var(--secondario);
+
+        .movement-date {
+
+            color: var(--secondary);
 
             font-size: 12px;
 
             margin-top: 5px;
         }
 
-        .movimento-categoria {
+
+        .movement-category {
+
             display: inline-block;
 
             margin-top: 7px;
@@ -533,137 +867,167 @@
 
             border-radius: 8px;
 
-            background: var(--sfondo);
+            background: var(--bg);
 
-            color: var(--secondario);
+            color: var(--secondary);
 
-            font-size: 12px;
+            font-size: 11px;
         }
 
-        .movimento-elimina {
-            flex-shrink: 0;
 
-            padding: 9px 11px;
+        .movement-buttons {
+
+            display: flex;
+
+            gap: 5px;
+
+            flex-shrink: 0;
+        }
+
+
+        .edit,
+        .delete {
+
+            width: 36px;
+
+            height: 36px;
+
+            padding: 0;
 
             border-radius: 10px;
 
-            background: var(--sfondo);
+            background: var(--bg);
 
-            color: var(--secondario);
-
-            font-size: 12px;
+            font-size: 15px;
         }
+
+
+        .delete {
+
+            color: var(--red);
+        }
+
 
         /* =========================
-           GENERALE
+           UTILITY
         ========================= */
 
-        button {
-            border: none;
+        .hidden {
 
-            font-family: inherit;
-
-            font-weight: 650;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.15s,
-                opacity 0.15s,
-                background 0.2s;
+            display: none !important;
         }
 
-        button:active {
-            transform: scale(0.97);
-        }
 
-        .nascosto {
-            display: none;
-        }
-
-        @media (max-width: 380px) {
+        @media (max-width: 370px) {
 
             body {
-                padding: 18px 12px 30px;
+
+                padding-left: 10px;
+
+                padding-right: 10px;
             }
 
-            .saldo {
+            .balance {
+
                 font-size: 36px;
             }
 
-            .stat-valore {
+            .stat-value {
+
                 font-size: 18px;
             }
 
-            .titolo {
-                font-size: 22px;
-            }
+            .title {
 
+                font-size: 21px;
+            }
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- OVERLAY -->
+
+    <!-- MENU -->
 
     <div
         id="overlay"
         class="overlay"
-        onclick="chiudiMenu()">
+        onclick="closeMenu()">
     </div>
 
 
-    <!-- MENU LATERALE -->
-
     <aside
-        id="menuLaterale"
-        class="menu-laterale">
+        id="sideMenu"
+        class="side-menu">
 
         <div class="menu-header">
 
-            <div class="menu-titolo">
+            <div class="menu-title">
                 Menu
             </div>
 
             <button
-                class="chiudi-menu"
-                onclick="chiudiMenu()">
+                class="close-menu"
+                onclick="closeMenu()">
+
                 ×
-            </button>
-
-        </div>
-
-        <div class="menu-contenuto">
-
-            <div class="menu-sezione">
-                Impostazioni
-            </div>
-
-            <button
-                class="menu-voce"
-                onclick="cambiaTema()">
-
-                <span
-                    id="iconaTema"
-                    class="menu-icona">
-                    🌙
-                </span>
-
-                <span
-                    id="testoTema">
-                    Tema scuro
-                </span>
 
             </button>
 
         </div>
+
+
+        <div class="menu-section">
+            Aspetto
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="toggleTheme()">
+
+            <span
+                id="themeIcon"
+                class="menu-icon">
+                🌙
+            </span>
+
+            <span
+                id="themeText">
+                Tema scuro
+            </span>
+
+        </button>
+
+
+        <div class="menu-section">
+            Dati
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="closeMenu()">
+
+            <span class="menu-icon">
+                💾
+            </span>
+
+            <span>
+                Salvataggio automatico attivo
+            </span>
+
+        </button>
 
     </aside>
 
 
-    <div class="app">
+    <main class="app">
+
 
         <!-- HEADER -->
 
@@ -671,11 +1035,14 @@
 
             <button
                 class="menu-button"
-                onclick="apriMenu()">
+                onclick="openMenu()">
+
                 ☰
+
             </button>
 
-            <h1 class="titolo">
+
+            <h1 class="title">
                 Gestione Soldi
             </h1>
 
@@ -684,52 +1051,61 @@
 
         <!-- SALDO -->
 
-        <div class="scheda saldo-card">
+        <section class="card balance-card">
 
-            <div class="saldo-label">
+            <div class="balance-label">
                 Saldo disponibile
             </div>
 
             <div
-                id="saldo"
-                class="saldo">
+                id="balance"
+                class="balance">
+
                 €0.00
+
             </div>
 
-        </div>
+        </section>
 
 
         <!-- STATISTICHE -->
 
-        <div class="statistiche">
+        <div class="stats">
 
-            <div class="scheda stat-card">
+
+            <section class="card stat">
 
                 <div class="stat-label">
-                    Entrate totali
+                    Entrate
                 </div>
 
                 <div
-                    id="entrateTotali"
-                    class="stat-valore verde">
+                    id="totalIncome"
+                    class="stat-value green">
+
                     €0.00
+
                 </div>
 
-            </div>
+            </section>
 
-            <div class="scheda stat-card">
+
+            <section class="card stat">
 
                 <div class="stat-label">
-                    Spese totali
+                    Spese
                 </div>
 
                 <div
-                    id="speseTotali"
-                    class="stat-valore rosso">
+                    id="totalExpense"
+                    class="stat-value red">
+
                     €0.00
+
                 </div>
 
-            </div>
+            </section>
+
 
         </div>
 
@@ -737,8 +1113,8 @@
         <!-- AZZERA -->
 
         <button
-            class="azzera"
-            onclick="azzeraTutto()">
+            class="reset"
+            onclick="resetAll()">
 
             🗑️ Azzera saldo e movimenti
 
@@ -747,56 +1123,65 @@
 
         <!-- AZIONI -->
 
-        <div class="azioni">
+        <div class="actions">
+
 
             <button
-                class="azione azione-entrata"
-                onclick="apriModulo('entrata')">
+                class="action income"
+                onclick="openForm('income')">
 
                 ＋ Entrata
 
             </button>
 
+
             <button
-                class="azione azione-spesa"
-                onclick="apriModulo('spesa')">
+                class="action expense"
+                onclick="openForm('expense')">
 
                 − Spesa
 
             </button>
+
 
         </div>
 
 
         <!-- FORM -->
 
-        <div
-            id="modulo"
-            class="scheda modulo nascosto">
+        <section
+            id="form"
+            class="card form hidden">
+
 
             <h2
-                id="titoloModulo"
-                class="modulo-titolo">
+                id="formTitle"
+                class="form-title">
 
                 Nuova operazione
 
             </h2>
 
+
             <input
-                id="importo"
+                id="amount"
                 type="number"
+                inputmode="decimal"
                 step="0.01"
                 min="0"
                 placeholder="Importo (€)"
             >
 
+
             <input
-                id="descrizione"
+                id="description"
                 type="text"
+                maxlength="100"
                 placeholder="Descrizione (opzionale)"
             >
 
-            <select id="categoria">
+
+            <select id="category">
 
                 <option value="">
                     Categoria (opzionale)
@@ -810,16 +1195,12 @@
                     💰 Bonus
                 </option>
 
-                <option value="🏦 Investimenti">
-                    🏦 Investimenti
-                </option>
-
                 <option value="🎁 Regalo">
                     🎁 Regalo
                 </option>
 
-                <option value="💵 Altro guadagno">
-                    💵 Altro guadagno
+                <option value="🏦 Investimenti">
+                    🏦 Investimenti
                 </option>
 
                 <option value="🏠 Affitto">
@@ -880,94 +1261,263 @@
 
             </select>
 
+
+            <input
+                id="date"
+                type="date"
+            >
+
+
             <button
-                class="salva"
-                onclick="salvaMovimento()">
+                id="saveButton"
+                class="save"
+                onclick="saveMovement()">
 
                 Salva
 
             </button>
 
+
             <button
-                class="annulla"
-                onclick="chiudiModulo()">
+                class="cancel"
+                onclick="closeForm()">
 
                 Annulla
 
             </button>
 
-        </div>
+
+        </section>
 
 
-        <!-- CATEGORIE -->
+        <!-- RIEPILOGO MESE -->
 
-        <section class="scheda sezione">
+        <section class="card section">
 
-            <h2 class="sezione-titolo">
-                Spese per categoria
+
+            <h2 class="section-title">
+                Questo mese
             </h2>
 
-            <div id="categorie"></div>
+
+            <div class="month-summary">
+
+                <span
+                    id="monthName"
+                    class="month-name">
+
+                    Mese corrente
+
+                </span>
+
+
+                <span
+                    id="monthTotal"
+                    class="month-total">
+
+                    €0.00
+
+                </span>
+
+            </div>
+
+
+            <div id="categories">
+
+            </div>
+
 
         </section>
 
 
         <!-- MOVIMENTI -->
 
-        <section class="scheda sezione">
+        <section class="card section">
 
-            <h2 class="sezione-titolo">
+
+            <h2 class="section-title">
                 Movimenti
             </h2>
 
-            <div id="movimenti"></div>
+
+            <div class="search">
+
+                <span class="search-icon">
+                    🔎
+                </span>
+
+                <input
+                    id="search"
+                    type="search"
+                    placeholder="Cerca movimento..."
+                    oninput="renderMovements()"
+                >
+
+            </div>
+
+
+            <div id="movements">
+
+            </div>
+
 
         </section>
 
-    </div>
+
+    </main>
 
 
     <script>
 
-        let saldo =
+
+        /* =========================
+           DATI
+        ========================= */
+
+
+        let balance =
             Number(
-                localStorage.getItem("saldo")
+                localStorage.getItem("balance")
             ) || 0;
 
-        let movimenti =
+
+        let movements =
             JSON.parse(
-                localStorage.getItem("movimenti")
+                localStorage.getItem("movements")
             ) || [];
 
-        let tipoOperazione = "";
+
+        let operationType =
+            "income";
+
+
+        let editingIndex =
+            null;
+
+
+        /* =========================
+           UTILITÀ
+        ========================= */
+
+
+        function money(value) {
+
+            return "€" +
+                Number(value)
+                    .toFixed(2);
+
+        }
+
+
+        function today() {
+
+            const d =
+                new Date();
+
+            const year =
+                d.getFullYear();
+
+            const month =
+                String(
+                    d.getMonth() + 1
+                ).padStart(2, "0");
+
+            const day =
+                String(
+                    d.getDate()
+                ).padStart(2, "0");
+
+            return (
+                year +
+                "-" +
+                month +
+                "-" +
+                day
+            );
+
+        }
+
+
+        function formatDate(date) {
+
+            if (!date) {
+                return "";
+            }
+
+            const parts =
+                date.split("-");
+
+            if (
+                parts.length !== 3
+            ) {
+                return date;
+            }
+
+            return (
+                parts[2] +
+                "/" +
+                parts[1] +
+                "/" +
+                parts[0]
+            );
+
+        }
+
+
+        function saveData() {
+
+            localStorage.setItem(
+                "balance",
+                balance
+            );
+
+            localStorage.setItem(
+                "movements",
+                JSON.stringify(
+                    movements
+                )
+            );
+
+        }
 
 
         /* =========================
            MENU
         ========================= */
 
-        function apriMenu() {
+
+        function openMenu() {
 
             document
-                .getElementById("menuLaterale")
-                .classList.add("aperto");
+                .getElementById(
+                    "sideMenu"
+                )
+                .classList.add("open");
+
 
             document
-                .getElementById("overlay")
-                .classList.add("aperto");
+                .getElementById(
+                    "overlay"
+                )
+                .classList.add("open");
 
         }
 
 
-        function chiudiMenu() {
+        function closeMenu() {
 
             document
-                .getElementById("menuLaterale")
-                .classList.remove("aperto");
+                .getElementById(
+                    "sideMenu"
+                )
+                .classList.remove("open");
+
 
             document
-                .getElementById("overlay")
-                .classList.remove("aperto");
+                .getElementById(
+                    "overlay"
+                )
+                .classList.remove("open");
 
         }
 
@@ -976,71 +1526,75 @@
            TEMA
         ========================= */
 
-        function cambiaTema() {
 
-            document.body.classList.toggle("scuro");
+        function toggleTheme() {
 
-            const scuro =
-                document.body.classList.contains(
-                    "scuro"
-                );
+            document.body
+                .classList
+                .toggle("dark");
+
+
+            const dark =
+                document.body
+                    .classList
+                    .contains("dark");
+
 
             localStorage.setItem(
-                "tema",
-                scuro ? "scuro" : "chiaro"
+                "theme",
+                dark
+                    ? "dark"
+                    : "light"
             );
 
-            atualizarTemaBotao();
+
+            updateThemeButton();
 
         }
 
 
-        function atualizarTemaBotao() {
+        function updateThemeButton() {
 
-            const scuro =
-                document.body.classList.contains(
-                    "scuro"
-                );
+            const dark =
+                document.body
+                    .classList
+                    .contains("dark");
 
-            const icona =
-                document.getElementById(
-                    "iconaTema"
-                );
 
-            const testo =
-                document.getElementById(
-                    "testoTema"
-                );
+            document.getElementById(
+                "themeIcon"
+            ).textContent =
+                dark
+                    ? "☀️"
+                    : "🌙";
 
-            if (scuro) {
 
-                icona.textContent = "☀️";
-                testo.textContent = "Tema chiaro";
-
-            } else {
-
-                icona.textContent = "🌙";
-                testo.textContent = "Tema scuro";
-
-            }
+            document.getElementById(
+                "themeText"
+            ).textContent =
+                dark
+                    ? "Tema chiaro"
+                    : "Tema scuro";
 
         }
 
 
-        function caricaTema() {
+        function loadTheme() {
 
-            const tema =
-                localStorage.getItem("tema");
+            if (
+                localStorage.getItem(
+                    "theme"
+                ) === "dark"
+            ) {
 
-            if (tema === "scuro") {
-
-                document.body.classList.add(
-                    "scuro"
-                );
+                document.body
+                    .classList
+                    .add("dark");
 
             }
 
-            atualizarTemaBotao();
+
+            updateThemeButton();
 
         }
 
@@ -1049,168 +1603,264 @@
            RIEPILOGO
         ========================= */
 
-        function calcolaRiepilogo() {
 
-            let entrate = 0;
-            let spese = 0;
+        function updateSummary() {
 
-            movimenti.forEach(
-                function(movimento) {
+            let income = 0;
+
+            let expense = 0;
+
+
+            movements.forEach(
+                movement => {
 
                     if (
-                        movimento.tipo ===
-                        "+ Entrata"
+                        movement.type ===
+                        "income"
                     ) {
 
-                        entrate +=
-                            movimento.importo;
+                        income +=
+                            Number(
+                                movement.amount
+                            );
 
                     } else {
 
-                        spese +=
-                            movimento.importo;
+                        expense +=
+                            Number(
+                                movement.amount
+                            );
 
                     }
 
                 }
             );
 
-            document.getElementById(
-                "entrateTotali"
-            ).textContent =
-                "€" + entrate.toFixed(2);
 
             document.getElementById(
-                "speseTotali"
+                "balance"
             ).textContent =
-                "€" + spese.toFixed(2);
+                money(balance);
+
+
+            document.getElementById(
+                "totalIncome"
+            ).textContent =
+                money(income);
+
+
+            document.getElementById(
+                "totalExpense"
+            ).textContent =
+                money(expense);
 
         }
 
 
         /* =========================
-           CATEGORIE
+           MESE
         ========================= */
 
-        function calcolaCategorie() {
 
-            const categorie = {};
+        function renderMonth() {
 
-            movimenti.forEach(
-                function(movimento) {
+            const now =
+                new Date();
+
+
+            const month =
+                now.getMonth();
+
+
+            const year =
+                now.getFullYear();
+
+
+            let total = 0;
+
+
+            const categories = {};
+
+
+            movements.forEach(
+                movement => {
+
+                    const date =
+                        new Date(
+                            movement.date +
+                            "T12:00:00"
+                        );
+
 
                     if (
-                        movimento.tipo !==
-                        "- Spesa"
+                        date.getMonth() !==
+                        month ||
+                        date.getFullYear() !==
+                        year
                     ) {
+
                         return;
+
                     }
 
-                    const categoria =
-                        movimento.categoria ||
+
+                    if (
+                        movement.type !==
+                        "expense"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    total +=
+                        Number(
+                            movement.amount
+                        );
+
+
+                    const category =
+                        movement.category ||
                         "📦 Altro";
 
+
                     if (
-                        !categorie[categoria]
+                        !categories[
+                            category
+                        ]
                     ) {
 
-                        categorie[categoria] =
-                            0;
+                        categories[
+                            category
+                        ] = 0;
 
                     }
 
-                    categorie[categoria] +=
-                        movimento.importo;
+
+                    categories[
+                        category
+                    ] +=
+                        Number(
+                            movement.amount
+                        );
 
                 }
             );
 
-            const contenitore =
-                document.getElementById(
-                    "categorie"
+
+            const monthName =
+                now.toLocaleDateString(
+                    "it-IT",
+                    {
+                        month: "long",
+                        year: "numeric"
+                    }
                 );
 
-            contenitore.innerHTML = "";
 
-            const nomi =
-                Object.keys(categorie);
+            document.getElementById(
+                "monthName"
+            ).textContent =
+                monthName
+                    .charAt(0)
+                    .toUpperCase() +
+                monthName.slice(1);
+
+
+            document.getElementById(
+                "monthTotal"
+            ).textContent =
+                money(total);
+
+
+            const container =
+                document.getElementById(
+                    "categories"
+                );
+
+
+            container.innerHTML = "";
+
+
+            const names =
+                Object.keys(
+                    categories
+                );
+
 
             if (
-                nomi.length === 0
+                names.length === 0
             ) {
 
-                const messaggio =
-                    document.createElement(
-                        "div"
-                    );
-
-                messaggio.className =
-                    "nessuna-categoria";
-
-                messaggio.textContent =
-                    "Nessuna spesa registrata";
-
-                contenitore.appendChild(
-                    messaggio
-                );
+                container.innerHTML =
+                    `<div class="empty">
+                        Nessuna spesa questo mese
+                    </div>`;
 
                 return;
 
             }
 
-            nomi.sort(
-                function(a, b) {
 
-                    return (
-                        categorie[b] -
-                        categorie[a]
-                    );
-
-                }
+            names.sort(
+                (a, b) =>
+                    categories[b] -
+                    categories[a]
             );
 
-            nomi.forEach(
-                function(categoria) {
 
-                    const riga =
+            names.forEach(
+                category => {
+
+                    const percentage =
+                        total > 0
+                            ? (
+                                categories[
+                                    category
+                                ] /
+                                total
+                            ) * 100
+                            : 0;
+
+
+                    const row =
                         document.createElement(
                             "div"
                         );
 
-                    riga.className =
-                        "categoria-riga";
 
-                    const nome =
-                        document.createElement(
-                            "span"
-                        );
+                    row.className =
+                        "category-row";
 
-                    nome.className =
-                        "categoria-nome";
 
-                    nome.textContent =
-                        categoria;
+                    row.innerHTML = `
 
-                    const importo =
-                        document.createElement(
-                            "span"
-                        );
+                        <div class="category-header">
 
-                    importo.className =
-                        "categoria-importo";
+                            <span class="category-name">
+                                ${escapeHTML(category)}
+                            </span>
 
-                    importo.textContent =
-                        "€" +
-                        categorie[
-                            categoria
-                        ].toFixed(2);
+                            <span class="category-amount">
+                                ${money(categories[category])}
+                            </span>
 
-                    riga.appendChild(nome);
+                        </div>
 
-                    riga.appendChild(importo);
+                        <div class="bar">
 
-                    contenitore.appendChild(
-                        riga
+                            <div
+                                class="bar-fill"
+                                style="width:${percentage}%">
+                            </div>
+
+                        </div>
+                    `;
+
+
+                    container.appendChild(
+                        row
                     );
 
                 }
@@ -1220,295 +1870,181 @@
 
 
         /* =========================
-           AGGIORNA
+           FORM
         ========================= */
 
-        function aggiorna() {
 
-            document.getElementById(
-                "saldo"
-            ).textContent =
-                "€" + saldo.toFixed(2);
+        function openForm(type, index = null) {
 
-            calcolaRiepilogo();
+            operationType =
+                type;
 
-            calcolaCategorie();
 
-            const lista =
+            editingIndex =
+                index;
+
+
+            const form =
                 document.getElementById(
-                    "movimenti"
+                    "form"
                 );
 
-            lista.innerHTML = "";
+
+            form.classList.remove(
+                "hidden"
+            );
+
+
+            const title =
+                document.getElementById(
+                    "formTitle"
+                );
+
 
             if (
-                movimenti.length === 0
+                index !== null
             ) {
 
-                const elemento =
-                    document.createElement(
-                        "div"
-                    );
+                title.textContent =
+                    "Modifica movimento";
 
-                elemento.className =
-                    "nessun-movimento";
 
-                elemento.textContent =
-                    "Nessun movimento ancora";
+                const movement =
+                    movements[index];
 
-                lista.appendChild(
-                    elemento
-                );
+
+                document.getElementById(
+                    "amount"
+                ).value =
+                    movement.amount;
+
+
+                document.getElementById(
+                    "description"
+                ).value =
+                    movement.description ===
+                    "Nessuna descrizione"
+                        ? ""
+                        : movement.description;
+
+
+                document.getElementById(
+                    "category"
+                ).value =
+                    movement.category ===
+                    "📦 Altro"
+                        ? ""
+                        : movement.category;
+
+
+                document.getElementById(
+                    "date"
+                ).value =
+                    movement.date;
+
 
             } else {
 
-                movimenti
-                    .slice()
-                    .reverse()
-                    .forEach(
-                        function(
-                            movimento,
-                            indice
-                        ) {
+                title.textContent =
+                    type === "income"
+                        ? "Nuova entrata"
+                        : "Nuova spesa";
 
-                            const elemento =
-                                document.createElement(
-                                    "div"
-                                );
 
-                            elemento.className =
-                                "movimento";
+                document.getElementById(
+                    "amount"
+                ).value = "";
 
-                            const top =
-                                document.createElement(
-                                    "div"
-                                );
 
-                            top.className =
-                                "movimento-top";
+                document.getElementById(
+                    "description"
+                ).value = "";
 
-                            const info =
-                                document.createElement(
-                                    "div"
-                                );
 
-                            info.className =
-                                "movimento-info";
+                document.getElementById(
+                    "category"
+                ).value = "";
 
-                            const tipo =
-                                document.createElement(
-                                    "div"
-                                );
 
-                            tipo.className =
-                                "movimento-tipo " +
-                                (
-                                    movimento.tipo ===
-                                    "+ Entrata"
-                                        ? "verde"
-                                        : "rosso"
-                                );
-
-                            tipo.textContent =
-                                movimento.tipo +
-                                " €" +
-                                movimento.importo.toFixed(2) +
-                                " — " +
-                                (
-                                    movimento.descrizione ||
-                                    "Nessuna descrizione"
-                                );
-
-                            const data =
-                                document.createElement(
-                                    "div"
-                                );
-
-                            data.className =
-                                "movimento-data";
-
-                            data.textContent =
-                                movimento.data ||
-                                "Data non disponibile";
-
-                            const categoria =
-                                document.createElement(
-                                    "span"
-                                );
-
-                            categoria.className =
-                                "movimento-categoria";
-
-                            categoria.textContent =
-                                movimento.categoria ||
-                                "📦 Altro";
-
-                            const elimina =
-                                document.createElement(
-                                    "button"
-                                );
-
-                            elimina.className =
-                                "movimento-elimina";
-
-                            elimina.textContent =
-                                "Elimina";
-
-                            elimina.onclick =
-                                function() {
-
-                                    eliminaMovimento(
-                                        movimenti.length -
-                                        1 -
-                                        indice
-                                    );
-
-                                };
-
-                            info.appendChild(
-                                tipo
-                            );
-
-                            info.appendChild(
-                                data
-                            );
-
-                            info.appendChild(
-                                categoria
-                            );
-
-                            top.appendChild(
-                                info
-                            );
-
-                            top.appendChild(
-                                elimina
-                            );
-
-                            elemento.appendChild(
-                                top
-                            );
-
-                            lista.appendChild(
-                                elemento
-                            );
-
-                        }
-                    );
+                document.getElementById(
+                    "date"
+                ).value =
+                    today();
 
             }
 
-            localStorage.setItem(
-                "saldo",
-                saldo
+
+            form.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+
+            setTimeout(
+                () => {
+
+                    document.getElementById(
+                        "amount"
+                    ).focus();
+
+                },
+                350
             );
 
-            localStorage.setItem(
-                "movimenti",
-                JSON.stringify(
-                    movimenti
-                )
+        }
+
+
+        function closeForm() {
+
+            document.getElementById(
+                "form"
+            ).classList.add(
+                "hidden"
             );
+
+
+            editingIndex =
+                null;
 
         }
 
 
         /* =========================
-           MODULO
+           SALVA
         ========================= */
 
-        function apriModulo(tipo) {
 
-            tipoOperazione = tipo;
+        function saveMovement() {
 
-            const modulo =
-                document.getElementById(
-                    "modulo"
-                );
-
-            const titolo =
-                document.getElementById(
-                    "titoloModulo"
-                );
-
-            modulo.classList.remove(
-                "nascosto"
-            );
-
-            if (
-                tipo === "entrata"
-            ) {
-
-                titolo.textContent =
-                    "Nuova entrata";
-
-            } else {
-
-                titolo.textContent =
-                    "Nuova spesa";
-
-            }
-
-            document.getElementById(
-                "importo"
-            ).value = "";
-
-            document.getElementById(
-                "descrizione"
-            ).value = "";
-
-            document.getElementById(
-                "categoria"
-            ).value = "";
-
-            document.getElementById(
-                "importo"
-            ).focus();
-
-        }
-
-
-        function chiudiModulo() {
-
-            document
-                .getElementById(
-                    "modulo"
-                )
-                .classList.add(
-                    "nascosto"
-                );
-
-        }
-
-
-        /* =========================
-           SALVA MOVIMENTO
-        ========================= */
-
-        function salvaMovimento() {
-
-            const importo =
+            const amount =
                 Number(
                     document.getElementById(
-                        "importo"
+                        "amount"
                     ).value
                 );
 
-            let descrizione =
-                document
-                    .getElementById(
-                        "descrizione"
-                    )
-                    .value
-                    .trim();
 
-            let categoria =
+            let description =
                 document.getElementById(
-                    "categoria"
+                    "description"
+                ).value.trim();
+
+
+            let category =
+                document.getElementById(
+                    "category"
                 ).value;
 
+
+            const date =
+                document.getElementById(
+                    "date"
+                ).value;
+
+
             if (
-                importo <= 0
+                !amount ||
+                amount <= 0
             ) {
 
                 alert(
@@ -1519,122 +2055,388 @@
 
             }
 
+
+            if (!date) {
+
+                alert(
+                    "Inserisci una data."
+                );
+
+                return;
+
+            }
+
+
             if (
-                descrizione === ""
+                description === ""
             ) {
 
-                descrizione =
+                description =
                     "Nessuna descrizione";
 
             }
 
+
             if (
-                categoria === ""
+                category === ""
             ) {
 
-                categoria =
+                category =
                     "📦 Altro";
 
             }
 
-            const data =
-                new Date().toLocaleDateString(
-                    "it-IT"
-                );
+
+            /* MODIFICA */
 
             if (
-                tipoOperazione ===
-                "entrata"
+                editingIndex !== null
             ) {
 
-                saldo += importo;
+                const old =
+                    movements[
+                        editingIndex
+                    ];
 
-                movimenti.push({
 
-                    tipo: "+ Entrata",
+                if (
+                    old.type ===
+                    "income"
+                ) {
 
-                    importo: importo,
+                    balance -=
+                        Number(
+                            old.amount
+                        );
 
-                    descrizione:
-                        descrizione,
+                } else {
 
-                    categoria:
-                        categoria,
+                    balance +=
+                        Number(
+                            old.amount
+                        );
 
-                    data: data
+                }
 
-                });
 
-            } else {
+                movements[
+                    editingIndex
+                ] = {
 
-                saldo -= importo;
+                    type:
+                        old.type,
 
-                movimenti.push({
+                    amount:
+                        amount,
 
-                    tipo: "- Spesa",
+                    description:
+                        description,
 
-                    importo: importo,
+                    category:
+                        category,
 
-                    descrizione:
-                        descrizione,
+                    date:
+                        date
 
-                    categoria:
-                        categoria,
+                };
 
-                    data: data
 
-                });
+                if (
+                    old.type ===
+                    "income"
+                ) {
+
+                    balance +=
+                        amount;
+
+                } else {
+
+                    balance -=
+                        amount;
+
+                }
+
 
             }
 
-            aggiorna();
+            /* NUOVO */
 
-            chiudiModulo();
+            else {
+
+                movements.push({
+
+                    type:
+                        operationType,
+
+                    amount:
+                        amount,
+
+                    description:
+                        description,
+
+                    category:
+                        category,
+
+                    date:
+                        date
+
+                });
+
+
+                if (
+                    operationType ===
+                    "income"
+                ) {
+
+                    balance +=
+                        amount;
+
+                } else {
+
+                    balance -=
+                        amount;
+
+                }
+
+            }
+
+
+            saveData();
+
+            updateAll();
+
+            closeForm();
 
         }
 
 
         /* =========================
-           ELIMINA
+           MOVIMENTI
         ========================= */
 
-        function eliminaMovimento(
-            indice
-        ) {
 
-            const movimento =
-                movimenti[indice];
+        function renderMovements() {
 
-            const conferma =
+            const container =
+                document.getElementById(
+                    "movements"
+                );
+
+
+            const search =
+                document.getElementById(
+                    "search"
+                ).value
+                .trim()
+                .toLowerCase();
+
+
+            container.innerHTML = "";
+
+
+            let visible =
+                movements
+                    .map(
+                        (
+                            movement,
+                            index
+                        ) => ({
+                            movement,
+                            index
+                        })
+                    )
+                    .reverse()
+                    .filter(
+                        item => {
+
+                            if (
+                                search === ""
+                            ) {
+
+                                return true;
+
+                            }
+
+
+                            const text =
+                                (
+                                    item.movement
+                                        .description +
+                                    " " +
+                                    item.movement
+                                        .category
+                                )
+                                .toLowerCase();
+
+
+                            return text.includes(
+                                search
+                            );
+
+                        }
+                    );
+
+
+            if (
+                visible.length === 0
+            ) {
+
+                container.innerHTML =
+                    `<div class="empty">
+                        Nessun movimento trovato
+                    </div>`;
+
+                return;
+
+            }
+
+
+            visible.forEach(
+                item => {
+
+                    const movement =
+                        item.movement;
+
+
+                    const index =
+                        item.index;
+
+
+                    const element =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    element.className =
+                        "movement";
+
+
+                    const sign =
+                        movement.type ===
+                        "income"
+                            ? "+"
+                            : "-";
+
+
+                    const color =
+                        movement.type ===
+                        "income"
+                            ? "green"
+                            : "red";
+
+
+                    element.innerHTML = `
+
+                        <div class="movement-top">
+
+                            <div class="movement-info">
+
+                                <div
+                                    class="movement-title ${color}">
+                                    ${sign} ${money(movement.amount)}
+                                    — ${escapeHTML(movement.description)}
+                                </div>
+
+                                <div class="movement-date">
+                                    ${formatDate(movement.date)}
+                                </div>
+
+                                <span class="movement-category">
+                                    ${escapeHTML(movement.category)}
+                                </span>
+
+                            </div>
+
+
+                            <div class="movement-buttons">
+
+                                <button
+                                    class="edit"
+                                    onclick="editMovement(${index})">
+                                    ✏️
+                                </button>
+
+
+                                <button
+                                    class="delete"
+                                    onclick="deleteMovement(${index})">
+                                    🗑️
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(
+                        element
+                    );
+
+                }
+            );
+
+        }
+
+
+        function editMovement(index) {
+
+            openForm(
+                movements[index].type,
+                index
+            );
+
+        }
+
+
+        function deleteMovement(index) {
+
+            const movement =
+                movements[index];
+
+
+            const confirmation =
                 confirm(
                     "Vuoi eliminare questo movimento?"
                 );
 
-            if (!conferma) {
+
+            if (!confirmation) {
                 return;
             }
 
+
             if (
-                movimento.tipo ===
-                "+ Entrata"
+                movement.type ===
+                "income"
             ) {
 
-                saldo -=
-                    movimento.importo;
+                balance -=
+                    Number(
+                        movement.amount
+                    );
 
             } else {
 
-                saldo +=
-                    movimento.importo;
+                balance +=
+                    Number(
+                        movement.amount
+                    );
 
             }
 
-            movimenti.splice(
-                indice,
+
+            movements.splice(
+                index,
                 1
             );
 
-            aggiorna();
+
+            saveData();
+
+            updateAll();
 
         }
 
@@ -1643,37 +2445,76 @@
            AZZERA
         ========================= */
 
-        function azzeraTutto() {
 
-            const conferma =
+        function resetAll() {
+
+            const confirmation =
                 confirm(
-                    "ATTENZIONE!\n\n" +
-                    "Vuoi davvero azzerare il saldo " +
-                    "e cancellare tutti i movimenti?\n\n" +
-                    "Questa operazione non può essere annullata."
+                    "Vuoi davvero cancellare saldo e tutti i movimenti?"
                 );
 
-            if (!conferma) {
+
+            if (!confirmation) {
                 return;
             }
 
-            saldo = 0;
 
-            movimenti = [];
+            balance = 0;
 
-            localStorage.removeItem(
-                "saldoo"
-            );
+            movements = [];
 
-            localStorage.removeItem(
-                "movimenti"
-            );
 
-            aggiorna();
+            saveData();
 
-            alert(
-                "Saldo e movimenti azzerati."
-            );
+            updateAll();
+
+        }
+
+
+        /* =========================
+           SICUREZZA TESTO
+        ========================= */
+
+
+        function escapeHTML(text) {
+
+            return String(text)
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================
+           AGGIORNA TUTTO
+        ========================= */
+
+
+        function updateAll() {
+
+            updateSummary();
+
+            renderMonth();
+
+            renderMovements();
 
         }
 
@@ -1682,11 +2523,15 @@
            AVVIO
         ========================= */
 
-        caricaTema();
 
-        aggiorna();
+        loadTheme();
+
+        updateAll();
+
 
     </script>
 
+
 </body>
+
 </html>
