@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-
 <meta charset="UTF-8">
 
 <meta
@@ -16,13 +14,16 @@
 
 <style>
 
+/* =========================================================
+   BASE
+========================================================= */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-
     --bg: #f5f6f8;
     --card: #ffffff;
     --text: #17181a;
@@ -45,7 +46,6 @@
 }
 
 body.dark {
-
     --bg: #101112;
     --card: #1b1d20;
     --text: #f5f5f5;
@@ -72,13 +72,14 @@ html {
 }
 
 body {
-
     margin: 0;
 
     padding:
         calc(10px + env(safe-area-inset-top))
         14px
         calc(30px + env(safe-area-inset-bottom));
+
+    min-height: 100vh;
 
     background: var(--bg);
     color: var(--text);
@@ -90,8 +91,6 @@ body {
         "Segoe UI",
         Arial,
         sans-serif;
-
-    min-height: 100vh;
 }
 
 button,
@@ -116,11 +115,11 @@ button:active {
     margin: auto;
 }
 
-
-/* HEADER */
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header {
-
     height: 55px;
 
     display: flex;
@@ -133,16 +132,13 @@ button:active {
 }
 
 .title {
-
     margin: 0;
-
     font-size: 22px;
     font-weight: 800;
 }
 
 .menu-button,
 .back-button {
-
     position: absolute;
     left: 0;
 
@@ -152,19 +148,17 @@ button:active {
     border-radius: 14px;
 
     background: var(--card);
-
     border: 1px solid var(--border);
-
     box-shadow: var(--shadow);
 
     font-size: 21px;
 }
 
-
-/* MENU */
+/* =========================================================
+   MENU LATERALE
+========================================================= */
 
 .overlay {
-
     position: fixed;
     inset: 0;
 
@@ -179,13 +173,11 @@ button:active {
 }
 
 .overlay.open {
-
     opacity: 1;
     pointer-events: auto;
 }
 
 .side-menu {
-
     position: fixed;
 
     top: 0;
@@ -208,6 +200,8 @@ button:active {
     z-index: 101;
 
     box-shadow: 8px 0 30px rgba(0,0,0,.18);
+
+    overflow-y: auto;
 }
 
 .side-menu.open {
@@ -215,9 +209,7 @@ button:active {
 }
 
 .menu-header {
-
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
@@ -227,13 +219,11 @@ button:active {
 }
 
 .menu-title {
-
     font-size: 23px;
     font-weight: 800;
 }
 
 .close-menu {
-
     width: 42px;
     height: 42px;
 
@@ -245,7 +235,6 @@ button:active {
 }
 
 .menu-section {
-
     margin: 22px 0 8px;
 
     color: var(--muted);
@@ -258,9 +247,7 @@ button:active {
 }
 
 .menu-item {
-
     width: 100%;
-
     min-height: 52px;
 
     display: flex;
@@ -284,11 +271,8 @@ button:active {
 }
 
 .menu-icon {
-
     width: 26px;
-
     text-align: center;
-
     font-size: 20px;
 }
 
@@ -296,11 +280,11 @@ button:active {
     color: var(--red);
 }
 
-
-/* CARD */
+/* =========================================================
+   CARD
+========================================================= */
 
 .card {
-
     background: var(--card);
 
     border: 1px solid var(--border);
@@ -310,33 +294,26 @@ button:active {
     box-shadow: var(--shadow);
 }
 
-
-/* SALDO */
+/* =========================================================
+   SALDO
+========================================================= */
 
 .balance-card {
-
     padding: 25px 20px 22px;
 
     text-align: center;
 
     margin-bottom: 11px;
-
-    transition: transform .25s ease;
 }
 
 .balance-label {
-
     color: var(--muted);
-
     font-size: 13px;
-
     margin-bottom: 7px;
 }
 
 .balance {
-
     font-size: 42px;
-
     font-weight: 850;
 
     letter-spacing: -1.5px;
@@ -353,48 +330,24 @@ button:active {
 }
 
 @keyframes balanceSpent {
-
-    0% {
-        transform: scale(1);
-    }
-
-    35% {
-        transform: scale(.97);
-    }
-
-    70% {
-        transform: scale(1.02);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+    0% { transform: scale(1); }
+    35% { transform: scale(.97); }
+    70% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
 
 @keyframes balanceAdded {
-
-    0% {
-        transform: scale(1);
-    }
-
-    35% {
-        transform: scale(1.04);
-    }
-
-    70% {
-        transform: scale(.99);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+    0% { transform: scale(1); }
+    35% { transform: scale(1.04); }
+    70% { transform: scale(.99); }
+    100% { transform: scale(1); }
 }
 
-
-/* TOAST */
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast {
-
     position: fixed;
 
     left: 50%;
@@ -410,10 +363,9 @@ button:active {
 
     pointer-events: none;
 
-    z-index: 300;
+    z-index: 700;
 
     display: flex;
-
     align-items: center;
 
     gap: 10px;
@@ -423,13 +375,11 @@ button:active {
     border-radius: 15px;
 
     background: var(--text);
-
     color: var(--card);
 
     box-shadow: 0 10px 35px rgba(0,0,0,.22);
 
     font-size: 14px;
-
     font-weight: 700;
 
     white-space: nowrap;
@@ -440,7 +390,6 @@ button:active {
 }
 
 .toast.show {
-
     opacity: 1;
 
     transform:
@@ -452,22 +401,18 @@ button:active {
     font-size: 20px;
 }
 
-
-/* SALVADANAIO MINI */
+/* =========================================================
+   SALVADANAIO MINI
+========================================================= */
 
 .savings-mini {
-
     padding: 17px;
-
     margin-bottom: 11px;
-
     cursor: pointer;
 }
 
 .savings-mini-top {
-
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
@@ -475,9 +420,7 @@ button:active {
 }
 
 .savings-mini-left {
-
     display: flex;
-
     align-items: center;
 
     gap: 12px;
@@ -486,7 +429,6 @@ button:active {
 }
 
 .savings-icon {
-
     width: 43px;
     height: 43px;
 
@@ -504,13 +446,11 @@ button:active {
 }
 
 .savings-name {
-
     font-size: 15px;
     font-weight: 750;
 }
 
 .savings-amount {
-
     margin-top: 3px;
 
     color: var(--muted);
@@ -519,14 +459,11 @@ button:active {
 }
 
 .savings-arrow {
-
     color: var(--muted);
-
     font-size: 20px;
 }
 
 .mini-progress {
-
     height: 6px;
 
     margin-top: 14px;
@@ -539,9 +476,7 @@ button:active {
 }
 
 .mini-progress-fill {
-
     height: 100%;
-
     width: 0%;
 
     background: var(--yellow);
@@ -551,11 +486,11 @@ button:active {
     transition: width .3s;
 }
 
-
-/* STATISTICHE */
+/* =========================================================
+   STATISTICHE
+========================================================= */
 
 .stats {
-
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -570,7 +505,6 @@ button:active {
 }
 
 .stat-label {
-
     color: var(--muted);
 
     font-size: 12px;
@@ -579,9 +513,7 @@ button:active {
 }
 
 .stat-value {
-
     font-size: 19px;
-
     font-weight: 800;
 }
 
@@ -593,11 +525,11 @@ button:active {
     color: var(--red);
 }
 
-
-/* AZIONI */
+/* =========================================================
+   AZIONI
+========================================================= */
 
 .actions {
-
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -608,52 +540,42 @@ button:active {
 }
 
 .action {
-
     height: 61px;
 
     border-radius: 16px;
 
     font-size: 16px;
-
     font-weight: 750;
 }
 
 .income {
-
     background: var(--green-bg);
-
     color: var(--green);
 }
 
 .expense {
-
     background: var(--red-bg);
-
     color: var(--red);
 }
 
-
-/* FORM */
+/* =========================================================
+   FORM
+========================================================= */
 
 .form {
-
     padding: 19px;
-
     margin-bottom: 14px;
 }
 
 .form-title {
-
     margin: 0 0 15px;
 
     font-size: 19px;
-
     font-weight: 800;
 }
 
 input,
 select {
-
     width: 100%;
 
     height: 51px;
@@ -669,31 +591,30 @@ select {
     outline: none;
 
     background: var(--bg);
-
     color: var(--text);
 
     font-size: 16px;
 }
 
+input:focus,
+select:focus {
+    border-color: var(--blue);
+}
+
 .save {
-
     width: 100%;
-
     height: 51px;
 
     border-radius: 13px;
 
     background: var(--text);
-
     color: var(--card);
 
     font-weight: 750;
 }
 
 .cancel {
-
     width: 100%;
-
     height: 47px;
 
     margin-top: 8px;
@@ -703,30 +624,27 @@ select {
     background: var(--bg);
 }
 
-
-/* SEZIONI */
+/* =========================================================
+   SEZIONI
+========================================================= */
 
 .section {
-
     padding: 18px;
-
     margin-bottom: 13px;
 }
 
 .section-title {
-
     margin: 0 0 14px;
 
     font-size: 19px;
-
     font-weight: 800;
 }
 
-
-/* RIEPILOGO */
+/* =========================================================
+   RIEPILOGO
+========================================================= */
 
 .month-summary {
-
     display: flex;
 
     justify-content: space-between;
@@ -742,28 +660,24 @@ select {
 }
 
 .month-name {
-
     font-weight: 700;
-
     font-size: 14px;
 }
 
 .month-total {
-
     color: var(--red);
-
     font-weight: 800;
 }
 
-
-/* CATEGORIE */
+/* =========================================================
+   CATEGORIE
+========================================================= */
 
 .category-row {
     margin-bottom: 14px;
 }
 
 .category-header {
-
     display: flex;
 
     justify-content: space-between;
@@ -780,14 +694,11 @@ select {
 }
 
 .category-amount {
-
     color: var(--muted);
-
     font-weight: 700;
 }
 
 .bar {
-
     height: 7px;
 
     background: var(--bg);
@@ -798,7 +709,6 @@ select {
 }
 
 .bar-fill {
-
     height: 100%;
 
     background: var(--red);
@@ -806,25 +716,21 @@ select {
     border-radius: 20px;
 }
 
-
-/* RICERCA */
+/* =========================================================
+   RICERCA
+========================================================= */
 
 .search {
-
     position: relative;
-
     margin-bottom: 5px;
 }
 
 .search input {
-
     margin: 0;
-
     padding-left: 43px;
 }
 
 .search-icon {
-
     position: absolute;
 
     left: 15px;
@@ -833,11 +739,11 @@ select {
     color: var(--muted);
 }
 
-
-/* MOVIMENTI */
+/* =========================================================
+   MOVIMENTI
+========================================================= */
 
 .movement {
-
     padding: 15px 0;
 
     border-bottom: 1px solid var(--border);
@@ -848,7 +754,6 @@ select {
 }
 
 .movement-top {
-
     display: flex;
 
     align-items: flex-start;
@@ -859,23 +764,18 @@ select {
 }
 
 .movement-info {
-
     min-width: 0;
-
     flex: 1;
 }
 
 .movement-title {
-
     font-size: 15px;
-
     font-weight: 700;
 
     overflow-wrap: anywhere;
 }
 
 .movement-date {
-
     margin-top: 5px;
 
     color: var(--muted);
@@ -884,7 +784,6 @@ select {
 }
 
 .movement-category {
-
     display: inline-block;
 
     margin-top: 7px;
@@ -901,15 +800,12 @@ select {
 }
 
 .movement-buttons {
-
     display: flex;
-
     gap: 5px;
 }
 
 .edit,
 .delete {
-
     width: 36px;
     height: 36px;
 
@@ -922,8 +818,9 @@ select {
     color: var(--red);
 }
 
-
-/* PAGINE */
+/* =========================================================
+   PAGINE
+========================================================= */
 
 #homePage {
     display: block;
@@ -938,7 +835,6 @@ select {
 }
 
 .empty {
-
     padding: 10px 0;
 
     text-align: center;
@@ -948,18 +844,16 @@ select {
     font-size: 13px;
 }
 
-
-/* SALVADANAIO */
+/* =========================================================
+   SALVADANAIO
+========================================================= */
 
 .savings-card {
-
     padding: 20px;
-
     margin-bottom: 13px;
 }
 
 .savings-big-header {
-
     display: flex;
 
     align-items: center;
@@ -970,7 +864,6 @@ select {
 }
 
 .big-pig {
-
     width: 55px;
     height: 55px;
 
@@ -986,14 +879,11 @@ select {
 }
 
 .savings-page-name {
-
     font-size: 20px;
-
     font-weight: 800;
 }
 
 .savings-page-subtitle {
-
     margin-top: 3px;
 
     color: var(--muted);
@@ -1002,7 +892,6 @@ select {
 }
 
 .savings-big-amount {
-
     font-size: 37px;
 
     font-weight: 850;
@@ -1013,7 +902,6 @@ select {
 }
 
 .savings-target {
-
     color: var(--muted);
 
     font-size: 13px;
@@ -1022,7 +910,6 @@ select {
 }
 
 .progress {
-
     height: 11px;
 
     background: var(--bg);
@@ -1033,9 +920,7 @@ select {
 }
 
 .progress-fill {
-
     height: 100%;
-
     width: 0%;
 
     background: var(--yellow);
@@ -1046,7 +931,6 @@ select {
 }
 
 .progress-text {
-
     margin-top: 7px;
 
     text-align: right;
@@ -1057,7 +941,6 @@ select {
 }
 
 .savings-actions {
-
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -1069,7 +952,6 @@ select {
 
 .savings-add,
 .savings-remove {
-
     height: 50px;
 
     border-radius: 13px;
@@ -1078,21 +960,16 @@ select {
 }
 
 .savings-add {
-
     background: var(--green-bg);
-
     color: var(--green);
 }
 
 .savings-remove {
-
     background: var(--red-bg);
-
     color: var(--red);
 }
 
 .settings-button {
-
     width: 100%;
 
     height: 46px;
@@ -1107,7 +984,6 @@ select {
 }
 
 .info-card {
-
     padding: 18px;
 
     line-height: 1.6;
@@ -1117,11 +993,11 @@ select {
     font-size: 13px;
 }
 
-
-/* POPUP */
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal-overlay {
-
     position: fixed;
 
     inset: 0;
@@ -1149,14 +1025,11 @@ select {
 }
 
 .modal-overlay.open {
-
     opacity: 1;
-
     pointer-events: auto;
 }
 
 .amount-modal {
-
     width: 100%;
 
     max-width: 520px;
@@ -1167,8 +1040,7 @@ select {
 
     border-radius: 25px;
 
-    box-shadow:
-        0 -8px 40px rgba(0,0,0,.20);
+    box-shadow: 0 -8px 40px rgba(0,0,0,.20);
 
     transform: translateY(30px);
 
@@ -1180,9 +1052,7 @@ select {
 }
 
 .modal-handle {
-
     width: 42px;
-
     height: 5px;
 
     margin: 0 auto 20px;
@@ -1193,7 +1063,6 @@ select {
 }
 
 .modal-title {
-
     text-align: center;
 
     font-size: 20px;
@@ -1204,7 +1073,6 @@ select {
 }
 
 .modal-subtitle {
-
     text-align: center;
 
     color: var(--muted);
@@ -1215,7 +1083,6 @@ select {
 }
 
 .amount-input {
-
     width: 100%;
 
     height: 70px;
@@ -1246,7 +1113,6 @@ select {
 }
 
 .modal-confirm {
-
     width: 100%;
 
     height: 56px;
@@ -1263,7 +1129,6 @@ select {
 }
 
 .modal-cancel {
-
     width: 100%;
 
     height: 46px;
@@ -1279,11 +1144,11 @@ select {
     font-weight: 650;
 }
 
-
-/* DETTAGLI */
+/* =========================================================
+   DETTAGLI
+========================================================= */
 
 .details-title {
-
     font-size: 20px;
 
     font-weight: 800;
@@ -1294,7 +1159,6 @@ select {
 }
 
 .details-subtitle {
-
     color: var(--muted);
 
     text-align: center;
@@ -1305,7 +1169,6 @@ select {
 }
 
 .details-buttons {
-
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -1316,7 +1179,6 @@ select {
 }
 
 .skip-button {
-
     width: 100%;
 
     height: 50px;
@@ -1329,7 +1191,6 @@ select {
 }
 
 .detail-save {
-
     width: 100%;
 
     height: 50px;
@@ -1343,11 +1204,27 @@ select {
     font-weight: 750;
 }
 
+/* =========================================================
+   VERSIONE
+========================================================= */
+
+.version {
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin: 20px 0 5px;
+}
+
+/* =========================================================
+   MOBILE PICCOLO
+========================================================= */
 
 @media (max-width: 370px) {
 
     body {
-
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -1356,24 +1233,26 @@ select {
         font-size: 36px;
     }
 
+    .action {
+        font-size: 14px;
+    }
+
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- MENU -->
+<!-- =======================================================
+     MENU
+======================================================= -->
 
 <div
     id="overlay"
     class="overlay"
     onclick="closeMenu()">
 </div>
-
 
 <aside
     id="sideMenu"
@@ -1388,53 +1267,38 @@ select {
         <button
             class="close-menu"
             onclick="closeMenu()">
-
             ×
-
         </button>
 
     </div>
-
 
     <div class="menu-section">
         Navigazione
     </div>
 
-
     <button
         class="menu-item"
         onclick="showHome()">
 
-        <span class="menu-icon">
-            🏠
-        </span>
+        <span class="menu-icon">🏠</span>
 
-        <span>
-            Home
-        </span>
+        <span>Home</span>
 
     </button>
-
 
     <button
         class="menu-item"
         onclick="showSavings()">
 
-        <span class="menu-icon">
-            🐷
-        </span>
+        <span class="menu-icon">🐷</span>
 
-        <span>
-            Salvadanaio
-        </span>
+        <span>Salvadanaio</span>
 
     </button>
-
 
     <div class="menu-section">
         Impostazioni
     </div>
-
 
     <button
         class="menu-item"
@@ -1443,9 +1307,7 @@ select {
         <span
             id="themeIcon"
             class="menu-icon">
-
             🌙
-
         </span>
 
         <span id="themeText">
@@ -1453,7 +1315,6 @@ select {
         </span>
 
     </button>
-
 
     <button
         class="menu-item menu-danger"
@@ -1472,7 +1333,9 @@ select {
 </aside>
 
 
-<!-- TOAST -->
+<!-- =======================================================
+     TOAST
+======================================================= -->
 
 <div
     id="toast"
@@ -1481,9 +1344,7 @@ select {
     <span
         id="toastIcon"
         class="toast-icon">
-
         ✓
-
     </span>
 
     <span id="toastText">
@@ -1493,7 +1354,9 @@ select {
 </div>
 
 
-<!-- POPUP IMPORTO -->
+<!-- =======================================================
+     MODAL IMPORTO
+======================================================= -->
 
 <div
     id="amountModal"
@@ -1501,27 +1364,19 @@ select {
 
     <div class="amount-modal">
 
-        <div class="modal-handle">
-        </div>
-
+        <div class="modal-handle"></div>
 
         <div
             id="amountModalTitle"
             class="modal-title">
-
             Inserisci importo
-
         </div>
-
 
         <div
             id="amountModalSubtitle"
             class="modal-subtitle">
-
             Inserisci solo l'importo
-
         </div>
-
 
         <input
             id="quickAmount"
@@ -1534,22 +1389,16 @@ select {
             placeholder="€ 0,00"
         >
 
-
         <button
             class="modal-confirm"
             onclick="confirmQuickAmount()">
-
             Continua
-
         </button>
-
 
         <button
             class="modal-cancel"
             onclick="closeAmountModal()">
-
             Annulla
-
         </button>
 
     </div>
@@ -1557,7 +1406,9 @@ select {
 </div>
 
 
-<!-- POPUP DETTAGLI -->
+<!-- =======================================================
+     MODAL DETTAGLI
+======================================================= -->
 
 <div
     id="detailsModal"
@@ -1565,24 +1416,16 @@ select {
 
     <div class="amount-modal">
 
-        <div class="modal-handle">
-        </div>
-
+        <div class="modal-handle"></div>
 
         <div class="details-title">
-
             Aggiungi dettagli?
-
         </div>
-
 
         <div class="details-subtitle">
-
             Facoltativo. Puoi anche
             registrare subito il movimento.
-
         </div>
-
 
         <input
             id="quickDescription"
@@ -1590,7 +1433,6 @@ select {
             maxlength="100"
             placeholder="Descrizione (opzionale)"
         >
-
 
         <select id="quickCategory">
 
@@ -1672,24 +1514,18 @@ select {
 
         </select>
 
-
         <div class="details-buttons">
 
             <button
                 class="skip-button"
                 onclick="saveQuickTransaction(false)">
-
                 Salta
-
             </button>
-
 
             <button
                 class="detail-save"
                 onclick="saveQuickTransaction(true)">
-
                 Salva
-
             </button>
 
         </div>
@@ -1699,23 +1535,21 @@ select {
 </div>
 
 
-<!-- HOME -->
+<!-- =======================================================
+     HOME
+======================================================= -->
 
 <main
     id="homePage"
     class="app">
-
 
     <header class="header">
 
         <button
             class="menu-button"
             onclick="openMenu()">
-
             ☰
-
         </button>
-
 
         <h1 class="title">
             Gestione Soldi
@@ -1723,6 +1557,8 @@ select {
 
     </header>
 
+
+    <!-- SALDO -->
 
     <section
         id="balanceCard"
@@ -1735,9 +1571,7 @@ select {
         <div
             id="balance"
             class="balance">
-
             €0.00
-
         </div>
 
     </section>
@@ -1762,30 +1596,24 @@ select {
                     <div
                         id="miniSavingsName"
                         class="savings-name">
-
                         Il mio salvadanaio
-
                     </div>
 
                     <div
                         id="miniSavingsAmount"
                         class="savings-amount">
-
                         €0.00
-
                     </div>
 
                 </div>
 
             </div>
 
-
             <div class="savings-arrow">
                 ›
             </div>
 
         </div>
-
 
         <div class="mini-progress">
 
@@ -1812,13 +1640,10 @@ select {
             <div
                 id="totalIncome"
                 class="stat-value green">
-
                 €0.00
-
             </div>
 
         </section>
-
 
         <section class="card stat">
 
@@ -1829,9 +1654,7 @@ select {
             <div
                 id="totalExpense"
                 class="stat-value red">
-
                 €0.00
-
             </div>
 
         </section>
@@ -1839,31 +1662,26 @@ select {
     </div>
 
 
-    <!-- PULSANTI -->
+    <!-- AZIONI -->
 
     <div class="actions">
 
         <button
             class="action income"
             onclick="openQuickTransaction('income')">
-
             ＋ Entrata
-
         </button>
-
 
         <button
             class="action expense"
             onclick="openQuickTransaction('expense')">
-
             − Spesa
-
         </button>
 
     </div>
 
 
-    <!-- FORM CLASSICO -->
+    <!-- FORM MODIFICA -->
 
     <section
         id="form"
@@ -1872,11 +1690,8 @@ select {
         <h2
             id="formTitle"
             class="form-title">
-
             Nuova operazione
-
         </h2>
-
 
         <input
             id="amount"
@@ -1887,7 +1702,6 @@ select {
             placeholder="Importo (€)"
         >
 
-
         <input
             id="description"
             type="text"
@@ -1895,115 +1709,54 @@ select {
             placeholder="Descrizione (opzionale)"
         >
 
-
         <select id="category">
 
             <option value="">
                 Categoria (opzionale)
             </option>
 
-            <option value="💼 Stipendio">
-                💼 Stipendio
-            </option>
-
-            <option value="💰 Bonus">
-                💰 Bonus
-            </option>
-
-            <option value="🎁 Regalo">
-                🎁 Regalo
-            </option>
-
-            <option value="🏦 Investimenti">
-                🏦 Investimenti
-            </option>
-
-            <option value="🏠 Affitto">
-                🏠 Affitto
-            </option>
-
-            <option value="💡 Bollette">
-                💡 Bollette
-            </option>
-
-            <option value="🛒 Spesa alimentare">
-                🛒 Spesa alimentare
-            </option>
-
-            <option value="🍔 Ristoranti">
-                🍔 Ristoranti
-            </option>
-
-            <option value="🚗 Benzina">
-                🚗 Benzina
-            </option>
-
-            <option value="🚌 Trasporti">
-                🚌 Trasporti
-            </option>
-
-            <option value="🛍️ Shopping">
-                🛍️ Shopping
-            </option>
-
-            <option value="🎮 Svago">
-                🎮 Svago
-            </option>
-
-            <option value="💊 Salute">
-                💊 Salute
-            </option>
-
-            <option value="📱 Abbonamenti">
-                📱 Abbonamenti
-            </option>
-
-            <option value="📚 Istruzione">
-                📚 Istruzione
-            </option>
-
-            <option value="🐶 Animali">
-                🐶 Animali
-            </option>
-
-            <option value="✈️ Viaggi">
-                ✈️ Viaggi
-            </option>
-
-            <option value="📦 Altro">
-                📦 Altro
-            </option>
+            <option value="💼 Stipendio">💼 Stipendio</option>
+            <option value="💰 Bonus">💰 Bonus</option>
+            <option value="🎁 Regalo">🎁 Regalo</option>
+            <option value="🏦 Investimenti">🏦 Investimenti</option>
+            <option value="🏠 Affitto">🏠 Affitto</option>
+            <option value="💡 Bollette">💡 Bollette</option>
+            <option value="🛒 Spesa alimentare">🛒 Spesa alimentare</option>
+            <option value="🍔 Ristoranti">🍔 Ristoranti</option>
+            <option value="🚗 Benzina">🚗 Benzina</option>
+            <option value="🚌 Trasporti">🚌 Trasporti</option>
+            <option value="🛍️ Shopping">🛍️ Shopping</option>
+            <option value="🎮 Svago">🎮 Svago</option>
+            <option value="💊 Salute">💊 Salute</option>
+            <option value="📱 Abbonamenti">📱 Abbonamenti</option>
+            <option value="📚 Istruzione">📚 Istruzione</option>
+            <option value="🐶 Animali">🐶 Animali</option>
+            <option value="✈️ Viaggi">✈️ Viaggi</option>
+            <option value="📦 Altro">📦 Altro</option>
 
         </select>
-
 
         <input
             id="date"
             type="date"
         >
 
-
         <button
             class="save"
             onclick="saveMovement()">
-
             Salva operazione
-
         </button>
-
 
         <button
             class="cancel"
             onclick="closeForm()">
-
             Annulla
-
         </button>
 
     </section>
 
 
-    <!-- SPESE MESE -->
+    <!-- SPESE DEL MESE -->
 
     <section class="card section">
 
@@ -2011,31 +1764,23 @@ select {
             Spese di questo mese
         </h2>
 
-
         <div class="month-summary">
 
             <span
                 id="monthName"
                 class="month-name">
-
                 Mese corrente
-
             </span>
-
 
             <span
                 id="monthTotal"
                 class="month-total">
-
                 €0.00
-
             </span>
 
         </div>
 
-
-        <div id="categories">
-        </div>
+        <div id="categories"></div>
 
     </section>
 
@@ -2048,13 +1793,11 @@ select {
             Movimenti
         </h2>
 
-
         <div class="search">
 
             <span class="search-icon">
                 🔎
             </span>
-
 
             <input
                 id="search"
@@ -2065,46 +1808,33 @@ select {
 
         </div>
 
-
-        <div id="movements">
-        </div>
+        <div id="movements"></div>
 
     </section>
 
 
-    <!-- VERSIONE -->
-
-    <div style="
-        text-align:center;
-        color:var(--muted);
-        font-size:11px;
-        margin:20px 0 5px;
-    ">
-
-        Gestione Soldi · Versione 1.20
-
+    <div class="version">
+        Gestione Soldi · Versione 1.21
     </div>
 
 </main>
 
 
-<!-- SALVADANAIO -->
+<!-- =======================================================
+     PAGINA SALVADANAIO
+======================================================= -->
 
 <main
     id="savingsPage"
     class="app">
-
 
     <header class="header">
 
         <button
             class="back-button"
             onclick="showHome()">
-
             ←
-
         </button>
-
 
         <h1 class="title">
             Salvadanaio
@@ -2121,22 +1851,16 @@ select {
                 🐷
             </div>
 
-
             <div>
 
                 <div
                     id="savingsPageName"
                     class="savings-page-name">
-
                     Il mio salvadanaio
-
                 </div>
 
-
                 <div class="savings-page-subtitle">
-
                     I soldi che hai messo da parte
-
                 </div>
 
             </div>
@@ -2147,18 +1871,14 @@ select {
         <div
             id="savingsBigAmount"
             class="savings-big-amount">
-
             €0.00
-
         </div>
 
 
         <div
             id="savingsTarget"
             class="savings-target">
-
             Obiettivo: €0.00
-
         </div>
 
 
@@ -2175,9 +1895,7 @@ select {
         <div
             id="savingsProgressText"
             class="progress-text">
-
             0%
-
         </div>
 
 
@@ -2186,18 +1904,13 @@ select {
             <button
                 class="savings-add"
                 onclick="openSavingsAmountModal('add')">
-
                 ＋ Metti soldi
-
             </button>
-
 
             <button
                 class="savings-remove"
                 onclick="openSavingsAmountModal('remove')">
-
                 − Preleva
-
             </button>
 
         </div>
@@ -2206,9 +1919,7 @@ select {
         <button
             class="settings-button"
             onclick="toggleSavingsSettings()">
-
             ⚙️ Modifica obiettivo
-
         </button>
 
 
@@ -2220,14 +1931,12 @@ select {
                 Impostazioni salvadanaio
             </h2>
 
-
             <input
                 id="savingsNameInput"
                 type="text"
                 maxlength="40"
                 placeholder="Nome del salvadanaio"
             >
-
 
             <input
                 id="savingsTargetInput"
@@ -2238,13 +1947,10 @@ select {
                 placeholder="Obiettivo (€)"
             >
 
-
             <button
                 class="save"
                 onclick="saveSavingsSettings()">
-
                 Salva
-
             </button>
 
         </div>
@@ -2260,30 +1966,24 @@ select {
 
         <br><br>
 
-        Il salvadanaio è collegato al saldo.
-
-        <br><br>
-
         Quando metti soldi nel salvadanaio,
         vengono tolti dal saldo disponibile.
 
         <br><br>
 
-        Quando prelevi, tornano
-        automaticamente nel saldo.
+        Quando prelevi dal salvadanaio,
+        tornano automaticamente nel saldo.
+
+        <br><br>
+
+        Ogni operazione viene salvata
+        automaticamente sul dispositivo.
 
     </section>
 
 
-    <div style="
-        text-align:center;
-        color:var(--muted);
-        font-size:11px;
-        margin:20px 0 5px;
-    ">
-
-        Gestione Soldi · Versione 1.20
-
+    <div class="version">
+        Gestione Soldi · Versione 1.21
     </div>
 
 </main>
@@ -2291,54 +1991,62 @@ select {
 
 <script>
 
-
-/* =========================
+/* =========================================================
    DATI
-========================= */
+========================================================= */
 
 let balance =
-    Number(
-        localStorage.getItem("balance")
-    ) || 0;
+    Number(localStorage.getItem("balance")) || 0;
 
+let movements;
 
-let movements =
-    JSON.parse(
-        localStorage.getItem("movements")
-    ) || [];
-
+try {
+    movements =
+        JSON.parse(
+            localStorage.getItem("movements")
+        ) || [];
+} catch {
+    movements = [];
+}
 
 let savingsAmount =
     Number(
         localStorage.getItem("savingsAmount")
     ) || 0;
 
-
 let savingsTarget =
     Number(
         localStorage.getItem("savingsTarget")
     ) || 0;
-
 
 let savingsName =
     localStorage.getItem("savingsName")
     || "Il mio salvadanaio";
 
 
-let quickType = "income";
+/*
+    Modalità del popup.
+
+    quickMode può essere:
+
+    "income"
+    "expense"
+    "savings-add"
+    "savings-remove"
+*/
+
+let quickMode = null;
 
 let quickAmountValue = 0;
-
-let quickSavingsType = "add";
 
 let operationType = "income";
 
 let editingIndex = null;
 
 
-/* =========================
+/* =========================================================
    UTILITÀ
-========================= */
+========================================================= */
 
 function money(value) {
 
@@ -2354,40 +2062,39 @@ function today() {
 
     return d.getFullYear() +
         "-" +
-        String(
-            d.getMonth() + 1
-        ).padStart(2, "0") +
+        String(d.getMonth() + 1).padStart(2, "0") +
         "-" +
-        String(
-            d.getDate()
-        ).padStart(2, "0");
+        String(d.getDate()).padStart(2, "0");
 
 }
 
 
 function formatDate(date) {
 
-    if (!date) return "";
+    if (!date) {
+        return "";
+    }
 
-    const p =
-        date.split("-");
+    const p = date.split("-");
 
     if (p.length !== 3) {
         return date;
     }
 
-    return p[2] +
+    return (
+        p[2] +
         "/" +
         p[1] +
         "/" +
-        p[0];
+        p[0]
+    );
 
 }
 
 
 function escapeHTML(text) {
 
-    return String(text)
+    return String(text ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -2401,7 +2108,7 @@ function saveData() {
 
     localStorage.setItem(
         "balance",
-        balance
+        String(balance)
     );
 
     localStorage.setItem(
@@ -2411,12 +2118,12 @@ function saveData() {
 
     localStorage.setItem(
         "savingsAmount",
-        savingsAmount
+        String(savingsAmount)
     );
 
     localStorage.setItem(
         "savingsTarget",
-        savingsTarget
+        String(savingsTarget)
     );
 
     localStorage.setItem(
@@ -2427,12 +2134,11 @@ function saveData() {
 }
 
 
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 let toastTimer = null;
-
 
 function showToast(
     message,
@@ -2440,47 +2146,33 @@ function showToast(
 ) {
 
     const toast =
-        document.getElementById(
-            "toast"
-        );
-
+        document.getElementById("toast");
 
     document.getElementById(
         "toastIcon"
     ).textContent = icon;
 
-
     document.getElementById(
         "toastText"
     ).textContent = message;
 
-
     toast.classList.add("show");
 
-
-    clearTimeout(
-        toastTimer
-    );
-
+    clearTimeout(toastTimer);
 
     toastTimer =
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                toast.classList.remove(
-                    "show"
-                );
+            toast.classList.remove("show");
 
-            },
-            1800
-        );
+        }, 1800);
 
 }
 
 
-/* =========================
+/* =========================================================
    ANIMAZIONE SALDO
-========================= */
+========================================================= */
 
 function animateBalance(type) {
 
@@ -2489,15 +2181,12 @@ function animateBalance(type) {
             "balanceCard"
         );
 
-
     card.classList.remove(
         "balance-spent",
         "balance-added"
     );
 
-
     void card.offsetWidth;
-
 
     card.classList.add(
         type === "spent"
@@ -2505,32 +2194,27 @@ function animateBalance(type) {
             : "balance-added"
     );
 
+    setTimeout(() => {
 
-    setTimeout(
-        () => {
+        card.classList.remove(
+            "balance-spent",
+            "balance-added"
+        );
 
-            card.classList.remove(
-                "balance-spent",
-                "balance-added"
-            );
-
-        },
-        500
-    );
+    }, 500);
 
 }
 
 
-/* =========================
+/* =========================================================
    MENU
-========================= */
+========================================================= */
 
 function openMenu() {
 
     document
         .getElementById("sideMenu")
         .classList.add("open");
-
 
     document
         .getElementById("overlay")
@@ -2545,7 +2229,6 @@ function closeMenu() {
         .getElementById("sideMenu")
         .classList.remove("open");
 
-
     document
         .getElementById("overlay")
         .classList.remove("open");
@@ -2553,9 +2236,9 @@ function closeMenu() {
 }
 
 
-/* =========================
+/* =========================================================
    PAGINE
-========================= */
+========================================================= */
 
 function showHome() {
 
@@ -2563,15 +2246,16 @@ function showHome() {
         "homePage"
     ).style.display = "block";
 
-
     document.getElementById(
         "savingsPage"
     ).style.display = "none";
 
-
     closeMenu();
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
@@ -2582,43 +2266,37 @@ function showSavings() {
         "homePage"
     ).style.display = "none";
 
-
     document.getElementById(
         "savingsPage"
     ).style.display = "block";
-
 
     closeMenu();
 
     renderSavings();
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
-/* =========================
+/* =========================================================
    TEMA
-========================= */
+========================================================= */
 
 function toggleTheme() {
 
-    document.body.classList.toggle(
-        "dark"
-    );
-
+    document.body.classList.toggle("dark");
 
     const dark =
-        document.body.classList.contains(
-            "dark"
-        );
-
+        document.body.classList.contains("dark");
 
     localStorage.setItem(
         "theme",
         dark ? "dark" : "light"
     );
-
 
     updateTheme();
 
@@ -2628,16 +2306,12 @@ function toggleTheme() {
 function updateTheme() {
 
     const dark =
-        document.body.classList.contains(
-            "dark"
-        );
-
+        document.body.classList.contains("dark");
 
     document.getElementById(
         "themeIcon"
     ).textContent =
         dark ? "☀️" : "🌙";
-
 
     document.getElementById(
         "themeText"
@@ -2656,65 +2330,48 @@ function loadTheme() {
         === "dark"
     ) {
 
-        document.body.classList.add(
-            "dark"
-        );
+        document.body.classList.add("dark");
 
     }
-
 
     updateTheme();
 
 }
 
 
-/* =========================
+/* =========================================================
    RIEPILOGO
-========================= */
+========================================================= */
 
 function updateSummary() {
 
     let income = 0;
-
     let expense = 0;
 
+    movements.forEach(movement => {
 
-    movements.forEach(
-        movement => {
+        const amount =
+            Number(movement.amount) || 0;
 
-            if (
-                movement.type === "income"
-            ) {
-
-                income +=
-                    Number(
-                        movement.amount
-                    );
-
-            } else {
-
-                expense +=
-                    Number(
-                        movement.amount
-                    );
-
-            }
-
+        if (movement.type === "income") {
+            income += amount;
+        } else if (
+            movement.type === "expense"
+        ) {
+            expense += amount;
         }
-    );
 
+    });
 
     document.getElementById(
         "balance"
     ).textContent =
         money(balance);
 
-
     document.getElementById(
         "totalIncome"
     ).textContent =
         money(income);
-
 
     document.getElementById(
         "totalExpense"
@@ -2724,9 +2381,9 @@ function updateSummary() {
 }
 
 
-/* =========================
+/* =========================================================
    MINI SALVADANAIO
-========================= */
+========================================================= */
 
 function renderSavingsMini() {
 
@@ -2734,7 +2391,6 @@ function renderSavingsMini() {
         "miniSavingsName"
     ).textContent =
         savingsName;
-
 
     document.getElementById(
         "miniSavingsAmount"
@@ -2745,13 +2401,9 @@ function renderSavingsMini() {
               + money(savingsTarget)
             : money(savingsAmount);
 
-
     let percentage = 0;
 
-
-    if (
-        savingsTarget > 0
-    ) {
+    if (savingsTarget > 0) {
 
         percentage =
             (
@@ -2761,13 +2413,11 @@ function renderSavingsMini() {
 
     }
 
-
     percentage =
         Math.min(
-            percentage,
+            Math.max(percentage, 0),
             100
         );
-
 
     document.getElementById(
         "miniProgress"
@@ -2777,9 +2427,9 @@ function renderSavingsMini() {
 }
 
 
-/* =========================
-   MESE
-========================= */
+/* =========================================================
+   SPESE DEL MESE
+========================================================= */
 
 function renderMonth() {
 
@@ -2795,61 +2445,47 @@ function renderMonth() {
 
     const categories = {};
 
+    movements.forEach(movement => {
 
-    movements.forEach(
-        movement => {
-
-            const date =
-                new Date(
-                    movement.date +
-                    "T12:00:00"
-                );
-
-
-            if (
-                date.getMonth() !==
-                currentMonth ||
-                date.getFullYear() !==
-                currentYear
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                movement.type !==
-                "expense"
-            ) {
-
-                return;
-
-            }
-
-
-            total +=
-                Number(
-                    movement.amount
-                );
-
-
-            const category =
-                movement.category ||
-                "📦 Altro";
-
-
-            categories[category] =
-                (
-                    categories[category]
-                    || 0
-                ) +
-                Number(
-                    movement.amount
-                );
-
+        if (!movement.date) {
+            return;
         }
-    );
+
+        const date =
+            new Date(
+                movement.date +
+                "T12:00:00"
+            );
+
+        if (
+            date.getMonth() !== currentMonth ||
+            date.getFullYear() !== currentYear
+        ) {
+            return;
+        }
+
+        if (
+            movement.type !== "expense"
+        ) {
+            return;
+        }
+
+        total +=
+            Number(movement.amount) || 0;
+
+        const category =
+            movement.category ||
+            "📦 Altro";
+
+        categories[category] =
+            (
+                categories[category] || 0
+            ) +
+            (
+                Number(movement.amount) || 0
+            );
+
+    });
 
 
     const monthName =
@@ -2861,14 +2497,12 @@ function renderMonth() {
             }
         );
 
-
     document.getElementById(
         "monthName"
     ).textContent =
         monthName.charAt(0).toUpperCase()
         +
         monthName.slice(1);
-
 
     document.getElementById(
         "monthTotal"
@@ -2881,7 +2515,6 @@ function renderMonth() {
             "categories"
         );
 
-
     container.innerHTML = "";
 
 
@@ -2889,9 +2522,7 @@ function renderMonth() {
         Object.keys(categories);
 
 
-    if (
-        names.length === 0
-    ) {
+    if (names.length === 0) {
 
         container.innerHTML =
             `<div class="empty">
@@ -2910,89 +2541,73 @@ function renderMonth() {
     );
 
 
-    names.forEach(
-        category => {
+    names.forEach(category => {
 
-            const percentage =
-                total > 0
-                    ? (
-                        categories[category] /
-                        total
-                    ) * 100
-                    : 0;
+        const percentage =
+            total > 0
+                ? (
+                    categories[category] /
+                    total
+                ) * 100
+                : 0;
 
+        const row =
+            document.createElement("div");
 
-            const row =
-                document.createElement(
-                    "div"
-                );
+        row.className =
+            "category-row";
 
+        row.innerHTML = `
 
-            row.className =
-                "category-row";
+            <div class="category-header">
 
+                <span class="category-name">
+                    ${escapeHTML(category)}
+                </span>
 
-            row.innerHTML = `
+                <span class="category-amount">
+                    ${money(categories[category])}
+                </span>
 
-                <div class="category-header">
+            </div>
 
-                    <span class="category-name">
-                        ${escapeHTML(category)}
-                    </span>
+            <div class="bar">
 
-                    <span class="category-amount">
-                        ${money(categories[category])}
-                    </span>
-
+                <div
+                    class="bar-fill"
+                    style="width:${percentage}%">
                 </div>
 
+            </div>
 
-                <div class="bar">
+        `;
 
-                    <div
-                        class="bar-fill"
-                        style="width:${percentage}%">
-                    </div>
+        container.appendChild(row);
 
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                row
-            );
-
-        }
-    );
+    });
 
 }
 
 
-/* =========================
+/* =========================================================
    POPUP ENTRATA / SPESA
-========================= */
+========================================================= */
 
 function openQuickTransaction(type) {
 
-    quickType = type;
-
+    quickMode = type;
 
     const title =
         document.getElementById(
             "amountModalTitle"
         );
 
-
     const subtitle =
         document.getElementById(
             "amountModalSubtitle"
         );
 
-
-    if (
-        type === "income"
-    ) {
+    if (type === "income") {
 
         title.textContent =
             "💰 Nuova entrata";
@@ -3010,49 +2625,100 @@ function openQuickTransaction(type) {
 
     }
 
+    openAmountModal();
+
+}
+
+
+/* =========================================================
+   POPUP SALVADANAIO
+========================================================= */
+
+function openSavingsAmountModal(type) {
+
+    quickMode =
+        type === "add"
+            ? "savings-add"
+            : "savings-remove";
+
+    const title =
+        document.getElementById(
+            "amountModalTitle"
+        );
+
+    const subtitle =
+        document.getElementById(
+            "amountModalSubtitle"
+        );
+
+    if (type === "add") {
+
+        title.textContent =
+            "🐷 Metti soldi";
+
+        subtitle.textContent =
+            "Quanto vuoi mettere nel salvadanaio?";
+
+    } else {
+
+        title.textContent =
+            "💰 Preleva soldi";
+
+        subtitle.textContent =
+            "Quanto vuoi prelevare?";
+
+    }
+
+    openAmountModal();
+
+}
+
+
+/* =========================================================
+   APERTURA POPUP IMPORTO
+========================================================= */
+
+function openAmountModal() {
 
     const input =
         document.getElementById(
             "quickAmount"
         );
 
-
     input.value = "";
 
-
-    document.getElementById(
-        "amountModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById("amountModal")
+        .classList.add("open");
 
 
-    setTimeout(
-        () => {
+    setTimeout(() => {
 
-            input.focus();
+        input.focus();
 
-            input.click();
+        input.click();
 
-        },
-        250
-    );
+    }, 250);
 
 }
 
+
+/* =========================================================
+   CHIUSURA POPUP IMPORTO
+========================================================= */
 
 function closeAmountModal() {
 
     document
-        .getElementById(
-            "amountModal"
-        )
-        .classList.remove(
-            "open"
-        );
+        .getElementById("amountModal")
+        .classList.remove("open");
 
 }
 
+
+/* =========================================================
+   CONFERMA IMPORTO
+========================================================= */
 
 function confirmQuickAmount() {
 
@@ -3061,15 +2727,12 @@ function confirmQuickAmount() {
             "quickAmount"
         );
 
-
     const amount =
-        Number(
-            input.value
-        );
+        Number(input.value);
 
 
     if (
-        !amount ||
+        !Number.isFinite(amount) ||
         amount <= 0
     ) {
 
@@ -3080,14 +2743,54 @@ function confirmQuickAmount() {
     }
 
 
+    /* SPESA NORMALE */
+
     if (
-        quickType === "expense"
-        &&
+        quickMode === "expense" &&
         amount > balance
     ) {
 
-        alert(
-            "Saldo insufficiente."
+        showToast(
+            "Saldo insufficiente",
+            "⚠️"
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /* VERSAMENTO SALVADANAIO */
+
+    if (
+        quickMode === "savings-add" &&
+        amount > balance
+    ) {
+
+        showToast(
+            "Saldo insufficiente",
+            "⚠️"
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /* PRELIEVO SALVADANAIO */
+
+    if (
+        quickMode === "savings-remove" &&
+        amount > savingsAmount
+    ) {
+
+        showToast(
+            "Salvadanaio insufficiente",
+            "⚠️"
         );
 
         input.focus();
@@ -3098,27 +2801,26 @@ function confirmQuickAmount() {
 
 
     quickAmountValue =
-        amount;
+        Math.round(
+            amount * 100
+        ) / 100;
 
 
     closeAmountModal();
 
 
-    setTimeout(
-        () => {
+    setTimeout(() => {
 
-            openDetailsModal();
+        openDetailsModal();
 
-        },
-        220
-    );
+    }, 220);
 
 }
 
 
-/* =========================
-   POPUP DETTAGLI
-========================= */
+/* =========================================================
+   MODAL DETTAGLI
+========================================================= */
 
 function openDetailsModal() {
 
@@ -3126,17 +2828,13 @@ function openDetailsModal() {
         "quickDescription"
     ).value = "";
 
-
     document.getElementById(
         "quickCategory"
     ).value = "";
 
-
-    document.getElementById(
-        "detailsModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById("detailsModal")
+        .classList.add("open");
 
 }
 
@@ -3144,62 +2842,35 @@ function openDetailsModal() {
 function closeDetailsModal() {
 
     document
-        .getElementById(
-            "detailsModal"
-        )
-        .classList.remove(
-            "open"
-        );
+        .getElementById("detailsModal")
+        .classList.remove("open");
 
 }
 
 
-/* =========================
-   SALVA ENTRATA / SPESA
-========================= */
+/* =========================================================
+   SALVA OPERAZIONE RAPIDA
+========================================================= */
 
 function saveQuickTransaction(
     withDetails
 ) {
 
-    let description =
-        quickType === "income"
-            ? "Entrata"
-            : "Spesa";
+    let description = "";
+    let category = "";
 
 
-    let category =
-        "📦 Altro";
+    if (withDetails) {
 
-
-    if (
-        withDetails
-    ) {
-
-        const d =
+        description =
             document.getElementById(
                 "quickDescription"
             ).value.trim();
 
-
-        const c =
+        category =
             document.getElementById(
                 "quickCategory"
             ).value;
-
-
-        if (d) {
-
-            description = d;
-
-        }
-
-
-        if (c) {
-
-            category = c;
-
-        }
 
     }
 
@@ -3209,62 +2880,130 @@ function saveQuickTransaction(
 
 
     if (
-        quickType === "income"
+        quickMode === "income"
     ) {
+
+        saveNormalTransaction(
+            "income",
+            amount,
+            description,
+            category
+        );
+
+    } else if (
+        quickMode === "expense"
+    ) {
+
+        saveNormalTransaction(
+            "expense",
+            amount,
+            description,
+            category
+        );
+
+    } else if (
+        quickMode === "savings-add"
+    ) {
+
+        saveSavingsAdd(
+            amount,
+            description,
+            category
+        );
+
+    } else if (
+        quickMode === "savings-remove"
+    ) {
+
+        saveSavingsRemove(
+            amount,
+            description,
+            category
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ENTRATA / SPESA
+========================================================= */
+
+function saveNormalTransaction(
+    type,
+    amount,
+    description,
+    category
+) {
+
+    if (
+        type === "expense" &&
+        amount > balance
+    ) {
+
+        showToast(
+            "Saldo insufficiente",
+            "⚠️"
+        );
+
+        closeDetailsModal();
+
+        return;
+
+    }
+
+
+    if (!description) {
+
+        description =
+            type === "income"
+                ? "Entrata"
+                : "Spesa";
+
+    }
+
+
+    if (!category) {
+
+        category = "";
+
+    }
+
+
+    movements.push({
+
+        type: type,
+
+        amount: amount,
+
+        description: description,
+
+        category: category,
+
+        date: today(),
+
+        savings: false
+
+    });
+
+
+    if (type === "income") {
 
         balance += amount;
 
-
-        movements.push({
-
-            type: "income",
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: today()
-
-        });
-
-
-        animateBalance(
-            "added"
-        );
-
+        animateBalance("added");
 
         showToast(
             "Entrata aggiunta",
             "💰"
         );
 
-
     } else {
 
         balance -= amount;
 
-
-        movements.push({
-
-            type: "expense",
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: today()
-
-        });
-
-
-        animateBalance(
-            "spent"
-        );
-
+        animateBalance("spent");
 
         showToast(
             "Spesa registrata",
@@ -3283,9 +3022,183 @@ function saveQuickTransaction(
 }
 
 
-/* =========================
-   FORM CLASSICO
-========================= */
+/* =========================================================
+   VERSAMENTO SALVADANAIO
+========================================================= */
+
+function saveSavingsAdd(
+    amount,
+    description,
+    category
+) {
+
+    if (amount > balance) {
+
+        showToast(
+            "Saldo insufficiente",
+            "⚠️"
+        );
+
+        closeDetailsModal();
+
+        return;
+
+    }
+
+
+    if (!description) {
+
+        description =
+            "Versamento salvadanaio";
+
+    }
+
+
+    if (!category) {
+
+        category =
+            "🐷 Salvadanaio";
+
+    }
+
+
+    /*
+        Il denaro passa dal saldo
+        al salvadanaio.
+    */
+
+    balance -= amount;
+
+    savingsAmount += amount;
+
+
+    movements.push({
+
+        type: "expense",
+
+        amount: amount,
+
+        description: description,
+
+        category: category,
+
+        date: today(),
+
+        savings: true,
+
+        savingsAction: "add"
+
+    });
+
+
+    saveData();
+
+    updateAll();
+
+    renderSavings();
+
+    animateBalance("spent");
+
+    closeDetailsModal();
+
+    showToast(
+        "Soldi nel salvadanaio!",
+        "🐷"
+    );
+
+}
+
+
+/* =========================================================
+   PRELIEVO SALVADANAIO
+========================================================= */
+
+function saveSavingsRemove(
+    amount,
+    description,
+    category
+) {
+
+    if (amount > savingsAmount) {
+
+        showToast(
+            "Salvadanaio insufficiente",
+            "⚠️"
+        );
+
+        closeDetailsModal();
+
+        return;
+
+    }
+
+
+    if (!description) {
+
+        description =
+            "Prelievo salvadanaio";
+
+    }
+
+
+    if (!category) {
+
+        category =
+            "🐷 Salvadanaio";
+
+    }
+
+
+    /*
+        Il denaro passa dal salvadanaio
+        al saldo disponibile.
+    */
+
+    savingsAmount -= amount;
+
+    balance += amount;
+
+
+    movements.push({
+
+        type: "income",
+
+        amount: amount,
+
+        description: description,
+
+        category: category,
+
+        date: today(),
+
+        savings: true,
+
+        savingsAction: "remove"
+
+    });
+
+
+    saveData();
+
+    updateAll();
+
+    renderSavings();
+
+    animateBalance("added");
+
+    closeDetailsModal();
+
+    showToast(
+        "Soldi prelevati!",
+        "💰"
+    );
+
+}
+
+
+/* =========================================================
+   FORM MODIFICA
+========================================================= */
 
 function openForm(
     type,
@@ -3297,11 +3210,9 @@ function openForm(
     editingIndex = index;
 
 
-    document.getElementById(
-        "form"
-    ).classList.remove(
-        "hidden"
-    );
+    document
+        .getElementById("form")
+        .classList.remove("hidden");
 
 
     document.getElementById(
@@ -3316,41 +3227,34 @@ function openForm(
             : "Modifica movimento";
 
 
-    if (
-        index !== null
-    ) {
+    if (index !== null) {
 
-        const m =
+        const movement =
             movements[index];
 
 
         document.getElementById(
             "amount"
         ).value =
-            m.amount;
+            movement.amount;
 
 
         document.getElementById(
             "description"
         ).value =
-            m.description ===
-            "Nessuna descrizione"
-                ? ""
-                : m.description;
+            movement.description || "";
 
 
         document.getElementById(
             "category"
         ).value =
-            m.category === "📦 Altro"
-                ? ""
-                : m.category;
+            movement.category || "";
 
 
         document.getElementById(
             "date"
         ).value =
-            m.date;
+            movement.date || today();
 
     } else {
 
@@ -3358,52 +3262,45 @@ function openForm(
             "amount"
         ).value = "";
 
-
         document.getElementById(
             "description"
         ).value = "";
-
 
         document.getElementById(
             "category"
         ).value = "";
 
-
         document.getElementById(
             "date"
-        ).value =
-            today();
+        ).value = today();
 
     }
 
 
-    document.getElementById(
-        "form"
-    ).scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    document
+        .getElementById("form")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
 
 }
 
 
 function closeForm() {
 
-    document.getElementById(
-        "form"
-    ).classList.add(
-        "hidden"
-    );
-
+    document
+        .getElementById("form")
+        .classList.add("hidden");
 
     editingIndex = null;
 
 }
 
 
-/* =========================
-   SALVA FORM CLASSICO
-========================= */
+/* =========================================================
+   SALVA FORM
+========================================================= */
 
 function saveMovement() {
 
@@ -3414,18 +3311,15 @@ function saveMovement() {
             ).value
         );
 
-
     let description =
         document.getElementById(
             "description"
         ).value.trim();
 
-
-    let category =
+    const category =
         document.getElementById(
             "category"
         ).value;
-
 
     const date =
         document.getElementById(
@@ -3434,7 +3328,7 @@ function saveMovement() {
 
 
     if (
-        !amount ||
+        !Number.isFinite(amount) ||
         amount <= 0
     ) {
 
@@ -3458,82 +3352,53 @@ function saveMovement() {
     }
 
 
-    if (!description) {
+    /*
+        MODIFICA
+    */
 
-        description =
-            "Nessuna descrizione";
-
-    }
-
-
-    if (!category) {
-
-        category =
-            "📦 Altro";
-
-    }
-
-
-    if (
-        editingIndex !== null
-    ) {
+    if (editingIndex !== null) {
 
         const old =
-            movements[
-                editingIndex
-            ];
+            movements[editingIndex];
 
 
-        if (
-            old.type === "income"
-        ) {
+        /*
+            I movimenti del salvadanaio
+            vengono modificati separatamente
+            per evitare di rompere il saldo.
+        */
 
-            balance -=
+        if (old.savings === true) {
+
+            alert(
+                "Per sicurezza, i movimenti del salvadanaio non possono essere modificati da qui."
+            );
+
+            return;
+
+        }
+
+
+        let newBalance =
+            balance;
+
+
+        if (old.type === "income") {
+
+            newBalance -=
                 Number(old.amount);
 
         } else {
 
-            balance +=
+            newBalance +=
                 Number(old.amount);
 
         }
 
 
-        movements[
-            editingIndex
-        ] = {
-
-            type: old.type,
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: date
-
-        };
-
-
         if (
-            old.type === "income"
-        ) {
-
-            balance += amount;
-
-        } else {
-
-            balance -= amount;
-
-        }
-
-    } else {
-
-        if (
-            operationType === "expense"
-            &&
-            amount > balance
+            old.type === "expense" &&
+            amount > newBalance
         ) {
 
             alert(
@@ -3545,24 +3410,33 @@ function saveMovement() {
         }
 
 
-        movements.push({
+        movements[editingIndex] = {
 
-            type: operationType,
+            type: old.type,
 
             amount: amount,
 
-            description: description,
+            description:
+                description || (
+                    old.type === "income"
+                        ? "Entrata"
+                        : "Spesa"
+                ),
 
             category: category,
 
-            date: date
+            date: date,
 
-        });
+            savings: false
+
+        };
 
 
-        if (
-            operationType === "income"
-        ) {
+        balance =
+            newBalance;
+
+
+        if (old.type === "income") {
 
             balance += amount;
 
@@ -3571,6 +3445,74 @@ function saveMovement() {
             balance -= amount;
 
         }
+
+
+        saveData();
+
+        updateAll();
+
+        closeForm();
+
+        showToast(
+            "Movimento modificato",
+            "✓"
+        );
+
+        return;
+
+    }
+
+
+    /*
+        NUOVO MOVIMENTO
+    */
+
+    if (
+        operationType === "expense" &&
+        amount > balance
+    ) {
+
+        alert(
+            "Saldo insufficiente."
+        );
+
+        return;
+
+    }
+
+
+    movements.push({
+
+        type: operationType,
+
+        amount: amount,
+
+        description:
+            description ||
+            (
+                operationType === "income"
+                    ? "Entrata"
+                    : "Spesa"
+            ),
+
+        category: category,
+
+        date: date,
+
+        savings: false
+
+    });
+
+
+    if (
+        operationType === "income"
+    ) {
+
+        balance += amount;
+
+    } else {
+
+        balance -= amount;
 
     }
 
@@ -3581,12 +3523,17 @@ function saveMovement() {
 
     closeForm();
 
+    showToast(
+        "Operazione salvata",
+        "✓"
+    );
+
 }
 
 
-/* =========================
+/* =========================================================
    MOVIMENTI
-========================= */
+========================================================= */
 
 function renderMovements() {
 
@@ -3594,7 +3541,6 @@ function renderMovements() {
         document.getElementById(
             "movements"
         );
-
 
     const search =
         document.getElementById(
@@ -3610,37 +3556,33 @@ function renderMovements() {
     const visible =
         movements
             .map(
-                (
-                    movement,
-                    index
-                ) => ({
+                (movement, index) => ({
                     movement,
                     index
                 })
             )
             .reverse()
-            .filter(
-                item => {
+            .filter(item => {
 
-                    if (!search) {
-                        return true;
-                    }
-
-
-                    const text =
-                        (
-                            item.movement.description
-                            + " " +
-                            item.movement.category
-                        ).toLowerCase();
-
-
-                    return text.includes(
-                        search
-                    );
-
+                if (!search) {
+                    return true;
                 }
-            );
+
+
+                const text =
+                    (
+                        item.movement.description
+                        + " " +
+                        (
+                            item.movement.category
+                            || ""
+                        )
+                    ).toLowerCase();
+
+
+                return text.includes(search);
+
+            });
 
 
     if (
@@ -3657,112 +3599,131 @@ function renderMovements() {
     }
 
 
-    visible.forEach(
-        item => {
+    visible.forEach(item => {
 
-            const m =
-                item.movement;
+        const movement =
+            item.movement;
 
-
-            const index =
-                item.index;
+        const index =
+            item.index;
 
 
-            const sign =
-                m.type === "income"
-                    ? "+"
-                    : "-";
+        const sign =
+            movement.type === "income"
+                ? "+"
+                : "-";
 
 
-            const color =
-                m.type === "income"
-                    ? "green"
-                    : "red";
+        const color =
+            movement.type === "income"
+                ? "green"
+                : "red";
 
 
-            const element =
-                document.createElement(
-                    "div"
-                );
+        const category =
+            movement.category || "";
 
 
-            element.className =
-                "movement";
+        const element =
+            document.createElement("div");
 
 
-            element.innerHTML = `
-
-                <div class="movement-top">
-
-                    <div class="movement-info">
-
-                        <div
-                            class="movement-title ${color}">
-
-                            ${sign}
-                            ${money(m.amount)}
-                            —
-                            ${escapeHTML(m.description)}
-
-                        </div>
+        element.className =
+            "movement";
 
 
-                        <div class="movement-date">
+        element.innerHTML = `
 
-                            ${formatDate(m.date)}
+            <div class="movement-top">
 
-                        </div>
+                <div class="movement-info">
 
+                    <div
+                        class="movement-title ${color}">
 
-                        <span class="movement-category">
-
-                            ${escapeHTML(m.category)}
-
-                        </span>
+                        ${sign}
+                        ${money(movement.amount)}
+                        —
+                        ${escapeHTML(
+                            movement.description
+                        )}
 
                     </div>
 
+                    <div class="movement-date">
 
-                    <div class="movement-buttons">
-
-                        <button
-                            class="edit"
-                            onclick="editMovement(${index})">
-
-                            ✏️
-
-                        </button>
-
-
-                        <button
-                            class="delete"
-                            onclick="deleteMovement(${index})">
-
-                            🗑️
-
-                        </button>
+                        ${formatDate(
+                            movement.date
+                        )}
 
                     </div>
+
+                    ${
+                        category
+                            ? `
+                                <span class="movement-category">
+                                    ${escapeHTML(category)}
+                                </span>
+                              `
+                            : ""
+                    }
 
                 </div>
 
-            `;
+
+                <div class="movement-buttons">
+
+                    <button
+                        class="edit"
+                        onclick="editMovement(${index})">
+
+                        ✏️
+
+                    </button>
 
 
-            container.appendChild(
-                element
-            );
+                    <button
+                        class="delete"
+                        onclick="deleteMovement(${index})">
 
-        }
-    );
+                        🗑️
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(element);
+
+    });
 
 }
 
 
 function editMovement(index) {
 
+    const movement =
+        movements[index];
+
+
+    if (movement.savings === true) {
+
+        showToast(
+            "Movimento salvadanaio non modificabile",
+            "🐷"
+        );
+
+        return;
+
+    }
+
+
     openForm(
-        movements[index].type,
+        movement.type,
         index
     );
 
@@ -3771,8 +3732,13 @@ function editMovement(index) {
 
 function deleteMovement(index) {
 
-    const m =
+    const movement =
         movements[index];
+
+
+    if (!movement) {
+        return;
+    }
 
 
     if (
@@ -3786,17 +3752,87 @@ function deleteMovement(index) {
     }
 
 
+    /*
+        Se è un movimento del salvadanaio,
+        bisogna ripristinare correttamente
+        sia saldo che salvadanaio.
+    */
+
     if (
-        m.type === "income"
+        movement.savings === true
     ) {
 
-        balance -=
-            Number(m.amount);
+        const amount =
+            Number(movement.amount);
+
+
+        if (
+            movement.savingsAction === "add"
+        ) {
+
+            /*
+                Era stato versato nel salvadanaio.
+
+                Eliminandolo:
+                saldo + importo
+                salvadanaio - importo
+            */
+
+            balance += amount;
+
+            savingsAmount -= amount;
+
+            savingsAmount =
+                Math.max(
+                    savingsAmount,
+                    0
+                );
+
+        } else {
+
+            /*
+                Era stato prelevato.
+
+                Eliminandolo:
+                saldo - importo
+                salvadanaio + importo
+            */
+
+            balance -= amount;
+
+            savingsAmount += amount;
+
+            if (balance < 0) {
+
+                alert(
+                    "Non è possibile eliminare questo movimento perché il saldo diventerebbe negativo."
+                );
+
+                return;
+
+            }
+
+        }
 
     } else {
 
-        balance +=
-            Number(m.amount);
+        /*
+            Movimento normale.
+        */
+
+        if (
+            movement.type === "income"
+        ) {
+
+            balance -=
+                Number(movement.amount);
+
+        } else {
+
+            balance +=
+                Number(movement.amount);
+
+        }
 
     }
 
@@ -3811,12 +3847,19 @@ function deleteMovement(index) {
 
     updateAll();
 
+    renderSavings();
+
+    showToast(
+        "Movimento eliminato",
+        "🗑️"
+    );
+
 }
 
 
-/* =========================
+/* =========================================================
    SALVADANAIO
-========================= */
+========================================================= */
 
 function renderSavings() {
 
@@ -3857,7 +3900,7 @@ function renderSavings() {
 
     percentage =
         Math.min(
-            percentage,
+            Math.max(percentage, 0),
             100
         );
 
@@ -3871,9 +3914,7 @@ function renderSavings() {
     document.getElementById(
         "savingsProgressText"
     ).textContent =
-        Math.round(
-            percentage
-        ) + "%";
+        Math.round(percentage) + "%";
 
 
     document.getElementById(
@@ -3895,11 +3936,11 @@ function renderSavings() {
 
 function toggleSavingsSettings() {
 
-    document.getElementById(
-        "savingsSettings"
-    ).classList.toggle(
-        "hidden"
-    );
+    document
+        .getElementById(
+            "savingsSettings"
+        )
+        .classList.toggle("hidden");
 
 }
 
@@ -3936,11 +3977,11 @@ function saveSavingsSettings() {
     renderSavings();
 
 
-    document.getElementById(
-        "savingsSettings"
-    ).classList.add(
-        "hidden"
-    );
+    document
+        .getElementById(
+            "savingsSettings"
+        )
+        .classList.add("hidden");
 
 
     showToast(
@@ -3951,208 +3992,9 @@ function saveSavingsSettings() {
 }
 
 
-/* =========================
-   POPUP SALVADANAIO
-========================= */
-
-function openSavingsAmountModal(type) {
-
-    quickSavingsType =
-        type;
-
-
-    const title =
-        document.getElementById(
-            "amountModalTitle"
-        );
-
-
-    const subtitle =
-        document.getElementById(
-            "amountModalSubtitle"
-        );
-
-
-    if (
-        type === "add"
-    ) {
-
-        title.textContent =
-            "🐷 Metti soldi";
-
-        subtitle.textContent =
-            "Quanto vuoi mettere?";
-
-    } else {
-
-        title.textContent =
-            "💰 Preleva soldi";
-
-        subtitle.textContent =
-            "Quanto vuoi prelevare?";
-
-    }
-
-
-    const input =
-        document.getElementById(
-            "quickAmount"
-        );
-
-
-    input.value = "";
-
-
-    document.getElementById(
-        "amountModal"
-    ).classList.add(
-        "open"
-    );
-
-
-    setTimeout(
-        () => {
-
-            input.focus();
-
-            input.click();
-
-        },
-        250
-    );
-
-}
-
-
-function saveSavingsTransaction(
-    withDetails
-) {
-
-    let description =
-        quickSavingsType === "add"
-            ? "Versamento salvadanaio"
-            : "Prelievo salvadanaio";
-
-
-    let category =
-        "🐷 Salvadanaio";
-
-
-    if (
-        withDetails
-    ) {
-
-        const d =
-            document.getElementById(
-                "quickDescription"
-            ).value.trim();
-
-
-        const c =
-            document.getElementById(
-                "quickCategory"
-            ).value;
-
-
-        if (d) {
-            description = d;
-        }
-
-
-        if (c) {
-            category = c;
-        }
-
-    }
-
-
-    const amount =
-        quickAmountValue;
-
-
-    if (
-        quickSavingsType === "add"
-    ) {
-
-        balance -= amount;
-
-        savingsAmount += amount;
-
-
-        movements.push({
-
-            type: "expense",
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: today(),
-
-            savings: true
-
-        });
-
-
-        animateBalance("spent");
-
-
-        showToast(
-            "Soldi nel salvadanaio!",
-            "🐷"
-        );
-
-    } else {
-
-        savingsAmount -= amount;
-
-        balance += amount;
-
-
-        movements.push({
-
-            type: "income",
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: today(),
-
-            savings: true
-
-        });
-
-
-        animateBalance("added");
-
-
-        showToast(
-            "Soldi prelevati!",
-            "💰"
-        );
-
-    }
-
-
-    saveData();
-
-    updateAll();
-
-    renderSavings();
-
-    closeDetailsModal();
-
-}
-
-
-/* =========================
-   AZZERA
-========================= */
+/* =========================================================
+   AZZERA TUTTO
+========================================================= */
 
 function resetAll() {
 
@@ -4161,7 +4003,7 @@ function resetAll() {
 
     if (
         !confirm(
-            "ATTENZIONE\n\nVuoi azzerare il conto e cancellare tutti i movimenti?\n\nIl salvadanaio verrà azzerato."
+            "ATTENZIONE\n\nVuoi azzerare il conto e cancellare tutti i movimenti?\n\nAnche il salvadanaio verrà azzerato."
         )
     ) {
 
@@ -4192,9 +4034,9 @@ function resetAll() {
 }
 
 
-/* =========================
-   AGGIORNAMENTO
-========================= */
+/* =========================================================
+   AGGIORNA TUTTO
+========================================================= */
 
 function updateAll() {
 
@@ -4209,322 +4051,73 @@ function updateAll() {
 }
 
 
-/* =========================
-   TASTO INVIO
-========================= */
+/* =========================================================
+   TASTIERA POPUP
+========================================================= */
 
-document.getElementById(
-    "quickAmount"
-).addEventListener(
-    "keydown",
-    function(event) {
+document
+    .getElementById("quickAmount")
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+            if (
+                event.key === "Enter"
+            ) {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            /*
-             * Il popup deve funzionare
-             * sia per entrate/spese
-             * sia per il salvadanaio.
-             */
+                confirmQuickAmount();
 
-            confirmQuickAmount();
+            }
 
         }
-
-    }
-);
-
-
-/* =========================
-   CONFERMA IMPORTO
-========================= */
-
-function confirmQuickAmount() {
-
-    const input =
-        document.getElementById(
-            "quickAmount"
-        );
-
-
-    const amount =
-        Number(
-            input.value
-        );
-
-
-    if (
-        !amount ||
-        amount <= 0
-    ) {
-
-        input.focus();
-
-        return;
-
-    }
-
-
-    /*
-     * CONTROLLO SPESA NORMALE
-     */
-
-    if (
-        quickType === "expense"
-        &&
-        amount > balance
-    ) {
-
-        alert(
-            "Saldo insufficiente."
-        );
-
-        input.focus();
-
-        return;
-
-    }
-
-
-    /*
-     * CONTROLLO SALVADANAIO
-     */
-
-    if (
-        quickType !== "income"
-        &&
-        quickType !== "expense"
-    ) {
-
-        if (
-            quickSavingsType === "add"
-            &&
-            amount > balance
-        ) {
-
-            alert(
-                "Non hai abbastanza saldo disponibile."
-            );
-
-            input.focus();
-
-            return;
-
-        }
-
-
-        if (
-            quickSavingsType === "remove"
-            &&
-            amount > savingsAmount
-        ) {
-
-            alert(
-                "Non hai abbastanza soldi nel salvadanaio."
-            );
-
-            input.focus();
-
-            return;
-
-        }
-
-    }
-
-
-    quickAmountValue =
-        amount;
-
-
-    closeAmountModal();
-
-
-    setTimeout(
-        () => {
-
-            openDetailsModal();
-
-        },
-        220
     );
 
-}
 
+/* =========================================================
+   CHIUSURA MODAL CON CLICK SULLO SFONDO
+========================================================= */
 
-/* =========================
-   SALVATAGGIO DETTAGLI
-========================= */
+document
+    .getElementById("amountModal")
+    .addEventListener(
+        "click",
+        function(event) {
 
-function saveQuickTransaction(
-    withDetails
-) {
+            if (
+                event.target === this
+            ) {
 
-    /*
-     * Se quickType è entrata o spesa,
-     * salviamo una normale operazione.
-     */
+                closeAmountModal();
 
-    if (
-        quickType === "income"
-        ||
-        quickType === "expense"
-    ) {
+            }
 
-        saveNormalQuickTransaction(
-            withDetails
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Altrimenti è salvadanaio.
-     */
-
-    saveSavingsTransaction(
-        withDetails
+        }
     );
 
-}
 
+document
+    .getElementById("detailsModal")
+    .addEventListener(
+        "click",
+        function(event) {
 
-/* =========================
-   ENTRATA / SPESA RAPIDA
-========================= */
+            if (
+                event.target === this
+            ) {
 
-function saveNormalQuickTransaction(
-    withDetails
-) {
+                closeDetailsModal();
 
-    let description =
-        quickType === "income"
-            ? "Entrata"
-            : "Spesa";
-
-
-    let category =
-        "📦 Altro";
-
-
-    if (
-        withDetails
-    ) {
-
-        const d =
-            document.getElementById(
-                "quickDescription"
-            ).value.trim();
-
-
-        const c =
-            document.getElementById(
-                "quickCategory"
-            ).value;
-
-
-        if (d) {
-
-            description = d;
+            }
 
         }
+    );
 
 
-        if (c) {
-
-            category = c;
-
-        }
-
-    }
-
-
-    const amount =
-        quickAmountValue;
-
-
-    if (
-        quickType === "income"
-    ) {
-
-        balance += amount;
-
-
-        movements.push({
-
-            type: "income",
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: today()
-
-        });
-
-
-        animateBalance(
-            "added"
-        );
-
-
-        showToast(
-            "Entrata aggiunta",
-            "💰"
-        );
-
-    } else {
-
-        balance -= amount;
-
-
-        movements.push({
-
-            type: "expense",
-
-            amount: amount,
-
-            description: description,
-
-            category: category,
-
-            date: today()
-
-        });
-
-
-        animateBalance(
-            "spent"
-        );
-
-
-        showToast(
-            "Spesa registrata",
-            "💸"
-        );
-
-    }
-
-
-    saveData();
-
-    updateAll();
-
-    closeDetailsModal();
-
-}
-
-
-/* =========================
+/* =========================================================
    AVVIO
-========================= */
+========================================================= */
 
 loadTheme();
 
@@ -4535,5 +4128,4 @@ renderSavings();
 </script>
 
 </body>
-
 </html>
