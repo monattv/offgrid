@@ -2,3561 +2,3189 @@
 <html lang="it">
 
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
+<meta name="theme-color" content="#f5f6f8">
 
-    <meta
-        name="theme-color"
-        content="#f4f5f7"
-    >
+<title>Gestione Soldi</title>
 
-    <title>Gestione Soldi</title>
+<style>
 
-    <style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+:root {
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --text: #17181a;
+    --muted: #7b7e85;
+    --border: #e7e8eb;
 
-        :root {
+    --green: #159447;
+    --green-bg: #e7f7ed;
 
-            --bg: #f4f5f7;
-            --card: #ffffff;
-            --text: #171717;
-            --secondary: #777777;
-            --border: #e8e8e8;
+    --red: #d93838;
+    --red-bg: #ffebeb;
 
-            --green: #159447;
-            --green-bg: #e4f7eb;
+    --blue: #3478f6;
+    --blue-bg: #eaf1ff;
 
-            --red: #d93636;
-            --red-bg: #ffebeb;
+    --yellow: #d99600;
+    --yellow-bg: #fff4d6;
 
-            --blue: #3478f6;
-            --blue-bg: #eaf1ff;
+    --shadow: 0 5px 24px rgba(0,0,0,.06);
+}
 
-            --yellow: #e09a00;
-            --yellow-bg: #fff4d6;
+body.dark {
+    --bg: #101112;
+    --card: #1b1d20;
+    --text: #f5f5f5;
+    --muted: #a4a6ab;
+    --border: #2b2e32;
 
-            --shadow:
-                0 5px 25px rgba(0, 0, 0, 0.06);
-        }
+    --green: #45d77d;
+    --green-bg: #173725;
 
+    --red: #ff6969;
+    --red-bg: #3c2020;
 
-        body.dark {
+    --blue: #70a0ff;
+    --blue-bg: #202f4d;
 
-            --bg: #101112;
-            --card: #1b1d20;
-            --text: #f5f5f5;
-            --secondary: #a3a3a3;
-            --border: #2b2e32;
+    --yellow: #ffc94d;
+    --yellow-bg: #3d3118;
 
-            --green: #42d47b;
-            --green-bg: #173725;
+    --shadow: 0 5px 24px rgba(0,0,0,.25);
+}
 
-            --red: #ff6868;
-            --red-bg: #3b2020;
+html {
+    background: var(--bg);
+}
 
-            --blue: #6c9cff;
-            --blue-bg: #202e4a;
+body {
+    margin: 0;
 
-            --yellow: #ffc94d;
-            --yellow-bg: #3b3018;
+    padding:
+        calc(10px + env(safe-area-inset-top))
+        14px
+        calc(30px + env(safe-area-inset-bottom));
 
-            --shadow:
-                0 5px 25px rgba(0, 0, 0, 0.25);
-        }
+    background: var(--bg);
+    color: var(--text);
 
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-        html {
-            background: var(--bg);
-        }
+    min-height: 100vh;
 
+    transition:
+        background .2s,
+        color .2s;
+}
 
-        body {
+button,
+input,
+select {
+    font: inherit;
+}
 
-            margin: 0;
+button {
+    border: 0;
+    cursor: pointer;
+    color: var(--text);
+}
 
-            padding:
-                calc(12px + env(safe-area-inset-top))
-                14px
-                calc(30px + env(safe-area-inset-bottom));
+button:active {
+    transform: scale(.97);
+}
 
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "SF Pro Display",
-                "Segoe UI",
-                Arial,
-                sans-serif;
+.app {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+}
 
-            background: var(--bg);
 
-            color: var(--text);
+/* =========================
+   HEADER
+========================= */
 
-            transition:
-                background 0.25s,
-                color 0.25s;
+.header {
+    height: 55px;
 
-            min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            overscroll-behavior-y: none;
-        }
+    position: relative;
 
+    margin-bottom: 12px;
+}
 
-        button,
-        input,
-        select {
-            font-family: inherit;
-        }
+.title {
+    margin: 0;
 
+    font-size: 22px;
+    font-weight: 800;
 
-        button {
+    letter-spacing: -.5px;
+}
 
-            border: none;
+.menu-button,
+.back-button {
+    position: absolute;
+    left: 0;
 
-            cursor: pointer;
+    width: 44px;
+    height: 44px;
 
-            color: var(--text);
+    border-radius: 14px;
 
-            font-weight: 650;
+    background: var(--card);
+    border: 1px solid var(--border);
 
-            transition:
-                transform 0.12s,
-                opacity 0.12s,
-                background 0.2s;
-        }
+    box-shadow: var(--shadow);
 
+    font-size: 21px;
+}
 
-        button:active {
-            transform: scale(0.96);
-        }
 
+/* =========================
+   MENU
+========================= */
 
-        .app {
+.overlay {
+    position: fixed;
+    inset: 0;
 
-            width: 100%;
+    background: rgba(0,0,0,.42);
 
-            max-width: 520px;
+    opacity: 0;
+    pointer-events: none;
 
-            margin: auto;
-        }
+    transition: opacity .25s;
 
+    z-index: 100;
+}
 
-        /* =========================
-           HEADER
-        ========================= */
+.overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-        .header {
+.side-menu {
+    position: fixed;
 
-            height: 54px;
+    top: 0;
+    left: 0;
+    bottom: 0;
 
-            display: flex;
+    width: min(330px, 86vw);
 
-            align-items: center;
+    padding:
+        calc(20px + env(safe-area-inset-top))
+        18px
+        25px;
 
-            justify-content: center;
+    background: var(--card);
 
-            position: relative;
+    transform: translateX(-100%);
 
-            margin-bottom: 15px;
-        }
+    transition: transform .28s ease;
 
+    z-index: 101;
 
-        .title {
+    box-shadow:
+        8px 0 30px rgba(0,0,0,.18);
+}
 
-            font-size: 23px;
+.side-menu.open {
+    transform: translateX(0);
+}
 
-            font-weight: 800;
+.menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-            letter-spacing: -0.5px;
+    padding-bottom: 18px;
 
-            margin: 0;
-        }
+    border-bottom: 1px solid var(--border);
+}
 
+.menu-title {
+    font-size: 23px;
+    font-weight: 800;
+}
 
-        .menu-button {
+.close-menu {
+    width: 42px;
+    height: 42px;
 
-            position: absolute;
+    border-radius: 12px;
 
-            left: 0;
+    background: var(--bg);
 
-            width: 44px;
+    font-size: 23px;
+}
 
-            height: 44px;
+.menu-section {
+    margin:
+        22px 0 8px;
 
-            border-radius: 14px;
+    color: var(--muted);
 
-            background: var(--card);
+    font-size: 11px;
+    font-weight: 700;
 
-            border:
-                1px solid var(--border);
+    text-transform: uppercase;
 
-            box-shadow: var(--shadow);
+    letter-spacing: 1px;
+}
 
-            font-size: 21px;
-        }
+.menu-item {
+    width: 100%;
 
+    min-height: 52px;
 
-        /* =========================
-           MENU LATERALE
-        ========================= */
+    display: flex;
+    align-items: center;
 
-        .overlay {
+    gap: 13px;
 
-            position: fixed;
+    padding: 11px 13px;
 
-            inset: 0;
+    border-radius: 14px;
 
-            background:
-                rgba(0, 0, 0, 0.4);
+    background: transparent;
 
-            opacity: 0;
+    text-align: left;
 
-            pointer-events: none;
+    font-size: 15px;
+}
 
-            transition: opacity 0.25s;
+.menu-item:active {
+    background: var(--bg);
+}
 
-            z-index: 998;
-        }
+.menu-icon {
+    width: 26px;
 
+    text-align: center;
 
-        .overlay.open {
+    font-size: 20px;
+}
 
-            opacity: 1;
+.menu-danger {
+    color: var(--red);
+}
 
-            pointer-events: auto;
-        }
 
+/* =========================
+   CARDS
+========================= */
 
-        .side-menu {
+.card {
+    background: var(--card);
 
-            position: fixed;
+    border: 1px solid var(--border);
 
-            left: 0;
+    border-radius: 21px;
 
-            top: 0;
+    box-shadow: var(--shadow);
+}
 
-            bottom: 0;
 
-            width:
-                min(330px, 84vw);
+/* =========================
+   SALDO
+========================= */
 
-            background: var(--card);
+.balance-card {
+    padding: 25px 20px 22px;
 
-            z-index: 999;
+    text-align: center;
 
-            transform:
-                translateX(-100%);
+    margin-bottom: 11px;
+}
 
-            transition:
-                transform 0.28s ease;
+.balance-label {
+    color: var(--muted);
 
-            padding:
-                calc(20px + env(safe-area-inset-top))
-                18px
-                25px;
+    font-size: 13px;
 
-            box-shadow:
-                8px 0 30px
-                rgba(0,0,0,0.18);
-        }
+    margin-bottom: 7px;
+}
 
+.balance {
+    font-size: 42px;
 
-        .side-menu.open {
+    font-weight: 850;
 
-            transform:
-                translateX(0);
-        }
+    letter-spacing: -1.5px;
 
+    overflow-wrap: anywhere;
+}
 
-        .menu-header {
 
-            display: flex;
+/* =========================
+   SALVADANAIO RIASSUNTO
+========================= */
 
-            align-items: center;
+.savings-mini {
+    padding: 17px;
 
-            justify-content:
-                space-between;
+    margin-bottom: 11px;
 
-            padding-bottom: 18px;
+    cursor: pointer;
+}
 
-            border-bottom:
-                1px solid var(--border);
-        }
+.savings-mini-top {
+    display: flex;
 
+    align-items: center;
 
-        .menu-title {
+    justify-content: space-between;
 
-            font-size: 22px;
+    gap: 12px;
+}
 
-            font-weight: 800;
-        }
+.savings-mini-left {
+    display: flex;
 
+    align-items: center;
 
-        .close-menu {
+    gap: 12px;
 
-            width: 42px;
+    min-width: 0;
+}
 
-            height: 42px;
+.savings-icon {
+    width: 43px;
+    height: 43px;
 
-            border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            background: var(--bg);
+    flex-shrink: 0;
 
-            font-size: 23px;
-        }
+    border-radius: 13px;
 
+    background: var(--yellow-bg);
 
-        .menu-section {
+    font-size: 23px;
+}
 
-            color: var(--secondary);
+.savings-name {
+    font-size: 15px;
+    font-weight: 750;
 
-            font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-            text-transform: uppercase;
+.savings-amount {
+    margin-top: 3px;
 
-            letter-spacing: 1px;
+    color: var(--muted);
 
-            margin:
-                22px 0 8px;
-        }
+    font-size: 12px;
+}
 
+.savings-arrow {
+    color: var(--muted);
 
-        .menu-item {
+    font-size: 20px;
+}
 
-            width: 100%;
+.mini-progress {
+    height: 6px;
 
-            display: flex;
+    margin-top: 14px;
 
-            align-items: center;
+    background: var(--bg);
 
-            gap: 12px;
+    border-radius: 20px;
 
-            padding: 14px;
+    overflow: hidden;
+}
 
-            border-radius: 13px;
+.mini-progress-fill {
+    height: 100%;
 
-            background: transparent;
+    width: 0%;
 
-            text-align: left;
+    background: var(--yellow);
 
-            font-size: 15px;
-        }
+    border-radius: 20px;
 
+    transition: width .3s;
+}
 
-        .menu-item:active {
 
-            background: var(--bg);
-        }
+/* =========================
+   STATISTICHE
+========================= */
 
+.stats {
+    display: grid;
 
-        .menu-icon {
+    grid-template-columns: 1fr 1fr;
 
-            font-size: 20px;
-        }
+    gap: 11px;
 
+    margin-bottom: 12px;
+}
 
-        /* =========================
-           CARD
-        ========================= */
+.stat {
+    padding: 16px;
+}
 
-        .card {
+.stat-label {
+    color: var(--muted);
 
-            background: var(--card);
+    font-size: 12px;
 
-            border:
-                1px solid var(--border);
+    margin-bottom: 6px;
+}
 
-            border-radius: 22px;
+.stat-value {
+    font-size: 19px;
 
-            box-shadow: var(--shadow);
-        }
+    font-weight: 800;
 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-        /* =========================
-           SALDO
-        ========================= */
+.green {
+    color: var(--green);
+}
 
-        .balance-card {
+.red {
+    color: var(--red);
+}
 
-            padding: 25px 20px;
 
-            text-align: center;
+/* =========================
+   AZIONI PRINCIPALI
+========================= */
 
-            margin-bottom: 11px;
-        }
+.actions {
+    display: grid;
 
+    grid-template-columns: 1fr 1fr;
 
-        .balance-label {
+    gap: 11px;
 
-            color: var(--secondary);
+    margin-bottom: 14px;
+}
 
-            font-size: 14px;
+.action {
+    height: 61px;
 
-            margin-bottom: 6px;
-        }
+    border-radius: 16px;
 
+    font-size: 16px;
+    font-weight: 750;
+}
 
-        .balance {
+.income {
+    background: var(--green-bg);
+    color: var(--green);
+}
 
-            font-size: 42px;
+.expense {
+    background: var(--red-bg);
+    color: var(--red);
+}
 
-            font-weight: 850;
 
-            letter-spacing: -1.5px;
+/* =========================
+   FORM
+========================= */
 
-            overflow-wrap: anywhere;
-        }
+.form {
+    padding: 19px;
 
+    margin-bottom: 14px;
+}
 
-        /* =========================
-           STATISTICHE
-        ========================= */
+.form-title {
+    margin:
+        0 0 15px;
 
-        .stats {
+    font-size: 19px;
+    font-weight: 800;
+}
 
-            display: grid;
+input,
+select {
+    width: 100%;
 
-            grid-template-columns:
-                1fr 1fr;
+    height: 51px;
 
-            gap: 11px;
+    margin-bottom: 10px;
 
-            margin-bottom: 13px;
-        }
+    padding: 0 14px;
 
+    border:
+        1px solid var(--border);
 
-        .stat {
+    border-radius: 13px;
 
-            padding: 17px;
+    outline: none;
 
-            min-width: 0;
-        }
+    background: var(--bg);
 
+    color: var(--text);
 
-        .stat-label {
+    font-size: 16px;
+}
 
-            color: var(--secondary);
+input:focus,
+select:focus {
+    border-color: var(--blue);
+}
 
-            font-size: 13px;
+.save {
+    width: 100%;
 
-            margin-bottom: 6px;
-        }
+    height: 51px;
 
+    border-radius: 13px;
 
-        .stat-value {
+    background: var(--text);
 
-            font-size: 20px;
+    color: var(--card);
 
-            font-weight: 800;
+    font-weight: 750;
+}
 
-            overflow: hidden;
+.cancel {
+    width: 100%;
 
-            text-overflow: ellipsis;
-        }
+    height: 47px;
 
+    margin-top: 8px;
 
-        .green {
-            color: var(--green);
-        }
+    border-radius: 13px;
 
+    background: var(--bg);
+}
 
-        .red {
-            color: var(--red);
-        }
 
+/* =========================
+   SEZIONI
+========================= */
 
-        /* =========================
-           AZZERA
-        ========================= */
+.section {
+    padding: 18px;
 
-        .reset {
+    margin-bottom: 13px;
+}
 
-            width: 100%;
+.section-title {
+    margin:
+        0 0 14px;
 
-            padding: 13px;
+    font-size: 19px;
+    font-weight: 800;
+}
 
-            margin-bottom: 12px;
 
-            border-radius: 14px;
+/* =========================
+   RIEPILOGO MESE
+========================= */
 
-            background: var(--red-bg);
+.month-summary {
+    display: flex;
 
-            color: var(--red);
+    justify-content: space-between;
+    align-items: center;
 
-            font-size: 14px;
-        }
+    padding: 13px 14px;
 
+    margin-bottom: 15px;
 
-        /* =========================
-           AZIONI
-        ========================= */
+    border-radius: 13px;
 
-        .actions {
+    background: var(--bg);
+}
 
-            display: grid;
+.month-name {
+    font-weight: 700;
 
-            grid-template-columns:
-                1fr 1fr;
+    font-size: 14px;
+}
 
-            gap: 11px;
+.month-total {
+    color: var(--red);
 
-            margin-bottom: 13px;
-        }
+    font-weight: 800;
+}
 
 
-        .action {
+/* =========================
+   CATEGORIE
+========================= */
 
-            height: 58px;
+.category-row {
+    margin-bottom: 14px;
+}
 
-            border-radius: 16px;
+.category-header {
+    display: flex;
 
-            font-size: 16px;
-        }
+    justify-content: space-between;
 
+    gap: 10px;
 
-        .income {
+    margin-bottom: 6px;
 
-            background: var(--green-bg);
+    font-size: 13px;
+}
 
-            color: var(--green);
-        }
+.category-name {
+    font-weight: 650;
+}
 
+.category-amount {
+    color: var(--muted);
 
-        .expense {
+    font-weight: 700;
+}
 
-            background: var(--red-bg);
+.bar {
+    height: 7px;
 
-            color: var(--red);
-        }
+    background: var(--bg);
 
+    border-radius: 20px;
 
-        /* =========================
-           FORM
-        ========================= */
+    overflow: hidden;
+}
 
-        .form {
+.bar-fill {
+    height: 100%;
 
-            padding: 19px;
+    background: var(--red);
 
-            margin-bottom: 13px;
-        }
+    border-radius: 20px;
+}
 
 
-        .form-title {
+/* =========================
+   RICERCA
+========================= */
 
-            margin:
-                0 0 16px;
+.search {
+    position: relative;
 
-            font-size: 19px;
+    margin-bottom: 5px;
+}
 
-            font-weight: 800;
-        }
+.search input {
+    margin: 0;
 
+    padding-left: 43px;
+}
 
-        input,
-        select {
+.search-icon {
+    position: absolute;
 
-            width: 100%;
+    left: 15px;
+    top: 14px;
 
-            height: 52px;
+    color: var(--muted);
 
-            border:
-                1px solid var(--border);
+    pointer-events: none;
+}
 
-            border-radius: 13px;
 
-            background: var(--bg);
+/* =========================
+   MOVIMENTI
+========================= */
 
-            color: var(--text);
+.movement {
+    padding: 15px 0;
 
-            padding:
-                0 14px;
+    border-bottom:
+        1px solid var(--border);
+}
 
-            font-size: 16px;
+.movement:last-child {
+    border-bottom: none;
+}
 
-            outline: none;
+.movement-top {
+    display: flex;
 
-            margin-bottom: 10px;
+    align-items: flex-start;
 
-            appearance: none;
-        }
+    justify-content: space-between;
 
+    gap: 10px;
+}
 
-        input:focus,
-        select:focus {
+.movement-info {
+    min-width: 0;
+    flex: 1;
+}
 
-            border-color:
-                var(--blue);
-        }
+.movement-title {
+    font-size: 15px;
+    font-weight: 700;
 
+    overflow-wrap: anywhere;
+}
 
-        input[type="date"] {
+.movement-date {
+    margin-top: 5px;
 
-            color-scheme: light;
-        }
+    color: var(--muted);
 
+    font-size: 12px;
+}
 
-        body.dark input[type="date"] {
+.movement-category {
+    display: inline-block;
 
-            color-scheme: dark;
-        }
+    margin-top: 7px;
 
+    padding: 5px 9px;
 
-        .save {
+    border-radius: 8px;
 
-            width: 100%;
+    background: var(--bg);
 
-            height: 52px;
+    color: var(--muted);
 
-            border-radius: 13px;
+    font-size: 11px;
+}
 
-            background: var(--text);
+.movement-buttons {
+    display: flex;
 
-            color: var(--card);
+    gap: 5px;
+}
 
-            font-size: 15px;
-        }
+.edit,
+.delete {
+    width: 36px;
+    height: 36px;
 
+    border-radius: 10px;
 
-        .cancel {
+    background: var(--bg);
+}
 
-            width: 100%;
+.delete {
+    color: var(--red);
+}
 
-            height: 48px;
 
-            margin-top: 8px;
+/* =========================
+   SALVADANAIO
+========================= */
 
-            border-radius: 13px;
+.savings-card {
+    padding: 20px;
 
-            background: var(--bg);
+    margin-bottom: 13px;
+}
 
-            font-size: 14px;
-        }
+.savings-big-header {
+    display: flex;
 
+    align-items: center;
 
-        /* =========================
-           SEZIONI
-        ========================= */
+    gap: 13px;
 
-        .section {
+    margin-bottom: 18px;
+}
 
-            padding: 19px;
+.big-pig {
+    width: 55px;
+    height: 55px;
 
-            margin-bottom: 13px;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    border-radius: 17px;
 
-        .section-title {
+    background: var(--yellow-bg);
 
-            margin:
-                0 0 15px;
+    font-size: 30px;
+}
 
-            font-size: 19px;
+.savings-page-name {
+    font-size: 20px;
+    font-weight: 800;
+}
 
-            font-weight: 800;
-        }
+.savings-page-subtitle {
+    margin-top: 3px;
 
+    color: var(--muted);
 
-        /* =========================
-           MESE
-        ========================= */
+    font-size: 12px;
+}
 
-        .month-summary {
+.savings-big-amount {
+    font-size: 37px;
 
-            display: flex;
+    font-weight: 850;
 
-            justify-content:
-                space-between;
+    letter-spacing: -1px;
 
-            align-items: center;
+    margin-bottom: 4px;
+}
 
-            padding: 14px;
+.savings-target {
+    color: var(--muted);
 
-            border-radius: 14px;
+    font-size: 13px;
 
-            background: var(--bg);
+    margin-bottom: 14px;
+}
 
-            margin-bottom: 15px;
-        }
+.progress {
+    height: 11px;
 
+    background: var(--bg);
 
-        .month-name {
+    border-radius: 20px;
 
-            font-weight: 700;
-        }
+    overflow: hidden;
+}
 
+.progress-fill {
+    height: 100%;
 
-        .month-total {
+    width: 0%;
 
-            color: var(--red);
+    background: var(--yellow);
 
-            font-weight: 800;
-        }
+    border-radius: 20px;
 
+    transition: width .3s;
+}
 
-        /* =========================
-           CATEGORIE
-        ========================= */
+.progress-text {
+    margin-top: 7px;
 
-        .category-row {
+    text-align: right;
 
-            margin-bottom: 15px;
-        }
+    color: var(--muted);
 
+    font-size: 12px;
+}
 
-        .category-header {
+.savings-actions {
+    display: grid;
 
-            display: flex;
+    grid-template-columns: 1fr 1fr;
 
-            justify-content:
-                space-between;
+    gap: 9px;
 
-            margin-bottom: 7px;
+    margin-top: 17px;
+}
 
-            font-size: 14px;
-        }
+.savings-add,
+.savings-remove {
+    height: 50px;
 
+    border-radius: 13px;
 
-        .category-name {
+    font-weight: 750;
+}
 
-            font-weight: 650;
-        }
+.savings-add {
+    background: var(--green-bg);
+    color: var(--green);
+}
 
+.savings-remove {
+    background: var(--red-bg);
+    color: var(--red);
+}
 
-        .category-amount {
+.settings-button {
+    width: 100%;
 
-            color: var(--secondary);
+    height: 46px;
 
-            font-weight: 700;
-        }
+    margin-top: 9px;
 
+    border-radius: 12px;
 
-        .bar {
+    background: var(--bg);
 
-            height: 8px;
+    font-size: 13px;
+}
 
-            background: var(--bg);
+.savings-form {
+    margin-top: 15px;
 
-            border-radius: 20px;
+    padding-top: 15px;
 
-            overflow: hidden;
-        }
+    border-top:
+        1px solid var(--border);
+}
 
+.savings-form-title {
+    margin-bottom: 10px;
 
-        .bar-fill {
+    font-weight: 750;
+}
 
-            height: 100%;
+.info-card {
+    padding: 18px;
 
-            background: var(--red);
+    line-height: 1.6;
 
-            border-radius: 20px;
+    color: var(--muted);
 
-            transition:
-                width 0.3s;
-        }
+    font-size: 13px;
+}
 
 
-        .empty {
+/* =========================
+   PAGINE
+========================= */
 
-            text-align: center;
+#homePage {
+    display: block;
+}
 
-            color: var(--secondary);
+#savingsPage {
+    display: none;
+}
 
-            padding: 8px 0;
-        }
+.hidden {
+    display: none !important;
+}
 
+.empty {
+    padding: 10px 0;
 
-        /* =========================
-           RICERCA
-        ========================= */
+    text-align: center;
 
-        .search {
+    color: var(--muted);
 
-            position: relative;
+    font-size: 13px;
+}
 
-            margin-bottom: 15px;
-        }
 
+/* =========================
+   RESPONSIVE
+========================= */
 
-        .search input {
+@media (max-width: 370px) {
 
-            margin: 0;
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-            padding-left: 43px;
-        }
+    .balance {
+        font-size: 36px;
+    }
 
+    .title {
+        font-size: 21px;
+    }
 
-        .search-icon {
+    .action {
+        font-size: 15px;
+    }
 
-            position: absolute;
+}
 
-            left: 15px;
-
-            top: 15px;
-
-            font-size: 18px;
-
-            color: var(--secondary);
-
-            pointer-events: none;
-        }
-
-
-        /* =========================
-           MOVIMENTI
-        ========================= */
-
-        .movement {
-
-            padding: 15px 0;
-
-            border-bottom:
-                1px solid var(--border);
-        }
-
-
-        .movement:last-child {
-
-            border-bottom: none;
-        }
-
-
-        .movement-top {
-
-            display: flex;
-
-            justify-content:
-                space-between;
-
-            align-items: flex-start;
-
-            gap: 10px;
-        }
-
-
-        .movement-info {
-
-            min-width: 0;
-
-            flex: 1;
-        }
-
-
-        .movement-title {
-
-            font-weight: 700;
-
-            font-size: 15px;
-
-            overflow-wrap: anywhere;
-        }
-
-
-        .movement-date {
-
-            color: var(--secondary);
-
-            font-size: 12px;
-
-            margin-top: 5px;
-        }
-
-
-        .movement-category {
-
-            display: inline-block;
-
-            margin-top: 7px;
-
-            padding: 5px 9px;
-
-            border-radius: 8px;
-
-            background: var(--bg);
-
-            color: var(--secondary);
-
-            font-size: 11px;
-        }
-
-
-        .movement-buttons {
-
-            display: flex;
-
-            gap: 5px;
-
-            flex-shrink: 0;
-        }
-
-
-        .edit,
-        .delete {
-
-            width: 36px;
-
-            height: 36px;
-
-            padding: 0;
-
-            border-radius: 10px;
-
-            background: var(--bg);
-
-            font-size: 15px;
-        }
-
-
-        .delete {
-
-            color: var(--red);
-        }
-
-
-        /* =========================
-           SALVADANAIO
-        ========================= */
-
-        .piggy-card {
-
-            padding: 21px;
-
-            margin-bottom: 13px;
-        }
-
-
-        .piggy-header {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 13px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .piggy-icon {
-
-            width: 52px;
-
-            height: 52px;
-
-            border-radius: 16px;
-
-            background:
-                var(--yellow-bg);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 29px;
-        }
-
-
-        .piggy-title {
-
-            font-size: 20px;
-
-            font-weight: 800;
-        }
-
-
-        .piggy-subtitle {
-
-            color: var(--secondary);
-
-            font-size: 12px;
-
-            margin-top: 3px;
-        }
-
-
-        .piggy-money {
-
-            font-size: 36px;
-
-            font-weight: 850;
-
-            letter-spacing: -1px;
-
-            margin-bottom: 4px;
-        }
-
-
-        .piggy-target {
-
-            color: var(--secondary);
-
-            font-size: 13px;
-
-            margin-bottom: 16px;
-        }
-
-
-        .progress {
-
-            width: 100%;
-
-            height: 11px;
-
-            background: var(--bg);
-
-            border-radius: 30px;
-
-            overflow: hidden;
-
-            margin-bottom: 9px;
-        }
-
-
-        .progress-fill {
-
-            height: 100%;
-
-            width: 0%;
-
-            background: var(--yellow);
-
-            border-radius: 30px;
-
-            transition:
-                width 0.35s ease;
-        }
-
-
-        .progress-text {
-
-            text-align: right;
-
-            color: var(--secondary);
-
-            font-size: 12px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .piggy-actions {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 9px;
-        }
-
-
-        .piggy-add {
-
-            height: 50px;
-
-            border-radius: 13px;
-
-            background:
-                var(--green-bg);
-
-            color: var(--green);
-        }
-
-
-        .piggy-remove {
-
-            height: 50px;
-
-            border-radius: 13px;
-
-            background:
-                var(--red-bg);
-
-            color: var(--red);
-        }
-
-
-        .piggy-edit {
-
-            width: 100%;
-
-            height: 45px;
-
-            margin-top: 9px;
-
-            border-radius: 12px;
-
-            background: var(--bg);
-
-            font-size: 13px;
-        }
-
-
-        .piggy-form {
-
-            margin-top: 15px;
-
-            padding-top: 15px;
-
-            border-top:
-                1px solid var(--border);
-        }
-
-
-        .piggy-form-title {
-
-            font-weight: 750;
-
-            margin-bottom: 10px;
-        }
-
-
-        /* =========================
-           PAGINA SALVADANAIO
-        ========================= */
-
-        #savingsPage {
-
-            display: none;
-        }
-
-
-        #homePage {
-
-            display: block;
-        }
-
-
-        .back-button {
-
-            width: 44px;
-
-            height: 44px;
-
-            border-radius: 14px;
-
-            background: var(--card);
-
-            border:
-                1px solid var(--border);
-
-            box-shadow: var(--shadow);
-
-            font-size: 19px;
-
-            position: absolute;
-
-            left: 0;
-        }
-
-
-        /* =========================
-           UTILITY
-        ========================= */
-
-        .hidden {
-
-            display: none !important;
-        }
-
-
-        @media (max-width: 370px) {
-
-            body {
-
-                padding-left: 10px;
-
-                padding-right: 10px;
-            }
-
-
-            .balance {
-
-                font-size: 36px;
-            }
-
-
-            .stat-value {
-
-                font-size: 18px;
-            }
-
-
-            .title {
-
-                font-size: 21px;
-            }
-
-
-            .piggy-money {
-
-                font-size: 32px;
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
 
 
 <body>
 
 
-    <!-- =========================
-         MENU
-    ========================= -->
+<!-- =========================
+     MENU LATERALE
+========================= -->
 
-    <div
-        id="overlay"
-        class="overlay"
-        onclick="closeMenu()">
+<div
+    id="overlay"
+    class="overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<aside
+    id="sideMenu"
+    class="side-menu">
+
+
+    <div class="menu-header">
+
+        <div class="menu-title">
+            Menu
+        </div>
+
+        <button
+            class="close-menu"
+            onclick="closeMenu()">
+
+            ×
+
+        </button>
+
     </div>
 
 
-    <aside
-        id="sideMenu"
-        class="side-menu">
+    <div class="menu-section">
+        Navigazione
+    </div>
 
 
-        <div class="menu-header">
+    <button
+        class="menu-item"
+        onclick="showHome()">
 
-            <div class="menu-title">
-                Menu
-            </div>
+        <span class="menu-icon">
+            🏠
+        </span>
 
+        <span>
+            Home
+        </span>
 
-            <button
-                class="close-menu"
-                onclick="closeMenu()">
-
-                ×
-
-            </button>
-
-        </div>
+    </button>
 
 
-        <div class="menu-section">
-            Navigazione
-        </div>
+    <button
+        class="menu-item"
+        onclick="showSavings()">
 
+        <span class="menu-icon">
+            🐷
+        </span>
+
+        <span>
+            Salvadanaio
+        </span>
+
+    </button>
+
+
+    <div class="menu-section">
+        Impostazioni
+    </div>
+
+
+    <button
+        class="menu-item"
+        onclick="toggleTheme()">
+
+        <span
+            id="themeIcon"
+            class="menu-icon">
+            🌙
+        </span>
+
+        <span id="themeText">
+            Tema scuro
+        </span>
+
+    </button>
+
+
+    <button
+        class="menu-item menu-danger"
+        onclick="resetAll()">
+
+        <span class="menu-icon">
+            🗑️
+        </span>
+
+        <span>
+            Azzera conto e movimenti
+        </span>
+
+    </button>
+
+
+</aside>
+
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<main
+    id="homePage"
+    class="app">
+
+
+    <header class="header">
 
         <button
-            class="menu-item"
-            onclick="showHome()">
+            class="menu-button"
+            onclick="openMenu()">
 
-            <span class="menu-icon">
-                🏠
-            </span>
-
-            <span>
-                Home
-            </span>
+            ☰
 
         </button>
 
+        <h1 class="title">
+            Gestione Soldi
+        </h1>
 
-        <button
-            class="menu-item"
-            onclick="showSavings()">
-
-            <span class="menu-icon">
-                🐷
-            </span>
-
-            <span>
-                Salvadanaio
-            </span>
-
-        </button>
+    </header>
 
 
-        <div class="menu-section">
-            Aspetto
+    <!-- SALDO -->
+
+    <section class="card balance-card">
+
+        <div class="balance-label">
+            Saldo disponibile
         </div>
 
-
-        <button
-            class="menu-item"
-            onclick="toggleTheme()">
-
-            <span
-                id="themeIcon"
-                class="menu-icon">
-
-                🌙
-
-            </span>
-
-
-            <span
-                id="themeText">
-
-                Tema scuro
-
-            </span>
-
-        </button>
-
-
-        <div class="menu-section">
-            Dati
-        </div>
-
-
-        <button
-            class="menu-item"
-            onclick="closeMenu()">
-
-            <span class="menu-icon">
-                💾
-            </span>
-
-            <span>
-                Salvataggio automatico attivo
-            </span>
-
-        </button>
-
-
-    </aside>
-
-
-    <!-- =========================
-         HOME
-    ========================= -->
-
-    <main
-        id="homePage"
-        class="app">
-
-
-        <header class="header">
-
-
-            <button
-                class="menu-button"
-                onclick="openMenu()">
-
-                ☰
-
-            </button>
-
-
-            <h1 class="title">
-                Gestione Soldi
-            </h1>
-
-
-        </header>
-
-
-        <!-- SALDO -->
-
-        <section
-            class="card balance-card">
-
-
-            <div class="balance-label">
-                Saldo disponibile
-            </div>
-
-
-            <div
-                id="balance"
-                class="balance">
-
-                €0.00
-
-            </div>
-
-
-        </section>
-
-
-        <!-- STATISTICHE -->
-
-        <div class="stats">
-
-
-            <section
-                class="card stat">
-
-
-                <div class="stat-label">
-                    Entrate
-                </div>
-
-
-                <div
-                    id="totalIncome"
-                    class="stat-value green">
-
-                    €0.00
-
-                </div>
-
-
-            </section>
-
-
-            <section
-                class="card stat">
-
-
-                <div class="stat-label">
-                    Spese
-                </div>
-
-
-                <div
-                    id="totalExpense"
-                    class="stat-value red">
-
-                    €0.00
-
-                </div>
-
-
-            </section>
-
+        <div
+            id="balance"
+            class="balance">
+
+            €0.00
 
         </div>
 
+    </section>
 
-        <!-- AZZERA -->
 
-        <button
-            class="reset"
-            onclick="resetAll()">
+    <!-- SALVADANAIO MINI -->
 
-            🗑️ Azzera saldo e movimenti
+    <section
+        class="card savings-mini"
+        onclick="showSavings()">
 
-        </button>
 
+        <div class="savings-mini-top">
 
-        <!-- AZIONI -->
 
-        <div class="actions">
+            <div class="savings-mini-left">
 
-
-            <button
-                class="action income"
-                onclick="openForm('income')">
-
-                ＋ Entrata
-
-            </button>
-
-
-            <button
-                class="action expense"
-                onclick="openForm('expense')">
-
-                − Spesa
-
-            </button>
-
-
-        </div>
-
-
-        <!-- FORM -->
-
-        <section
-            id="form"
-            class="card form hidden">
-
-
-            <h2
-                id="formTitle"
-                class="form-title">
-
-                Nuova operazione
-
-            </h2>
-
-
-            <input
-                id="amount"
-                type="number"
-                inputmode="decimal"
-                step="0.01"
-                min="0"
-                placeholder="Importo (€)"
-            >
-
-
-            <input
-                id="description"
-                type="text"
-                maxlength="100"
-                placeholder="Descrizione (opzionale)"
-            >
-
-
-            <select id="category">
-
-                <option value="">
-                    Categoria (opzionale)
-                </option>
-
-                <option value="💼 Stipendio">
-                    💼 Stipendio
-                </option>
-
-                <option value="💰 Bonus">
-                    💰 Bonus
-                </option>
-
-                <option value="🎁 Regalo">
-                    🎁 Regalo
-                </option>
-
-                <option value="🏦 Investimenti">
-                    🏦 Investimenti
-                </option>
-
-                <option value="🏠 Affitto">
-                    🏠 Affitto
-                </option>
-
-                <option value="💡 Bollette">
-                    💡 Bollette
-                </option>
-
-                <option value="🛒 Spesa alimentare">
-                    🛒 Spesa alimentare
-                </option>
-
-                <option value="🍔 Ristoranti">
-                    🍔 Ristoranti
-                </option>
-
-                <option value="🚗 Benzina">
-                    🚗 Benzina
-                </option>
-
-                <option value="🚌 Trasporti">
-                    🚌 Trasporti
-                </option>
-
-                <option value="🛍️ Shopping">
-                    🛍️ Shopping
-                </option>
-
-                <option value="🎮 Svago">
-                    🎮 Svago
-                </option>
-
-                <option value="💊 Salute">
-                    💊 Salute
-                </option>
-
-                <option value="📱 Abbonamenti">
-                    📱 Abbonamenti
-                </option>
-
-                <option value="📚 Istruzione">
-                    📚 Istruzione
-                </option>
-
-                <option value="🐶 Animali">
-                    🐶 Animali
-                </option>
-
-                <option value="✈️ Viaggi">
-                    ✈️ Viaggi
-                </option>
-
-                <option value="📦 Altro">
-                    📦 Altro
-                </option>
-
-            </select>
-
-
-            <input
-                id="date"
-                type="date"
-            >
-
-
-            <button
-                id="saveButton"
-                class="save"
-                onclick="saveMovement()">
-
-                Salva
-
-            </button>
-
-
-            <button
-                class="cancel"
-                onclick="closeForm()">
-
-                Annulla
-
-            </button>
-
-
-        </section>
-
-
-        <!-- RIEPILOGO MESE -->
-
-        <section
-            class="card section">
-
-
-            <h2 class="section-title">
-                Questo mese
-            </h2>
-
-
-            <div class="month-summary">
-
-
-                <span
-                    id="monthName"
-                    class="month-name">
-
-                    Mese corrente
-
-                </span>
-
-
-                <span
-                    id="monthTotal"
-                    class="month-total">
-
-                    €0.00
-
-                </span>
-
-
-            </div>
-
-
-            <div id="categories">
-            </div>
-
-
-        </section>
-
-
-        <!-- MOVIMENTI -->
-
-        <section
-            class="card section">
-
-
-            <h2 class="section-title">
-                Movimenti
-            </h2>
-
-
-            <div class="search">
-
-
-                <span class="search-icon">
-                    🔎
-                </span>
-
-
-                <input
-                    id="search"
-                    type="search"
-                    placeholder="Cerca movimento..."
-                    oninput="renderMovements()"
-                >
-
-
-            </div>
-
-
-            <div id="movements">
-            </div>
-
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =========================
-         SALVADANAIO
-    ========================= -->
-
-    <main
-        id="savingsPage"
-        class="app">
-
-
-        <header class="header">
-
-
-            <button
-                class="back-button"
-                onclick="showHome()">
-
-                ←
-
-            </button>
-
-
-            <h1 class="title">
-                Salvadanaio
-            </h1>
-
-
-        </header>
-
-
-        <section
-            class="card piggy-card">
-
-
-            <div class="piggy-header">
-
-
-                <div class="piggy-icon">
+                <div class="savings-icon">
                     🐷
                 </div>
 
 
                 <div>
 
-
                     <div
-                        id="piggyName"
-                        class="piggy-title">
+                        id="miniSavingsName"
+                        class="savings-name">
 
                         Il mio salvadanaio
 
                     </div>
 
 
-                    <div class="piggy-subtitle">
-                        Il tuo obiettivo
+                    <div
+                        id="miniSavingsAmount"
+                        class="savings-amount">
+
+                        €0.00
+
                     </div>
 
-
                 </div>
-
 
             </div>
 
 
+            <div class="savings-arrow">
+                ›
+            </div>
+
+
+        </div>
+
+
+        <div class="mini-progress">
+
             <div
-                id="piggyAmount"
-                class="piggy-money">
+                id="miniProgress"
+                class="mini-progress-fill">
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- STATISTICHE -->
+
+    <div class="stats">
+
+
+        <section class="card stat">
+
+            <div class="stat-label">
+                Entrate
+            </div>
+
+            <div
+                id="totalIncome"
+                class="stat-value green">
 
                 €0.00
 
             </div>
 
+        </section>
+
+
+        <section class="card stat">
+
+            <div class="stat-label">
+                Spese
+            </div>
 
             <div
-                id="piggyTargetText"
-                class="piggy-target">
+                id="totalExpense"
+                class="stat-value red">
 
-                Obiettivo: €0.00
+                €0.00
 
             </div>
 
+        </section>
 
-            <div class="progress">
 
+    </div>
+
+
+    <!-- AZIONI -->
+
+    <div class="actions">
+
+
+        <button
+            class="action income"
+            onclick="openForm('income')">
+
+            ＋ Entrata
+
+        </button>
+
+
+        <button
+            class="action expense"
+            onclick="openForm('expense')">
+
+            − Spesa
+
+        </button>
+
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <section
+        id="form"
+        class="card form hidden">
+
+
+        <h2
+            id="formTitle"
+            class="form-title">
+
+            Nuova operazione
+
+        </h2>
+
+
+        <input
+            id="amount"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="0.01"
+            placeholder="Importo (€)"
+        >
+
+
+        <input
+            id="description"
+            type="text"
+            maxlength="100"
+            placeholder="Descrizione (opzionale)"
+        >
+
+
+        <select id="category">
+
+            <option value="">
+                Categoria (opzionale)
+            </option>
+
+            <option value="💼 Stipendio">
+                💼 Stipendio
+            </option>
+
+            <option value="💰 Bonus">
+                💰 Bonus
+            </option>
+
+            <option value="🎁 Regalo">
+                🎁 Regalo
+            </option>
+
+            <option value="🏦 Investimenti">
+                🏦 Investimenti
+            </option>
+
+            <option value="🏠 Affitto">
+                🏠 Affitto
+            </option>
+
+            <option value="💡 Bollette">
+                💡 Bollette
+            </option>
+
+            <option value="🛒 Spesa alimentare">
+                🛒 Spesa alimentare
+            </option>
+
+            <option value="🍔 Ristoranti">
+                🍔 Ristoranti
+            </option>
+
+            <option value="🚗 Benzina">
+                🚗 Benzina
+            </option>
+
+            <option value="🚌 Trasporti">
+                🚌 Trasporti
+            </option>
+
+            <option value="🛍️ Shopping">
+                🛍️ Shopping
+            </option>
+
+            <option value="🎮 Svago">
+                🎮 Svago
+            </option>
+
+            <option value="💊 Salute">
+                💊 Salute
+            </option>
+
+            <option value="📱 Abbonamenti">
+                📱 Abbonamenti
+            </option>
+
+            <option value="📚 Istruzione">
+                📚 Istruzione
+            </option>
+
+            <option value="🐶 Animali">
+                🐶 Animali
+            </option>
+
+            <option value="✈️ Viaggi">
+                ✈️ Viaggi
+            </option>
+
+            <option value="📦 Altro">
+                📦 Altro
+            </option>
+
+        </select>
+
+
+        <input
+            id="date"
+            type="date"
+        >
+
+
+        <button
+            class="save"
+            onclick="saveMovement()">
+
+            Salva operazione
+
+        </button>
+
+
+        <button
+            class="cancel"
+            onclick="closeForm()">
+
+            Annulla
+
+        </button>
+
+
+    </section>
+
+
+    <!-- MESE -->
+
+    <section class="card section">
+
+
+        <h2 class="section-title">
+            Spese di questo mese
+        </h2>
+
+
+        <div class="month-summary">
+
+            <span
+                id="monthName"
+                class="month-name">
+
+                Mese corrente
+
+            </span>
+
+
+            <span
+                id="monthTotal"
+                class="month-total">
+
+                €0.00
+
+            </span>
+
+        </div>
+
+
+        <div id="categories">
+        </div>
+
+
+    </section>
+
+
+    <!-- MOVIMENTI -->
+
+    <section class="card section">
+
+
+        <h2 class="section-title">
+            Movimenti
+        </h2>
+
+
+        <div class="search">
+
+            <span class="search-icon">
+                🔎
+            </span>
+
+            <input
+                id="search"
+                type="search"
+                placeholder="Cerca movimento..."
+                oninput="renderMovements()"
+            >
+
+        </div>
+
+
+        <div id="movements">
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     PAGINA SALVADANAIO
+========================= -->
+
+<main
+    id="savingsPage"
+    class="app">
+
+
+    <header class="header">
+
+        <button
+            class="back-button"
+            onclick="showHome()">
+
+            ←
+
+        </button>
+
+        <h1 class="title">
+            Salvadanaio
+        </h1>
+
+    </header>
+
+
+    <section class="card savings-card">
+
+
+        <div class="savings-big-header">
+
+
+            <div class="big-pig">
+                🐷
+            </div>
+
+
+            <div>
 
                 <div
-                    id="piggyProgress"
-                    class="progress-fill">
+                    id="savingsPageName"
+                    class="savings-page-name">
+
+                    Il mio salvadanaio
+
                 </div>
 
 
+                <div class="savings-page-subtitle">
+
+                    I soldi che hai messo da parte
+
+                </div>
+
             </div>
 
+
+        </div>
+
+
+        <div
+            id="savingsBigAmount"
+            class="savings-big-amount">
+
+            €0.00
+
+        </div>
+
+
+        <div
+            id="savingsTarget"
+            class="savings-target">
+
+            Obiettivo: €0.00
+
+        </div>
+
+
+        <div class="progress">
 
             <div
-                id="piggyProgressText"
-                class="progress-text">
-
-                0%
-
+                id="savingsProgress"
+                class="progress-fill">
             </div>
 
-
-            <div class="piggy-actions">
-
-
-                <button
-                    class="piggy-add"
-                    onclick="openPiggyTransaction('add')">
-
-                    ＋ Metti soldi
-
-                </button>
+        </div>
 
 
-                <button
-                    class="piggy-remove"
-                    onclick="openPiggyTransaction('remove')">
+        <div
+            id="savingsProgressText"
+            class="progress-text">
 
-                    − Preleva
+            0%
 
-                </button>
+        </div>
 
 
-            </div>
+        <div class="savings-actions">
 
 
             <button
-                class="piggy-edit"
-                onclick="togglePiggySettings()">
+                class="savings-add"
+                onclick="openSavingsTransaction('add')">
 
-                ⚙️ Modifica salvadanaio
+                ＋ Metti soldi
 
             </button>
 
 
+            <button
+                class="savings-remove"
+                onclick="openSavingsTransaction('remove')">
+
+                − Preleva
+
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="settings-button"
+            onclick="toggleSavingsSettings()">
+
+            ⚙️ Modifica obiettivo
+
+        </button>
+
+
+        <div
+            id="savingsSettings"
+            class="savings-form hidden">
+
+
+            <div class="savings-form-title">
+                Impostazioni
+            </div>
+
+
+            <input
+                id="savingsNameInput"
+                type="text"
+                maxlength="40"
+                placeholder="Nome del salvadanaio"
+            >
+
+
+            <input
+                id="savingsTargetInput"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                placeholder="Obiettivo (€)"
+            >
+
+
+            <button
+                class="save"
+                onclick="saveSavingsSettings()">
+
+                Salva
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            id="savingsTransaction"
+            class="savings-form hidden">
+
+
             <div
-                id="piggySettings"
-                class="piggy-form hidden">
+                id="savingsTransactionTitle"
+                class="savings-form-title">
 
-
-                <div class="piggy-form-title">
-                    Impostazioni
-                </div>
-
-
-                <input
-                    id="piggyNameInput"
-                    type="text"
-                    maxlength="40"
-                    placeholder="Nome del salvadanaio"
-                >
-
-
-                <input
-                    id="piggyTargetInput"
-                    type="number"
-                    inputmode="decimal"
-                    min="0"
-                    step="0.01"
-                    placeholder="Obiettivo (€)"
-                >
-
-
-                <button
-                    class="save"
-                    onclick="savePiggySettings()">
-
-                    Salva impostazioni
-
-                </button>
-
+                Operazione
 
             </div>
 
 
-            <div
-                id="piggyTransaction"
-                class="piggy-form hidden">
+            <input
+                id="savingsTransactionAmount"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.01"
+                placeholder="Importo (€)"
+            >
 
 
-                <div
-                    id="piggyTransactionTitle"
-                    class="piggy-form-title">
+            <button
+                id="savingsTransactionButton"
+                class="save"
+                onclick="saveSavingsTransaction()">
 
-                    Operazione
+                Conferma
 
-                </div>
+            </button>
 
 
-                <input
-                    id="piggyTransactionAmount"
-                    type="number"
-                    inputmode="decimal"
-                    min="0"
-                    step="0.01"
-                    placeholder="Importo (€)"
-                >
+            <button
+                class="cancel"
+                onclick="closeSavingsTransaction()">
 
+                Annulla
 
-                <button
-                    id="piggyTransactionButton"
-                    class="save"
-                    onclick="savePiggyTransaction()">
+            </button>
 
-                    Conferma
 
-                </button>
+        </div>
 
 
-                <button
-                    class="cancel"
-                    onclick="closePiggyTransaction()">
+    </section>
 
-                    Annulla
 
-                </button>
+    <section class="card info-card">
 
+        <strong>
+            💡 Come funziona
+        </strong>
 
-            </div>
+        <br><br>
 
+        Il salvadanaio è collegato al tuo
+        saldo disponibile.
 
-        </section>
+        <br><br>
 
+        Quando metti soldi nel salvadanaio,
+        vengono tolti dal saldo disponibile.
 
-        <section
-            class="card section">
+        Quando li prelevi, tornano
+        disponibili nel saldo.
 
+    </section>
 
-            <h2 class="section-title">
-                Come funziona
-            </h2>
 
+</main>
 
-            <div
-                class="empty"
-                style="line-height:1.6">
 
-                Il salvadanaio è separato dal
-                saldo principale.<br><br>
 
-                Puoi usarlo per mettere da parte
-                soldi per un obiettivo, come una
-                vacanza, una macchina o un fondo
-                di emergenza.
+<script>
 
-            </div>
 
+/* =========================
+   DATI
+========================= */
 
-        </section>
+let balance =
+    Number(
+        localStorage.getItem("balance")
+    ) || 0;
 
+let movements =
+    JSON.parse(
+        localStorage.getItem("movements")
+    ) || [];
 
-    </main>
+let savingsAmount =
+    Number(
+        localStorage.getItem("savingsAmount")
+    ) || 0;
 
+let savingsTarget =
+    Number(
+        localStorage.getItem("savingsTarget")
+    ) || 0;
 
-    <script>
+let savingsName =
+    localStorage.getItem("savingsName")
+    || "Il mio salvadanaio";
 
+let operationType = "income";
 
-        /* =========================
-           DATI PRINCIPALI
-        ========================= */
+let editingIndex = null;
 
+let savingsTransactionType = "add";
 
-        let balance =
-            Number(
-                localStorage.getItem(
-                    "balance"
-                )
-            ) || 0;
 
+/* =========================
+   UTILITÀ
+========================= */
 
-        let movements =
-            JSON.parse(
-                localStorage.getItem(
-                    "movements"
-                )
-            ) || [];
+function money(value) {
 
+    return "€" +
+        Number(value).toFixed(2);
 
-        let operationType =
-            "income";
+}
 
 
-        let editingIndex =
-            null;
+function today() {
 
+    const d = new Date();
 
-        /* =========================
-           DATI SALVADANAIO
-        ========================= */
+    return d.getFullYear() +
+        "-" +
+        String(
+            d.getMonth() + 1
+        ).padStart(2, "0") +
+        "-" +
+        String(
+            d.getDate()
+        ).padStart(2, "0");
 
+}
 
-        let piggyAmount =
-            Number(
-                localStorage.getItem(
-                    "piggyAmount"
-                )
-            ) || 0;
 
+function formatDate(date) {
 
-        let piggyTarget =
-            Number(
-                localStorage.getItem(
-                    "piggyTarget"
-                )
-            ) || 0;
+    if (!date) return "";
 
+    const p =
+        date.split("-");
 
-        let piggyName =
-            localStorage.getItem(
-                "piggyName"
-            ) ||
-            "Il mio salvadanaio";
+    if (p.length !== 3) {
+        return date;
+    }
 
+    return p[2] +
+        "/" +
+        p[1] +
+        "/" +
+        p[0];
 
-        let piggyTransactionType =
-            "add";
+}
 
 
-        /* =========================
-           UTILITÀ
-        ========================= */
+function escapeHTML(text) {
 
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-        function money(value) {
+}
 
-            return "€" +
-                Number(value)
-                    .toFixed(2);
 
-        }
+function saveData() {
 
+    localStorage.setItem(
+        "balance",
+        balance
+    );
 
-        function today() {
+    localStorage.setItem(
+        "movements",
+        JSON.stringify(movements)
+    );
 
-            const d =
-                new Date();
+    localStorage.setItem(
+        "savingsAmount",
+        savingsAmount
+    );
 
+    localStorage.setItem(
+        "savingsTarget",
+        savingsTarget
+    );
 
-            const year =
-                d.getFullYear();
+    localStorage.setItem(
+        "savingsName",
+        savingsName
+    );
 
+}
 
-            const month =
-                String(
-                    d.getMonth() + 1
-                ).padStart(
-                    2,
-                    "0"
-                );
 
+/* =========================
+   MENU
+========================= */
 
-            const day =
-                String(
-                    d.getDate()
-                ).padStart(
-                    2,
-                    "0"
-                );
+function openMenu() {
 
+    document
+        .getElementById("sideMenu")
+        .classList.add("open");
 
-            return (
-                year +
-                "-" +
-                month +
-                "-" +
-                day
-            );
+    document
+        .getElementById("overlay")
+        .classList.add("open");
 
-        }
+}
 
 
-        function formatDate(date) {
+function closeMenu() {
 
-            if (!date) {
-                return "";
-            }
+    document
+        .getElementById("sideMenu")
+        .classList.remove("open");
 
+    document
+        .getElementById("overlay")
+        .classList.remove("open");
 
-            const parts =
-                date.split("-");
+}
 
 
-            if (
-                parts.length !== 3
-            ) {
-                return date;
-            }
+/* =========================
+   PAGINE
+========================= */
 
+function showHome() {
 
-            return (
-                parts[2] +
-                "/" +
-                parts[1] +
-                "/" +
-                parts[0]
-            );
+    document.getElementById(
+        "homePage"
+    ).style.display = "block";
 
-        }
+    document.getElementById(
+        "savingsPage"
+    ).style.display = "none";
 
+    closeMenu();
 
-        function saveData() {
+    window.scrollTo(0, 0);
 
-            localStorage.setItem(
-                "balance",
-                balance
-            );
+}
 
 
-            localStorage.setItem(
-                "movements",
-                JSON.stringify(
-                    movements
-                )
-            );
+function showSavings() {
 
-        }
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
 
+    document.getElementById(
+        "savingsPage"
+    ).style.display = "block";
 
-        function savePiggyData() {
+    closeMenu();
 
-            localStorage.setItem(
-                "piggyAmount",
-                piggyAmount
-            );
+    renderSavings();
 
+    window.scrollTo(0, 0);
 
-            localStorage.setItem(
-                "piggyTarget",
-                piggyTarget
-            );
+}
 
 
-            localStorage.setItem(
-                "piggyName",
-                piggyName
-            );
+/* =========================
+   TEMA
+========================= */
 
-        }
+function toggleTheme() {
 
+    document.body.classList.toggle(
+        "dark"
+    );
 
-        /* =========================
-           NAVIGAZIONE
-        ========================= */
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
 
+    localStorage.setItem(
+        "theme",
+        dark ? "dark" : "light"
+    );
 
-        function openMenu() {
+    updateTheme();
 
-            document
-                .getElementById(
-                    "sideMenu"
-                )
-                .classList
-                .add("open");
+}
 
 
-            document
-                .getElementById(
-                    "overlay"
-                )
-                .classList
-                .add("open");
+function updateTheme() {
 
-        }
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
 
+    document.getElementById(
+        "themeIcon"
+    ).textContent =
+        dark ? "☀️" : "🌙";
 
-        function closeMenu() {
+    document.getElementById(
+        "themeText"
+    ).textContent =
+        dark
+            ? "Tema chiaro"
+            : "Tema scuro";
 
-            document
-                .getElementById(
-                    "sideMenu"
-                )
-                .classList
-                .remove("open");
+}
 
 
-            document
-                .getElementById(
-                    "overlay"
-                )
-                .classList
-                .remove("open");
+function loadTheme() {
 
-        }
+    if (
+        localStorage.getItem("theme")
+        === "dark"
+    ) {
 
+        document.body.classList.add(
+            "dark"
+        );
 
-        function showHome() {
+    }
 
-            document
-                .getElementById(
-                    "homePage"
-                )
-                .style.display =
-                "block";
+    updateTheme();
 
+}
 
-            document
-                .getElementById(
-                    "savingsPage"
-                )
-                .style.display =
-                "none";
 
+/* =========================
+   RIEPILOGO
+========================= */
 
-            closeMenu();
+function updateSummary() {
 
-            window.scrollTo(
-                0,
-                0
-            );
+    let income = 0;
+    let expense = 0;
 
-        }
-
-
-        function showSavings() {
-
-            document
-                .getElementById(
-                    "homePage"
-                )
-                .style.display =
-                "none";
-
-
-            document
-                .getElementById(
-                    "savingsPage"
-                )
-                .style.display =
-                "block";
-
-
-            closeMenu();
-
-            renderPiggy();
-
-            window.scrollTo(
-                0,
-                0
-            );
-
-        }
-
-
-        /* =========================
-           TEMA
-        ========================= */
-
-
-        function toggleTheme() {
-
-            document.body
-                .classList
-                .toggle("dark");
-
-
-            const dark =
-                document.body
-                    .classList
-                    .contains("dark");
-
-
-            localStorage.setItem(
-                "theme",
-                dark
-                    ? "dark"
-                    : "light"
-            );
-
-
-            updateThemeButton();
-
-        }
-
-
-        function updateThemeButton() {
-
-            const dark =
-                document.body
-                    .classList
-                    .contains("dark");
-
-
-            document.getElementById(
-                "themeIcon"
-            ).textContent =
-                dark
-                    ? "☀️"
-                    : "🌙";
-
-
-            document.getElementById(
-                "themeText"
-            ).textContent =
-                dark
-                    ? "Tema chiaro"
-                    : "Tema scuro";
-
-        }
-
-
-        function loadTheme() {
-
-            if (
-                localStorage.getItem(
-                    "theme"
-                ) === "dark"
-            ) {
-
-                document.body
-                    .classList
-                    .add("dark");
-
-            }
-
-
-            updateThemeButton();
-
-        }
-
-
-        /* =========================
-           RIEPILOGO
-        ========================= */
-
-
-        function updateSummary() {
-
-            let income = 0;
-
-            let expense = 0;
-
-
-            movements.forEach(
-                movement => {
-
-                    if (
-                        movement.type ===
-                        "income"
-                    ) {
-
-                        income +=
-                            Number(
-                                movement.amount
-                            );
-
-                    } else {
-
-                        expense +=
-                            Number(
-                                movement.amount
-                            );
-
-                    }
-
-                }
-            );
-
-
-            document.getElementById(
-                "balance"
-            ).textContent =
-                money(balance);
-
-
-            document.getElementById(
-                "totalIncome"
-            ).textContent =
-                money(income);
-
-
-            document.getElementById(
-                "totalExpense"
-            ).textContent =
-                money(expense);
-
-        }
-
-
-        /* =========================
-           RIEPILOGO MESE
-        ========================= */
-
-
-        function renderMonth() {
-
-            const now =
-                new Date();
-
-
-            const month =
-                now.getMonth();
-
-
-            const year =
-                now.getFullYear();
-
-
-            let total = 0;
-
-
-            const categories = {};
-
-
-            movements.forEach(
-                movement => {
-
-                    const date =
-                        new Date(
-                            movement.date +
-                            "T12:00:00"
-                        );
-
-
-                    if (
-                        date.getMonth() !==
-                        month ||
-                        date.getFullYear() !==
-                        year
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    if (
-                        movement.type !==
-                        "expense"
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    total +=
-                        Number(
-                            movement.amount
-                        );
-
-
-                    const category =
-                        movement.category ||
-                        "📦 Altro";
-
-
-                    if (
-                        !categories[
-                            category
-                        ]
-                    ) {
-
-                        categories[
-                            category
-                        ] = 0;
-
-                    }
-
-
-                    categories[
-                        category
-                    ] +=
-                        Number(
-                            movement.amount
-                        );
-
-                }
-            );
-
-
-            const monthName =
-                now.toLocaleDateString(
-                    "it-IT",
-                    {
-                        month:
-                            "long",
-
-                        year:
-                            "numeric"
-                    }
-                );
-
-
-            document.getElementById(
-                "monthName"
-            ).textContent =
-                monthName
-                    .charAt(0)
-                    .toUpperCase() +
-                monthName.slice(1);
-
-
-            document.getElementById(
-                "monthTotal"
-            ).textContent =
-                money(total);
-
-
-            const container =
-                document.getElementById(
-                    "categories"
-                );
-
-
-            container.innerHTML = "";
-
-
-            const names =
-                Object.keys(
-                    categories
-                );
-
-
-            if (
-                names.length === 0
-            ) {
-
-                container.innerHTML =
-                    `<div class="empty">
-                        Nessuna spesa questo mese
-                    </div>`;
-
-                return;
-
-            }
-
-
-            names.sort(
-                (a, b) =>
-                    categories[b] -
-                    categories[a]
-            );
-
-
-            names.forEach(
-                category => {
-
-                    const percentage =
-                        total > 0
-                            ? (
-                                categories[
-                                    category
-                                ] /
-                                total
-                            ) * 100
-                            : 0;
-
-
-                    const row =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    row.className =
-                        "category-row";
-
-
-                    row.innerHTML = `
-
-                        <div class="category-header">
-
-                            <span class="category-name">
-                                ${escapeHTML(category)}
-                            </span>
-
-                            <span class="category-amount">
-                                ${money(
-                                    categories[
-                                        category
-                                    ]
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="bar">
-
-                            <div
-                                class="bar-fill"
-                                style="width:${percentage}%">
-                            </div>
-
-                        </div>
-
-                    `;
-
-
-                    container.appendChild(
-                        row
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =========================
-           FORM MOVIMENTI
-        ========================= */
-
-
-        function openForm(
-            type,
-            index = null
-        ) {
-
-            operationType =
-                type;
-
-
-            editingIndex =
-                index;
-
-
-            const form =
-                document.getElementById(
-                    "form"
-                );
-
-
-            form.classList.remove(
-                "hidden"
-            );
-
-
-            const title =
-                document.getElementById(
-                    "formTitle"
-                );
-
-
-            if (
-                index !== null
-            ) {
-
-                title.textContent =
-                    "Modifica movimento";
-
-
-                const movement =
-                    movements[index];
-
-
-                document.getElementById(
-                    "amount"
-                ).value =
-                    movement.amount;
-
-
-                document.getElementById(
-                    "description"
-                ).value =
-                    movement.description ===
-                    "Nessuna descrizione"
-                        ? ""
-                        : movement.description;
-
-
-                document.getElementById(
-                    "category"
-                ).value =
-                    movement.category ===
-                    "📦 Altro"
-                        ? ""
-                        : movement.category;
-
-
-                document.getElementById(
-                    "date"
-                ).value =
-                    movement.date;
-
-            } else {
-
-                title.textContent =
-                    type === "income"
-                        ? "Nuova entrata"
-                        : "Nuova spesa";
-
-
-                document.getElementById(
-                    "amount"
-                ).value =
-                    "";
-
-
-                document.getElementById(
-                    "description"
-                ).value =
-                    "";
-
-
-                document.getElementById(
-                    "category"
-                ).value =
-                    "";
-
-
-                document.getElementById(
-                    "date"
-                ).value =
-                    today();
-
-            }
-
-
-            form.scrollIntoView({
-                behavior:
-                    "smooth",
-
-                block:
-                    "center"
-            });
-
-
-            setTimeout(
-                () => {
-
-                    document.getElementById(
-                        "amount"
-                    ).focus();
-
-                },
-                350
-            );
-
-        }
-
-
-        function closeForm() {
-
-            document.getElementById(
-                "form"
-            ).classList.add(
-                "hidden"
-            );
-
-
-            editingIndex =
-                null;
-
-        }
-
-
-        /* =========================
-           SALVA MOVIMENTO
-        ========================= */
-
-
-        function saveMovement() {
-
-            const amount =
-                Number(
-                    document.getElementById(
-                        "amount"
-                    ).value
-                );
-
-
-            let description =
-                document.getElementById(
-                    "description"
-                ).value.trim();
-
-
-            let category =
-                document.getElementById(
-                    "category"
-                ).value;
-
-
-            const date =
-                document.getElementById(
-                    "date"
-                ).value;
-
-
-            if (
-                !amount ||
-                amount <= 0
-            ) {
-
-                alert(
-                    "Inserisci un importo valido."
-                );
-
-                return;
-
-            }
-
-
-            if (!date) {
-
-                alert(
-                    "Inserisci una data."
-                );
-
-                return;
-
-            }
-
-
-            if (
-                description === ""
-            ) {
-
-                description =
-                    "Nessuna descrizione";
-
-            }
-
-
-            if (
-                category === ""
-            ) {
-
-                category =
-                    "📦 Altro";
-
-            }
-
-
-            if (
-                editingIndex !== null
-            ) {
-
-                const old =
-                    movements[
-                        editingIndex
-                    ];
-
-
-                if (
-                    old.type ===
-                    "income"
-                ) {
-
-                    balance -=
-                        Number(
-                            old.amount
-                        );
-
-                } else {
-
-                    balance +=
-                        Number(
-                            old.amount
-                        );
-
-                }
-
-
-                movements[
-                    editingIndex
-                ] = {
-
-                    type:
-                        old.type,
-
-                    amount:
-                        amount,
-
-                    description:
-                        description,
-
-                    category:
-                        category,
-
-                    date:
-                        date
-
-                };
-
-
-                if (
-                    old.type ===
-                    "income"
-                ) {
-
-                    balance +=
-                        amount;
-
-                } else {
-
-                    balance -=
-                        amount;
-
-                }
-
-            } else {
-
-                movements.push({
-
-                    type:
-                        operationType,
-
-                    amount:
-                        amount,
-
-                    description:
-                        description,
-
-                    category:
-                        category,
-
-                    date:
-                        date
-
-                });
-
-
-                if (
-                    operationType ===
-                    "income"
-                ) {
-
-                    balance +=
-                        amount;
-
-                } else {
-
-                    balance -=
-                        amount;
-
-                }
-
-            }
-
-
-            saveData();
-
-            updateAll();
-
-            closeForm();
-
-        }
-
-
-        /* =========================
-           MOVIMENTI
-        ========================= */
-
-
-        function renderMovements() {
-
-            const container =
-                document.getElementById(
-                    "movements"
-                );
-
-
-            const search =
-                document.getElementById(
-                    "search"
-                ).value
-                .trim()
-                .toLowerCase();
-
-
-            container.innerHTML = "";
-
-
-            const visible =
-                movements
-                    .map(
-                        (
-                            movement,
-                            index
-                        ) => ({
-                            movement,
-                            index
-                        })
-                    )
-                    .reverse()
-                    .filter(
-                        item => {
-
-                            if (
-                                search === ""
-                            ) {
-
-                                return true;
-
-                            }
-
-
-                            const text =
-                                (
-                                    item.movement
-                                        .description +
-                                    " " +
-                                    item.movement
-                                        .category
-                                )
-                                .toLowerCase();
-
-
-                            return text.includes(
-                                search
-                            );
-
-                        }
-                    );
-
-
-            if (
-                visible.length === 0
-            ) {
-
-                container.innerHTML =
-                    `<div class="empty">
-                        Nessun movimento trovato
-                    </div>`;
-
-                return;
-
-            }
-
-
-            visible.forEach(
-                item => {
-
-                    const movement =
-                        item.movement;
-
-
-                    const index =
-                        item.index;
-
-
-                    const element =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    element.className =
-                        "movement";
-
-
-                    const sign =
-                        movement.type ===
-                        "income"
-                            ? "+"
-                            : "-";
-
-
-                    const color =
-                        movement.type ===
-                        "income"
-                            ? "green"
-                            : "red";
-
-
-                    element.innerHTML = `
-
-                        <div class="movement-top">
-
-                            <div class="movement-info">
-
-                                <div
-                                    class="movement-title ${color}">
-
-                                    ${sign}
-                                    ${money(
-                                        movement.amount
-                                    )}
-                                    —
-                                    ${escapeHTML(
-                                        movement.description
-                                    )}
-
-                                </div>
-
-
-                                <div class="movement-date">
-
-                                    ${formatDate(
-                                        movement.date
-                                    )}
-
-                                </div>
-
-
-                                <span
-                                    class="movement-category">
-
-                                    ${escapeHTML(
-                                        movement.category
-                                    )}
-
-                                </span>
-
-                            </div>
-
-
-                            <div
-                                class="movement-buttons">
-
-
-                                <button
-                                    class="edit"
-                                    onclick="editMovement(${index})">
-
-                                    ✏️
-
-                                </button>
-
-
-                                <button
-                                    class="delete"
-                                    onclick="deleteMovement(${index})">
-
-                                    🗑️
-
-                                </button>
-
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-
-                    container.appendChild(
-                        element
-                    );
-
-                }
-            );
-
-        }
-
-
-        function editMovement(index) {
-
-            openForm(
-                movements[index].type,
-                index
-            );
-
-        }
-
-
-        function deleteMovement(index) {
-
-            const movement =
-                movements[index];
-
-
-            const confirmation =
-                confirm(
-                    "Vuoi eliminare questo movimento?"
-                );
-
-
-            if (!confirmation) {
-                return;
-            }
-
+    movements.forEach(
+        movement => {
 
             if (
                 movement.type ===
                 "income"
             ) {
 
-                balance -=
+                income +=
                     Number(
                         movement.amount
                     );
 
             } else {
 
-                balance +=
+                expense +=
                     Number(
                         movement.amount
                     );
 
             }
 
-
-            movements.splice(
-                index,
-                1
-            );
-
-
-            saveData();
-
-            updateAll();
-
         }
+    );
 
 
-        /* =========================
-           AZZERA
-        ========================= */
+    document.getElementById(
+        "balance"
+    ).textContent =
+        money(balance);
 
 
-        function resetAll() {
+    document.getElementById(
+        "totalIncome"
+    ).textContent =
+        money(income);
 
-            const confirmation =
-                confirm(
-                    "Vuoi davvero cancellare saldo e tutti i movimenti?"
+
+    document.getElementById(
+        "totalExpense"
+    ).textContent =
+        money(expense);
+
+}
+
+
+/* =========================
+   MINI SALVADANAIO
+========================= */
+
+function renderSavingsMini() {
+
+    document.getElementById(
+        "miniSavingsName"
+    ).textContent =
+        savingsName;
+
+
+    document.getElementById(
+        "miniSavingsAmount"
+    ).textContent =
+        savingsTarget > 0
+            ? money(savingsAmount) +
+              " / " +
+              money(savingsTarget)
+            : money(savingsAmount);
+
+
+    let percentage = 0;
+
+    if (savingsTarget > 0) {
+
+        percentage =
+            (
+                savingsAmount /
+                savingsTarget
+            ) * 100;
+
+    }
+
+    percentage =
+        Math.min(
+            percentage,
+            100
+        );
+
+
+    document.getElementById(
+        "miniProgress"
+    ).style.width =
+        percentage + "%";
+
+}
+
+
+/* =========================
+   MESE
+========================= */
+
+function renderMonth() {
+
+    const now = new Date();
+
+    const currentMonth =
+        now.getMonth();
+
+    const currentYear =
+        now.getFullYear();
+
+    let total = 0;
+
+    const categories = {};
+
+
+    movements.forEach(
+        movement => {
+
+            const date =
+                new Date(
+                    movement.date +
+                    "T12:00:00"
                 );
 
-
-            if (!confirmation) {
+            if (
+                date.getMonth() !==
+                currentMonth ||
+                date.getFullYear() !==
+                currentYear
+            ) {
                 return;
             }
 
-
-            balance = 0;
-
-            movements = [];
-
-
-            saveData();
-
-            updateAll();
-
-        }
-
-
-        /* =========================
-           SALVADANAIO
-        ========================= */
-
-
-        function renderPiggy() {
-
-            document.getElementById(
-                "piggyName"
-            ).textContent =
-                piggyName;
-
-
-            document.getElementById(
-                "piggyAmount"
-            ).textContent =
-                money(
-                    piggyAmount
-                );
-
-
-            document.getElementById(
-                "piggyTargetText"
-            ).textContent =
-                "Obiettivo: " +
-                money(
-                    piggyTarget
-                );
-
-
-            let percentage = 0;
-
-
             if (
-                piggyTarget > 0
+                movement.type !==
+                "expense"
             ) {
-
-                percentage =
-                    (
-                        piggyAmount /
-                        piggyTarget
-                    ) * 100;
-
+                return;
             }
 
-
-            percentage =
-                Math.min(
-                    percentage,
-                    100
-                );
-
-
-            document.getElementById(
-                "piggyProgress"
-            ).style.width =
-                percentage +
-                "%";
-
-
-            document.getElementById(
-                "piggyProgressText"
-            ).textContent =
-                Math.round(
-                    percentage
-                ) +
-                "%";
-
-
-            document.getElementById(
-                "piggyNameInput"
-            ).value =
-                piggyName;
-
-
-            document.getElementById(
-                "piggyTargetInput"
-            ).value =
-                piggyTarget || "";
-
-        }
-
-
-        function togglePiggySettings() {
-
-            document
-                .getElementById(
-                    "piggySettings"
-                )
-                .classList
-                .toggle("hidden");
-
-        }
-
-
-        function savePiggySettings() {
-
-            const name =
-                document.getElementById(
-                    "piggyNameInput"
-                ).value.trim();
-
-
-            const target =
+            total +=
                 Number(
-                    document.getElementById(
-                        "piggyTargetInput"
-                    ).value
+                    movement.amount
                 );
 
+            const category =
+                movement.category ||
+                "📦 Altro";
 
-            piggyName =
-                name ||
-                "Il mio salvadanaio";
+            categories[category] =
+                (
+                    categories[category]
+                    || 0
+                ) +
+                Number(
+                    movement.amount
+                );
+
+        }
+    );
 
 
-            piggyTarget =
-                target > 0
-                    ? target
+    const monthName =
+        now.toLocaleDateString(
+            "it-IT",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "monthName"
+    ).textContent =
+        monthName.charAt(0)
+            .toUpperCase() +
+        monthName.slice(1);
+
+
+    document.getElementById(
+        "monthTotal"
+    ).textContent =
+        money(total);
+
+
+    const container =
+        document.getElementById(
+            "categories"
+        );
+
+    container.innerHTML = "";
+
+
+    const names =
+        Object.keys(categories);
+
+
+    if (
+        names.length === 0
+    ) {
+
+        container.innerHTML =
+            `<div class="empty">
+                Nessuna spesa questo mese
+            </div>`;
+
+        return;
+    }
+
+
+    names.sort(
+        (a, b) =>
+            categories[b] -
+            categories[a]
+    );
+
+
+    names.forEach(
+        category => {
+
+            const percentage =
+                total > 0
+                    ? (
+                        categories[category] /
+                        total
+                    ) * 100
                     : 0;
 
 
-            savePiggyData();
+            const row =
+                document.createElement(
+                    "div"
+                );
 
-            renderPiggy();
+            row.className =
+                "category-row";
 
 
-            document
-                .getElementById(
-                    "piggySettings"
-                )
-                .classList
-                .add("hidden");
+            row.innerHTML = `
+
+                <div class="category-header">
+
+                    <span class="category-name">
+                        ${escapeHTML(category)}
+                    </span>
+
+                    <span class="category-amount">
+                        ${money(categories[category])}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div
+                        class="bar-fill"
+                        style="width:${percentage}%">
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+function openForm(
+    type,
+    index = null
+) {
+
+    operationType = type;
+
+    editingIndex = index;
+
+
+    document.getElementById(
+        "form"
+    ).classList.remove("hidden");
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        index === null
+            ? (
+                type === "income"
+                    ? "Nuova entrata"
+                    : "Nuova spesa"
+            )
+            : "Modifica movimento";
+
+
+    if (
+        index !== null
+    ) {
+
+        const m =
+            movements[index];
+
+        document.getElementById(
+            "amount"
+        ).value =
+            m.amount;
+
+        document.getElementById(
+            "description"
+        ).value =
+            m.description ===
+            "Nessuna descrizione"
+                ? ""
+                : m.description;
+
+        document.getElementById(
+            "category"
+        ).value =
+            m.category === "📦 Altro"
+                ? ""
+                : m.category;
+
+        document.getElementById(
+            "date"
+        ).value =
+            m.date;
+
+    } else {
+
+        document.getElementById(
+            "amount"
+        ).value = "";
+
+        document.getElementById(
+            "description"
+        ).value = "";
+
+        document.getElementById(
+            "category"
+        ).value = "";
+
+        document.getElementById(
+            "date"
+        ).value =
+            today();
+
+    }
+
+
+    document.getElementById(
+        "form"
+    ).scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+function closeForm() {
+
+    document.getElementById(
+        "form"
+    ).classList.add("hidden");
+
+    editingIndex = null;
+
+}
+
+
+/* =========================
+   SALVA MOVIMENTO
+========================= */
+
+function saveMovement() {
+
+    const amount =
+        Number(
+            document.getElementById(
+                "amount"
+            ).value
+        );
+
+    let description =
+        document.getElementById(
+            "description"
+        ).value.trim();
+
+    let category =
+        document.getElementById(
+            "category"
+        ).value;
+
+    const date =
+        document.getElementById(
+            "date"
+        ).value;
+
+
+    if (
+        !amount ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Inserisci un importo valido."
+        );
+
+        return;
+    }
+
+
+    if (!date) {
+
+        alert(
+            "Inserisci una data."
+        );
+
+        return;
+    }
+
+
+    if (!description) {
+        description =
+            "Nessuna descrizione";
+    }
+
+    if (!category) {
+        category =
+            "📦 Altro";
+    }
+
+
+    /*
+       MODIFICA
+    */
+
+    if (
+        editingIndex !== null
+    ) {
+
+        const old =
+            movements[
+                editingIndex
+            ];
+
+
+        if (
+            old.type === "income"
+        ) {
+
+            balance -=
+                Number(old.amount);
+
+        } else {
+
+            balance +=
+                Number(old.amount);
 
         }
 
 
-        function openPiggyTransaction(
-            type
+        movements[
+            editingIndex
+        ] = {
+
+            type: old.type,
+
+            amount: amount,
+
+            description:
+                description,
+
+            category:
+                category,
+
+            date: date
+
+        };
+
+
+        if (
+            old.type === "income"
         ) {
 
-            piggyTransactionType =
-                type;
+            balance += amount;
+
+        } else {
+
+            balance -= amount;
+
+        }
 
 
-            document.getElementById(
-                "piggyTransaction"
+    /*
+       NUOVO
+    */
+
+    } else {
+
+        if (
+            operationType === "expense"
+            &&
+            amount > balance
+        ) {
+
+            alert(
+                "Saldo insufficiente."
+            );
+
+            return;
+        }
+
+
+        movements.push({
+
+            type:
+                operationType,
+
+            amount:
+                amount,
+
+            description:
+                description,
+
+            category:
+                category,
+
+            date:
+                date
+
+        });
+
+
+        if (
+            operationType ===
+            "income"
+        ) {
+
+            balance += amount;
+
+        } else {
+
+            balance -= amount;
+
+        }
+
+    }
+
+
+    saveData();
+
+    updateAll();
+
+    closeForm();
+
+}
+
+
+/* =========================
+   MOVIMENTI
+========================= */
+
+function renderMovements() {
+
+    const container =
+        document.getElementById(
+            "movements"
+        );
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    container.innerHTML = "";
+
+
+    const visible =
+        movements
+            .map(
+                (
+                    movement,
+                    index
+                ) => ({
+                    movement,
+                    index
+                })
             )
-            .classList
-            .remove("hidden");
+            .reverse()
+            .filter(
+                item => {
+
+                    if (!search) {
+                        return true;
+                    }
+
+                    const text =
+                        (
+                            item.movement
+                                .description
+                            + " " +
+                            item.movement
+                                .category
+                        ).toLowerCase();
+
+                    return text.includes(
+                        search
+                    );
+
+                }
+            );
 
 
-            document.getElementById(
-                "piggyTransactionTitle"
-            ).textContent =
-                type === "add"
-                    ? "Metti soldi nel salvadanaio"
-                    : "Preleva dal salvadanaio";
+    if (
+        visible.length === 0
+    ) {
+
+        container.innerHTML =
+            `<div class="empty">
+                Nessun movimento
+            </div>`;
+
+        return;
+    }
 
 
-            document.getElementById(
-                "piggyTransactionButton"
-            ).textContent =
-                type === "add"
-                    ? "Metti nel salvadanaio"
-                    : "Preleva";
+    visible.forEach(
+        item => {
+
+            const m =
+                item.movement;
+
+            const index =
+                item.index;
 
 
-            document.getElementById(
-                "piggyTransactionAmount"
-            ).value =
-                "";
+            const sign =
+                m.type === "income"
+                    ? "+"
+                    : "-";
 
 
-            setTimeout(
-                () => {
+            const color =
+                m.type === "income"
+                    ? "green"
+                    : "red";
 
-                    document.getElementById(
-                        "piggyTransactionAmount"
-                    ).focus();
 
-                },
-                100
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+            element.className =
+                "movement";
+
+
+            element.innerHTML = `
+
+                <div class="movement-top">
+
+                    <div class="movement-info">
+
+                        <div
+                            class="movement-title ${color}">
+
+                            ${sign}
+                            ${money(m.amount)}
+                            —
+                            ${escapeHTML(m.description)}
+
+                        </div>
+
+                        <div class="movement-date">
+
+                            ${formatDate(m.date)}
+
+                        </div>
+
+                        <span class="movement-category">
+
+                            ${escapeHTML(m.category)}
+
+                        </span>
+
+                    </div>
+
+                    <div class="movement-buttons">
+
+                        <button
+                            class="edit"
+                            onclick="editMovement(${index})">
+
+                            ✏️
+
+                        </button>
+
+                        <button
+                            class="delete"
+                            onclick="deleteMovement(${index})">
+
+                            🗑️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                element
             );
 
         }
+    );
+
+}
 
 
-        function closePiggyTransaction() {
+function editMovement(index) {
 
-            document
-                .getElementById(
-                    "piggyTransaction"
-                )
-                .classList
-                .add("hidden");
+    openForm(
+        movements[index].type,
+        index
+    );
 
+}
+
+
+function deleteMovement(index) {
+
+    const m =
+        movements[index];
+
+
+    if (
+        !confirm(
+            "Vuoi eliminare questo movimento?"
+        )
+    ) {
+        return;
+    }
+
+
+    if (
+        m.type === "income"
+    ) {
+
+        balance -=
+            Number(m.amount);
+
+    } else {
+
+        balance +=
+            Number(m.amount);
+
+    }
+
+
+    movements.splice(
+        index,
+        1
+    );
+
+
+    saveData();
+
+    updateAll();
+
+}
+
+
+/* =========================
+   SALVADANAIO
+========================= */
+
+function renderSavings() {
+
+    document.getElementById(
+        "savingsPageName"
+    ).textContent =
+        savingsName;
+
+
+    document.getElementById(
+        "savingsBigAmount"
+    ).textContent =
+        money(savingsAmount);
+
+
+    document.getElementById(
+        "savingsTarget"
+    ).textContent =
+        "Obiettivo: " +
+        money(savingsTarget);
+
+
+    let percentage = 0;
+
+
+    if (
+        savingsTarget > 0
+    ) {
+
+        percentage =
+            (
+                savingsAmount /
+                savingsTarget
+            ) * 100;
+
+    }
+
+
+    percentage =
+        Math.min(
+            percentage,
+            100
+        );
+
+
+    document.getElementById(
+        "savingsProgress"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "savingsProgressText"
+    ).textContent =
+        Math.round(
+            percentage
+        ) + "%";
+
+
+    document.getElementById(
+        "savingsNameInput"
+    ).value =
+        savingsName;
+
+
+    document.getElementById(
+        "savingsTargetInput"
+    ).value =
+        savingsTarget || "";
+
+
+    renderSavingsMini();
+
+}
+
+
+function toggleSavingsSettings() {
+
+    document.getElementById(
+        "savingsSettings"
+    ).classList.toggle(
+        "hidden"
+    );
+
+}
+
+
+function saveSavingsSettings() {
+
+    const name =
+        document.getElementById(
+            "savingsNameInput"
+        ).value.trim();
+
+    const target =
+        Number(
+            document.getElementById(
+                "savingsTargetInput"
+            ).value
+        );
+
+
+    savingsName =
+        name ||
+        "Il mio salvadanaio";
+
+
+    savingsTarget =
+        target > 0
+            ? target
+            : 0;
+
+
+    saveData();
+
+    renderSavings();
+
+    document.getElementById(
+        "savingsSettings"
+    ).classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =========================
+   OPERAZIONI SALVADANAIO
+========================= */
+
+function openSavingsTransaction(
+    type
+) {
+
+    savingsTransactionType =
+        type;
+
+
+    document.getElementById(
+        "savingsTransaction"
+    ).classList.remove(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "savingsTransactionTitle"
+    ).textContent =
+        type === "add"
+            ? "Metti soldi nel salvadanaio"
+            : "Preleva dal salvadanaio";
+
+
+    document.getElementById(
+        "savingsTransactionButton"
+    ).textContent =
+        type === "add"
+            ? "Metti nel salvadanaio"
+            : "Preleva";
+
+
+    document.getElementById(
+        "savingsTransactionAmount"
+    ).value = "";
+
+
+    setTimeout(
+        () => {
+
+            document.getElementById(
+                "savingsTransactionAmount"
+            ).focus();
+
+        },
+        100
+    );
+
+}
+
+
+function closeSavingsTransaction() {
+
+    document.getElementById(
+        "savingsTransaction"
+    ).classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =========================
+   SALVADANAIO COLLEGATO
+   AL SALDO
+========================= */
+
+function saveSavingsTransaction() {
+
+    const amount =
+        Number(
+            document.getElementById(
+                "savingsTransactionAmount"
+            ).value
+        );
+
+
+    if (
+        !amount ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Inserisci un importo valido."
+        );
+
+        return;
+    }
+
+
+    /*
+       METTI SOLDI
+    */
+
+    if (
+        savingsTransactionType ===
+        "add"
+    ) {
+
+
+        if (
+            amount > balance
+        ) {
+
+            alert(
+                "Non hai abbastanza saldo disponibile."
+            );
+
+            return;
         }
 
 
-        function savePiggyTransaction() {
+        balance -= amount;
 
-            const amount =
-                Number(
-                    document.getElementById(
-                        "piggyTransactionAmount"
-                    ).value
-                );
+        savingsAmount += amount;
 
 
-            if (
-                !amount ||
-                amount <= 0
-            ) {
+    /*
+       PRELEVA
+    */
 
-                alert(
-                    "Inserisci un importo valido."
-                );
-
-                return;
-
-            }
+    } else {
 
 
-            if (
-                piggyTransactionType ===
-                "add"
-            ) {
+        if (
+            amount > savingsAmount
+        ) {
 
-                piggyAmount +=
-                    amount;
+            alert(
+                "Non puoi prelevare più soldi di quelli presenti nel salvadanaio."
+            );
 
-            } else {
-
-                if (
-                    amount >
-                    piggyAmount
-                ) {
-
-                    alert(
-                        "Non puoi prelevare più soldi di quelli presenti nel salvadanaio."
-                    );
-
-                    return;
-
-                }
-
-
-                piggyAmount -=
-                    amount;
-
-            }
-
-
-            savePiggyData();
-
-            renderPiggy();
-
-            closePiggyTransaction();
-
+            return;
         }
 
 
-        /* =========================
-           SICUREZZA TESTO
-        ========================= */
+        savingsAmount -= amount;
+
+        balance += amount;
+
+    }
 
 
-        function escapeHTML(text) {
+    saveData();
 
-            return String(text)
+    updateAll();
 
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
+    renderSavings();
 
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
+    closeSavingsTransaction();
 
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
-
-        }
+}
 
 
-        /* =========================
-           AGGIORNA
-        ========================= */
+/* =========================
+   AZZERA CONTO
+========================= */
+
+function resetAll() {
+
+    closeMenu();
 
 
-        function updateAll() {
-
-            updateSummary();
-
-            renderMonth();
-
-            renderMovements();
-
-        }
+    const confirmation =
+        confirm(
+            "ATTENZIONE\n\nVuoi azzerare il conto e cancellare tutti i movimenti?\n\nIl salvadanaio verrà azzerato anch'esso."
+        );
 
 
-        /* =========================
-           AVVIO
-        ========================= */
+    if (!confirmation) {
+        return;
+    }
 
 
-        loadTheme();
+    balance = 0;
 
-        updateAll();
+    movements = [];
 
-        renderPiggy();
+    savingsAmount = 0;
 
 
-    </script>
+    saveData();
 
+    updateAll();
+
+    renderSavings();
+
+
+    alert(
+        "Conto e movimenti azzerati."
+    );
+
+}
+
+
+/* =========================
+   AGGIORNAMENTO
+========================= */
+
+function updateAll() {
+
+    updateSummary();
+
+    renderSavingsMini();
+
+    renderMonth();
+
+    renderMovements();
+
+}
+
+
+/* =========================
+   AVVIO
+========================= */
+
+loadTheme();
+
+updateAll();
+
+renderSavings();
+
+</script>
 
 </body>
-
 </html>
