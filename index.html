@@ -25,8 +25,11 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 .movement{padding:15px 0;border-bottom:1px solid var(--border)}.movement:last-child{border-bottom:0}.movement-top{display:flex;justify-content:space-between;gap:10px}.movement-info{min-width:0;flex:1}.movement-title{font-size:15px;font-weight:700;overflow-wrap:anywhere}.movement-date{margin-top:5px;color:var(--muted);font-size:12px}.tag{display:inline-block;margin-top:7px;padding:5px 9px;border-radius:8px;background:var(--bg);color:var(--muted);font-size:11px}.buttons{display:flex;gap:5px}.smallbtn{width:36px;height:36px;border-radius:10px;background:var(--bg)}.delete{color:var(--red)}
 .page{display:none}.home{display:block}.hidden{display:none!important}.empty{padding:10px 0;text-align:center;color:var(--muted);font-size:13px}
 .savings-card,.goal-card{padding:20px;margin-bottom:13px}.big-head{display:flex;align-items:center;gap:13px;margin-bottom:18px}.big-icon{width:55px;height:55px;display:flex;align-items:center;justify-content:center;border-radius:17px;background:var(--yellowbg);font-size:30px}.big-name{font-size:20px;font-weight:800}.big-amount{font-size:37px;font-weight:850;margin-bottom:4px}.target{color:var(--muted);font-size:13px;margin-bottom:14px}.info{padding:18px;line-height:1.6;color:var(--muted);font-size:13px}.goal-grid{display:grid;gap:11px}.goal-card{margin:0;padding:17px}.goal-card.done-card{border-color:var(--green)}.goal-amount{font-size:22px;font-weight:850}.goal-category{font-size:11px;color:var(--muted);margin-top:3px}.goal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.goal-btn{height:45px;border-radius:12px;font-weight:750}.goal-add{background:var(--greenbg);color:var(--green)}.goal-remove{background:var(--redbg);color:var(--red)}.goal-tx{margin-top:13px;padding-top:10px;border-top:1px solid var(--border)}.goal-tx-title{font-size:12px;font-weight:750;margin-bottom:6px}.goal-tx-row{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;color:var(--muted)}
-.modal-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.22s}.modal-overlay.open{opacity:1;pointer-events:auto}.modal{width:100%;max-width:520px;padding:22px 18px 18px;background:var(--card);border-radius:25px;box-shadow:0 -8px 40px rgba(0,0,0,.2);transform:translateY(30px);transition:.25s}.modal-overlay.open .modal{transform:translateY(0)}.handle{width:42px;height:5px;margin:0 auto 20px;border-radius:10px;background:var(--border)}.modal-title{text-align:center;font-size:20px;font-weight:800;margin-bottom:5px}.modal-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px}.amount{height:70px;margin:0 0 12px;padding:0 15px;border-radius:17px;border:2px solid var(--border);font-size:32px;font-weight:800;text-align:center}.source-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.choice{height:51px;border-radius:13px;background:var(--bg);border:2px solid transparent;font-weight:750}.choice.selected{border-color:var(--blue);background:var(--bluebg);color:var(--blue)}.confirm{width:100%;height:56px;border-radius:15px;background:var(--text);color:var(--card);font-weight:800}.modal-cancel{width:100%;height:46px;margin-top:7px;border-radius:14px;background:transparent;color:var(--muted);font-weight:650}.check-row{display:flex;align-items:center;gap:10px;padding:10px 0}.check-row input{width:22px;height:22px;margin:0}.toast{position:fixed;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,30px) scale(.95);opacity:0;pointer-events:none;z-index:700;display:flex;gap:10px;align-items:center;padding:13px 17px;border-radius:15px;background:var(--text);color:var(--card);box-shadow:0 10px 35px rgba(0,0,0,.22);font-size:14px;font-weight:700;white-space:nowrap;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
+.modal-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.22s}.modal-overlay.open{opacity:1;pointer-events:auto}.modal{width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:22px 18px 18px;background:var(--card);border-radius:25px;box-shadow:0 -8px 40px rgba(0,0,0,.2);transform:translateY(30px);transition:.25s}.modal-overlay.open .modal{transform:translateY(0)}.handle{width:42px;height:5px;margin:0 auto 20px;border-radius:10px;background:var(--border)}.modal-title{text-align:center;font-size:20px;font-weight:800;margin-bottom:5px}.modal-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px}.amount{height:70px;margin:0 0 12px;padding:0 15px;border-radius:17px;border:2px solid var(--border);font-size:32px;font-weight:800;text-align:center}.source-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.choice{height:51px;border-radius:13px;background:var(--bg);border:2px solid transparent;font-weight:750}.choice.selected{border-color:var(--blue);background:var(--bluebg);color:var(--blue)}.confirm{width:100%;height:56px;border-radius:15px;background:var(--text);color:var(--card);font-weight:800}.modal-cancel{width:100%;height:46px;margin-top:7px;border-radius:14px;background:transparent;color:var(--muted);font-weight:650}.check-row{display:flex;align-items:center;gap:10px;padding:10px 0}.check-row input{width:22px;height:22px;margin:0}.toast{position:fixed;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,30px) scale(.95);opacity:0;pointer-events:none;z-index:700;display:flex;gap:10px;align-items:center;padding:13px 17px;border-radius:15px;background:var(--text);color:var(--card);box-shadow:0 10px 35px rgba(0,0,0,.22);font-size:14px;font-weight:700;white-space:nowrap;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
 .version{text-align:center;color:var(--muted);font-size:11px;margin:20px 0 5px}
+.settings-section-title{margin:20px 0 10px;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}.settings-section-title.danger{color:var(--red)}
+.category-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.category-chip{display:flex;align-items:center;gap:7px;padding:9px 8px 9px 13px;border-radius:12px;background:var(--bg);font-size:13px;font-weight:650}.category-chip button{background:transparent;color:var(--muted);font-size:16px;line-height:1;padding:2px 4px}
+.cat-add-row{display:flex;gap:8px;align-items:flex-start}.cat-add-row input{margin:0}.cat-add-row button{width:51px;height:51px;flex-shrink:0;border-radius:13px;background:var(--text);color:var(--card);font-size:21px}
 @media(max-width:370px){body{padding-left:10px;padding-right:10px}.balance{font-size:36px}}
 </style>
 </head>
@@ -39,12 +42,12 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
   <button class="menu-item" onclick="showHome()"><span class="menu-icon">🏠</span>Home</button>
   <button class="menu-item" onclick="showGoals()"><span class="menu-icon">🎯</span>Obiettivi</button>
   <button class="menu-item" onclick="showSavings()"><span class="menu-icon">🐷</span>Salvadanaio protetto</button>
+  <button class="menu-item" onclick="showTrends()"><span class="menu-icon">📊</span>Andamenti</button>
   <div class="menu-section">Azioni</div>
   <button class="menu-item" onclick="openGoalModal()"><span class="menu-icon">＋</span>Crea obiettivo</button>
   <button class="menu-item" onclick="openSplitModal()"><span class="menu-icon">⚖️</span>Dividi una cifra</button>
   <div class="menu-section">Impostazioni</div>
-  <button class="menu-item" onclick="toggleTheme()"><span id="themeIcon" class="menu-icon">🌙</span><span id="themeText">Tema scuro</span></button>
-  <button class="menu-item danger" onclick="resetAll()"><span class="menu-icon">🗑️</span>Azzera conto e movimenti</button>
+  <button class="menu-item" onclick="openSettingsModal()"><span class="menu-icon">⚙️</span>Impostazioni</button>
 </aside>
 
 <div id="toast" class="toast"><span id="toastIcon">✓</span><span id="toastText">Fatto!</span></div>
@@ -74,11 +77,6 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
   <input id="detailDescription" type="text" maxlength="100" placeholder="Descrizione (opzionale)">
   <select id="detailCategory">
    <option value="">Categoria (opzionale)</option>
-   <option>💼 Stipendio</option><option>💰 Bonus</option><option>🎁 Regalo</option><option>🏦 Investimenti</option>
-   <option>🏠 Affitto</option><option>💡 Bollette</option><option>🛒 Spesa alimentare</option><option>🍔 Ristoranti</option>
-   <option>🚗 Benzina</option><option>🚌 Trasporti</option><option>🛍️ Shopping</option><option>🎮 Svago</option>
-   <option>💊 Salute</option><option>📱 Abbonamenti</option><option>📚 Istruzione</option><option>🐶 Animali</option>
-   <option>✈️ Viaggi</option><option>📦 Altro</option>
   </select>
   <button class="confirm" onclick="saveQuickMovement()">Salva movimento</button>
   <button class="modal-cancel" onclick="saveQuickMovement(true)">Salta dettagli</button>
@@ -135,6 +133,33 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
  </div>
 </div>
 
+<!-- Modal impostazioni -->
+<div id="settingsModal" class="modal-overlay">
+ <div class="modal">
+  <div class="handle"></div>
+  <div class="modal-title">⚙️ Impostazioni</div>
+  <div class="modal-sub">Personalizza l'app come preferisci.</div>
+
+  <div class="settings-section-title">Tema</div>
+  <div class="source-choice">
+   <button id="themeLightBtn" class="choice" onclick="setTheme('light')">☀️ Chiaro</button>
+   <button id="themeDarkBtn" class="choice" onclick="setTheme('dark')">🌙 Scuro</button>
+  </div>
+
+  <div class="settings-section-title">Categorie movimenti</div>
+  <div id="categoryList" class="category-list"></div>
+  <div class="cat-add-row">
+   <input id="newCategoryName" type="text" maxlength="30" placeholder="Nuova categoria (es. 🎉 Piaceri)">
+   <button onclick="addCategory()">＋</button>
+  </div>
+
+  <div class="settings-section-title danger">Zona pericolosa</div>
+  <button class="action expense" style="width:100%" onclick="resetAll()">🗑️ Azzera conto e movimenti</button>
+
+  <button class="modal-cancel" onclick="closeSettingsModal()">Chiudi</button>
+ </div>
+</div>
+
 <main id="homePage" class="app home">
 <header class="header"><button class="menu-button" onclick="openMenu()">☰</button><h1 class="title">Gestione Soldi</h1></header>
 
@@ -156,22 +181,27 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 
 <div class="actions"><button class="action income" onclick="openMoneyModal('income')">＋ Entrata</button><button class="action expense" onclick="openMoneyModal('expense')">− Spesa</button></div>
 
+<section class="card section"><h2 class="section-title">Movimenti</h2><div class="search"><span class="search-icon">🔎</span><input id="search" type="search" placeholder="Cerca movimento..." oninput="renderMovements()"></div><div id="movements"></div></section>
+<div class="version">Gestione Soldi · Versione 2.10</div>
+</main>
+
+<main id="trendsPage" class="app page">
+<header class="header"><button class="back-button" onclick="showHome()">←</button><h1 class="title">Andamenti</h1></header>
+
 <section class="stats">
  <section class="card stat"><div class="stat-label">Entrate</div><div id="totalIncome" class="stat-value green">€0,00</div></section>
  <section class="card stat"><div class="stat-label">Spese</div><div id="totalExpense" class="stat-value red">€0,00</div></section>
 </section>
 
 <section class="card section"><h2 class="section-title">Spese di questo mese</h2><div class="month-summary"><span id="monthName">Mese corrente</span><span id="monthTotal" class="month-total">€0,00</span></div><div id="categories"></div></section>
-
-<section class="card section"><h2 class="section-title">Movimenti</h2><div class="search"><span class="search-icon">🔎</span><input id="search" type="search" placeholder="Cerca movimento..." oninput="renderMovements()"></div><div id="movements"></div></section>
-<div class="version">Gestione Soldi · Versione 2.00</div>
+<div class="version">Gestione Soldi · Versione 2.10</div>
 </main>
 
 <main id="goalsPage" class="app page">
 <header class="header"><button class="back-button" onclick="showHome()">←</button><h1 class="title">Obiettivi</h1></header>
 <section class="card section"><h2 class="section-title">I tuoi obiettivi</h2><div id="allGoals" class="goal-grid"></div></section>
 <div class="actions"><button class="action income" onclick="openGoalModal()">＋ Nuovo</button><button class="action" style="background:var(--bluebg);color:var(--blue)" onclick="openSplitModal()">⚖️ Dividi</button></div>
-<div class="version">Gestione Soldi · Versione 2.00</div>
+<div class="version">Gestione Soldi · Versione 2.10</div>
 </main>
 
 <main id="savingsPage" class="app page">
@@ -179,24 +209,29 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 <section class="card savings-card">
  <div class="big-head"><div class="big-icon">🐷</div><div><div class="big-name">Salvadanaio protetto</div><div class="sub">Soldi messi da parte e lasciati lì.</div></div></div>
  <div id="protectedAmount" class="big-amount">€0,00</div>
- <div class="target">Non modificabile: per prelevare usa il tasto qui sotto.</div>
- <button class="action" style="width:100%;background:var(--yellowbg);color:var(--yellow)" onclick="openGoalMoneyModal('savings','remove')">− Preleva dai risparmi</button>
+ <div class="target">Aggiungi o preleva dal salvadanaio con i pulsanti qui sotto.</div>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <button class="action" style="background:var(--greenbg);color:var(--green)" onclick="openGoalMoneyModal('savings','add')">＋ Aggiungi</button>
+  <button class="action" style="background:var(--yellowbg);color:var(--yellow)" onclick="openGoalMoneyModal('savings','remove')">− Preleva</button>
+ </div>
 </section>
 <section class="card section"><h2 class="section-title">Movimenti del salvadanaio</h2><div id="savingsTransactions"></div></section>
-<div class="info card">💡 Il salvadanaio è separato dagli obiettivi. Non puoi cambiare manualmente nome o importo: aggiungi o preleva denaro e l'app aggiorna automaticamente i saldi.</div>
-<div class="version">Gestione Soldi · Versione 2.00</div>
+<div class="info card">💡 Il salvadanaio è separato dagli obiettivi. Usa i pulsanti qui sopra per aggiungere o prelevare denaro: i saldi si aggiornano automaticamente.</div>
+<div class="version">Gestione Soldi · Versione 2.10</div>
 </main>
 
 <script>
 const KEY="gs_v2";
+function defaultCategories(){return ["💼 Stipendio","🍔 Cibo","💡 Bollette","📦 Spese Varie","💊 Medicine","🎉 Piaceri"]}
 let data=JSON.parse(localStorage.getItem(KEY)||"null")||migrateOld();
+if(!data.categories||!data.categories.length)data.categories=defaultCategories();
 function migrateOld(){
   const oldMov=JSON.parse(localStorage.getItem("movements")||"[]");
   const oldBal=Number(localStorage.getItem("balance")||0);
   const pig=Number(localStorage.getItem("savingsAmount")||0);
   let cash=Number(localStorage.getItem("cashBalance")||0),card=Number(localStorage.getItem("cardBalance")||0);
   if(!cash&&!card&&oldBal) cash=oldBal;
-  return {cash,card,savings:pig,goals:[],movements:oldMov.map(m=>({...m,source:m.source||"cash"})),theme:localStorage.getItem("theme")||"light"};
+  return {cash,card,savings:pig,goals:[],movements:oldMov.map(m=>({...m,source:m.source||"cash"})),theme:localStorage.getItem("theme")||"light",categories:defaultCategories()};
 }
 let quick={type:null,amount:0,source:"cash"};
 let goalOp={id:null,type:null,amount:0,source:"cash"};
@@ -210,12 +245,33 @@ function fmt(d){if(!d)return"";const p=d.split("-");return p.length===3?p[2]+"/"
 function toast(t,i="✓"){const x=document.getElementById("toast");document.getElementById("toastIcon").textContent=i;document.getElementById("toastText").textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),1800)}
 function openMenu(){sideMenu.classList.add("open");overlay.classList.add("open")}
 function closeMenu(){sideMenu.classList.remove("open");overlay.classList.remove("open")}
-function showPage(id){["homePage","goalsPage","savingsPage"].forEach(x=>document.getElementById(x).style.display=x===id?"block":"none");closeMenu();window.scrollTo(0,0)}
+function showPage(id){["homePage","goalsPage","savingsPage","trendsPage"].forEach(x=>document.getElementById(x).style.display=x===id?"block":"none");closeMenu();window.scrollTo(0,0)}
 function showHome(){showPage("homePage")}
 function showGoals(){renderGoals();showPage("goalsPage")}
 function showSavings(){renderSavings();showPage("savingsPage")}
-function toggleTheme(){data.theme=data.theme==="dark"?"light":"dark";document.body.classList.toggle("dark",data.theme==="dark");save();updateTheme()}
-function updateTheme(){let d=data.theme==="dark";themeIcon.textContent=d?"☀️":"🌙";themeText.textContent=d?"Tema chiaro":"Tema scuro"}
+function showTrends(){renderSummary();renderMonth();showPage("trendsPage")}
+
+function setTheme(t){data.theme=t;document.body.classList.toggle("dark",t==="dark");save();updateTheme()}
+function updateTheme(){let d=data.theme==="dark";themeLightBtn.classList.toggle("selected",!d);themeDarkBtn.classList.toggle("selected",d)}
+function openSettingsModal(){closeMenu();updateTheme();renderCategoryList();newCategoryName.value="";settingsModal.classList.add("open")}
+function closeSettingsModal(){settingsModal.classList.remove("open")}
+function renderCategoryList(){
+ categoryList.innerHTML=data.categories.length?data.categories.map((c,i)=>`<div class="category-chip"><span>${esc(c)}</span><button onclick="removeCategory(${i})">×</button></div>`).join(""):`<div class="empty">Nessuna categoria</div>`
+}
+function addCategory(){
+ const n=newCategoryName.value.trim();
+ if(!n)return newCategoryName.focus();
+ if(data.categories.includes(n)){toast("Categoria già esistente","⚠️");return}
+ data.categories.push(n);newCategoryName.value="";save();renderCategoryList();renderCategoryOptions();toast("Categoria aggiunta","🏷️")
+}
+function removeCategory(i){
+ if(!confirm("Eliminare questa categoria?"))return;
+ data.categories.splice(i,1);save();renderCategoryList();renderCategoryOptions()
+}
+function renderCategoryOptions(){
+ detailCategory.innerHTML=`<option value="">Categoria (opzionale)</option>`+data.categories.map(c=>`<option>${esc(c)}</option>`).join("")
+}
+
 function chooseSource(s){quick.source=s;cashBtn.classList.toggle("selected",s==="cash");cardBtn.classList.toggle("selected",s==="card")}
 function chooseGoalSource(s){goalOp.source=s;goalCashBtn.classList.toggle("selected",s==="cash");goalCardBtn.classList.toggle("selected",s==="card")}
 function chooseSplitSource(s){window.splitSource=s;splitCashBtn.classList.toggle("selected",s==="cash");splitCardBtn.classList.toggle("selected",s==="card")}
@@ -256,7 +312,7 @@ function goalById(id){return data.goals.find(g=>g.id===id)}
 function openGoalMoneyModal(id,type){
  goalOp={id,type,amount:0,source:"cash"};
  const g=id==="savings"?null:goalById(id);
- goalMoneyTitle.textContent=type==="add"?"🎯 Aggiungi all'obiettivo":"− Preleva";
+ goalMoneyTitle.textContent=type==="add"?(id==="savings"?"🐷 Aggiungi ai risparmi":"🎯 Aggiungi all'obiettivo"):"− Preleva";
  goalMoneySub.textContent=id==="savings"?"Risparmi protetti":g?g.name:"";
  goalMoneyAmount.value="";chooseGoalSource("cash");goalSourceChoice.style.display=type==="add"||type==="remove"?"grid":"none";goalMoneyModal.classList.add("open");setTimeout(()=>goalMoneyAmount.focus(),220)
 }
@@ -334,10 +390,10 @@ function deleteMovement(i){
  else{if((m.source||"cash")==="cash")data.cash+=m.amount;else data.card+=m.amount}
  data.movements.splice(i,1);save();renderAll()
 }
-function resetAll(){closeMenu();if(!confirm("Vuoi cancellare tutti i saldi, movimenti, obiettivi e risparmi?"))return;data={cash:0,card:0,savings:0,goals:[],movements:[],theme:data.theme};save();renderAll();toast("Conto azzerato","🗑️")}
-function renderAll(){renderSummary();renderGoals();renderSavings();renderMonth();renderMovements()}
+function resetAll(){if(!confirm("Vuoi cancellare tutti i saldi, movimenti, obiettivi e risparmi?"))return;data={cash:0,card:0,savings:0,goals:[],movements:[],theme:data.theme,categories:data.categories};save();renderAll();toast("Conto azzerato","🗑️")}
+function renderAll(){renderSummary();renderGoals();renderSavings();renderMonth();renderMovements();renderCategoryOptions()}
 
-document.addEventListener("keydown",e=>{if(e.key==="Enter"&&moneyModal.classList.contains("open"))confirmMoney();if(e.key==="Enter"&&goalMoneyModal.classList.contains("open"))confirmGoalMoney()});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&moneyModal.classList.contains("open"))confirmMoney();if(e.key==="Enter"&&goalMoneyModal.classList.contains("open"))confirmGoalMoney();if(e.key==="Enter"&&settingsModal.classList.contains("open")&&document.activeElement===newCategoryName)addCategory()});
 document.body.classList.toggle("dark",data.theme==="dark");updateTheme();renderAll();
 </script>
 </body>
