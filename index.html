@@ -12,7 +12,7 @@
 
     <meta
         name="theme-color"
-        content="#f5f5f5"
+        content="#f4f5f7"
     >
 
     <title>Gestione Soldi</title>
@@ -41,9 +41,13 @@
             --blue: #3478f6;
             --blue-bg: #eaf1ff;
 
+            --yellow: #e09a00;
+            --yellow-bg: #fff4d6;
+
             --shadow:
                 0 5px 25px rgba(0, 0, 0, 0.06);
         }
+
 
         body.dark {
 
@@ -61,6 +65,9 @@
 
             --blue: #6c9cff;
             --blue-bg: #202e4a;
+
+            --yellow: #ffc94d;
+            --yellow-bg: #3b3018;
 
             --shadow:
                 0 5px 25px rgba(0, 0, 0, 0.25);
@@ -106,7 +113,6 @@
         button,
         input,
         select {
-
             font-family: inherit;
         }
 
@@ -129,7 +135,6 @@
 
 
         button:active {
-
             transform: scale(0.96);
         }
 
@@ -190,7 +195,8 @@
 
             background: var(--card);
 
-            border: 1px solid var(--border);
+            border:
+                1px solid var(--border);
 
             box-shadow: var(--shadow);
 
@@ -199,7 +205,7 @@
 
 
         /* =========================
-           MENU
+           MENU LATERALE
         ========================= */
 
         .overlay {
@@ -208,7 +214,8 @@
 
             inset: 0;
 
-            background: rgba(0, 0, 0, 0.4);
+            background:
+                rgba(0, 0, 0, 0.4);
 
             opacity: 0;
 
@@ -238,13 +245,15 @@
 
             bottom: 0;
 
-            width: min(330px, 84vw);
+            width:
+                min(330px, 84vw);
 
             background: var(--card);
 
             z-index: 999;
 
-            transform: translateX(-100%);
+            transform:
+                translateX(-100%);
 
             transition:
                 transform 0.28s ease;
@@ -255,13 +264,15 @@
                 25px;
 
             box-shadow:
-                8px 0 30px rgba(0,0,0,0.18);
+                8px 0 30px
+                rgba(0,0,0,0.18);
         }
 
 
         .side-menu.open {
 
-            transform: translateX(0);
+            transform:
+                translateX(0);
         }
 
 
@@ -271,7 +282,8 @@
 
             align-items: center;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
             padding-bottom: 18px;
 
@@ -747,7 +759,8 @@
 
             border-radius: 20px;
 
-            transition: width 0.3s;
+            transition:
+                width 0.3s;
         }
 
 
@@ -909,6 +922,245 @@
 
 
         /* =========================
+           SALVADANAIO
+        ========================= */
+
+        .piggy-card {
+
+            padding: 21px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .piggy-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .piggy-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 16px;
+
+            background:
+                var(--yellow-bg);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 29px;
+        }
+
+
+        .piggy-title {
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+
+        .piggy-subtitle {
+
+            color: var(--secondary);
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+
+        .piggy-money {
+
+            font-size: 36px;
+
+            font-weight: 850;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .piggy-target {
+
+            color: var(--secondary);
+
+            font-size: 13px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .progress {
+
+            width: 100%;
+
+            height: 11px;
+
+            background: var(--bg);
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            margin-bottom: 9px;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            background: var(--yellow);
+
+            border-radius: 30px;
+
+            transition:
+                width 0.35s ease;
+        }
+
+
+        .progress-text {
+
+            text-align: right;
+
+            color: var(--secondary);
+
+            font-size: 12px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .piggy-actions {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 9px;
+        }
+
+
+        .piggy-add {
+
+            height: 50px;
+
+            border-radius: 13px;
+
+            background:
+                var(--green-bg);
+
+            color: var(--green);
+        }
+
+
+        .piggy-remove {
+
+            height: 50px;
+
+            border-radius: 13px;
+
+            background:
+                var(--red-bg);
+
+            color: var(--red);
+        }
+
+
+        .piggy-edit {
+
+            width: 100%;
+
+            height: 45px;
+
+            margin-top: 9px;
+
+            border-radius: 12px;
+
+            background: var(--bg);
+
+            font-size: 13px;
+        }
+
+
+        .piggy-form {
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid var(--border);
+        }
+
+
+        .piggy-form-title {
+
+            font-weight: 750;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           PAGINA SALVADANAIO
+        ========================= */
+
+        #savingsPage {
+
+            display: none;
+        }
+
+
+        #homePage {
+
+            display: block;
+        }
+
+
+        .back-button {
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 14px;
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            font-size: 19px;
+
+            position: absolute;
+
+            left: 0;
+        }
+
+
+        /* =========================
            UTILITY
         ========================= */
 
@@ -927,20 +1179,30 @@
                 padding-right: 10px;
             }
 
+
             .balance {
 
                 font-size: 36px;
             }
+
 
             .stat-value {
 
                 font-size: 18px;
             }
 
+
             .title {
 
                 font-size: 21px;
             }
+
+
+            .piggy-money {
+
+                font-size: 32px;
+            }
+
         }
 
     </style>
@@ -951,7 +1213,9 @@
 <body>
 
 
-    <!-- MENU -->
+    <!-- =========================
+         MENU
+    ========================= -->
 
     <div
         id="overlay"
@@ -964,11 +1228,13 @@
         id="sideMenu"
         class="side-menu">
 
+
         <div class="menu-header">
 
             <div class="menu-title">
                 Menu
             </div>
+
 
             <button
                 class="close-menu"
@@ -979,6 +1245,41 @@
             </button>
 
         </div>
+
+
+        <div class="menu-section">
+            Navigazione
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="showHome()">
+
+            <span class="menu-icon">
+                🏠
+            </span>
+
+            <span>
+                Home
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            onclick="showSavings()">
+
+            <span class="menu-icon">
+                🐷
+            </span>
+
+            <span>
+                Salvadanaio
+            </span>
+
+        </button>
 
 
         <div class="menu-section">
@@ -993,12 +1294,17 @@
             <span
                 id="themeIcon"
                 class="menu-icon">
+
                 🌙
+
             </span>
+
 
             <span
                 id="themeText">
+
                 Tema scuro
+
             </span>
 
         </button>
@@ -1023,15 +1329,21 @@
 
         </button>
 
+
     </aside>
 
 
-    <main class="app">
+    <!-- =========================
+         HOME
+    ========================= -->
 
+    <main
+        id="homePage"
+        class="app">
 
-        <!-- HEADER -->
 
         <header class="header">
+
 
             <button
                 class="menu-button"
@@ -1046,16 +1358,20 @@
                 Gestione Soldi
             </h1>
 
+
         </header>
 
 
         <!-- SALDO -->
 
-        <section class="card balance-card">
+        <section
+            class="card balance-card">
+
 
             <div class="balance-label">
                 Saldo disponibile
             </div>
+
 
             <div
                 id="balance"
@@ -1065,6 +1381,7 @@
 
             </div>
 
+
         </section>
 
 
@@ -1073,11 +1390,14 @@
         <div class="stats">
 
 
-            <section class="card stat">
+            <section
+                class="card stat">
+
 
                 <div class="stat-label">
                     Entrate
                 </div>
+
 
                 <div
                     id="totalIncome"
@@ -1087,14 +1407,18 @@
 
                 </div>
 
+
             </section>
 
 
-            <section class="card stat">
+            <section
+                class="card stat">
+
 
                 <div class="stat-label">
                     Spese
                 </div>
+
 
                 <div
                     id="totalExpense"
@@ -1103,6 +1427,7 @@
                     €0.00
 
                 </div>
+
 
             </section>
 
@@ -1292,7 +1617,8 @@
 
         <!-- RIEPILOGO MESE -->
 
-        <section class="card section">
+        <section
+            class="card section">
 
 
             <h2 class="section-title">
@@ -1301,6 +1627,7 @@
 
 
             <div class="month-summary">
+
 
                 <span
                     id="monthName"
@@ -1319,11 +1646,11 @@
 
                 </span>
 
+
             </div>
 
 
             <div id="categories">
-
             </div>
 
 
@@ -1332,7 +1659,8 @@
 
         <!-- MOVIMENTI -->
 
-        <section class="card section">
+        <section
+            class="card section">
 
 
             <h2 class="section-title">
@@ -1342,9 +1670,11 @@
 
             <div class="search">
 
+
                 <span class="search-icon">
                     🔎
                 </span>
+
 
                 <input
                     id="search"
@@ -1353,10 +1683,265 @@
                     oninput="renderMovements()"
                 >
 
+
             </div>
 
 
             <div id="movements">
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         SALVADANAIO
+    ========================= -->
+
+    <main
+        id="savingsPage"
+        class="app">
+
+
+        <header class="header">
+
+
+            <button
+                class="back-button"
+                onclick="showHome()">
+
+                ←
+
+            </button>
+
+
+            <h1 class="title">
+                Salvadanaio
+            </h1>
+
+
+        </header>
+
+
+        <section
+            class="card piggy-card">
+
+
+            <div class="piggy-header">
+
+
+                <div class="piggy-icon">
+                    🐷
+                </div>
+
+
+                <div>
+
+
+                    <div
+                        id="piggyName"
+                        class="piggy-title">
+
+                        Il mio salvadanaio
+
+                    </div>
+
+
+                    <div class="piggy-subtitle">
+                        Il tuo obiettivo
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div
+                id="piggyAmount"
+                class="piggy-money">
+
+                €0.00
+
+            </div>
+
+
+            <div
+                id="piggyTargetText"
+                class="piggy-target">
+
+                Obiettivo: €0.00
+
+            </div>
+
+
+            <div class="progress">
+
+
+                <div
+                    id="piggyProgress"
+                    class="progress-fill">
+                </div>
+
+
+            </div>
+
+
+            <div
+                id="piggyProgressText"
+                class="progress-text">
+
+                0%
+
+            </div>
+
+
+            <div class="piggy-actions">
+
+
+                <button
+                    class="piggy-add"
+                    onclick="openPiggyTransaction('add')">
+
+                    ＋ Metti soldi
+
+                </button>
+
+
+                <button
+                    class="piggy-remove"
+                    onclick="openPiggyTransaction('remove')">
+
+                    − Preleva
+
+                </button>
+
+
+            </div>
+
+
+            <button
+                class="piggy-edit"
+                onclick="togglePiggySettings()">
+
+                ⚙️ Modifica salvadanaio
+
+            </button>
+
+
+            <div
+                id="piggySettings"
+                class="piggy-form hidden">
+
+
+                <div class="piggy-form-title">
+                    Impostazioni
+                </div>
+
+
+                <input
+                    id="piggyNameInput"
+                    type="text"
+                    maxlength="40"
+                    placeholder="Nome del salvadanaio"
+                >
+
+
+                <input
+                    id="piggyTargetInput"
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    placeholder="Obiettivo (€)"
+                >
+
+
+                <button
+                    class="save"
+                    onclick="savePiggySettings()">
+
+                    Salva impostazioni
+
+                </button>
+
+
+            </div>
+
+
+            <div
+                id="piggyTransaction"
+                class="piggy-form hidden">
+
+
+                <div
+                    id="piggyTransactionTitle"
+                    class="piggy-form-title">
+
+                    Operazione
+
+                </div>
+
+
+                <input
+                    id="piggyTransactionAmount"
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    step="0.01"
+                    placeholder="Importo (€)"
+                >
+
+
+                <button
+                    id="piggyTransactionButton"
+                    class="save"
+                    onclick="savePiggyTransaction()">
+
+                    Conferma
+
+                </button>
+
+
+                <button
+                    class="cancel"
+                    onclick="closePiggyTransaction()">
+
+                    Annulla
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+        <section
+            class="card section">
+
+
+            <h2 class="section-title">
+                Come funziona
+            </h2>
+
+
+            <div
+                class="empty"
+                style="line-height:1.6">
+
+                Il salvadanaio è separato dal
+                saldo principale.<br><br>
+
+                Puoi usarlo per mettere da parte
+                soldi per un obiettivo, come una
+                vacanza, una macchina o un fondo
+                di emergenza.
 
             </div>
 
@@ -1371,19 +1956,23 @@
 
 
         /* =========================
-           DATI
+           DATI PRINCIPALI
         ========================= */
 
 
         let balance =
             Number(
-                localStorage.getItem("balance")
+                localStorage.getItem(
+                    "balance"
+                )
             ) || 0;
 
 
         let movements =
             JSON.parse(
-                localStorage.getItem("movements")
+                localStorage.getItem(
+                    "movements"
+                )
             ) || [];
 
 
@@ -1393,6 +1982,38 @@
 
         let editingIndex =
             null;
+
+
+        /* =========================
+           DATI SALVADANAIO
+        ========================= */
+
+
+        let piggyAmount =
+            Number(
+                localStorage.getItem(
+                    "piggyAmount"
+                )
+            ) || 0;
+
+
+        let piggyTarget =
+            Number(
+                localStorage.getItem(
+                    "piggyTarget"
+                )
+            ) || 0;
+
+
+        let piggyName =
+            localStorage.getItem(
+                "piggyName"
+            ) ||
+            "Il mio salvadanaio";
+
+
+        let piggyTransactionType =
+            "add";
 
 
         /* =========================
@@ -1414,18 +2035,28 @@
             const d =
                 new Date();
 
+
             const year =
                 d.getFullYear();
+
 
             const month =
                 String(
                     d.getMonth() + 1
-                ).padStart(2, "0");
+                ).padStart(
+                    2,
+                    "0"
+                );
+
 
             const day =
                 String(
                     d.getDate()
-                ).padStart(2, "0");
+                ).padStart(
+                    2,
+                    "0"
+                );
+
 
             return (
                 year +
@@ -1444,14 +2075,17 @@
                 return "";
             }
 
+
             const parts =
                 date.split("-");
+
 
             if (
                 parts.length !== 3
             ) {
                 return date;
             }
+
 
             return (
                 parts[2] +
@@ -1471,6 +2105,7 @@
                 balance
             );
 
+
             localStorage.setItem(
                 "movements",
                 JSON.stringify(
@@ -1481,8 +2116,30 @@
         }
 
 
+        function savePiggyData() {
+
+            localStorage.setItem(
+                "piggyAmount",
+                piggyAmount
+            );
+
+
+            localStorage.setItem(
+                "piggyTarget",
+                piggyTarget
+            );
+
+
+            localStorage.setItem(
+                "piggyName",
+                piggyName
+            );
+
+        }
+
+
         /* =========================
-           MENU
+           NAVIGAZIONE
         ========================= */
 
 
@@ -1492,14 +2149,16 @@
                 .getElementById(
                     "sideMenu"
                 )
-                .classList.add("open");
+                .classList
+                .add("open");
 
 
             document
                 .getElementById(
                     "overlay"
                 )
-                .classList.add("open");
+                .classList
+                .add("open");
 
         }
 
@@ -1510,14 +2169,74 @@
                 .getElementById(
                     "sideMenu"
                 )
-                .classList.remove("open");
+                .classList
+                .remove("open");
 
 
             document
                 .getElementById(
                     "overlay"
                 )
-                .classList.remove("open");
+                .classList
+                .remove("open");
+
+        }
+
+
+        function showHome() {
+
+            document
+                .getElementById(
+                    "homePage"
+                )
+                .style.display =
+                "block";
+
+
+            document
+                .getElementById(
+                    "savingsPage"
+                )
+                .style.display =
+                "none";
+
+
+            closeMenu();
+
+            window.scrollTo(
+                0,
+                0
+            );
+
+        }
+
+
+        function showSavings() {
+
+            document
+                .getElementById(
+                    "homePage"
+                )
+                .style.display =
+                "none";
+
+
+            document
+                .getElementById(
+                    "savingsPage"
+                )
+                .style.display =
+                "block";
+
+
+            closeMenu();
+
+            renderPiggy();
+
+            window.scrollTo(
+                0,
+                0
+            );
 
         }
 
@@ -1658,7 +2377,7 @@
 
 
         /* =========================
-           MESE
+           RIEPILOGO MESE
         ========================= */
 
 
@@ -1753,8 +2472,11 @@
                 now.toLocaleDateString(
                     "it-IT",
                     {
-                        month: "long",
-                        year: "numeric"
+                        month:
+                            "long",
+
+                        year:
+                            "numeric"
                     }
                 );
 
@@ -1843,10 +2565,15 @@
                             </span>
 
                             <span class="category-amount">
-                                ${money(categories[category])}
+                                ${money(
+                                    categories[
+                                        category
+                                    ]
+                                )}
                             </span>
 
                         </div>
+
 
                         <div class="bar">
 
@@ -1856,6 +2583,7 @@
                             </div>
 
                         </div>
+
                     `;
 
 
@@ -1870,11 +2598,14 @@
 
 
         /* =========================
-           FORM
+           FORM MOVIMENTI
         ========================= */
 
 
-        function openForm(type, index = null) {
+        function openForm(
+            type,
+            index = null
+        ) {
 
             operationType =
                 type;
@@ -1942,7 +2673,6 @@
                 ).value =
                     movement.date;
 
-
             } else {
 
                 title.textContent =
@@ -1953,17 +2683,20 @@
 
                 document.getElementById(
                     "amount"
-                ).value = "";
+                ).value =
+                    "";
 
 
                 document.getElementById(
                     "description"
-                ).value = "";
+                ).value =
+                    "";
 
 
                 document.getElementById(
                     "category"
-                ).value = "";
+                ).value =
+                    "";
 
 
                 document.getElementById(
@@ -1975,8 +2708,11 @@
 
 
             form.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
+                behavior:
+                    "smooth",
+
+                block:
+                    "center"
             });
 
 
@@ -2010,7 +2746,7 @@
 
 
         /* =========================
-           SALVA
+           SALVA MOVIMENTO
         ========================= */
 
 
@@ -2087,8 +2823,6 @@
             }
 
 
-            /* MODIFICA */
-
             if (
                 editingIndex !== null
             ) {
@@ -2156,12 +2890,7 @@
 
                 }
 
-
-            }
-
-            /* NUOVO */
-
-            else {
+            } else {
 
                 movements.push({
 
@@ -2234,7 +2963,7 @@
             container.innerHTML = "";
 
 
-            let visible =
+            const visible =
                 movements
                     .map(
                         (
@@ -2334,35 +3063,61 @@
 
                                 <div
                                     class="movement-title ${color}">
-                                    ${sign} ${money(movement.amount)}
-                                    — ${escapeHTML(movement.description)}
+
+                                    ${sign}
+                                    ${money(
+                                        movement.amount
+                                    )}
+                                    —
+                                    ${escapeHTML(
+                                        movement.description
+                                    )}
+
                                 </div>
+
 
                                 <div class="movement-date">
-                                    ${formatDate(movement.date)}
+
+                                    ${formatDate(
+                                        movement.date
+                                    )}
+
                                 </div>
 
-                                <span class="movement-category">
-                                    ${escapeHTML(movement.category)}
+
+                                <span
+                                    class="movement-category">
+
+                                    ${escapeHTML(
+                                        movement.category
+                                    )}
+
                                 </span>
 
                             </div>
 
 
-                            <div class="movement-buttons">
+                            <div
+                                class="movement-buttons">
+
 
                                 <button
                                     class="edit"
                                     onclick="editMovement(${index})">
+
                                     ✏️
+
                                 </button>
 
 
                                 <button
                                     class="delete"
                                     onclick="deleteMovement(${index})">
+
                                     🗑️
+
                                 </button>
+
 
                             </div>
 
@@ -2472,6 +3227,269 @@
 
 
         /* =========================
+           SALVADANAIO
+        ========================= */
+
+
+        function renderPiggy() {
+
+            document.getElementById(
+                "piggyName"
+            ).textContent =
+                piggyName;
+
+
+            document.getElementById(
+                "piggyAmount"
+            ).textContent =
+                money(
+                    piggyAmount
+                );
+
+
+            document.getElementById(
+                "piggyTargetText"
+            ).textContent =
+                "Obiettivo: " +
+                money(
+                    piggyTarget
+                );
+
+
+            let percentage = 0;
+
+
+            if (
+                piggyTarget > 0
+            ) {
+
+                percentage =
+                    (
+                        piggyAmount /
+                        piggyTarget
+                    ) * 100;
+
+            }
+
+
+            percentage =
+                Math.min(
+                    percentage,
+                    100
+                );
+
+
+            document.getElementById(
+                "piggyProgress"
+            ).style.width =
+                percentage +
+                "%";
+
+
+            document.getElementById(
+                "piggyProgressText"
+            ).textContent =
+                Math.round(
+                    percentage
+                ) +
+                "%";
+
+
+            document.getElementById(
+                "piggyNameInput"
+            ).value =
+                piggyName;
+
+
+            document.getElementById(
+                "piggyTargetInput"
+            ).value =
+                piggyTarget || "";
+
+        }
+
+
+        function togglePiggySettings() {
+
+            document
+                .getElementById(
+                    "piggySettings"
+                )
+                .classList
+                .toggle("hidden");
+
+        }
+
+
+        function savePiggySettings() {
+
+            const name =
+                document.getElementById(
+                    "piggyNameInput"
+                ).value.trim();
+
+
+            const target =
+                Number(
+                    document.getElementById(
+                        "piggyTargetInput"
+                    ).value
+                );
+
+
+            piggyName =
+                name ||
+                "Il mio salvadanaio";
+
+
+            piggyTarget =
+                target > 0
+                    ? target
+                    : 0;
+
+
+            savePiggyData();
+
+            renderPiggy();
+
+
+            document
+                .getElementById(
+                    "piggySettings"
+                )
+                .classList
+                .add("hidden");
+
+        }
+
+
+        function openPiggyTransaction(
+            type
+        ) {
+
+            piggyTransactionType =
+                type;
+
+
+            document.getElementById(
+                "piggyTransaction"
+            )
+            .classList
+            .remove("hidden");
+
+
+            document.getElementById(
+                "piggyTransactionTitle"
+            ).textContent =
+                type === "add"
+                    ? "Metti soldi nel salvadanaio"
+                    : "Preleva dal salvadanaio";
+
+
+            document.getElementById(
+                "piggyTransactionButton"
+            ).textContent =
+                type === "add"
+                    ? "Metti nel salvadanaio"
+                    : "Preleva";
+
+
+            document.getElementById(
+                "piggyTransactionAmount"
+            ).value =
+                "";
+
+
+            setTimeout(
+                () => {
+
+                    document.getElementById(
+                        "piggyTransactionAmount"
+                    ).focus();
+
+                },
+                100
+            );
+
+        }
+
+
+        function closePiggyTransaction() {
+
+            document
+                .getElementById(
+                    "piggyTransaction"
+                )
+                .classList
+                .add("hidden");
+
+        }
+
+
+        function savePiggyTransaction() {
+
+            const amount =
+                Number(
+                    document.getElementById(
+                        "piggyTransactionAmount"
+                    ).value
+                );
+
+
+            if (
+                !amount ||
+                amount <= 0
+            ) {
+
+                alert(
+                    "Inserisci un importo valido."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                piggyTransactionType ===
+                "add"
+            ) {
+
+                piggyAmount +=
+                    amount;
+
+            } else {
+
+                if (
+                    amount >
+                    piggyAmount
+                ) {
+
+                    alert(
+                        "Non puoi prelevare più soldi di quelli presenti nel salvadanaio."
+                    );
+
+                    return;
+
+                }
+
+
+                piggyAmount -=
+                    amount;
+
+            }
+
+
+            savePiggyData();
+
+            renderPiggy();
+
+            closePiggyTransaction();
+
+        }
+
+
+        /* =========================
            SICUREZZA TESTO
         ========================= */
 
@@ -2479,22 +3497,27 @@
         function escapeHTML(text) {
 
             return String(text)
+
                 .replace(
                     /&/g,
                     "&amp;"
                 )
+
                 .replace(
                     /</g,
                     "&lt;"
                 )
+
                 .replace(
                     />/g,
                     "&gt;"
                 )
+
                 .replace(
                     /"/g,
                     "&quot;"
                 )
+
                 .replace(
                     /'/g,
                     "&#039;"
@@ -2504,7 +3527,7 @@
 
 
         /* =========================
-           AGGIORNA TUTTO
+           AGGIORNA
         ========================= */
 
 
@@ -2527,6 +3550,8 @@
         loadTheme();
 
         updateAll();
+
+        renderPiggy();
 
 
     </script>
