@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestione Soldi</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sfondo: #f4f5f7;
+            --scheda: #ffffff;
+            --testo: #171717;
+            --secondario: #737373;
+            --bordo: #e8e8e8;
+            --verde: #16803c;
+            --verde-bg: #e4f7eb;
+            --rosso: #d32f2f;
+            --rosso-bg: #ffebeb;
+            --nero: #171717;
+            --ombra: 0 8px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        body.scuro {
+            --sfondo: #111214;
+            --scheda: #1b1d20;
+            --testo: #f5f5f5;
+            --secondario: #a5a5a5;
+            --bordo: #2d3034;
+            --verde: #42c978;
+            --verde-bg: #183624;
+            --rosso: #ff6464;
+            --rosso-bg: #3a2020;
+            --nero: #f5f5f5;
+            --ombra: 0 8px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        body {
+            margin: 0;
+            padding: 24px 16px 40px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: var(--sfondo);
+            color: var(--testo);
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 520px;
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .titolo {
+            margin: 0;
+            font-size: 25px;
+            font-weight: 750;
+            letter-spacing: -0.5px;
+        }
+
+        .menu-button {
+            position: absolute;
+            left: 0;
+
+            width: 46px;
+            height: 46px;
+
+            padding: 0;
+
+            border-radius: 14px;
+            border: 1px solid var(--bordo);
+
+            background: var(--scheda);
+            color: var(--testo);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+
+            box-shadow: var(--ombra);
+
+            transition: 0.2s;
+        }
+
+        .menu-button:active {
+            transform: scale(0.94);
+        }
+
+        /* =========================
+           MENU LATERALE
+        ========================= */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.35);
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 0.3s;
+
+            z-index: 998;
+        }
+
+        .overlay.aperto {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .menu-laterale {
+            position: fixed;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: min(340px, 82vw);
+
+            background: var(--scheda);
+
+            transform: translateX(-100%);
+
+            transition: transform 0.3s ease;
+
+            z-index: 999;
+
+            padding: 25px 20px;
+
+            box-shadow: 10px 0 35px rgba(0, 0, 0, 0.18);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-laterale.aperto {
+            transform: translateX(0);
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid var(--bordo);
+        }
+
+        .menu-titolo {
+            font-size: 22px;
+            font-weight: 750;
+        }
+
+        .chiudi-menu {
+            width: 42px;
+            height: 42px;
+
+            padding: 0;
+
+            border-radius: 12px;
+
+            background: var(--sfondo);
+            color: var(--testo);
+
+            font-size: 22px;
+        }
+
+        .menu-contenuto {
+            padding-top: 22px;
+        }
+
+        .menu-sezione {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            color: var(--secondario);
+
+            margin-bottom: 10px;
+        }
+
+        .menu-voce {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 14px;
+
+            margin-bottom: 8px;
+
+            border-radius: 13px;
+
+            background: transparent;
+            color: var(--testo);
+
+            text-align: left;
+        }
+
+        .menu-voce:hover {
+            background: var(--sfondo);
+        }
+
+        .menu-icona {
+            font-size: 20px;
+        }
+
+        /* =========================
+           SCHEDE
+        ========================= */
+
+        .scheda {
+            background: var(--scheda);
+
+            border: 1px solid var(--bordo);
+
+            border-radius: 22px;
+
+            box-shadow: var(--ombra);
+        }
+
+        /* =========================
+           SALDO
+        ========================= */
+
+        .saldo-card {
+            text-align: center;
+
+            padding: 28px 20px;
+
+            margin-bottom: 12px;
+        }
+
+        .saldo-label {
+            color: var(--secondario);
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+        .saldo {
+            font-size: 42px;
+            font-weight: 800;
+
+            letter-spacing: -1.5px;
+        }
+
+        /* =========================
+           ENTRATE / SPESE
+        ========================= */
+
+        .statistiche {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            padding: 18px;
+
+            min-width: 0;
+        }
+
+        .stat-label {
+            color: var(--secondario);
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .stat-valore {
+            font-size: 21px;
+            font-weight: 750;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .verde {
+            color: var(--verde);
+        }
+
+        .rosso {
+            color: var(--rosso);
+        }
+
+        /* =========================
+           AZZERA
+        ========================= */
+
+        .azzera {
+            width: 100%;
+
+            margin-bottom: 16px;
+
+            background: var(--rosso-bg);
+            color: var(--rosso);
+
+            border: 1px solid transparent;
+
+            padding: 13px;
+
+            font-size: 14px;
+
+            border-radius: 14px;
+        }
+
+        .azzera:hover {
+            border-color: var(--rosso);
+        }
+
+        /* =========================
+           BOTTONI PRINCIPALI
+        ========================= */
+
+        .azioni {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 16px;
+        }
+
+        .azione {
+            min-height: 58px;
+
+            border-radius: 16px;
+
+            font-size: 16px;
+        }
+
+        .azione-entrata {
+            background: var(--verde-bg);
+            color: var(--verde);
+        }
+
+        .azione-spesa {
+            background: var(--rosso-bg);
+            color: var(--rosso);
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .modulo {
+            padding: 20px;
+
+            margin-bottom: 16px;
+        }
+
+        .modulo-titolo {
+            margin: 0 0 18px;
+
+            font-size: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            height: 52px;
+
+            padding: 0 15px;
+
+            border-radius: 13px;
+
+            border: 1px solid var(--bordo);
+
+            background: var(--sfondo);
+
+            color: var(--testo);
+
+            font-size: 16px;
+
+            outline: none;
+
+            margin-bottom: 10px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--secondario);
+        }
+
+        .salva {
+            width: 100%;
+
+            height: 52px;
+
+            background: var(--testo);
+            color: var(--sfondo);
+
+            margin-top: 4px;
+        }
+
+        .annulla {
+            width: 100%;
+
+            height: 48px;
+
+            background: var(--sfondo);
+            color: var(--testo);
+
+            margin-top: 8px;
+        }
+
+        /* =========================
+           CATEGORIE
+        ========================= */
+
+        .sezione {
+            padding: 20px;
+
+            margin-bottom: 16px;
+        }
+
+        .sezione-titolo {
+            margin: 0 0 15px;
+
+            font-size: 19px;
+        }
+
+        .categoria-riga {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid var(--bordo);
+        }
+
+        .categoria-riga:last-child {
+            border-bottom: none;
+        }
+
+        .categoria-nome {
+            font-weight: 600;
+        }
+
+        .categoria-importo {
+            color: var(--rosso);
+            font-weight: 700;
+        }
+
+        .nessuna-categoria,
+        .nessun-movimento {
+            color: var(--secondario);
+
+            text-align: center;
+
+            padding: 10px 0;
+        }
+
+        /* =========================
+           MOVIMENTI
+        ========================= */
+
+        .movimento {
+            padding: 15px 0;
+
+            border-bottom: 1px solid var(--bordo);
+        }
+
+        .movimento:last-child {
+            border-bottom: none;
+        }
+
+        .movimento-top {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 10px;
+        }
+
+        .movimento-info {
+            min-width: 0;
+        }
+
+        .movimento-tipo {
+            font-weight: 700;
+
+            overflow-wrap: anywhere;
+        }
+
+        .movimento-data {
+            color: var(--secondario);
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+        .movimento-categoria {
+            display: inline-block;
+
+            margin-top: 7px;
+
+            padding: 5px 9px;
+
+            border-radius: 8px;
+
+            background: var(--sfondo);
+
+            color: var(--secondario);
+
+            font-size: 12px;
+        }
+
+        .movimento-elimina {
+            flex-shrink: 0;
+
+            padding: 9px 11px;
+
+            border-radius: 10px;
+
+            background: var(--sfondo);
+
+            color: var(--secondario);
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           GENERALE
+        ========================= */
+
+        button {
+            border: none;
+
+            font-family: inherit;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s,
+                opacity 0.15s,
+                background 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        .nascosto {
+            display: none;
+        }
+
+        @media (max-width: 380px) {
+
+            body {
+                padding: 18px 12px 30px;
+            }
+
+            .saldo {
+                font-size: 36px;
+            }
+
+            .stat-valore {
+                font-size: 18px;
+            }
+
+            .titolo {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- OVERLAY -->
+
+    <div
+        id="overlay"
+        class="overlay"
+        onclick="chiudiMenu()">
+    </div>
+
+
+    <!-- MENU LATERALE -->
+
+    <aside
+        id="menuLaterale"
+        class="menu-laterale">
+
+        <div class="menu-header">
+
+            <div class="menu-titolo">
+                Menu
+            </div>
+
+            <button
+                class="chiudi-menu"
+                onclick="chiudiMenu()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="menu-contenuto">
+
+            <div class="menu-sezione">
+                Impostazioni
+            </div>
+
+            <button
+                class="menu-voce"
+                onclick="cambiaTema()">
+
+                <span
+                    id="iconaTema"
+                    class="menu-icona">
+                    🌙
+                </span>
+
+                <span
+                    id="testoTema">
+                    Tema scuro
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <div class="app">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <button
+                class="menu-button"
+                onclick="apriMenu()">
+                ☰
+            </button>
+
+            <h1 class="titolo">
+                Gestione Soldi
+            </h1>
+
+        </header>
+
+
+        <!-- SALDO -->
+
+        <div class="scheda saldo-card">
+
+            <div class="saldo-label">
+                Saldo disponibile
+            </div>
+
+            <div
+                id="saldo"
+                class="saldo">
+                €0.00
+            </div>
+
+        </div>
+
+
+        <!-- STATISTICHE -->
+
+        <div class="statistiche">
+
+            <div class="scheda stat-card">
+
+                <div class="stat-label">
+                    Entrate totali
+                </div>
+
+                <div
+                    id="entrateTotali"
+                    class="stat-valore verde">
+                    €0.00
+                </div>
+
+            </div>
+
+            <div class="scheda stat-card">
+
+                <div class="stat-label">
+                    Spese totali
+                </div>
+
+                <div
+                    id="speseTotali"
+                    class="stat-valore rosso">
+                    €0.00
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AZZERA -->
+
+        <button
+            class="azzera"
+            onclick="azzeraTutto()">
+
+            🗑️ Azzera saldo e movimenti
+
+        </button>
+
+
+        <!-- AZIONI -->
+
+        <div class="azioni">
+
+            <button
+                class="azione azione-entrata"
+                onclick="apriModulo('entrata')">
+
+                ＋ Entrata
+
+            </button>
+
+            <button
+                class="azione azione-spesa"
+                onclick="apriModulo('spesa')">
+
+                − Spesa
+
+            </button>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <div
+            id="modulo"
+            class="scheda modulo nascosto">
+
+            <h2
+                id="titoloModulo"
+                class="modulo-titolo">
+
+                Nuova operazione
+
+            </h2>
+
+            <input
+                id="importo"
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="Importo (€)"
+            >
+
+            <input
+                id="descrizione"
+                type="text"
+                placeholder="Descrizione (opzionale)"
+            >
+
+            <select id="categoria">
+
+                <option value="">
+                    Categoria (opzionale)
+                </option>
+
+                <option value="💼 Stipendio">
+                    💼 Stipendio
+                </option>
+
+                <option value="💰 Bonus">
+                    💰 Bonus
+                </option>
+
+                <option value="🏦 Investimenti">
+                    🏦 Investimenti
+                </option>
+
+                <option value="🎁 Regalo">
+                    🎁 Regalo
+                </option>
+
+                <option value="💵 Altro guadagno">
+                    💵 Altro guadagno
+                </option>
+
+                <option value="🏠 Affitto">
+                    🏠 Affitto
+                </option>
+
+                <option value="💡 Bollette">
+                    💡 Bollette
+                </option>
+
+                <option value="🛒 Spesa alimentare">
+                    🛒 Spesa alimentare
+                </option>
+
+                <option value="🍔 Ristoranti">
+                    🍔 Ristoranti
+                </option>
+
+                <option value="🚗 Benzina">
+                    🚗 Benzina
+                </option>
+
+                <option value="🚌 Trasporti">
+                    🚌 Trasporti
+                </option>
+
+                <option value="🛍️ Shopping">
+                    🛍️ Shopping
+                </option>
+
+                <option value="🎮 Svago">
+                    🎮 Svago
+                </option>
+
+                <option value="💊 Salute">
+                    💊 Salute
+                </option>
+
+                <option value="📱 Abbonamenti">
+                    📱 Abbonamenti
+                </option>
+
+                <option value="📚 Istruzione">
+                    📚 Istruzione
+                </option>
+
+                <option value="🐶 Animali">
+                    🐶 Animali
+                </option>
+
+                <option value="✈️ Viaggi">
+                    ✈️ Viaggi
+                </option>
+
+                <option value="📦 Altro">
+                    📦 Altro
+                </option>
+
+            </select>
+
+            <button
+                class="salva"
+                onclick="salvaMovimento()">
+
+                Salva
+
+            </button>
+
+            <button
+                class="annulla"
+                onclick="chiudiModulo()">
+
+                Annulla
+
+            </button>
+
+        </div>
+
+
+        <!-- CATEGORIE -->
+
+        <section class="scheda sezione">
+
+            <h2 class="sezione-titolo">
+                Spese per categoria
+            </h2>
+
+            <div id="categorie"></div>
+
+        </section>
+
+
+        <!-- MOVIMENTI -->
+
+        <section class="scheda sezione">
+
+            <h2 class="sezione-titolo">
+                Movimenti
+            </h2>
+
+            <div id="movimenti"></div>
+
+        </section>
+
+    </div>
+
+
+    <script>
+
+        let saldo =
+            Number(
+                localStorage.getItem("saldo")
+            ) || 0;
+
+        let movimenti =
+            JSON.parse(
+                localStorage.getItem("movimenti")
+            ) || [];
+
+        let tipoOperazione = "";
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        function apriMenu() {
+
+            document
+                .getElementById("menuLaterale")
+                .classList.add("aperto");
+
+            document
+                .getElementById("overlay")
+                .classList.add("aperto");
+
+        }
+
+
+        function chiudiMenu() {
+
+            document
+                .getElementById("menuLaterale")
+                .classList.remove("aperto");
+
+            document
+                .getElementById("overlay")
+                .classList.remove("aperto");
+
+        }
+
+
+        /* =========================
+           TEMA
+        ========================= */
+
+        function cambiaTema() {
+
+            document.body.classList.toggle("scuro");
+
+            const scuro =
+                document.body.classList.contains(
+                    "scuro"
+                );
+
+            localStorage.setItem(
+                "tema",
+                scuro ? "scuro" : "chiaro"
+            );
+
+            atualizarTemaBotao();
+
+        }
+
+
+        function atualizarTemaBotao() {
+
+            const scuro =
+                document.body.classList.contains(
+                    "scuro"
+                );
+
+            const icona =
+                document.getElementById(
+                    "iconaTema"
+                );
+
+            const testo =
+                document.getElementById(
+                    "testoTema"
+                );
+
+            if (scuro) {
+
+                icona.textContent = "☀️";
+                testo.textContent = "Tema chiaro";
+
+            } else {
+
+                icona.textContent = "🌙";
+                testo.textContent = "Tema scuro";
+
+            }
+
+        }
+
+
+        function caricaTema() {
+
+            const tema =
+                localStorage.getItem("tema");
+
+            if (tema === "scuro") {
+
+                document.body.classList.add(
+                    "scuro"
+                );
+
+            }
+
+            atualizarTemaBotao();
+
+        }
+
+
+        /* =========================
+           RIEPILOGO
+        ========================= */
+
+        function calcolaRiepilogo() {
+
+            let entrate = 0;
+            let spese = 0;
+
+            movimenti.forEach(
+                function(movimento) {
+
+                    if (
+                        movimento.tipo ===
+                        "+ Entrata"
+                    ) {
+
+                        entrate +=
+                            movimento.importo;
+
+                    } else {
+
+                        spese +=
+                            movimento.importo;
+
+                    }
+
+                }
+            );
+
+            document.getElementById(
+                "entrateTotali"
+            ).textContent =
+                "€" + entrate.toFixed(2);
+
+            document.getElementById(
+                "speseTotali"
+            ).textContent =
+                "€" + spese.toFixed(2);
+
+        }
+
+
+        /* =========================
+           CATEGORIE
+        ========================= */
+
+        function calcolaCategorie() {
+
+            const categorie = {};
+
+            movimenti.forEach(
+                function(movimento) {
+
+                    if (
+                        movimento.tipo !==
+                        "- Spesa"
+                    ) {
+                        return;
+                    }
+
+                    const categoria =
+                        movimento.categoria ||
+                        "📦 Altro";
+
+                    if (
+                        !categorie[categoria]
+                    ) {
+
+                        categorie[categoria] =
+                            0;
+
+                    }
+
+                    categorie[categoria] +=
+                        movimento.importo;
+
+                }
+            );
+
+            const contenitore =
+                document.getElementById(
+                    "categorie"
+                );
+
+            contenitore.innerHTML = "";
+
+            const nomi =
+                Object.keys(categorie);
+
+            if (
+                nomi.length === 0
+            ) {
+
+                const messaggio =
+                    document.createElement(
+                        "div"
+                    );
+
+                messaggio.className =
+                    "nessuna-categoria";
+
+                messaggio.textContent =
+                    "Nessuna spesa registrata";
+
+                contenitore.appendChild(
+                    messaggio
+                );
+
+                return;
+
+            }
+
+            nomi.sort(
+                function(a, b) {
+
+                    return (
+                        categorie[b] -
+                        categorie[a]
+                    );
+
+                }
+            );
+
+            nomi.forEach(
+                function(categoria) {
+
+                    const riga =
+                        document.createElement(
+                            "div"
+                        );
+
+                    riga.className =
+                        "categoria-riga";
+
+                    const nome =
+                        document.createElement(
+                            "span"
+                        );
+
+                    nome.className =
+                        "categoria-nome";
+
+                    nome.textContent =
+                        categoria;
+
+                    const importo =
+                        document.createElement(
+                            "span"
+                        );
+
+                    importo.className =
+                        "categoria-importo";
+
+                    importo.textContent =
+                        "€" +
+                        categorie[
+                            categoria
+                        ].toFixed(2);
+
+                    riga.appendChild(nome);
+
+                    riga.appendChild(importo);
+
+                    contenitore.appendChild(
+                        riga
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           AGGIORNA
+        ========================= */
+
+        function aggiorna() {
+
+            document.getElementById(
+                "saldo"
+            ).textContent =
+                "€" + saldo.toFixed(2);
+
+            calcolaRiepilogo();
+
+            calcolaCategorie();
+
+            const lista =
+                document.getElementById(
+                    "movimenti"
+                );
+
+            lista.innerHTML = "";
+
+            if (
+                movimenti.length === 0
+            ) {
+
+                const elemento =
+                    document.createElement(
+                        "div"
+                    );
+
+                elemento.className =
+                    "nessun-movimento";
+
+                elemento.textContent =
+                    "Nessun movimento ancora";
+
+                lista.appendChild(
+                    elemento
+                );
+
+            } else {
+
+                movimenti
+                    .slice()
+                    .reverse()
+                    .forEach(
+                        function(
+                            movimento,
+                            indice
+                        ) {
+
+                            const elemento =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            elemento.className =
+                                "movimento";
+
+                            const top =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            top.className =
+                                "movimento-top";
+
+                            const info =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            info.className =
+                                "movimento-info";
+
+                            const tipo =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            tipo.className =
+                                "movimento-tipo " +
+                                (
+                                    movimento.tipo ===
+                                    "+ Entrata"
+                                        ? "verde"
+                                        : "rosso"
+                                );
+
+                            tipo.textContent =
+                                movimento.tipo +
+                                " €" +
+                                movimento.importo.toFixed(2) +
+                                " — " +
+                                (
+                                    movimento.descrizione ||
+                                    "Nessuna descrizione"
+                                );
+
+                            const data =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            data.className =
+                                "movimento-data";
+
+                            data.textContent =
+                                movimento.data ||
+                                "Data non disponibile";
+
+                            const categoria =
+                                document.createElement(
+                                    "span"
+                                );
+
+                            categoria.className =
+                                "movimento-categoria";
+
+                            categoria.textContent =
+                                movimento.categoria ||
+                                "📦 Altro";
+
+                            const elimina =
+                                document.createElement(
+                                    "button"
+                                );
+
+                            elimina.className =
+                                "movimento-elimina";
+
+                            elimina.textContent =
+                                "Elimina";
+
+                            elimina.onclick =
+                                function() {
+
+                                    eliminaMovimento(
+                                        movimenti.length -
+                                        1 -
+                                        indice
+                                    );
+
+                                };
+
+                            info.appendChild(
+                                tipo
+                            );
+
+                            info.appendChild(
+                                data
+                            );
+
+                            info.appendChild(
+                                categoria
+                            );
+
+                            top.appendChild(
+                                info
+                            );
+
+                            top.appendChild(
+                                elimina
+                            );
+
+                            elemento.appendChild(
+                                top
+                            );
+
+                            lista.appendChild(
+                                elemento
+                            );
+
+                        }
+                    );
+
+            }
+
+            localStorage.setItem(
+                "saldo",
+                saldo
+            );
+
+            localStorage.setItem(
+                "movimenti",
+                JSON.stringify(
+                    movimenti
+                )
+            );
+
+        }
+
+
+        /* =========================
+           MODULO
+        ========================= */
+
+        function apriModulo(tipo) {
+
+            tipoOperazione = tipo;
+
+            const modulo =
+                document.getElementById(
+                    "modulo"
+                );
+
+            const titolo =
+                document.getElementById(
+                    "titoloModulo"
+                );
+
+            modulo.classList.remove(
+                "nascosto"
+            );
+
+            if (
+                tipo === "entrata"
+            ) {
+
+                titolo.textContent =
+                    "Nuova entrata";
+
+            } else {
+
+                titolo.textContent =
+                    "Nuova spesa";
+
+            }
+
+            document.getElementById(
+                "importo"
+            ).value = "";
+
+            document.getElementById(
+                "descrizione"
+            ).value = "";
+
+            document.getElementById(
+                "categoria"
+            ).value = "";
+
+            document.getElementById(
+                "importo"
+            ).focus();
+
+        }
+
+
+        function chiudiModulo() {
+
+            document
+                .getElementById(
+                    "modulo"
+                )
+                .classList.add(
+                    "nascosto"
+                );
+
+        }
+
+
+        /* =========================
+           SALVA MOVIMENTO
+        ========================= */
+
+        function salvaMovimento() {
+
+            const importo =
+                Number(
+                    document.getElementById(
+                        "importo"
+                    ).value
+                );
+
+            let descrizione =
+                document
+                    .getElementById(
+                        "descrizione"
+                    )
+                    .value
+                    .trim();
+
+            let categoria =
+                document.getElementById(
+                    "categoria"
+                ).value;
+
+            if (
+                importo <= 0
+            ) {
+
+                alert(
+                    "Inserisci un importo valido."
+                );
+
+                return;
+
+            }
+
+            if (
+                descrizione === ""
+            ) {
+
+                descrizione =
+                    "Nessuna descrizione";
+
+            }
+
+            if (
+                categoria === ""
+            ) {
+
+                categoria =
+                    "📦 Altro";
+
+            }
+
+            const data =
+                new Date().toLocaleDateString(
+                    "it-IT"
+                );
+
+            if (
+                tipoOperazione ===
+                "entrata"
+            ) {
+
+                saldo += importo;
+
+                movimenti.push({
+
+                    tipo: "+ Entrata",
+
+                    importo: importo,
+
+                    descrizione:
+                        descrizione,
+
+                    categoria:
+                        categoria,
+
+                    data: data
+
+                });
+
+            } else {
+
+                saldo -= importo;
+
+                movimenti.push({
+
+                    tipo: "- Spesa",
+
+                    importo: importo,
+
+                    descrizione:
+                        descrizione,
+
+                    categoria:
+                        categoria,
+
+                    data: data
+
+                });
+
+            }
+
+            aggiorna();
+
+            chiudiModulo();
+
+        }
+
+
+        /* =========================
+           ELIMINA
+        ========================= */
+
+        function eliminaMovimento(
+            indice
+        ) {
+
+            const movimento =
+                movimenti[indice];
+
+            const conferma =
+                confirm(
+                    "Vuoi eliminare questo movimento?"
+                );
+
+            if (!conferma) {
+                return;
+            }
+
+            if (
+                movimento.tipo ===
+                "+ Entrata"
+            ) {
+
+                saldo -=
+                    movimento.importo;
+
+            } else {
+
+                saldo +=
+                    movimento.importo;
+
+            }
+
+            movimenti.splice(
+                indice,
+                1
+            );
+
+            aggiorna();
+
+        }
+
+
+        /* =========================
+           AZZERA
+        ========================= */
+
+        function azzeraTutto() {
+
+            const conferma =
+                confirm(
+                    "ATTENZIONE!\n\n" +
+                    "Vuoi davvero azzerare il saldo " +
+                    "e cancellare tutti i movimenti?\n\n" +
+                    "Questa operazione non può essere annullata."
+                );
+
+            if (!conferma) {
+                return;
+            }
+
+            saldo = 0;
+
+            movimenti = [];
+
+            localStorage.removeItem(
+                "saldo"
+            );
+
+            localStorage.removeItem(
+                "movimenti"
+            );
+
+            aggiorna();
+
+            alert(
+                "Saldo e movimenti azzerati."
+            );
+
+        }
+
+
+        /* =========================
+           AVVIO
+        ========================= */
+
+        caricaTema();
+
+        aggiorna();
+
+    </script>
+
+</body>
+</html>
