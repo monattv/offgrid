@@ -19,7 +19,7 @@ button,input,select{font:inherit}button{border:0;cursor:pointer;color:var(--text
 .total-card{padding:15px 17px;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center}.total-card .source-label{margin:0}.total-value{font-size:23px;font-weight:850}
 .savings-mini,.goal-list-card{padding:17px;margin-bottom:11px}.row-between{display:flex;align-items:center;justify-content:space-between;gap:10px}.mini-left{display:flex;align-items:center;gap:12px}.iconbox{width:43px;height:43px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:13px;background:var(--yellowbg);font-size:23px}.name{font-size:15px;font-weight:750}.sub{margin-top:3px;color:var(--muted);font-size:12px}.arrow{color:var(--muted);font-size:20px}.progress{height:8px;background:var(--bg);border-radius:20px;overflow:hidden;margin-top:13px}.fill{height:100%;width:0;background:var(--blue);border-radius:20px;transition:width .3s}.fill.done{background:var(--green)}.done-text{color:var(--green);font-weight:800}
 .stats,.actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:12px}.stat{padding:16px}.stat-label{color:var(--muted);font-size:12px;margin-bottom:6px}.stat-value{font-size:19px;font-weight:800}.green{color:var(--green)}.red{color:var(--red)}.action{height:61px;border-radius:16px;font-size:16px;font-weight:750}.income{background:var(--greenbg);color:var(--green)}.expense{background:var(--redbg);color:var(--red)}
-.section{padding:18px;margin-bottom:13px}.section-title{margin:0 0 14px;font-size:19px;font-weight:800}.month-summary{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;margin-bottom:15px;border-radius:13px;background:var(--bg)}.month-total{color:var(--red);font-weight:800}.category-row{margin-bottom:14px}.category-header{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px}.category-name{font-weight:650}.category-amount{color:var(--muted);font-weight:700}.bar{height:7px;background:var(--bg);border-radius:20px;overflow:hidden}.bar-fill{height:100%;background:var(--red);border-radius:20px}
+.section{padding:18px;margin-bottom:13px}.section-title{margin:0 0 14px;font-size:19px;font-weight:800}.month-summary{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;margin-bottom:15px;border-radius:13px;background:var(--bg)}.month-total{color:var(--red);font-weight:800}.category-row{margin-bottom:14px;cursor:pointer;border-radius:10px;padding:6px;margin-left:-6px;margin-right:-6px}.category-row:active{background:var(--bg)}.category-header{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px}.category-name{font-weight:650}.category-amount{color:var(--muted);font-weight:700}.bar{height:7px;background:var(--bg);border-radius:20px;overflow:hidden}.bar-fill{height:100%;background:var(--red);border-radius:20px}.budget-warn{margin-top:5px;font-size:11px;color:var(--red);font-weight:700}.hint{text-align:center;color:var(--muted);font-size:12px;margin:-6px 0 14px}
 .search{position:relative;margin-bottom:5px}.search input{margin:0;padding-left:43px}.search-icon{position:absolute;left:15px;top:14px;color:var(--muted)}
 input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px solid var(--border);border-radius:13px;outline:none;background:var(--bg);color:var(--text);font-size:16px}.save{width:100%;height:51px;border-radius:13px;background:var(--text);color:var(--card);font-weight:750}.cancel{width:100%;height:47px;margin-top:8px;border-radius:13px;background:var(--bg)}
 .movement{padding:15px 0;border-bottom:1px solid var(--border)}.movement:last-child{border-bottom:0}.movement-top{display:flex;justify-content:space-between;gap:10px}.movement-info{min-width:0;flex:1}.movement-title{font-size:15px;font-weight:700;overflow-wrap:anywhere}.movement-date{margin-top:5px;color:var(--muted);font-size:12px}.tag{display:inline-block;margin-top:7px;padding:5px 9px;border-radius:8px;background:var(--bg);color:var(--muted);font-size:11px}.buttons{display:flex;gap:5px}.smallbtn{width:36px;height:36px;border-radius:10px;background:var(--bg)}.delete{color:var(--red)}
@@ -30,6 +30,7 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 .settings-section-title{margin:20px 0 10px;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}.settings-section-title.danger{color:var(--red)}
 .category-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.category-chip{display:flex;align-items:center;gap:7px;padding:9px 8px 9px 13px;border-radius:12px;background:var(--bg);font-size:13px;font-weight:650}.category-chip button{background:transparent;color:var(--muted);font-size:16px;line-height:1;padding:2px 4px}
 .cat-add-row{display:flex;gap:8px;align-items:flex-start}.cat-add-row input{margin:0}.cat-add-row button{width:51px;height:51px;flex-shrink:0;border-radius:13px;background:var(--text);color:var(--card);font-size:21px}
+.budget-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.budget-row .budget-cat{font-size:13px;font-weight:650;overflow-wrap:anywhere}.budget-row input{width:105px;height:42px;margin:0;flex-shrink:0;padding:0 10px;font-size:14px;text-align:right}
 @media(max-width:370px){body{padding-left:10px;padding-right:10px}.balance{font-size:36px}}
 </style>
 </head>
@@ -116,6 +117,25 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
  </div>
 </div>
 
+<!-- Modal modifica movimento -->
+<div id="editModal" class="modal-overlay">
+ <div class="modal">
+  <div class="handle"></div>
+  <div id="editTitle" class="modal-title">✏️ Modifica movimento</div>
+  <div class="modal-sub">Aggiorna importo, conto, descrizione o categoria.</div>
+  <input id="editAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+  <div id="editSourceChoice" class="source-choice">
+   <button id="editCashBtn" class="choice" onclick="chooseEditSource('cash')">💵 Contanti</button>
+   <button id="editCardBtn" class="choice" onclick="chooseEditSource('card')">💳 Carta</button>
+  </div>
+  <input id="editDescription" type="text" maxlength="100" placeholder="Descrizione">
+  <select id="editCategory"><option value="">Categoria (opzionale)</option></select>
+  <input id="editDate" type="date">
+  <button class="confirm" onclick="confirmEditMovement()">Salva modifiche</button>
+  <button class="modal-cancel" onclick="closeEditModal()">Annulla</button>
+ </div>
+</div>
+
 <!-- Modal divisione -->
 <div id="splitModal" class="modal-overlay">
  <div class="modal">
@@ -153,6 +173,18 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
    <button onclick="addCategory()">＋</button>
   </div>
 
+  <div class="settings-section-title">Budget mensili di spesa</div>
+  <div class="hint">Imposta un tetto per categoria, vuoto = nessun limite</div>
+  <div id="budgetList"></div>
+
+  <div class="settings-section-title">Backup dati</div>
+  <div class="hint">Salva o ripristina tutti i tuoi dati (saldi, movimenti, obiettivi, categorie)</div>
+  <div class="source-choice">
+   <button class="choice" onclick="exportBackup()">⬇️ Esporta</button>
+   <button class="choice" onclick="triggerImport()">⬆️ Importa</button>
+  </div>
+  <input id="importFileInput" type="file" accept="application/json" class="hidden" onchange="importBackup(event)">
+
   <div class="settings-section-title danger">Zona pericolosa</div>
   <button class="action expense" style="width:100%" onclick="resetAll()">🗑️ Azzera conto e movimenti</button>
 
@@ -182,7 +214,7 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 <div class="actions"><button class="action income" onclick="openMoneyModal('income')">＋ Entrata</button><button class="action expense" onclick="openMoneyModal('expense')">− Spesa</button></div>
 
 <section class="card section"><h2 class="section-title">Movimenti</h2><div class="search"><span class="search-icon">🔎</span><input id="search" type="search" placeholder="Cerca movimento..." oninput="renderMovements()"></div><div id="movements"></div></section>
-<div class="version">Gestione Soldi · Versione 2.10</div>
+<div class="version">Gestione Soldi · Versione 2.20</div>
 </main>
 
 <main id="trendsPage" class="app page">
@@ -194,14 +226,14 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 </section>
 
 <section class="card section"><h2 class="section-title">Spese di questo mese</h2><div class="month-summary"><span id="monthName">Mese corrente</span><span id="monthTotal" class="month-total">€0,00</span></div><div id="categories"></div></section>
-<div class="version">Gestione Soldi · Versione 2.10</div>
+<div class="version">Gestione Soldi · Versione 2.20</div>
 </main>
 
 <main id="goalsPage" class="app page">
 <header class="header"><button class="back-button" onclick="showHome()">←</button><h1 class="title">Obiettivi</h1></header>
 <section class="card section"><h2 class="section-title">I tuoi obiettivi</h2><div id="allGoals" class="goal-grid"></div></section>
 <div class="actions"><button class="action income" onclick="openGoalModal()">＋ Nuovo</button><button class="action" style="background:var(--bluebg);color:var(--blue)" onclick="openSplitModal()">⚖️ Dividi</button></div>
-<div class="version">Gestione Soldi · Versione 2.10</div>
+<div class="version">Gestione Soldi · Versione 2.20</div>
 </main>
 
 <main id="savingsPage" class="app page">
@@ -217,7 +249,7 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 </section>
 <section class="card section"><h2 class="section-title">Movimenti del salvadanaio</h2><div id="savingsTransactions"></div></section>
 <div class="info card">💡 Il salvadanaio è separato dagli obiettivi. Usa i pulsanti qui sopra per aggiungere o prelevare denaro: i saldi si aggiornano automaticamente.</div>
-<div class="version">Gestione Soldi · Versione 2.10</div>
+<div class="version">Gestione Soldi · Versione 2.20</div>
 </main>
 
 <script>
@@ -225,16 +257,18 @@ const KEY="gs_v2";
 function defaultCategories(){return ["💼 Stipendio","🍔 Cibo","💡 Bollette","📦 Spese Varie","💊 Medicine","🎉 Piaceri"]}
 let data=JSON.parse(localStorage.getItem(KEY)||"null")||migrateOld();
 if(!data.categories||!data.categories.length)data.categories=defaultCategories();
+if(!data.budgets)data.budgets={};
 function migrateOld(){
   const oldMov=JSON.parse(localStorage.getItem("movements")||"[]");
   const oldBal=Number(localStorage.getItem("balance")||0);
   const pig=Number(localStorage.getItem("savingsAmount")||0);
   let cash=Number(localStorage.getItem("cashBalance")||0),card=Number(localStorage.getItem("cardBalance")||0);
   if(!cash&&!card&&oldBal) cash=oldBal;
-  return {cash,card,savings:pig,goals:[],movements:oldMov.map(m=>({...m,source:m.source||"cash"})),theme:localStorage.getItem("theme")||"light",categories:defaultCategories()};
+  return {cash,card,savings:pig,goals:[],movements:oldMov.map(m=>({...m,source:m.source||"cash"})),theme:localStorage.getItem("theme")||"light",categories:defaultCategories(),budgets:{}};
 }
 let quick={type:null,amount:0,source:"cash"};
 let goalOp={id:null,type:null,amount:0,source:"cash"};
+let editIndex=null;
 
 function save(){localStorage.setItem(KEY,JSON.stringify(data))}
 function money(n){return "€"+Number(n||0).toFixed(2).replace(".",",")}
@@ -253,7 +287,7 @@ function showTrends(){renderSummary();renderMonth();showPage("trendsPage")}
 
 function setTheme(t){data.theme=t;document.body.classList.toggle("dark",t==="dark");save();updateTheme()}
 function updateTheme(){let d=data.theme==="dark";themeLightBtn.classList.toggle("selected",!d);themeDarkBtn.classList.toggle("selected",d)}
-function openSettingsModal(){closeMenu();updateTheme();renderCategoryList();newCategoryName.value="";settingsModal.classList.add("open")}
+function openSettingsModal(){closeMenu();updateTheme();renderCategoryList();renderBudgetList();newCategoryName.value="";settingsModal.classList.add("open")}
 function closeSettingsModal(){settingsModal.classList.remove("open")}
 function renderCategoryList(){
  categoryList.innerHTML=data.categories.length?data.categories.map((c,i)=>`<div class="category-chip"><span>${esc(c)}</span><button onclick="removeCategory(${i})">×</button></div>`).join(""):`<div class="empty">Nessuna categoria</div>`
@@ -262,14 +296,54 @@ function addCategory(){
  const n=newCategoryName.value.trim();
  if(!n)return newCategoryName.focus();
  if(data.categories.includes(n)){toast("Categoria già esistente","⚠️");return}
- data.categories.push(n);newCategoryName.value="";save();renderCategoryList();renderCategoryOptions();toast("Categoria aggiunta","🏷️")
+ data.categories.push(n);newCategoryName.value="";save();renderCategoryList();renderCategoryOptions();renderBudgetList();toast("Categoria aggiunta","🏷️")
 }
 function removeCategory(i){
  if(!confirm("Eliminare questa categoria?"))return;
- data.categories.splice(i,1);save();renderCategoryList();renderCategoryOptions()
+ const c=data.categories[i];
+ data.categories.splice(i,1);
+ if(data.budgets&&data.budgets[c])delete data.budgets[c];
+ save();renderCategoryList();renderCategoryOptions();renderBudgetList()
 }
 function renderCategoryOptions(){
  detailCategory.innerHTML=`<option value="">Categoria (opzionale)</option>`+data.categories.map(c=>`<option>${esc(c)}</option>`).join("")
+}
+function renderBudgetList(){
+ budgetList.innerHTML=data.categories.length?data.categories.map(c=>`<div class="budget-row"><span class="budget-cat">${esc(c)}</span><input type="number" inputmode="decimal" min="0" step="1" placeholder="Nessuno" value="${data.budgets&&data.budgets[c]?data.budgets[c]:""}" onchange="setBudget(this,${JSON.stringify(c)})"></div>`).join(""):`<div class="empty">Aggiungi prima una categoria</div>`
+}
+function setBudget(input,cat){
+ const n=Number(input.value);
+ if(n>0)data.budgets[cat]=n;else delete data.budgets[cat];
+ save()
+}
+function exportBackup(){
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download=`gestione-soldi-backup-${today()}.json`;
+ document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+ toast("Backup esportato","⬇️")
+}
+function triggerImport(){importFileInput.click()}
+function importBackup(e){
+ const file=e.target.files[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=ev=>{
+   try{
+     const p=JSON.parse(ev.target.result);
+     if(typeof p!=="object"||p===null)throw new Error("formato non valido");
+     if(!confirm("Importare questo backup? I dati attuali verranno sovrascritti."))return;
+     data={
+       cash:Number(p.cash)||0,card:Number(p.card)||0,savings:Number(p.savings)||0,
+       goals:Array.isArray(p.goals)?p.goals:[],
+       movements:Array.isArray(p.movements)?p.movements:[],
+       theme:p.theme==="dark"?"dark":"light",
+       categories:Array.isArray(p.categories)&&p.categories.length?p.categories:defaultCategories(),
+       budgets:p.budgets&&typeof p.budgets==="object"?p.budgets:{}
+     };
+     save();document.body.classList.toggle("dark",data.theme==="dark");updateTheme();closeSettingsModal();renderAll();toast("Backup importato","✅")
+   }catch(err){toast("File non valido","⚠️")}
+ };
+ reader.readAsText(file);e.target.value=""
 }
 
 function chooseSource(s){quick.source=s;cashBtn.classList.toggle("selected",s==="cash");cardBtn.classList.toggle("selected",s==="card")}
@@ -377,12 +451,51 @@ function renderMonth(){
  const now=new Date(),mo=now.getMonth(),yr=now.getFullYear();let total=0,cats={};
  data.movements.forEach(m=>{let d=new Date((m.date||today())+"T12:00:00");if(d.getMonth()===mo&&d.getFullYear()===yr&&m.type==="expense"&&!m.savings){total+=Number(m.amount);let c=m.category||"📦 Altro";cats[c]=(cats[c]||0)+Number(m.amount)}});
  monthName.textContent=now.toLocaleDateString("it-IT",{month:"long",year:"numeric"});monthTotal.textContent=money(total);
- categories.innerHTML=Object.keys(cats).length?Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([c,v])=>`<div class="category-row"><div class="category-header"><span class="category-name">${esc(c)}</span><span class="category-amount">${money(v)}</span></div><div class="bar"><div class="bar-fill" style="width:${total?v/total*100:0}%"></div></div></div>`).join(""):`<div class="empty">Nessuna spesa questo mese</div>`
+ categories.innerHTML=Object.keys(cats).length?Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([c,v])=>{
+   const budget=data.budgets&&data.budgets[c];const over=budget&&v>budget;
+   return `<div class="category-row" data-cat="${esc(c)}"><div class="category-header"><span class="category-name">${esc(c)}</span><span class="category-amount">${money(v)}${budget?` / ${money(budget)}`:""}</span></div><div class="bar"><div class="bar-fill" style="width:${total?Math.min(100,v/total*100):0}%"></div></div>${over?`<div class="budget-warn">⚠️ Budget superato</div>`:""}</div>`
+ }).join(""):`<div class="empty">Nessuna spesa questo mese</div>`
 }
 function renderMovements(){
  const q=(search.value||"").trim().toLowerCase();let arr=data.movements.map((m,i)=>({m,i})).reverse().filter(x=>!q||(`${x.m.description} ${x.m.category||""} ${x.m.source||""}`).toLowerCase().includes(q));
- movements.innerHTML=arr.length?arr.map(x=>{let m=x.m;return `<div class="movement"><div class="movement-top"><div class="movement-info"><div class="movement-title ${m.type==="income"?"green":"red"}">${m.type==="income"?"+":"−"} ${money(m.amount)} — ${esc(m.description)}</div><div class="movement-date">${fmt(m.date)} · ${sourceName(m.source||"cash")}</div>${m.category?`<span class="tag">${esc(m.category)}</span>`:""}</div><div class="buttons"><button class="smallbtn delete" onclick="deleteMovement(${x.i})">🗑️</button></div></div></div>`}).join(""):`<div class="empty">Nessun movimento</div>`
+ movements.innerHTML=arr.length?arr.map(x=>{let m=x.m;return `<div class="movement"><div class="movement-top"><div class="movement-info"><div class="movement-title ${m.type==="income"?"green":"red"}">${m.type==="income"?"+":"−"} ${money(m.amount)} — ${esc(m.description)}</div><div class="movement-date">${fmt(m.date)} · ${sourceName(m.source||"cash")}</div>${m.category?`<span class="tag">${esc(m.category)}</span>`:""}</div><div class="buttons">${m.savings?"":`<button class="smallbtn" onclick="openEditModal(${x.i})">✏️</button>`}<button class="smallbtn delete" onclick="deleteMovement(${x.i})">🗑️</button></div></div></div>`}).join(""):`<div class="empty">Nessun movimento</div>`
 }
+function openEditModal(i){
+ const m=data.movements[i];
+ if(m.savings){toast("Modifica questo movimento dal Salvadanaio","🐷");return}
+ editIndex=i;
+ editTitle.textContent=m.type==="income"?"✏️ Modifica entrata":"✏️ Modifica spesa";
+ editAmount.value=m.amount;
+ editDescription.value=m.description||"";
+ editDate.value=m.date||today();
+ editCategory.innerHTML=`<option value="">Categoria (opzionale)</option>`+data.categories.map(c=>`<option>${esc(c)}</option>`).join("");
+ editCategory.value=m.category||"";
+ chooseEditSource(m.source||"cash");
+ editModal.classList.add("open")
+}
+function closeEditModal(){editModal.classList.remove("open");editIndex=null}
+function chooseEditSource(s){window.editSource=s;editCashBtn.classList.toggle("selected",s==="cash");editCardBtn.classList.toggle("selected",s==="card")}
+function confirmEditMovement(){
+ if(editIndex===null)return;
+ const m=data.movements[editIndex];
+ const a=Number(editAmount.value);if(!(a>0))return editAmount.focus();
+ const desc=editDescription.value.trim()||(m.type==="income"?"Entrata":"Spesa");
+ const cat=editCategory.value;
+ const newSource=window.editSource;
+ const date=editDate.value||today();
+ const oldSource=m.source||"cash";
+ if(m.type==="income"){if(oldSource==="cash")data.cash-=m.amount;else data.card-=m.amount}
+ else{if(oldSource==="cash")data.cash+=m.amount;else data.card+=m.amount}
+ if(m.type==="expense"&&a>availableSource(newSource)){
+   if(oldSource==="cash")data.cash+=m.amount;else data.card+=m.amount;
+   toast("Saldo insufficiente","⚠️");return
+ }
+ if(m.type==="income"){if(newSource==="cash")data.cash+=a;else data.card+=a}
+ else{if(newSource==="cash")data.cash-=a;else data.card-=a}
+ m.amount=a;m.description=desc;m.category=cat;m.source=newSource;m.date=date;
+ save();closeEditModal();renderAll();toast("Movimento aggiornato","✏️")
+}
+function filterByCategory(cat){search.value=cat;showHome();renderMovements()}
 function deleteMovement(i){
  const m=data.movements[i];if(!confirm("Eliminare questo movimento?"))return;
  if(m.savings){if(m.type==="expense")data.savings=Math.max(0,data.savings-m.amount);else data.savings+=m.amount}
@@ -393,7 +506,8 @@ function deleteMovement(i){
 function resetAll(){if(!confirm("Vuoi cancellare tutti i saldi, movimenti, obiettivi e risparmi?"))return;data={cash:0,card:0,savings:0,goals:[],movements:[],theme:data.theme,categories:data.categories};save();renderAll();toast("Conto azzerato","🗑️")}
 function renderAll(){renderSummary();renderGoals();renderSavings();renderMonth();renderMovements();renderCategoryOptions()}
 
-document.addEventListener("keydown",e=>{if(e.key==="Enter"&&moneyModal.classList.contains("open"))confirmMoney();if(e.key==="Enter"&&goalMoneyModal.classList.contains("open"))confirmGoalMoney();if(e.key==="Enter"&&settingsModal.classList.contains("open")&&document.activeElement===newCategoryName)addCategory()});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&moneyModal.classList.contains("open"))confirmMoney();if(e.key==="Enter"&&goalMoneyModal.classList.contains("open"))confirmGoalMoney();if(e.key==="Enter"&&editModal.classList.contains("open"))confirmEditMovement();if(e.key==="Enter"&&settingsModal.classList.contains("open")&&document.activeElement===newCategoryName)addCategory()});
+categories.addEventListener("click",e=>{const row=e.target.closest(".category-row");if(row&&row.dataset.cat)filterByCategory(row.dataset.cat)});
 document.body.classList.toggle("dark",data.theme==="dark");updateTheme();renderAll();
 </script>
 </body>
