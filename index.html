@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -20,6 +22,7 @@
 }
 
 :root {
+
     --bg: #f5f6f8;
     --card: #ffffff;
     --text: #17181a;
@@ -42,6 +45,7 @@
 }
 
 body.dark {
+
     --bg: #101112;
     --card: #1b1d20;
     --text: #f5f5f5;
@@ -68,6 +72,7 @@ html {
 }
 
 body {
+
     margin: 0;
 
     padding:
@@ -115,6 +120,7 @@ button:active {
 /* HEADER */
 
 .header {
+
     height: 55px;
 
     display: flex;
@@ -127,6 +133,7 @@ button:active {
 }
 
 .title {
+
     margin: 0;
 
     font-size: 22px;
@@ -135,6 +142,7 @@ button:active {
 
 .menu-button,
 .back-button {
+
     position: absolute;
     left: 0;
 
@@ -144,6 +152,7 @@ button:active {
     border-radius: 14px;
 
     background: var(--card);
+
     border: 1px solid var(--border);
 
     box-shadow: var(--shadow);
@@ -152,9 +161,10 @@ button:active {
 }
 
 
-/* MENU LATERALE */
+/* MENU */
 
 .overlay {
+
     position: fixed;
     inset: 0;
 
@@ -169,11 +179,13 @@ button:active {
 }
 
 .overlay.open {
+
     opacity: 1;
     pointer-events: auto;
 }
 
 .side-menu {
+
     position: fixed;
 
     top: 0;
@@ -203,7 +215,9 @@ button:active {
 }
 
 .menu-header {
+
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -213,11 +227,13 @@ button:active {
 }
 
 .menu-title {
+
     font-size: 23px;
     font-weight: 800;
 }
 
 .close-menu {
+
     width: 42px;
     height: 42px;
 
@@ -229,6 +245,7 @@ button:active {
 }
 
 .menu-section {
+
     margin: 22px 0 8px;
 
     color: var(--muted);
@@ -241,6 +258,7 @@ button:active {
 }
 
 .menu-item {
+
     width: 100%;
 
     min-height: 52px;
@@ -266,6 +284,7 @@ button:active {
 }
 
 .menu-icon {
+
     width: 26px;
 
     text-align: center;
@@ -281,6 +300,7 @@ button:active {
 /* CARD */
 
 .card {
+
     background: var(--card);
 
     border: 1px solid var(--border);
@@ -294,6 +314,7 @@ button:active {
 /* SALDO */
 
 .balance-card {
+
     padding: 25px 20px 22px;
 
     text-align: center;
@@ -304,6 +325,7 @@ button:active {
 }
 
 .balance-label {
+
     color: var(--muted);
 
     font-size: 13px;
@@ -312,6 +334,7 @@ button:active {
 }
 
 .balance {
+
     font-size: 42px;
 
     font-weight: 850;
@@ -330,23 +353,48 @@ button:active {
 }
 
 @keyframes balanceSpent {
-    0% { transform: scale(1); }
-    35% { transform: scale(.97); }
-    70% { transform: scale(1.02); }
-    100% { transform: scale(1); }
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(.97);
+    }
+
+    70% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes balanceAdded {
-    0% { transform: scale(1); }
-    35% { transform: scale(1.04); }
-    70% { transform: scale(.99); }
-    100% { transform: scale(1); }
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.04);
+    }
+
+    70% {
+        transform: scale(.99);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 
 /* TOAST */
 
 .toast {
+
     position: fixed;
 
     left: 50%;
@@ -392,6 +440,7 @@ button:active {
 }
 
 .toast.show {
+
     opacity: 1;
 
     transform:
@@ -404,9 +453,10 @@ button:active {
 }
 
 
-/* MINI SALVADANAIO */
+/* SALVADANAIO MINI */
 
 .savings-mini {
+
     padding: 17px;
 
     margin-bottom: 11px;
@@ -415,6 +465,7 @@ button:active {
 }
 
 .savings-mini-top {
+
     display: flex;
 
     align-items: center;
@@ -424,6 +475,7 @@ button:active {
 }
 
 .savings-mini-left {
+
     display: flex;
 
     align-items: center;
@@ -434,6 +486,7 @@ button:active {
 }
 
 .savings-icon {
+
     width: 43px;
     height: 43px;
 
@@ -451,11 +504,13 @@ button:active {
 }
 
 .savings-name {
+
     font-size: 15px;
     font-weight: 750;
 }
 
 .savings-amount {
+
     margin-top: 3px;
 
     color: var(--muted);
@@ -464,12 +519,14 @@ button:active {
 }
 
 .savings-arrow {
+
     color: var(--muted);
 
     font-size: 20px;
 }
 
 .mini-progress {
+
     height: 6px;
 
     margin-top: 14px;
@@ -482,6 +539,7 @@ button:active {
 }
 
 .mini-progress-fill {
+
     height: 100%;
 
     width: 0%;
@@ -497,6 +555,7 @@ button:active {
 /* STATISTICHE */
 
 .stats {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -511,6 +570,7 @@ button:active {
 }
 
 .stat-label {
+
     color: var(--muted);
 
     font-size: 12px;
@@ -519,6 +579,7 @@ button:active {
 }
 
 .stat-value {
+
     font-size: 19px;
 
     font-weight: 800;
@@ -536,6 +597,7 @@ button:active {
 /* AZIONI */
 
 .actions {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -546,21 +608,27 @@ button:active {
 }
 
 .action {
+
     height: 61px;
 
     border-radius: 16px;
 
     font-size: 16px;
+
     font-weight: 750;
 }
 
 .income {
+
     background: var(--green-bg);
+
     color: var(--green);
 }
 
 .expense {
+
     background: var(--red-bg);
+
     color: var(--red);
 }
 
@@ -568,20 +636,24 @@ button:active {
 /* FORM */
 
 .form {
+
     padding: 19px;
 
     margin-bottom: 14px;
 }
 
 .form-title {
+
     margin: 0 0 15px;
 
     font-size: 19px;
+
     font-weight: 800;
 }
 
 input,
 select {
+
     width: 100%;
 
     height: 51px;
@@ -604,6 +676,7 @@ select {
 }
 
 .save {
+
     width: 100%;
 
     height: 51px;
@@ -618,6 +691,7 @@ select {
 }
 
 .cancel {
+
     width: 100%;
 
     height: 47px;
@@ -633,15 +707,18 @@ select {
 /* SEZIONI */
 
 .section {
+
     padding: 18px;
 
     margin-bottom: 13px;
 }
 
 .section-title {
+
     margin: 0 0 14px;
 
     font-size: 19px;
+
     font-weight: 800;
 }
 
@@ -649,6 +726,7 @@ select {
 /* RIEPILOGO */
 
 .month-summary {
+
     display: flex;
 
     justify-content: space-between;
@@ -664,12 +742,14 @@ select {
 }
 
 .month-name {
+
     font-weight: 700;
 
     font-size: 14px;
 }
 
 .month-total {
+
     color: var(--red);
 
     font-weight: 800;
@@ -683,6 +763,7 @@ select {
 }
 
 .category-header {
+
     display: flex;
 
     justify-content: space-between;
@@ -699,12 +780,14 @@ select {
 }
 
 .category-amount {
+
     color: var(--muted);
 
     font-weight: 700;
 }
 
 .bar {
+
     height: 7px;
 
     background: var(--bg);
@@ -715,6 +798,7 @@ select {
 }
 
 .bar-fill {
+
     height: 100%;
 
     background: var(--red);
@@ -726,18 +810,21 @@ select {
 /* RICERCA */
 
 .search {
+
     position: relative;
 
     margin-bottom: 5px;
 }
 
 .search input {
+
     margin: 0;
 
     padding-left: 43px;
 }
 
 .search-icon {
+
     position: absolute;
 
     left: 15px;
@@ -750,6 +837,7 @@ select {
 /* MOVIMENTI */
 
 .movement {
+
     padding: 15px 0;
 
     border-bottom: 1px solid var(--border);
@@ -760,6 +848,7 @@ select {
 }
 
 .movement-top {
+
     display: flex;
 
     align-items: flex-start;
@@ -770,19 +859,23 @@ select {
 }
 
 .movement-info {
+
     min-width: 0;
 
     flex: 1;
 }
 
 .movement-title {
+
     font-size: 15px;
+
     font-weight: 700;
 
     overflow-wrap: anywhere;
 }
 
 .movement-date {
+
     margin-top: 5px;
 
     color: var(--muted);
@@ -791,6 +884,7 @@ select {
 }
 
 .movement-category {
+
     display: inline-block;
 
     margin-top: 7px;
@@ -807,6 +901,7 @@ select {
 }
 
 .movement-buttons {
+
     display: flex;
 
     gap: 5px;
@@ -814,6 +909,7 @@ select {
 
 .edit,
 .delete {
+
     width: 36px;
     height: 36px;
 
@@ -842,6 +938,7 @@ select {
 }
 
 .empty {
+
     padding: 10px 0;
 
     text-align: center;
@@ -855,12 +952,14 @@ select {
 /* SALVADANAIO */
 
 .savings-card {
+
     padding: 20px;
 
     margin-bottom: 13px;
 }
 
 .savings-big-header {
+
     display: flex;
 
     align-items: center;
@@ -871,6 +970,7 @@ select {
 }
 
 .big-pig {
+
     width: 55px;
     height: 55px;
 
@@ -886,11 +986,14 @@ select {
 }
 
 .savings-page-name {
+
     font-size: 20px;
+
     font-weight: 800;
 }
 
 .savings-page-subtitle {
+
     margin-top: 3px;
 
     color: var(--muted);
@@ -899,6 +1002,7 @@ select {
 }
 
 .savings-big-amount {
+
     font-size: 37px;
 
     font-weight: 850;
@@ -909,6 +1013,7 @@ select {
 }
 
 .savings-target {
+
     color: var(--muted);
 
     font-size: 13px;
@@ -917,6 +1022,7 @@ select {
 }
 
 .progress {
+
     height: 11px;
 
     background: var(--bg);
@@ -927,6 +1033,7 @@ select {
 }
 
 .progress-fill {
+
     height: 100%;
 
     width: 0%;
@@ -939,6 +1046,7 @@ select {
 }
 
 .progress-text {
+
     margin-top: 7px;
 
     text-align: right;
@@ -949,6 +1057,7 @@ select {
 }
 
 .savings-actions {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -960,6 +1069,7 @@ select {
 
 .savings-add,
 .savings-remove {
+
     height: 50px;
 
     border-radius: 13px;
@@ -968,18 +1078,21 @@ select {
 }
 
 .savings-add {
+
     background: var(--green-bg);
 
     color: var(--green);
 }
 
 .savings-remove {
+
     background: var(--red-bg);
 
     color: var(--red);
 }
 
 .settings-button {
+
     width: 100%;
 
     height: 46px;
@@ -994,6 +1107,7 @@ select {
 }
 
 .info-card {
+
     padding: 18px;
 
     line-height: 1.6;
@@ -1004,11 +1118,10 @@ select {
 }
 
 
-/* =========================
-   POPUP IMPORTO
-========================= */
+/* POPUP */
 
 .modal-overlay {
+
     position: fixed;
 
     inset: 0;
@@ -1036,12 +1149,14 @@ select {
 }
 
 .modal-overlay.open {
+
     opacity: 1;
 
     pointer-events: auto;
 }
 
 .amount-modal {
+
     width: 100%;
 
     max-width: 520px;
@@ -1060,12 +1175,12 @@ select {
     transition: transform .25s ease;
 }
 
-.modal-overlay.open
-.amount-modal {
+.modal-overlay.open .amount-modal {
     transform: translateY(0);
 }
 
 .modal-handle {
+
     width: 42px;
 
     height: 5px;
@@ -1078,6 +1193,7 @@ select {
 }
 
 .modal-title {
+
     text-align: center;
 
     font-size: 20px;
@@ -1088,6 +1204,7 @@ select {
 }
 
 .modal-subtitle {
+
     text-align: center;
 
     color: var(--muted);
@@ -1098,6 +1215,7 @@ select {
 }
 
 .amount-input {
+
     width: 100%;
 
     height: 70px;
@@ -1128,6 +1246,7 @@ select {
 }
 
 .modal-confirm {
+
     width: 100%;
 
     height: 56px;
@@ -1144,6 +1263,7 @@ select {
 }
 
 .modal-cancel {
+
     width: 100%;
 
     height: 46px;
@@ -1160,15 +1280,10 @@ select {
 }
 
 
-/* =========================
-   POPUP DETTAGLI
-========================= */
-
-.details-modal {
-    padding-top: 20px;
-}
+/* DETTAGLI */
 
 .details-title {
+
     font-size: 20px;
 
     font-weight: 800;
@@ -1179,6 +1294,7 @@ select {
 }
 
 .details-subtitle {
+
     color: var(--muted);
 
     text-align: center;
@@ -1189,6 +1305,7 @@ select {
 }
 
 .details-buttons {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -1199,6 +1316,7 @@ select {
 }
 
 .skip-button {
+
     width: 100%;
 
     height: 50px;
@@ -1211,6 +1329,7 @@ select {
 }
 
 .detail-save {
+
     width: 100%;
 
     height: 50px;
@@ -1225,11 +1344,10 @@ select {
 }
 
 
-/* MOBILE */
-
 @media (max-width: 370px) {
 
     body {
+
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -1241,6 +1359,7 @@ select {
 }
 
 </style>
+
 </head>
 
 
@@ -1324,7 +1443,9 @@ select {
         <span
             id="themeIcon"
             class="menu-icon">
+
             🌙
+
         </span>
 
         <span id="themeText">
@@ -1360,7 +1481,9 @@ select {
     <span
         id="toastIcon"
         class="toast-icon">
+
         ✓
+
     </span>
 
     <span id="toastText">
@@ -1370,9 +1493,7 @@ select {
 </div>
 
 
-<!-- =========================
-     POPUP IMPORTO
-========================= -->
+<!-- POPUP IMPORTO -->
 
 <div
     id="amountModal"
@@ -1383,13 +1504,15 @@ select {
         <div class="modal-handle">
         </div>
 
+
         <div
             id="amountModalTitle"
             class="modal-title">
 
-            Metti soldi
+            Inserisci importo
 
         </div>
+
 
         <div
             id="amountModalSubtitle"
@@ -1434,22 +1557,24 @@ select {
 </div>
 
 
-<!-- =========================
-     POPUP DETTAGLI
-========================= -->
+<!-- POPUP DETTAGLI -->
 
 <div
     id="detailsModal"
     class="modal-overlay">
 
-    <div class="amount-modal details-modal">
+    <div class="amount-modal">
 
         <div class="modal-handle">
         </div>
 
+
         <div class="details-title">
+
             Aggiungi dettagli?
+
         </div>
+
 
         <div class="details-subtitle">
 
@@ -1574,9 +1699,7 @@ select {
 </div>
 
 
-<!-- =========================
-     HOME
-========================= -->
+<!-- HOME -->
 
 <main
     id="homePage"
@@ -1592,6 +1715,7 @@ select {
             ☰
 
         </button>
+
 
         <h1 class="title">
             Gestione Soldi
@@ -1618,6 +1742,8 @@ select {
 
     </section>
 
+
+    <!-- SALVADANAIO -->
 
     <section
         class="card savings-mini"
@@ -1653,11 +1779,13 @@ select {
 
             </div>
 
+
             <div class="savings-arrow">
                 ›
             </div>
 
         </div>
+
 
         <div class="mini-progress">
 
@@ -1670,6 +1798,8 @@ select {
 
     </section>
 
+
+    <!-- STATISTICHE -->
 
     <div class="stats">
 
@@ -1709,11 +1839,13 @@ select {
     </div>
 
 
+    <!-- PULSANTI -->
+
     <div class="actions">
 
         <button
             class="action income"
-            onclick="openForm('income')">
+            onclick="openQuickTransaction('income')">
 
             ＋ Entrata
 
@@ -1722,7 +1854,7 @@ select {
 
         <button
             class="action expense"
-            onclick="openForm('expense')">
+            onclick="openQuickTransaction('expense')">
 
             − Spesa
 
@@ -1731,7 +1863,7 @@ select {
     </div>
 
 
-    <!-- FORM NORMALE -->
+    <!-- FORM CLASSICO -->
 
     <section
         id="form"
@@ -1871,11 +2003,14 @@ select {
     </section>
 
 
+    <!-- SPESE MESE -->
+
     <section class="card section">
 
         <h2 class="section-title">
             Spese di questo mese
         </h2>
+
 
         <div class="month-summary">
 
@@ -1887,6 +2022,7 @@ select {
 
             </span>
 
+
             <span
                 id="monthTotal"
                 class="month-total">
@@ -1897,11 +2033,14 @@ select {
 
         </div>
 
+
         <div id="categories">
         </div>
 
     </section>
 
+
+    <!-- MOVIMENTI -->
 
     <section class="card section">
 
@@ -1915,6 +2054,7 @@ select {
             <span class="search-icon">
                 🔎
             </span>
+
 
             <input
                 id="search"
@@ -1931,12 +2071,24 @@ select {
 
     </section>
 
+
+    <!-- VERSIONE -->
+
+    <div style="
+        text-align:center;
+        color:var(--muted);
+        font-size:11px;
+        margin:20px 0 5px;
+    ">
+
+        Gestione Soldi · Versione 1.20
+
+    </div>
+
 </main>
 
 
-<!-- =========================
-     SALVADANAIO
-========================= -->
+<!-- SALVADANAIO -->
 
 <main
     id="savingsPage"
@@ -1953,6 +2105,7 @@ select {
 
         </button>
 
+
         <h1 class="title">
             Salvadanaio
         </h1>
@@ -1968,6 +2121,7 @@ select {
                 🐷
             </div>
 
+
             <div>
 
                 <div
@@ -1977,6 +2131,7 @@ select {
                     Il mio salvadanaio
 
                 </div>
+
 
                 <div class="savings-page-subtitle">
 
@@ -2030,7 +2185,7 @@ select {
 
             <button
                 class="savings-add"
-                onclick="openAmountModal('add')">
+                onclick="openSavingsAmountModal('add')">
 
                 ＋ Metti soldi
 
@@ -2039,7 +2194,7 @@ select {
 
             <button
                 class="savings-remove"
-                onclick="openAmountModal('remove')">
+                onclick="openSavingsAmountModal('remove')">
 
                 − Preleva
 
@@ -2065,12 +2220,14 @@ select {
                 Impostazioni salvadanaio
             </h2>
 
+
             <input
                 id="savingsNameInput"
                 type="text"
                 maxlength="40"
                 placeholder="Nome del salvadanaio"
             >
+
 
             <input
                 id="savingsTargetInput"
@@ -2080,6 +2237,7 @@ select {
                 step="0.01"
                 placeholder="Obiettivo (€)"
             >
+
 
             <button
                 class="save"
@@ -2116,10 +2274,23 @@ select {
 
     </section>
 
+
+    <div style="
+        text-align:center;
+        color:var(--muted);
+        font-size:11px;
+        margin:20px 0 5px;
+    ">
+
+        Gestione Soldi · Versione 1.20
+
+    </div>
+
 </main>
 
 
 <script>
+
 
 /* =========================
    DATI
@@ -2130,32 +2301,39 @@ let balance =
         localStorage.getItem("balance")
     ) || 0;
 
+
 let movements =
     JSON.parse(
         localStorage.getItem("movements")
     ) || [];
+
 
 let savingsAmount =
     Number(
         localStorage.getItem("savingsAmount")
     ) || 0;
 
+
 let savingsTarget =
     Number(
         localStorage.getItem("savingsTarget")
     ) || 0;
 
+
 let savingsName =
     localStorage.getItem("savingsName")
     || "Il mio salvadanaio";
 
-let operationType = "income";
 
-let editingIndex = null;
+let quickType = "income";
+
+let quickAmountValue = 0;
 
 let quickSavingsType = "add";
 
-let quickAmountValue = 0;
+let operationType = "income";
+
+let editingIndex = null;
 
 
 /* =========================
@@ -2191,7 +2369,8 @@ function formatDate(date) {
 
     if (!date) return "";
 
-    const p = date.split("-");
+    const p =
+        date.split("-");
 
     if (p.length !== 3) {
         return date;
@@ -2254,6 +2433,7 @@ function saveData() {
 
 let toastTimer = null;
 
+
 function showToast(
     message,
     icon = "✓"
@@ -2264,21 +2444,24 @@ function showToast(
             "toast"
         );
 
+
     document.getElementById(
         "toastIcon"
     ).textContent = icon;
+
 
     document.getElementById(
         "toastText"
     ).textContent = message;
 
-    toast.classList.add(
-        "show"
-    );
+
+    toast.classList.add("show");
+
 
     clearTimeout(
         toastTimer
     );
+
 
     toastTimer =
         setTimeout(
@@ -2306,18 +2489,22 @@ function animateBalance(type) {
             "balanceCard"
         );
 
+
     card.classList.remove(
         "balance-spent",
         "balance-added"
     );
 
+
     void card.offsetWidth;
+
 
     card.classList.add(
         type === "spent"
             ? "balance-spent"
             : "balance-added"
     );
+
 
     setTimeout(
         () => {
@@ -2344,6 +2531,7 @@ function openMenu() {
         .getElementById("sideMenu")
         .classList.add("open");
 
+
     document
         .getElementById("overlay")
         .classList.add("open");
@@ -2356,6 +2544,7 @@ function closeMenu() {
     document
         .getElementById("sideMenu")
         .classList.remove("open");
+
 
     document
         .getElementById("overlay")
@@ -2374,9 +2563,11 @@ function showHome() {
         "homePage"
     ).style.display = "block";
 
+
     document.getElementById(
         "savingsPage"
     ).style.display = "none";
+
 
     closeMenu();
 
@@ -2391,9 +2582,11 @@ function showSavings() {
         "homePage"
     ).style.display = "none";
 
+
     document.getElementById(
         "savingsPage"
     ).style.display = "block";
+
 
     closeMenu();
 
@@ -2414,15 +2607,18 @@ function toggleTheme() {
         "dark"
     );
 
+
     const dark =
         document.body.classList.contains(
             "dark"
         );
 
+
     localStorage.setItem(
         "theme",
         dark ? "dark" : "light"
     );
+
 
     updateTheme();
 
@@ -2436,10 +2632,12 @@ function updateTheme() {
             "dark"
         );
 
+
     document.getElementById(
         "themeIcon"
     ).textContent =
         dark ? "☀️" : "🌙";
+
 
     document.getElementById(
         "themeText"
@@ -2464,6 +2662,7 @@ function loadTheme() {
 
     }
 
+
     updateTheme();
 
 }
@@ -2478,6 +2677,7 @@ function updateSummary() {
     let income = 0;
 
     let expense = 0;
+
 
     movements.forEach(
         movement => {
@@ -2509,10 +2709,12 @@ function updateSummary() {
     ).textContent =
         money(balance);
 
+
     document.getElementById(
         "totalIncome"
     ).textContent =
         money(income);
+
 
     document.getElementById(
         "totalExpense"
@@ -2533,6 +2735,7 @@ function renderSavingsMini() {
     ).textContent =
         savingsName;
 
+
     document.getElementById(
         "miniSavingsAmount"
     ).textContent =
@@ -2542,7 +2745,9 @@ function renderSavingsMini() {
               + money(savingsTarget)
             : money(savingsAmount);
 
+
     let percentage = 0;
+
 
     if (
         savingsTarget > 0
@@ -2556,11 +2761,13 @@ function renderSavingsMini() {
 
     }
 
+
     percentage =
         Math.min(
             percentage,
             100
         );
+
 
     document.getElementById(
         "miniProgress"
@@ -2598,6 +2805,7 @@ function renderMonth() {
                     "T12:00:00"
                 );
 
+
             if (
                 date.getMonth() !==
                 currentMonth ||
@@ -2609,6 +2817,7 @@ function renderMonth() {
 
             }
 
+
             if (
                 movement.type !==
                 "expense"
@@ -2618,14 +2827,17 @@ function renderMonth() {
 
             }
 
+
             total +=
                 Number(
                     movement.amount
                 );
 
+
             const category =
                 movement.category ||
                 "📦 Altro";
+
 
             categories[category] =
                 (
@@ -2668,6 +2880,7 @@ function renderMonth() {
         document.getElementById(
             "categories"
         );
+
 
     container.innerHTML = "";
 
@@ -2714,6 +2927,7 @@ function renderMonth() {
                     "div"
                 );
 
+
             row.className =
                 "category-row";
 
@@ -2731,6 +2945,7 @@ function renderMonth() {
                     </span>
 
                 </div>
+
 
                 <div class="bar">
 
@@ -2755,7 +2970,321 @@ function renderMonth() {
 
 
 /* =========================
-   FORM NORMALE
+   POPUP ENTRATA / SPESA
+========================= */
+
+function openQuickTransaction(type) {
+
+    quickType = type;
+
+
+    const title =
+        document.getElementById(
+            "amountModalTitle"
+        );
+
+
+    const subtitle =
+        document.getElementById(
+            "amountModalSubtitle"
+        );
+
+
+    if (
+        type === "income"
+    ) {
+
+        title.textContent =
+            "💰 Nuova entrata";
+
+        subtitle.textContent =
+            "Quanto hai ricevuto?";
+
+    } else {
+
+        title.textContent =
+            "💸 Nuova spesa";
+
+        subtitle.textContent =
+            "Quanto hai speso?";
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "quickAmount"
+        );
+
+
+    input.value = "";
+
+
+    document.getElementById(
+        "amountModal"
+    ).classList.add(
+        "open"
+    );
+
+
+    setTimeout(
+        () => {
+
+            input.focus();
+
+            input.click();
+
+        },
+        250
+    );
+
+}
+
+
+function closeAmountModal() {
+
+    document
+        .getElementById(
+            "amountModal"
+        )
+        .classList.remove(
+            "open"
+        );
+
+}
+
+
+function confirmQuickAmount() {
+
+    const input =
+        document.getElementById(
+            "quickAmount"
+        );
+
+
+    const amount =
+        Number(
+            input.value
+        );
+
+
+    if (
+        !amount ||
+        amount <= 0
+    ) {
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    if (
+        quickType === "expense"
+        &&
+        amount > balance
+    ) {
+
+        alert(
+            "Saldo insufficiente."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    quickAmountValue =
+        amount;
+
+
+    closeAmountModal();
+
+
+    setTimeout(
+        () => {
+
+            openDetailsModal();
+
+        },
+        220
+    );
+
+}
+
+
+/* =========================
+   POPUP DETTAGLI
+========================= */
+
+function openDetailsModal() {
+
+    document.getElementById(
+        "quickDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "quickCategory"
+    ).value = "";
+
+
+    document.getElementById(
+        "detailsModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+function closeDetailsModal() {
+
+    document
+        .getElementById(
+            "detailsModal"
+        )
+        .classList.remove(
+            "open"
+        );
+
+}
+
+
+/* =========================
+   SALVA ENTRATA / SPESA
+========================= */
+
+function saveQuickTransaction(
+    withDetails
+) {
+
+    let description =
+        quickType === "income"
+            ? "Entrata"
+            : "Spesa";
+
+
+    let category =
+        "📦 Altro";
+
+
+    if (
+        withDetails
+    ) {
+
+        const d =
+            document.getElementById(
+                "quickDescription"
+            ).value.trim();
+
+
+        const c =
+            document.getElementById(
+                "quickCategory"
+            ).value;
+
+
+        if (d) {
+
+            description = d;
+
+        }
+
+
+        if (c) {
+
+            category = c;
+
+        }
+
+    }
+
+
+    const amount =
+        quickAmountValue;
+
+
+    if (
+        quickType === "income"
+    ) {
+
+        balance += amount;
+
+
+        movements.push({
+
+            type: "income",
+
+            amount: amount,
+
+            description: description,
+
+            category: category,
+
+            date: today()
+
+        });
+
+
+        animateBalance(
+            "added"
+        );
+
+
+        showToast(
+            "Entrata aggiunta",
+            "💰"
+        );
+
+
+    } else {
+
+        balance -= amount;
+
+
+        movements.push({
+
+            type: "expense",
+
+            amount: amount,
+
+            description: description,
+
+            category: category,
+
+            date: today()
+
+        });
+
+
+        animateBalance(
+            "spent"
+        );
+
+
+        showToast(
+            "Spesa registrata",
+            "💸"
+        );
+
+    }
+
+
+    saveData();
+
+    updateAll();
+
+    closeDetailsModal();
+
+}
+
+
+/* =========================
+   FORM CLASSICO
 ========================= */
 
 function openForm(
@@ -2823,20 +3352,22 @@ function openForm(
         ).value =
             m.date;
 
-
     } else {
 
         document.getElementById(
             "amount"
         ).value = "";
 
+
         document.getElementById(
             "description"
         ).value = "";
 
+
         document.getElementById(
             "category"
         ).value = "";
+
 
         document.getElementById(
             "date"
@@ -2864,13 +3395,14 @@ function closeForm() {
         "hidden"
     );
 
+
     editingIndex = null;
 
 }
 
 
 /* =========================
-   SALVA MOVIMENTO NORMALE
+   SALVA FORM CLASSICO
 ========================= */
 
 function saveMovement() {
@@ -2882,15 +3414,18 @@ function saveMovement() {
             ).value
         );
 
+
     let description =
         document.getElementById(
             "description"
         ).value.trim();
 
+
     let category =
         document.getElementById(
             "category"
         ).value;
+
 
     const date =
         document.getElementById(
@@ -2968,20 +3503,15 @@ function saveMovement() {
             editingIndex
         ] = {
 
-            type:
-                old.type,
+            type: old.type,
 
-            amount:
-                amount,
+            amount: amount,
 
-            description:
-                description,
+            description: description,
 
-            category:
-                category,
+            category: category,
 
-            date:
-                date
+            date: date
 
         };
 
@@ -2998,9 +3528,7 @@ function saveMovement() {
 
         }
 
-
     } else {
-
 
         if (
             operationType === "expense"
@@ -3019,20 +3547,15 @@ function saveMovement() {
 
         movements.push({
 
-            type:
-                operationType,
+            type: operationType,
 
-            amount:
-                amount,
+            amount: amount,
 
-            description:
-                description,
+            description: description,
 
-            category:
-                category,
+            category: category,
 
-            date:
-                date
+            date: date
 
         });
 
@@ -3043,27 +3566,9 @@ function saveMovement() {
 
             balance += amount;
 
-            animateBalance(
-                "added"
-            );
-
-            showToast(
-                "Entrata aggiunta",
-                "💰"
-            );
-
         } else {
 
             balance -= amount;
-
-            animateBalance(
-                "spent"
-            );
-
-            showToast(
-                "Spesa registrata",
-                "💸"
-            );
 
         }
 
@@ -3089,6 +3594,7 @@ function renderMovements() {
         document.getElementById(
             "movements"
         );
+
 
     const search =
         document.getElementById(
@@ -3120,12 +3626,14 @@ function renderMovements() {
                         return true;
                     }
 
+
                     const text =
                         (
                             item.movement.description
                             + " " +
                             item.movement.category
                         ).toLowerCase();
+
 
                     return text.includes(
                         search
@@ -3155,13 +3663,16 @@ function renderMovements() {
             const m =
                 item.movement;
 
+
             const index =
                 item.index;
+
 
             const sign =
                 m.type === "income"
                     ? "+"
                     : "-";
+
 
             const color =
                 m.type === "income"
@@ -3173,6 +3684,7 @@ function renderMovements() {
                 document.createElement(
                     "div"
                 );
+
 
             element.className =
                 "movement";
@@ -3194,11 +3706,13 @@ function renderMovements() {
 
                         </div>
 
+
                         <div class="movement-date">
 
                             ${formatDate(m.date)}
 
                         </div>
+
 
                         <span class="movement-category">
 
@@ -3438,36 +3952,46 @@ function saveSavingsSettings() {
 
 
 /* =========================
-   NUOVO POPUP
-   IMPORTO
+   POPUP SALVADANAIO
 ========================= */
 
-function openAmountModal(type) {
+function openSavingsAmountModal(type) {
 
     quickSavingsType =
         type;
 
 
-    const modal =
+    const title =
         document.getElementById(
-            "amountModal"
+            "amountModalTitle"
         );
 
 
-    document.getElementById(
-        "amountModalTitle"
-    ).textContent =
-        type === "add"
-            ? "🐷 Metti soldi"
-            : "💰 Preleva soldi";
+    const subtitle =
+        document.getElementById(
+            "amountModalSubtitle"
+        );
 
 
-    document.getElementById(
-        "amountModalSubtitle"
-    ).textContent =
+    if (
         type === "add"
-            ? "Quanto vuoi mettere?"
-            : "Quanto vuoi prelevare?";
+    ) {
+
+        title.textContent =
+            "🐷 Metti soldi";
+
+        subtitle.textContent =
+            "Quanto vuoi mettere?";
+
+    } else {
+
+        title.textContent =
+            "💰 Preleva soldi";
+
+        subtitle.textContent =
+            "Quanto vuoi prelevare?";
+
+    }
 
 
     const input =
@@ -3479,15 +4003,12 @@ function openAmountModal(type) {
     input.value = "";
 
 
-    modal.classList.add(
+    document.getElementById(
+        "amountModal"
+    ).classList.add(
         "open"
     );
 
-
-    /*
-       Apriamo automaticamente
-       la tastiera del telefono.
-    */
 
     setTimeout(
         () => {
@@ -3503,150 +4024,15 @@ function openAmountModal(type) {
 }
 
 
-function closeAmountModal() {
-
-    document
-        .getElementById(
-            "amountModal"
-        )
-        .classList.remove(
-            "open"
-        );
-
-}
-
-
-function confirmQuickAmount() {
-
-    const input =
-        document.getElementById(
-            "quickAmount"
-        );
-
-
-    const amount =
-        Number(
-            input.value
-        );
-
-
-    if (
-        !amount ||
-        amount <= 0
-    ) {
-
-        input.focus();
-
-        return;
-
-    }
-
-
-    if (
-        quickSavingsType === "add"
-        &&
-        amount > balance
-    ) {
-
-        alert(
-            "Non hai abbastanza saldo disponibile."
-        );
-
-        input.focus();
-
-        return;
-
-    }
-
-
-    if (
-        quickSavingsType === "remove"
-        &&
-        amount > savingsAmount
-    ) {
-
-        alert(
-            "Non hai abbastanza soldi nel salvadanaio."
-        );
-
-        input.focus();
-
-        return;
-
-    }
-
-
-    quickAmountValue =
-        amount;
-
-
-    closeAmountModal();
-
-
-    /*
-       Piccola pausa:
-       prima chiudiamo la tastiera,
-       poi mostriamo i dettagli.
-    */
-
-    setTimeout(
-        () => {
-
-            openDetailsModal();
-
-        },
-        220
-    );
-
-}
-
-
-/* =========================
-   POPUP DETTAGLI
-========================= */
-
-function openDetailsModal() {
-
-    document.getElementById(
-        "quickDescription"
-    ).value = "";
-
-
-    document.getElementById(
-        "quickCategory"
-    ).value = "";
-
-
-    document.getElementById(
-        "detailsModal"
-    ).classList.add(
-        "open"
-    );
-
-}
-
-
-function closeDetailsModal() {
-
-    document.getElementById(
-        "detailsModal"
-    ).classList.remove(
-        "open"
-    );
-
-}
-
-
-/* =========================
-   SALVA OPERAZIONE RAPIDA
-========================= */
-
-function saveQuickTransaction(
+function saveSavingsTransaction(
     withDetails
 ) {
 
     let description =
-        "Versamento salvadanaio";
+        quickSavingsType === "add"
+            ? "Versamento salvadanaio"
+            : "Prelievo salvadanaio";
+
 
     let category =
         "🐷 Salvadanaio";
@@ -3661,38 +4047,20 @@ function saveQuickTransaction(
                 "quickDescription"
             ).value.trim();
 
+
         const c =
             document.getElementById(
                 "quickCategory"
             ).value;
 
 
-        /*
-           Se l'utente scrive
-           una descrizione,
-           la usiamo.
-
-           Altrimenti lasciamo
-           quella automatica.
-        */
-
         if (d) {
-
             description = d;
-
         }
 
 
-        /*
-           La categoria può
-           rimanere salvadanaio
-           se non viene scelta.
-        */
-
         if (c) {
-
             category = c;
-
         }
 
     }
@@ -3728,16 +4096,13 @@ function saveQuickTransaction(
         });
 
 
-        animateBalance(
-            "spent"
-        );
+        animateBalance("spent");
 
 
         showToast(
             "Soldi nel salvadanaio!",
             "🐷"
         );
-
 
     } else {
 
@@ -3752,11 +4117,7 @@ function saveQuickTransaction(
 
             amount: amount,
 
-            description:
-                description ===
-                "Versamento salvadanaio"
-                    ? "Prelievo salvadanaio"
-                    : description,
+            description: description,
 
             category: category,
 
@@ -3767,9 +4128,7 @@ function saveQuickTransaction(
         });
 
 
-        animateBalance(
-            "added"
-        );
+        animateBalance("added");
 
 
         showToast(
@@ -3800,14 +4159,14 @@ function resetAll() {
     closeMenu();
 
 
-    const confirmation =
-        confirm(
+    if (
+        !confirm(
             "ATTENZIONE\n\nVuoi azzerare il conto e cancellare tutti i movimenti?\n\nIl salvadanaio verrà azzerato."
-        );
+        )
+    ) {
 
-
-    if (!confirmation) {
         return;
+
     }
 
 
@@ -3866,12 +4225,301 @@ document.getElementById(
 
             event.preventDefault();
 
+            /*
+             * Il popup deve funzionare
+             * sia per entrate/spese
+             * sia per il salvadanaio.
+             */
+
             confirmQuickAmount();
 
         }
 
     }
 );
+
+
+/* =========================
+   CONFERMA IMPORTO
+========================= */
+
+function confirmQuickAmount() {
+
+    const input =
+        document.getElementById(
+            "quickAmount"
+        );
+
+
+    const amount =
+        Number(
+            input.value
+        );
+
+
+    if (
+        !amount ||
+        amount <= 0
+    ) {
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /*
+     * CONTROLLO SPESA NORMALE
+     */
+
+    if (
+        quickType === "expense"
+        &&
+        amount > balance
+    ) {
+
+        alert(
+            "Saldo insufficiente."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /*
+     * CONTROLLO SALVADANAIO
+     */
+
+    if (
+        quickType !== "income"
+        &&
+        quickType !== "expense"
+    ) {
+
+        if (
+            quickSavingsType === "add"
+            &&
+            amount > balance
+        ) {
+
+            alert(
+                "Non hai abbastanza saldo disponibile."
+            );
+
+            input.focus();
+
+            return;
+
+        }
+
+
+        if (
+            quickSavingsType === "remove"
+            &&
+            amount > savingsAmount
+        ) {
+
+            alert(
+                "Non hai abbastanza soldi nel salvadanaio."
+            );
+
+            input.focus();
+
+            return;
+
+        }
+
+    }
+
+
+    quickAmountValue =
+        amount;
+
+
+    closeAmountModal();
+
+
+    setTimeout(
+        () => {
+
+            openDetailsModal();
+
+        },
+        220
+    );
+
+}
+
+
+/* =========================
+   SALVATAGGIO DETTAGLI
+========================= */
+
+function saveQuickTransaction(
+    withDetails
+) {
+
+    /*
+     * Se quickType è entrata o spesa,
+     * salviamo una normale operazione.
+     */
+
+    if (
+        quickType === "income"
+        ||
+        quickType === "expense"
+    ) {
+
+        saveNormalQuickTransaction(
+            withDetails
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Altrimenti è salvadanaio.
+     */
+
+    saveSavingsTransaction(
+        withDetails
+    );
+
+}
+
+
+/* =========================
+   ENTRATA / SPESA RAPIDA
+========================= */
+
+function saveNormalQuickTransaction(
+    withDetails
+) {
+
+    let description =
+        quickType === "income"
+            ? "Entrata"
+            : "Spesa";
+
+
+    let category =
+        "📦 Altro";
+
+
+    if (
+        withDetails
+    ) {
+
+        const d =
+            document.getElementById(
+                "quickDescription"
+            ).value.trim();
+
+
+        const c =
+            document.getElementById(
+                "quickCategory"
+            ).value;
+
+
+        if (d) {
+
+            description = d;
+
+        }
+
+
+        if (c) {
+
+            category = c;
+
+        }
+
+    }
+
+
+    const amount =
+        quickAmountValue;
+
+
+    if (
+        quickType === "income"
+    ) {
+
+        balance += amount;
+
+
+        movements.push({
+
+            type: "income",
+
+            amount: amount,
+
+            description: description,
+
+            category: category,
+
+            date: today()
+
+        });
+
+
+        animateBalance(
+            "added"
+        );
+
+
+        showToast(
+            "Entrata aggiunta",
+            "💰"
+        );
+
+    } else {
+
+        balance -= amount;
+
+
+        movements.push({
+
+            type: "expense",
+
+            amount: amount,
+
+            description: description,
+
+            category: category,
+
+            date: today()
+
+        });
+
+
+        animateBalance(
+            "spent"
+        );
+
+
+        showToast(
+            "Spesa registrata",
+            "💸"
+        );
+
+    }
+
+
+    saveData();
+
+    updateAll();
+
+    closeDetailsModal();
+
+}
 
 
 /* =========================
@@ -3887,4 +4535,5 @@ renderSavings();
 </script>
 
 </body>
+
 </html>
