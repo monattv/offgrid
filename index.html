@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
 <meta charset="UTF-8">
 
@@ -88,10 +87,6 @@ body {
         sans-serif;
 
     min-height: 100vh;
-
-    transition:
-        background .2s,
-        color .2s;
 }
 
 button,
@@ -117,9 +112,7 @@ button:active {
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header {
     height: 55px;
@@ -138,8 +131,6 @@ button:active {
 
     font-size: 22px;
     font-weight: 800;
-
-    letter-spacing: -.5px;
 }
 
 .menu-button,
@@ -161,9 +152,7 @@ button:active {
 }
 
 
-/* =========================
-   MENU
-========================= */
+/* MENU LATERALE */
 
 .overlay {
     position: fixed;
@@ -206,8 +195,7 @@ button:active {
 
     z-index: 101;
 
-    box-shadow:
-        8px 0 30px rgba(0,0,0,.18);
+    box-shadow: 8px 0 30px rgba(0,0,0,.18);
 }
 
 .side-menu.open {
@@ -241,8 +229,7 @@ button:active {
 }
 
 .menu-section {
-    margin:
-        22px 0 8px;
+    margin: 22px 0 8px;
 
     color: var(--muted);
 
@@ -250,7 +237,6 @@ button:active {
     font-weight: 700;
 
     text-transform: uppercase;
-
     letter-spacing: 1px;
 }
 
@@ -292,9 +278,7 @@ button:active {
 }
 
 
-/* =========================
-   CARDS
-========================= */
+/* CARD */
 
 .card {
     background: var(--card);
@@ -307,9 +291,7 @@ button:active {
 }
 
 
-/* =========================
-   SALDO
-========================= */
+/* SALDO */
 
 .balance-card {
     padding: 25px 20px 22px;
@@ -339,9 +321,6 @@ button:active {
     overflow-wrap: anywhere;
 }
 
-
-/* ANIMAZIONE SALDO */
-
 .balance-card.balance-spent {
     animation: balanceSpent .45s ease;
 }
@@ -351,49 +330,21 @@ button:active {
 }
 
 @keyframes balanceSpent {
-
-    0% {
-        transform: scale(1);
-    }
-
-    35% {
-        transform: scale(.97);
-    }
-
-    70% {
-        transform: scale(1.02);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
+    0% { transform: scale(1); }
+    35% { transform: scale(.97); }
+    70% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
 
 @keyframes balanceAdded {
-
-    0% {
-        transform: scale(1);
-    }
-
-    35% {
-        transform: scale(1.04);
-    }
-
-    70% {
-        transform: scale(.99);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
+    0% { transform: scale(1); }
+    35% { transform: scale(1.04); }
+    70% { transform: scale(.99); }
+    100% { transform: scale(1); }
 }
 
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 .toast {
     position: fixed;
@@ -427,8 +378,7 @@ button:active {
 
     color: var(--card);
 
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.22);
+    box-shadow: 0 10px 35px rgba(0,0,0,.22);
 
     font-size: 14px;
 
@@ -454,9 +404,7 @@ button:active {
 }
 
 
-/* =========================
-   SALVADANAIO MINI
-========================= */
+/* MINI SALVADANAIO */
 
 .savings-mini {
     padding: 17px;
@@ -470,7 +418,6 @@ button:active {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     gap: 12px;
@@ -506,10 +453,6 @@ button:active {
 .savings-name {
     font-size: 15px;
     font-weight: 750;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .savings-amount {
@@ -551,9 +494,7 @@ button:active {
 }
 
 
-/* =========================
-   STATISTICHE
-========================= */
+/* STATISTICHE */
 
 .stats {
     display: grid;
@@ -581,9 +522,6 @@ button:active {
     font-size: 19px;
 
     font-weight: 800;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .green {
@@ -595,9 +533,7 @@ button:active {
 }
 
 
-/* =========================
-   AZIONI
-========================= */
+/* AZIONI */
 
 .actions {
     display: grid;
@@ -629,9 +565,7 @@ button:active {
 }
 
 
-/* =========================
-   FORM
-========================= */
+/* FORM */
 
 .form {
     padding: 19px;
@@ -640,8 +574,7 @@ button:active {
 }
 
 .form-title {
-    margin:
-        0 0 15px;
+    margin: 0 0 15px;
 
     font-size: 19px;
     font-weight: 800;
@@ -657,8 +590,7 @@ select {
 
     padding: 0 14px;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid var(--border);
 
     border-radius: 13px;
 
@@ -669,11 +601,6 @@ select {
     color: var(--text);
 
     font-size: 16px;
-}
-
-input:focus,
-select:focus {
-    border-color: var(--blue);
 }
 
 .save {
@@ -703,9 +630,7 @@ select:focus {
 }
 
 
-/* =========================
-   SEZIONI
-========================= */
+/* SEZIONI */
 
 .section {
     padding: 18px;
@@ -714,17 +639,14 @@ select:focus {
 }
 
 .section-title {
-    margin:
-        0 0 14px;
+    margin: 0 0 14px;
 
     font-size: 19px;
     font-weight: 800;
 }
 
 
-/* =========================
-   RIEPILOGO MESE
-========================= */
+/* RIEPILOGO */
 
 .month-summary {
     display: flex;
@@ -754,9 +676,7 @@ select:focus {
 }
 
 
-/* =========================
-   CATEGORIE
-========================= */
+/* CATEGORIE */
 
 .category-row {
     margin-bottom: 14px;
@@ -803,9 +723,7 @@ select:focus {
 }
 
 
-/* =========================
-   RICERCA
-========================= */
+/* RICERCA */
 
 .search {
     position: relative;
@@ -826,20 +744,15 @@ select:focus {
     top: 14px;
 
     color: var(--muted);
-
-    pointer-events: none;
 }
 
 
-/* =========================
-   MOVIMENTI
-========================= */
+/* MOVIMENTI */
 
 .movement {
     padding: 15px 0;
 
-    border-bottom:
-        1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .movement:last-child {
@@ -858,6 +771,7 @@ select:focus {
 
 .movement-info {
     min-width: 0;
+
     flex: 1;
 }
 
@@ -913,9 +827,32 @@ select:focus {
 }
 
 
-/* =========================
-   SALVADANAIO
-========================= */
+/* PAGINE */
+
+#homePage {
+    display: block;
+}
+
+#savingsPage {
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.empty {
+    padding: 10px 0;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* SALVADANAIO */
 
 .savings-card {
     padding: 20px;
@@ -1032,11 +969,13 @@ select:focus {
 
 .savings-add {
     background: var(--green-bg);
+
     color: var(--green);
 }
 
 .savings-remove {
     background: var(--red-bg);
+
     color: var(--red);
 }
 
@@ -1054,21 +993,6 @@ select:focus {
     font-size: 13px;
 }
 
-.savings-form {
-    margin-top: 15px;
-
-    padding-top: 15px;
-
-    border-top:
-        1px solid var(--border);
-}
-
-.savings-form-title {
-    margin-bottom: 10px;
-
-    font-weight: 750;
-}
-
 .info-card {
     padding: 18px;
 
@@ -1081,35 +1005,227 @@ select:focus {
 
 
 /* =========================
-   PAGINE
+   POPUP IMPORTO
 ========================= */
 
-#homePage {
-    display: block;
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    padding:
+        0
+        12px
+        calc(12px + env(safe-area-inset-bottom));
+
+    background: rgba(0,0,0,.45);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity .22s ease;
 }
 
-#savingsPage {
-    display: none;
+.modal-overlay.open {
+    opacity: 1;
+
+    pointer-events: auto;
 }
 
-.hidden {
-    display: none !important;
+.amount-modal {
+    width: 100%;
+
+    max-width: 520px;
+
+    padding: 22px 18px 18px;
+
+    background: var(--card);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 -8px 40px rgba(0,0,0,.20);
+
+    transform: translateY(30px);
+
+    transition: transform .25s ease;
 }
 
-.empty {
-    padding: 10px 0;
+.modal-overlay.open
+.amount-modal {
+    transform: translateY(0);
+}
 
+.modal-handle {
+    width: 42px;
+
+    height: 5px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 10px;
+
+    background: var(--border);
+}
+
+.modal-title {
+    text-align: center;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+}
+
+.modal-subtitle {
     text-align: center;
 
     color: var(--muted);
 
     font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.amount-input {
+    width: 100%;
+
+    height: 70px;
+
+    margin: 0 0 12px;
+
+    padding: 0 15px;
+
+    border-radius: 17px;
+
+    border: 2px solid var(--border);
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    text-align: center;
+
+    outline: none;
+}
+
+.amount-input:focus {
+    border-color: var(--blue);
+}
+
+.modal-confirm {
+    width: 100%;
+
+    height: 56px;
+
+    border-radius: 15px;
+
+    background: var(--text);
+
+    color: var(--card);
+
+    font-weight: 800;
+
+    font-size: 16px;
+}
+
+.modal-cancel {
+    width: 100%;
+
+    height: 46px;
+
+    margin-top: 7px;
+
+    border-radius: 14px;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-weight: 650;
 }
 
 
 /* =========================
-   RESPONSIVE
+   POPUP DETTAGLI
 ========================= */
+
+.details-modal {
+    padding-top: 20px;
+}
+
+.details-title {
+    font-size: 20px;
+
+    font-weight: 800;
+
+    text-align: center;
+
+    margin-bottom: 5px;
+}
+
+.details-subtitle {
+    color: var(--muted);
+
+    text-align: center;
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+.details-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-top: 4px;
+}
+
+.skip-button {
+    width: 100%;
+
+    height: 50px;
+
+    border-radius: 14px;
+
+    background: var(--bg);
+
+    font-weight: 700;
+}
+
+.detail-save {
+    width: 100%;
+
+    height: 50px;
+
+    border-radius: 14px;
+
+    background: var(--text);
+
+    color: var(--card);
+
+    font-weight: 750;
+}
+
+
+/* MOBILE */
 
 @media (max-width: 370px) {
 
@@ -1120,14 +1236,6 @@ select:focus {
 
     .balance {
         font-size: 36px;
-    }
-
-    .title {
-        font-size: 21px;
-    }
-
-    .action {
-        font-size: 15px;
     }
 
 }
@@ -1161,7 +1269,9 @@ select:focus {
         <button
             class="close-menu"
             onclick="closeMenu()">
+
             ×
+
         </button>
 
     </div>
@@ -1253,15 +1363,220 @@ select:focus {
         ✓
     </span>
 
-    <span
-        id="toastText">
+    <span id="toastText">
         Fatto!
     </span>
 
 </div>
 
 
-<!-- HOME -->
+<!-- =========================
+     POPUP IMPORTO
+========================= -->
+
+<div
+    id="amountModal"
+    class="modal-overlay">
+
+    <div class="amount-modal">
+
+        <div class="modal-handle">
+        </div>
+
+        <div
+            id="amountModalTitle"
+            class="modal-title">
+
+            Metti soldi
+
+        </div>
+
+        <div
+            id="amountModalSubtitle"
+            class="modal-subtitle">
+
+            Inserisci solo l'importo
+
+        </div>
+
+
+        <input
+            id="quickAmount"
+            class="amount-input"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="0.01"
+            enterkeyhint="done"
+            placeholder="€ 0,00"
+        >
+
+
+        <button
+            class="modal-confirm"
+            onclick="confirmQuickAmount()">
+
+            Continua
+
+        </button>
+
+
+        <button
+            class="modal-cancel"
+            onclick="closeAmountModal()">
+
+            Annulla
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     POPUP DETTAGLI
+========================= -->
+
+<div
+    id="detailsModal"
+    class="modal-overlay">
+
+    <div class="amount-modal details-modal">
+
+        <div class="modal-handle">
+        </div>
+
+        <div class="details-title">
+            Aggiungi dettagli?
+        </div>
+
+        <div class="details-subtitle">
+
+            Facoltativo. Puoi anche
+            registrare subito il movimento.
+
+        </div>
+
+
+        <input
+            id="quickDescription"
+            type="text"
+            maxlength="100"
+            placeholder="Descrizione (opzionale)"
+        >
+
+
+        <select id="quickCategory">
+
+            <option value="">
+                Categoria (opzionale)
+            </option>
+
+            <option value="💼 Stipendio">
+                💼 Stipendio
+            </option>
+
+            <option value="💰 Bonus">
+                💰 Bonus
+            </option>
+
+            <option value="🎁 Regalo">
+                🎁 Regalo
+            </option>
+
+            <option value="🏦 Investimenti">
+                🏦 Investimenti
+            </option>
+
+            <option value="🏠 Affitto">
+                🏠 Affitto
+            </option>
+
+            <option value="💡 Bollette">
+                💡 Bollette
+            </option>
+
+            <option value="🛒 Spesa alimentare">
+                🛒 Spesa alimentare
+            </option>
+
+            <option value="🍔 Ristoranti">
+                🍔 Ristoranti
+            </option>
+
+            <option value="🚗 Benzina">
+                🚗 Benzina
+            </option>
+
+            <option value="🚌 Trasporti">
+                🚌 Trasporti
+            </option>
+
+            <option value="🛍️ Shopping">
+                🛍️ Shopping
+            </option>
+
+            <option value="🎮 Svago">
+                🎮 Svago
+            </option>
+
+            <option value="💊 Salute">
+                💊 Salute
+            </option>
+
+            <option value="📱 Abbonamenti">
+                📱 Abbonamenti
+            </option>
+
+            <option value="📚 Istruzione">
+                📚 Istruzione
+            </option>
+
+            <option value="🐶 Animali">
+                🐶 Animali
+            </option>
+
+            <option value="✈️ Viaggi">
+                ✈️ Viaggi
+            </option>
+
+            <option value="📦 Altro">
+                📦 Altro
+            </option>
+
+        </select>
+
+
+        <div class="details-buttons">
+
+            <button
+                class="skip-button"
+                onclick="saveQuickTransaction(false)">
+
+                Salta
+
+            </button>
+
+
+            <button
+                class="detail-save"
+                onclick="saveQuickTransaction(true)">
+
+                Salva
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HOME
+========================= -->
 
 <main
     id="homePage"
@@ -1415,6 +1730,8 @@ select:focus {
 
     </div>
 
+
+    <!-- FORM NORMALE -->
 
     <section
         id="form"
@@ -1617,7 +1934,9 @@ select:focus {
 </main>
 
 
-<!-- SALVADANAIO -->
+<!-- =========================
+     SALVADANAIO
+========================= -->
 
 <main
     id="savingsPage"
@@ -1711,7 +2030,7 @@ select:focus {
 
             <button
                 class="savings-add"
-                onclick="openSavingsTransaction('add')">
+                onclick="openAmountModal('add')">
 
                 ＋ Metti soldi
 
@@ -1720,7 +2039,7 @@ select:focus {
 
             <button
                 class="savings-remove"
-                onclick="openSavingsTransaction('remove')">
+                onclick="openAmountModal('remove')">
 
                 − Preleva
 
@@ -1740,12 +2059,11 @@ select:focus {
 
         <div
             id="savingsSettings"
-            class="savings-form hidden">
+            class="form hidden">
 
-            <div class="savings-form-title">
-                Impostazioni
-            </div>
-
+            <h2 class="form-title">
+                Impostazioni salvadanaio
+            </h2>
 
             <input
                 id="savingsNameInput"
@@ -1753,7 +2071,6 @@ select:focus {
                 maxlength="40"
                 placeholder="Nome del salvadanaio"
             >
-
 
             <input
                 id="savingsTargetInput"
@@ -1764,56 +2081,11 @@ select:focus {
                 placeholder="Obiettivo (€)"
             >
 
-
             <button
                 class="save"
                 onclick="saveSavingsSettings()">
 
                 Salva
-
-            </button>
-
-        </div>
-
-
-        <div
-            id="savingsTransaction"
-            class="savings-form hidden">
-
-            <div
-                id="savingsTransactionTitle"
-                class="savings-form-title">
-
-                Operazione
-
-            </div>
-
-
-            <input
-                id="savingsTransactionAmount"
-                type="number"
-                inputmode="decimal"
-                min="0"
-                step="0.01"
-                placeholder="Importo (€)"
-            >
-
-
-            <button
-                id="savingsTransactionButton"
-                class="save"
-                onclick="saveSavingsTransaction()">
-
-                Conferma
-
-            </button>
-
-
-            <button
-                class="cancel"
-                onclick="closeSavingsTransaction()">
-
-                Annulla
 
             </button>
 
@@ -1830,20 +2102,17 @@ select:focus {
 
         <br><br>
 
-        Il salvadanaio è collegato al
-        saldo disponibile.
+        Il salvadanaio è collegato al saldo.
 
         <br><br>
 
         Quando metti soldi nel salvadanaio,
-        viene creato automaticamente un
-        movimento di versamento.
+        vengono tolti dal saldo disponibile.
 
         <br><br>
 
-        Quando prelevi, viene registrato
-        automaticamente il movimento
-        corrispondente.
+        Quando prelevi, tornano
+        automaticamente nel saldo.
 
     </section>
 
@@ -1884,7 +2153,9 @@ let operationType = "income";
 
 let editingIndex = null;
 
-let savingsTransactionType = "add";
+let quickSavingsType = "add";
+
+let quickAmountValue = 0;
 
 
 /* =========================
@@ -1920,8 +2191,7 @@ function formatDate(date) {
 
     if (!date) return "";
 
-    const p =
-        date.split("-");
+    const p = date.split("-");
 
     if (p.length !== 3) {
         return date;
@@ -1984,7 +2254,6 @@ function saveData() {
 
 let toastTimer = null;
 
-
 function showToast(
     message,
     icon = "✓"
@@ -1997,24 +2266,19 @@ function showToast(
 
     document.getElementById(
         "toastIcon"
-    ).textContent =
-        icon;
+    ).textContent = icon;
 
     document.getElementById(
         "toastText"
-    ).textContent =
-        message;
-
+    ).textContent = message;
 
     toast.classList.add(
         "show"
     );
 
-
     clearTimeout(
         toastTimer
     );
-
 
     toastTimer =
         setTimeout(
@@ -2035,31 +2299,25 @@ function showToast(
    ANIMAZIONE SALDO
 ========================= */
 
-function animateBalance(
-    type
-) {
+function animateBalance(type) {
 
     const card =
         document.getElementById(
             "balanceCard"
         );
 
-
     card.classList.remove(
         "balance-spent",
         "balance-added"
     );
 
-
     void card.offsetWidth;
-
 
     card.classList.add(
         type === "spent"
             ? "balance-spent"
             : "balance-added"
     );
-
 
     setTimeout(
         () => {
@@ -2221,13 +2479,11 @@ function updateSummary() {
 
     let expense = 0;
 
-
     movements.forEach(
         movement => {
 
             if (
-                movement.type ===
-                "income"
+                movement.type === "income"
             ) {
 
                 income +=
@@ -2253,12 +2509,10 @@ function updateSummary() {
     ).textContent =
         money(balance);
 
-
     document.getElementById(
         "totalIncome"
     ).textContent =
         money(income);
-
 
     document.getElementById(
         "totalExpense"
@@ -2279,19 +2533,16 @@ function renderSavingsMini() {
     ).textContent =
         savingsName;
 
-
     document.getElementById(
         "miniSavingsAmount"
     ).textContent =
         savingsTarget > 0
-            ? money(savingsAmount) +
-              " / " +
-              money(savingsTarget)
+            ? money(savingsAmount)
+              + " / "
+              + money(savingsTarget)
             : money(savingsAmount);
 
-
     let percentage = 0;
-
 
     if (
         savingsTarget > 0
@@ -2305,13 +2556,11 @@ function renderSavingsMini() {
 
     }
 
-
     percentage =
         Math.min(
             percentage,
             100
         );
-
 
     document.getElementById(
         "miniProgress"
@@ -2349,35 +2598,34 @@ function renderMonth() {
                     "T12:00:00"
                 );
 
-
             if (
                 date.getMonth() !==
                 currentMonth ||
                 date.getFullYear() !==
                 currentYear
             ) {
-                return;
-            }
 
+                return;
+
+            }
 
             if (
                 movement.type !==
                 "expense"
             ) {
-                return;
-            }
 
+                return;
+
+            }
 
             total +=
                 Number(
                     movement.amount
                 );
 
-
             const category =
                 movement.category ||
                 "📦 Altro";
-
 
             categories[category] =
                 (
@@ -2405,8 +2653,8 @@ function renderMonth() {
     document.getElementById(
         "monthName"
     ).textContent =
-        monthName.charAt(0)
-            .toUpperCase() +
+        monthName.charAt(0).toUpperCase()
+        +
         monthName.slice(1);
 
 
@@ -2438,6 +2686,7 @@ function renderMonth() {
             </div>`;
 
         return;
+
     }
 
 
@@ -2464,7 +2713,6 @@ function renderMonth() {
                 document.createElement(
                     "div"
                 );
-
 
             row.className =
                 "category-row";
@@ -2507,7 +2755,7 @@ function renderMonth() {
 
 
 /* =========================
-   FORM
+   FORM NORMALE
 ========================= */
 
 function openForm(
@@ -2582,16 +2830,13 @@ function openForm(
             "amount"
         ).value = "";
 
-
         document.getElementById(
             "description"
         ).value = "";
 
-
         document.getElementById(
             "category"
         ).value = "";
-
 
         document.getElementById(
             "date"
@@ -2625,7 +2870,7 @@ function closeForm() {
 
 
 /* =========================
-   SALVA MOVIMENTO
+   SALVA MOVIMENTO NORMALE
 ========================= */
 
 function saveMovement() {
@@ -2637,18 +2882,15 @@ function saveMovement() {
             ).value
         );
 
-
     let description =
         document.getElementById(
             "description"
         ).value.trim();
 
-
     let category =
         document.getElementById(
             "category"
         ).value;
-
 
     const date =
         document.getElementById(
@@ -2666,6 +2908,7 @@ function saveMovement() {
         );
 
         return;
+
     }
 
 
@@ -2676,6 +2919,7 @@ function saveMovement() {
         );
 
         return;
+
     }
 
 
@@ -2769,6 +3013,7 @@ function saveMovement() {
             );
 
             return;
+
         }
 
 
@@ -2793,34 +3038,10 @@ function saveMovement() {
 
 
         if (
-            operationType ===
-            "income"
+            operationType === "income"
         ) {
 
             balance += amount;
-
-        } else {
-
-            balance -= amount;
-
-        }
-
-
-        if (
-            operationType ===
-            "expense"
-        ) {
-
-            animateBalance(
-                "spent"
-            );
-
-            showToast(
-                "Spesa registrata",
-                "💸"
-            );
-
-        } else {
 
             animateBalance(
                 "added"
@@ -2829,6 +3050,19 @@ function saveMovement() {
             showToast(
                 "Entrata aggiunta",
                 "💰"
+            );
+
+        } else {
+
+            balance -= amount;
+
+            animateBalance(
+                "spent"
+            );
+
+            showToast(
+                "Spesa registrata",
+                "💸"
             );
 
         }
@@ -2855,7 +3089,6 @@ function renderMovements() {
         document.getElementById(
             "movements"
         );
-
 
     const search =
         document.getElementById(
@@ -2887,16 +3120,12 @@ function renderMovements() {
                         return true;
                     }
 
-
                     const text =
                         (
-                            item.movement
-                                .description
+                            item.movement.description
                             + " " +
-                            item.movement
-                                .category
+                            item.movement.category
                         ).toLowerCase();
-
 
                     return text.includes(
                         search
@@ -2916,6 +3145,7 @@ function renderMovements() {
             </div>`;
 
         return;
+
     }
 
 
@@ -2925,16 +3155,13 @@ function renderMovements() {
             const m =
                 item.movement;
 
-
             const index =
                 item.index;
-
 
             const sign =
                 m.type === "income"
                     ? "+"
                     : "-";
-
 
             const color =
                 m.type === "income"
@@ -2946,7 +3173,6 @@ function renderMovements() {
                 document.createElement(
                     "div"
                 );
-
 
             element.className =
                 "movement";
@@ -3202,86 +3428,105 @@ function saveSavingsSettings() {
         "hidden"
     );
 
+
+    showToast(
+        "Salvadanaio aggiornato",
+        "✓"
+    );
+
 }
 
 
 /* =========================
-   OPERAZIONI SALVADANAIO
+   NUOVO POPUP
+   IMPORTO
 ========================= */
 
-function openSavingsTransaction(
-    type
-) {
+function openAmountModal(type) {
 
-    savingsTransactionType =
+    quickSavingsType =
         type;
 
 
+    const modal =
+        document.getElementById(
+            "amountModal"
+        );
+
+
     document.getElementById(
-        "savingsTransaction"
-    ).classList.remove(
-        "hidden"
+        "amountModalTitle"
+    ).textContent =
+        type === "add"
+            ? "🐷 Metti soldi"
+            : "💰 Preleva soldi";
+
+
+    document.getElementById(
+        "amountModalSubtitle"
+    ).textContent =
+        type === "add"
+            ? "Quanto vuoi mettere?"
+            : "Quanto vuoi prelevare?";
+
+
+    const input =
+        document.getElementById(
+            "quickAmount"
+        );
+
+
+    input.value = "";
+
+
+    modal.classList.add(
+        "open"
     );
 
 
-    document.getElementById(
-        "savingsTransactionTitle"
-    ).textContent =
-        type === "add"
-            ? "Metti soldi nel salvadanaio"
-            : "Preleva dal salvadanaio";
-
-
-    document.getElementById(
-        "savingsTransactionButton"
-    ).textContent =
-        type === "add"
-            ? "Metti nel salvadanaio"
-            : "Preleva";
-
-
-    document.getElementById(
-        "savingsTransactionAmount"
-    ).value = "";
-
+    /*
+       Apriamo automaticamente
+       la tastiera del telefono.
+    */
 
     setTimeout(
         () => {
 
-            document.getElementById(
-                "savingsTransactionAmount"
-            ).focus();
+            input.focus();
+
+            input.click();
 
         },
-        100
+        250
     );
 
 }
 
 
-function closeSavingsTransaction() {
+function closeAmountModal() {
 
-    document.getElementById(
-        "savingsTransaction"
-    ).classList.add(
-        "hidden"
-    );
+    document
+        .getElementById(
+            "amountModal"
+        )
+        .classList.remove(
+            "open"
+        );
 
 }
 
 
-/* =========================
-   NUOVA VERSIONE
-   SALVADANAIO
-========================= */
+function confirmQuickAmount() {
 
-function saveSavingsTransaction() {
+    const input =
+        document.getElementById(
+            "quickAmount"
+        );
+
 
     const amount =
         Number(
-            document.getElementById(
-                "savingsTransactionAmount"
-            ).value
+            input.value
         );
 
 
@@ -3290,80 +3535,198 @@ function saveSavingsTransaction() {
         amount <= 0
     ) {
 
-        alert(
-            "Inserisci un importo valido."
-        );
+        input.focus();
 
         return;
+
     }
 
 
-    /*
-       VERSAMENTO
-    */
-
     if (
-        savingsTransactionType ===
-        "add"
+        quickSavingsType === "add"
+        &&
+        amount > balance
     ) {
 
+        alert(
+            "Non hai abbastanza saldo disponibile."
+        );
 
-        if (
-            amount > balance
-        ) {
+        input.focus();
 
-            alert(
-                "Non hai abbastanza saldo disponibile."
-            );
+        return;
 
-            return;
+    }
+
+
+    if (
+        quickSavingsType === "remove"
+        &&
+        amount > savingsAmount
+    ) {
+
+        alert(
+            "Non hai abbastanza soldi nel salvadanaio."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    quickAmountValue =
+        amount;
+
+
+    closeAmountModal();
+
+
+    /*
+       Piccola pausa:
+       prima chiudiamo la tastiera,
+       poi mostriamo i dettagli.
+    */
+
+    setTimeout(
+        () => {
+
+            openDetailsModal();
+
+        },
+        220
+    );
+
+}
+
+
+/* =========================
+   POPUP DETTAGLI
+========================= */
+
+function openDetailsModal() {
+
+    document.getElementById(
+        "quickDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "quickCategory"
+    ).value = "";
+
+
+    document.getElementById(
+        "detailsModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+function closeDetailsModal() {
+
+    document.getElementById(
+        "detailsModal"
+    ).classList.remove(
+        "open"
+    );
+
+}
+
+
+/* =========================
+   SALVA OPERAZIONE RAPIDA
+========================= */
+
+function saveQuickTransaction(
+    withDetails
+) {
+
+    let description =
+        "Versamento salvadanaio";
+
+    let category =
+        "🐷 Salvadanaio";
+
+
+    if (
+        withDetails
+    ) {
+
+        const d =
+            document.getElementById(
+                "quickDescription"
+            ).value.trim();
+
+        const c =
+            document.getElementById(
+                "quickCategory"
+            ).value;
+
+
+        /*
+           Se l'utente scrive
+           una descrizione,
+           la usiamo.
+
+           Altrimenti lasciamo
+           quella automatica.
+        */
+
+        if (d) {
+
+            description = d;
+
         }
 
+
+        /*
+           La categoria può
+           rimanere salvadanaio
+           se non viene scelta.
+        */
+
+        if (c) {
+
+            category = c;
+
+        }
+
+    }
+
+
+    const amount =
+        quickAmountValue;
+
+
+    if (
+        quickSavingsType === "add"
+    ) {
 
         balance -= amount;
 
         savingsAmount += amount;
 
 
-        /*
-           CREA MOVIMENTO NEGATIVO
-        */
-
         movements.push({
 
-            type:
-                "expense",
+            type: "expense",
 
-            amount:
-                amount,
+            amount: amount,
 
-            description:
-                "Versamento salvadanaio",
+            description: description,
 
-            category:
-                "🐷 Salvadanaio",
+            category: category,
 
-            date:
-                today(),
+            date: today(),
 
-            savings:
-                true
+            savings: true
 
         });
 
-
-        saveData();
-
-        updateAll();
-
-        renderSavings();
-
-        closeSavingsTransaction();
-
-
-        /*
-           ANIMAZIONE
-        */
 
         animateBalance(
             "spent"
@@ -3371,74 +3734,38 @@ function saveSavingsTransaction() {
 
 
         showToast(
-            "Soldi messi nel salvadanaio!",
+            "Soldi nel salvadanaio!",
             "🐷"
         );
 
 
-    /*
-       PRELIEVO
-    */
-
     } else {
-
-
-        if (
-            amount > savingsAmount
-        ) {
-
-            alert(
-                "Non puoi prelevare più soldi di quelli presenti nel salvadanaio."
-            );
-
-            return;
-        }
-
 
         savingsAmount -= amount;
 
         balance += amount;
 
 
-        /*
-           CREA MOVIMENTO POSITIVO
-        */
-
         movements.push({
 
-            type:
-                "income",
+            type: "income",
 
-            amount:
-                amount,
+            amount: amount,
 
             description:
-                "Prelievo salvadanaio",
+                description ===
+                "Versamento salvadanaio"
+                    ? "Prelievo salvadanaio"
+                    : description,
 
-            category:
-                "🐷 Salvadanaio",
+            category: category,
 
-            date:
-                today(),
+            date: today(),
 
-            savings:
-                true
+            savings: true
 
         });
 
-
-        saveData();
-
-        updateAll();
-
-        renderSavings();
-
-        closeSavingsTransaction();
-
-
-        /*
-           ANIMAZIONE
-        */
 
         animateBalance(
             "added"
@@ -3446,11 +3773,20 @@ function saveSavingsTransaction() {
 
 
         showToast(
-            "Soldi prelevati dal salvadanaio!",
+            "Soldi prelevati!",
             "💰"
         );
 
     }
+
+
+    saveData();
+
+    updateAll();
+
+    renderSavings();
+
+    closeDetailsModal();
 
 }
 
@@ -3466,7 +3802,7 @@ function resetAll() {
 
     const confirmation =
         confirm(
-            "ATTENZIONE\n\nVuoi azzerare il conto e cancellare tutti i movimenti?\n\nIl salvadanaio verrà azzerato anch'esso."
+            "ATTENZIONE\n\nVuoi azzerare il conto e cancellare tutti i movimenti?\n\nIl salvadanaio verrà azzerato."
         );
 
 
@@ -3512,6 +3848,30 @@ function updateAll() {
     renderMovements();
 
 }
+
+
+/* =========================
+   TASTO INVIO
+========================= */
+
+document.getElementById(
+    "quickAmount"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            confirmQuickAmount();
+
+        }
+
+    }
+);
 
 
 /* =========================
