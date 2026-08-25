@@ -317,6 +317,8 @@ button:active {
     text-align: center;
 
     margin-bottom: 11px;
+
+    transition: transform .25s ease;
 }
 
 .balance-label {
@@ -338,8 +340,122 @@ button:active {
 }
 
 
+/* ANIMAZIONE SALDO */
+
+.balance-card.balance-spent {
+    animation: balanceSpent .45s ease;
+}
+
+.balance-card.balance-added {
+    animation: balanceAdded .45s ease;
+}
+
+@keyframes balanceSpent {
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(.97);
+    }
+
+    70% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+@keyframes balanceAdded {
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.04);
+    }
+
+    70% {
+        transform: scale(.99);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
 /* =========================
-   SALVADANAIO RIASSUNTO
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom:
+        calc(25px + env(safe-area-inset-bottom));
+
+    transform:
+        translate(-50%, 30px)
+        scale(.95);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 300;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 17px;
+
+    border-radius: 15px;
+
+    background: var(--text);
+
+    color: var(--card);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.22);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0)
+        scale(1);
+}
+
+.toast-icon {
+    font-size: 20px;
+}
+
+
+/* =========================
+   SALVADANAIO MINI
 ========================= */
 
 .savings-mini {
@@ -480,7 +596,7 @@ button:active {
 
 
 /* =========================
-   AZIONI PRINCIPALI
+   AZIONI
 ========================= */
 
 .actions {
@@ -1023,9 +1139,7 @@ select:focus {
 <body>
 
 
-<!-- =========================
-     MENU LATERALE
-========================= -->
+<!-- MENU -->
 
 <div
     id="overlay"
@@ -1038,7 +1152,6 @@ select:focus {
     id="sideMenu"
     class="side-menu">
 
-
     <div class="menu-header">
 
         <div class="menu-title">
@@ -1048,9 +1161,7 @@ select:focus {
         <button
             class="close-menu"
             onclick="closeMenu()">
-
             ×
-
         </button>
 
     </div>
@@ -1127,14 +1238,30 @@ select:focus {
 
     </button>
 
-
 </aside>
 
 
+<!-- TOAST -->
 
-<!-- =========================
-     HOME
-========================= -->
+<div
+    id="toast"
+    class="toast">
+
+    <span
+        id="toastIcon"
+        class="toast-icon">
+        ✓
+    </span>
+
+    <span
+        id="toastText">
+        Fatto!
+    </span>
+
+</div>
+
+
+<!-- HOME -->
 
 <main
     id="homePage"
@@ -1158,9 +1285,9 @@ select:focus {
     </header>
 
 
-    <!-- SALDO -->
-
-    <section class="card balance-card">
+    <section
+        id="balanceCard"
+        class="card balance-card">
 
         <div class="balance-label">
             Saldo disponibile
@@ -1177,22 +1304,17 @@ select:focus {
     </section>
 
 
-    <!-- SALVADANAIO MINI -->
-
     <section
         class="card savings-mini"
         onclick="showSavings()">
 
-
         <div class="savings-mini-top">
-
 
             <div class="savings-mini-left">
 
                 <div class="savings-icon">
                     🐷
                 </div>
-
 
                 <div>
 
@@ -1203,7 +1325,6 @@ select:focus {
                         Il mio salvadanaio
 
                     </div>
-
 
                     <div
                         id="miniSavingsAmount"
@@ -1217,14 +1338,11 @@ select:focus {
 
             </div>
 
-
             <div class="savings-arrow">
                 ›
             </div>
 
-
         </div>
-
 
         <div class="mini-progress">
 
@@ -1235,14 +1353,10 @@ select:focus {
 
         </div>
 
-
     </section>
 
 
-    <!-- STATISTICHE -->
-
     <div class="stats">
-
 
         <section class="card stat">
 
@@ -1277,14 +1391,10 @@ select:focus {
 
         </section>
 
-
     </div>
 
 
-    <!-- AZIONI -->
-
     <div class="actions">
-
 
         <button
             class="action income"
@@ -1303,16 +1413,12 @@ select:focus {
 
         </button>
 
-
     </div>
 
-
-    <!-- FORM -->
 
     <section
         id="form"
         class="card form hidden">
-
 
         <h2
             id="formTitle"
@@ -1445,19 +1551,14 @@ select:focus {
 
         </button>
 
-
     </section>
 
 
-    <!-- MESE -->
-
     <section class="card section">
-
 
         <h2 class="section-title">
             Spese di questo mese
         </h2>
-
 
         <div class="month-summary">
 
@@ -1469,7 +1570,6 @@ select:focus {
 
             </span>
 
-
             <span
                 id="monthTotal"
                 class="month-total">
@@ -1480,18 +1580,13 @@ select:focus {
 
         </div>
 
-
         <div id="categories">
         </div>
-
 
     </section>
 
 
-    <!-- MOVIMENTI -->
-
     <section class="card section">
-
 
         <h2 class="section-title">
             Movimenti
@@ -1517,17 +1612,12 @@ select:focus {
         <div id="movements">
         </div>
 
-
     </section>
-
 
 </main>
 
 
-
-<!-- =========================
-     PAGINA SALVADANAIO
-========================= -->
+<!-- SALVADANAIO -->
 
 <main
     id="savingsPage"
@@ -1553,14 +1643,11 @@ select:focus {
 
     <section class="card savings-card">
 
-
         <div class="savings-big-header">
-
 
             <div class="big-pig">
                 🐷
             </div>
-
 
             <div>
 
@@ -1572,7 +1659,6 @@ select:focus {
 
                 </div>
 
-
                 <div class="savings-page-subtitle">
 
                     I soldi che hai messo da parte
@@ -1580,7 +1666,6 @@ select:focus {
                 </div>
 
             </div>
-
 
         </div>
 
@@ -1624,7 +1709,6 @@ select:focus {
 
         <div class="savings-actions">
 
-
             <button
                 class="savings-add"
                 onclick="openSavingsTransaction('add')">
@@ -1642,7 +1726,6 @@ select:focus {
 
             </button>
 
-
         </div>
 
 
@@ -1658,7 +1741,6 @@ select:focus {
         <div
             id="savingsSettings"
             class="savings-form hidden">
-
 
             <div class="savings-form-title">
                 Impostazioni
@@ -1691,14 +1773,12 @@ select:focus {
 
             </button>
 
-
         </div>
 
 
         <div
             id="savingsTransaction"
             class="savings-form hidden">
-
 
             <div
                 id="savingsTransactionTitle"
@@ -1737,9 +1817,7 @@ select:focus {
 
             </button>
 
-
         </div>
-
 
     </section>
 
@@ -1752,26 +1830,27 @@ select:focus {
 
         <br><br>
 
-        Il salvadanaio è collegato al tuo
+        Il salvadanaio è collegato al
         saldo disponibile.
 
         <br><br>
 
         Quando metti soldi nel salvadanaio,
-        vengono tolti dal saldo disponibile.
+        viene creato automaticamente un
+        movimento di versamento.
 
-        Quando li prelevi, tornano
-        disponibili nel saldo.
+        <br><br>
+
+        Quando prelevi, viene registrato
+        automaticamente il movimento
+        corrispondente.
 
     </section>
-
 
 </main>
 
 
-
 <script>
-
 
 /* =========================
    DATI
@@ -1894,6 +1973,104 @@ function saveData() {
     localStorage.setItem(
         "savingsName",
         savingsName
+    );
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer = null;
+
+
+function showToast(
+    message,
+    icon = "✓"
+) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    document.getElementById(
+        "toastIcon"
+    ).textContent =
+        icon;
+
+    document.getElementById(
+        "toastText"
+    ).textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            1800
+        );
+
+}
+
+
+/* =========================
+   ANIMAZIONE SALDO
+========================= */
+
+function animateBalance(
+    type
+) {
+
+    const card =
+        document.getElementById(
+            "balanceCard"
+        );
+
+
+    card.classList.remove(
+        "balance-spent",
+        "balance-added"
+    );
+
+
+    void card.offsetWidth;
+
+
+    card.classList.add(
+        type === "spent"
+            ? "balance-spent"
+            : "balance-added"
+    );
+
+
+    setTimeout(
+        () => {
+
+            card.classList.remove(
+                "balance-spent",
+                "balance-added"
+            );
+
+        },
+        500
     );
 
 }
@@ -2041,7 +2218,9 @@ function loadTheme() {
 function updateSummary() {
 
     let income = 0;
+
     let expense = 0;
+
 
     movements.forEach(
         movement => {
@@ -2113,7 +2292,10 @@ function renderSavingsMini() {
 
     let percentage = 0;
 
-    if (savingsTarget > 0) {
+
+    if (
+        savingsTarget > 0
+    ) {
 
         percentage =
             (
@@ -2122,6 +2304,7 @@ function renderSavingsMini() {
             ) * 100;
 
     }
+
 
     percentage =
         Math.min(
@@ -2166,6 +2349,7 @@ function renderMonth() {
                     "T12:00:00"
                 );
 
+
             if (
                 date.getMonth() !==
                 currentMonth ||
@@ -2175,6 +2359,7 @@ function renderMonth() {
                 return;
             }
 
+
             if (
                 movement.type !==
                 "expense"
@@ -2182,14 +2367,17 @@ function renderMonth() {
                 return;
             }
 
+
             total +=
                 Number(
                     movement.amount
                 );
 
+
             const category =
                 movement.category ||
                 "📦 Altro";
+
 
             categories[category] =
                 (
@@ -2277,6 +2465,7 @@ function renderMonth() {
                     "div"
                 );
 
+
             row.className =
                 "category-row";
 
@@ -2307,7 +2496,9 @@ function renderMonth() {
             `;
 
 
-            container.appendChild(row);
+            container.appendChild(
+                row
+            );
 
         }
     );
@@ -2331,7 +2522,9 @@ function openForm(
 
     document.getElementById(
         "form"
-    ).classList.remove("hidden");
+    ).classList.remove(
+        "hidden"
+    );
 
 
     document.getElementById(
@@ -2353,10 +2546,12 @@ function openForm(
         const m =
             movements[index];
 
+
         document.getElementById(
             "amount"
         ).value =
             m.amount;
+
 
         document.getElementById(
             "description"
@@ -2366,6 +2561,7 @@ function openForm(
                 ? ""
                 : m.description;
 
+
         document.getElementById(
             "category"
         ).value =
@@ -2373,10 +2569,12 @@ function openForm(
                 ? ""
                 : m.category;
 
+
         document.getElementById(
             "date"
         ).value =
             m.date;
+
 
     } else {
 
@@ -2384,13 +2582,16 @@ function openForm(
             "amount"
         ).value = "";
 
+
         document.getElementById(
             "description"
         ).value = "";
 
+
         document.getElementById(
             "category"
         ).value = "";
+
 
         document.getElementById(
             "date"
@@ -2414,7 +2615,9 @@ function closeForm() {
 
     document.getElementById(
         "form"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
     editingIndex = null;
 
@@ -2434,15 +2637,18 @@ function saveMovement() {
             ).value
         );
 
+
     let description =
         document.getElementById(
             "description"
         ).value.trim();
 
+
     let category =
         document.getElementById(
             "category"
         ).value;
+
 
     const date =
         document.getElementById(
@@ -2474,19 +2680,20 @@ function saveMovement() {
 
 
     if (!description) {
+
         description =
             "Nessuna descrizione";
+
     }
+
 
     if (!category) {
+
         category =
             "📦 Altro";
+
     }
 
-
-    /*
-       MODIFICA
-    */
 
     if (
         editingIndex !== null
@@ -2517,9 +2724,11 @@ function saveMovement() {
             editingIndex
         ] = {
 
-            type: old.type,
+            type:
+                old.type,
 
-            amount: amount,
+            amount:
+                amount,
 
             description:
                 description,
@@ -2527,7 +2736,8 @@ function saveMovement() {
             category:
                 category,
 
-            date: date
+            date:
+                date
 
         };
 
@@ -2545,11 +2755,8 @@ function saveMovement() {
         }
 
 
-    /*
-       NUOVO
-    */
-
     } else {
+
 
         if (
             operationType === "expense"
@@ -2598,6 +2805,34 @@ function saveMovement() {
 
         }
 
+
+        if (
+            operationType ===
+            "expense"
+        ) {
+
+            animateBalance(
+                "spent"
+            );
+
+            showToast(
+                "Spesa registrata",
+                "💸"
+            );
+
+        } else {
+
+            animateBalance(
+                "added"
+            );
+
+            showToast(
+                "Entrata aggiunta",
+                "💰"
+            );
+
+        }
+
     }
 
 
@@ -2620,6 +2855,7 @@ function renderMovements() {
         document.getElementById(
             "movements"
         );
+
 
     const search =
         document.getElementById(
@@ -2651,6 +2887,7 @@ function renderMovements() {
                         return true;
                     }
 
+
                     const text =
                         (
                             item.movement
@@ -2659,6 +2896,7 @@ function renderMovements() {
                             item.movement
                                 .category
                         ).toLowerCase();
+
 
                     return text.includes(
                         search
@@ -2687,6 +2925,7 @@ function renderMovements() {
             const m =
                 item.movement;
 
+
             const index =
                 item.index;
 
@@ -2707,6 +2946,7 @@ function renderMovements() {
                 document.createElement(
                     "div"
                 );
+
 
             element.className =
                 "movement";
@@ -2742,6 +2982,7 @@ function renderMovements() {
 
                     </div>
 
+
                     <div class="movement-buttons">
 
                         <button
@@ -2751,6 +2992,7 @@ function renderMovements() {
                             ✏️
 
                         </button>
+
 
                         <button
                             class="delete"
@@ -2798,7 +3040,9 @@ function deleteMovement(index) {
             "Vuoi eliminare questo movimento?"
         )
     ) {
+
         return;
+
     }
 
 
@@ -2927,6 +3171,7 @@ function saveSavingsSettings() {
             "savingsNameInput"
         ).value.trim();
 
+
     const target =
         Number(
             document.getElementById(
@@ -2949,6 +3194,7 @@ function saveSavingsSettings() {
     saveData();
 
     renderSavings();
+
 
     document.getElementById(
         "savingsSettings"
@@ -3025,8 +3271,8 @@ function closeSavingsTransaction() {
 
 
 /* =========================
-   SALVADANAIO COLLEGATO
-   AL SALDO
+   NUOVA VERSIONE
+   SALVADANAIO
 ========================= */
 
 function saveSavingsTransaction() {
@@ -3053,7 +3299,7 @@ function saveSavingsTransaction() {
 
 
     /*
-       METTI SOLDI
+       VERSAMENTO
     */
 
     if (
@@ -3079,8 +3325,59 @@ function saveSavingsTransaction() {
         savingsAmount += amount;
 
 
+        /*
+           CREA MOVIMENTO NEGATIVO
+        */
+
+        movements.push({
+
+            type:
+                "expense",
+
+            amount:
+                amount,
+
+            description:
+                "Versamento salvadanaio",
+
+            category:
+                "🐷 Salvadanaio",
+
+            date:
+                today(),
+
+            savings:
+                true
+
+        });
+
+
+        saveData();
+
+        updateAll();
+
+        renderSavings();
+
+        closeSavingsTransaction();
+
+
+        /*
+           ANIMAZIONE
+        */
+
+        animateBalance(
+            "spent"
+        );
+
+
+        showToast(
+            "Soldi messi nel salvadanaio!",
+            "🐷"
+        );
+
+
     /*
-       PRELEVA
+       PRELIEVO
     */
 
     } else {
@@ -3102,22 +3399,64 @@ function saveSavingsTransaction() {
 
         balance += amount;
 
+
+        /*
+           CREA MOVIMENTO POSITIVO
+        */
+
+        movements.push({
+
+            type:
+                "income",
+
+            amount:
+                amount,
+
+            description:
+                "Prelievo salvadanaio",
+
+            category:
+                "🐷 Salvadanaio",
+
+            date:
+                today(),
+
+            savings:
+                true
+
+        });
+
+
+        saveData();
+
+        updateAll();
+
+        renderSavings();
+
+        closeSavingsTransaction();
+
+
+        /*
+           ANIMAZIONE
+        */
+
+        animateBalance(
+            "added"
+        );
+
+
+        showToast(
+            "Soldi prelevati dal salvadanaio!",
+            "💰"
+        );
+
     }
-
-
-    saveData();
-
-    updateAll();
-
-    renderSavings();
-
-    closeSavingsTransaction();
 
 }
 
 
 /* =========================
-   AZZERA CONTO
+   AZZERA
 ========================= */
 
 function resetAll() {
@@ -3150,8 +3489,9 @@ function resetAll() {
     renderSavings();
 
 
-    alert(
-        "Conto e movimenti azzerati."
+    showToast(
+        "Conto azzerato",
+        "🗑️"
     );
 
 }
