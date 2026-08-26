@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#f5f6f8">
 <title>Gestione Soldi</title>
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+html{touch-action:manipulation}
 :root{--bg:#e9ebef;--card:#fff;--text:#17181a;--muted:#5b5e66;--border:#d7dade;--green:#159447;--greenbg:#e7f7ed;--red:#d93838;--redbg:#ffebeb;--blue:#3478f6;--bluebg:#eaf1ff;--yellow:#d99600;--yellowbg:#fff4d6;--shadow:0 5px 24px rgba(0,0,0,.08)}
 body.dark{--bg:#101112;--card:#1b1d20;--text:#f5f5f5;--muted:#a4a6ab;--border:#2b2e32;--green:#45d77d;--greenbg:#173725;--red:#ff6969;--redbg:#3c2020;--blue:#70a0ff;--bluebg:#202f4d;--yellow:#ffc94d;--yellowbg:#3d3118;--shadow:0 5px 24px rgba(0,0,0,.25)}
 html{background:var(--bg)}body{margin:0;padding:calc(10px + env(safe-area-inset-top)) 14px calc(30px + env(safe-area-inset-bottom));background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:100vh}
@@ -40,10 +41,10 @@ input[type=checkbox]:checked{background:var(--blue);border-color:var(--blue)}
 input[type=checkbox]:checked::after{content:"€";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);color:#fff;font-size:13px;font-weight:800}
 input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 input[type=number]{-moz-appearance:textfield}
-.amount-wrap{position:relative}
-.amount-wrap input.amount{padding-right:48px}
-.amount-stepper{position:absolute;right:8px;top:8px;bottom:8px;display:flex;flex-direction:column;width:34px;gap:4px}
-.amount-stepper button{flex:1;border-radius:9px;background:var(--bg);color:var(--muted);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:800;line-height:1}
+.amount-wrap{position:relative;border-radius:17px;overflow:hidden}
+.amount-wrap input.amount{padding-right:52px}
+.amount-stepper{position:absolute;right:10px;top:10px;bottom:10px;display:flex;flex-direction:column;width:32px;gap:4px;z-index:2}
+.amount-stepper button{flex:1;border-radius:8px;background:var(--bg);color:var(--muted);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:800;line-height:1}
 .amount-stepper button:active{background:var(--bluebg);color:var(--blue)}
 .category-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.category-chip{display:flex;align-items:center;gap:7px;padding:9px 8px 9px 13px;border-radius:12px;background:var(--bg);font-size:13px;font-weight:650}.category-chip button{background:transparent;color:var(--muted);font-size:16px;line-height:1;padding:2px 4px}
 .cat-add-row{display:flex;gap:8px;align-items:flex-start}.cat-add-row input{margin:0}.cat-add-row button{width:51px;height:51px;flex-shrink:0;border-radius:13px;background:var(--text);color:var(--card);font-size:21px}
@@ -61,6 +62,32 @@ input[type=number]{-moz-appearance:textfield}
 .accordion-arrow{transition:transform .25s}
 .pagination-label{pointer-events:none}
 .settings-confirm{width:100%;height:52px;border-radius:14px;background:var(--blue);color:#fff;font-weight:800;margin-top:14px}
+.field-select{width:100%;min-height:51px;margin-bottom:10px;padding:0 14px;border:1px solid var(--border);border-radius:13px;background:var(--bg);color:var(--text);font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left}
+.field-select.placeholder{color:var(--muted)}
+.field-select-arrow{color:var(--muted);font-size:13px;flex-shrink:0}
+.picker-list{max-height:50vh;overflow-y:auto;margin-bottom:6px}
+.picker-item{width:100%;min-height:52px;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;background:transparent;text-align:left;font-size:15px;font-weight:650}
+.picker-item:active{background:var(--bg)}
+.picker-item.selected{background:var(--bluebg);color:var(--blue)}
+.picker-check{color:var(--blue);font-weight:800}
+.emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-height:46vh;overflow-y:auto;margin-bottom:8px}
+.emoji-cell{aspect-ratio:1/1;border-radius:13px;background:var(--bg);font-size:23px;display:flex;align-items:center;justify-content:center}
+.emoji-cell.selected{background:var(--bluebg);box-shadow:inset 0 0 0 2px var(--blue)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-nav{width:38px;height:38px;border-radius:11px;background:var(--bg);font-size:16px}
+.cal-title{font-weight:800;font-size:15px;text-transform:capitalize}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{text-align:center;font-size:11px;color:var(--muted);font-weight:700;padding-bottom:6px}
+.cal-day{aspect-ratio:1/1;border-radius:11px;background:transparent;font-size:13px;font-weight:650;display:flex;align-items:center;justify-content:center;color:var(--text)}
+.cal-day:active{background:var(--bg)}
+.cal-day.today{box-shadow:inset 0 0 0 2px var(--border)}
+.cal-day.selected{background:var(--blue);color:#fff}
+.cal-day.empty{pointer-events:none}
+.settings-accordion .settings-group{padding:0;border-bottom:1px solid var(--border)}
+.settings-accordion .settings-group:last-of-type{border-bottom:0}
+.settings-accordion .accordion-toggle{padding:16px 2px;width:100%}
+.settings-accordion-body{padding:0 2px 18px}
+.goal-edit-btn{width:36px;height:36px;border-radius:11px;background:var(--bg);flex-shrink:0;font-size:15px}
 @media(max-width:370px){body{padding-left:10px;padding-right:10px}.balance{font-size:36px}}
 </style>
 </head>
@@ -91,7 +118,7 @@ input[type=number]{-moz-appearance:textfield}
   <div id="moneyTitle" class="modal-title">Nuovo movimento</div>
   <div id="moneySub" class="modal-sub">Inserisci l'importo</div>
   <div class="amount-wrap">
-   <input id="moneyAmount" class="amount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="€ 0,00">
+   <input id="moneyAmount" autocomplete="off" class="amount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="€ 0,00">
    <div class="amount-stepper"><button type="button" onclick="stepAmount('moneyAmount',1)">▲</button><button type="button" onclick="stepAmount('moneyAmount',-1)">▼</button></div>
   </div>
   <div id="sourceChoice" class="source-choice">
@@ -109,10 +136,11 @@ input[type=number]{-moz-appearance:textfield}
   <div class="handle"></div>
   <div class="modal-title">Aggiungi dettagli?</div>
   <div class="modal-sub">Facoltativi: puoi registrare subito il movimento.</div>
-  <input id="detailDescription" type="text" maxlength="100" placeholder="Descrizione (opzionale)">
-  <select id="detailCategory">
+  <input id="detailDescription" type="text" maxlength="100" placeholder="Descrizione (opzionale)" autocomplete="off">
+  <select id="detailCategory" style="display:none">
    <option value="">Categoria (opzionale)</option>
   </select>
+  <button type="button" id="detailCategoryField" class="field-select placeholder" onclick="openCategoryPicker('detail')"><span id="detailCategoryLabel">Categoria (opzionale)</span><span class="field-select-arrow">⌄</span></button>
   <button type="button" id="specifyDenomBtn" class="modal-cancel" style="display:none;border:1px solid var(--border);margin-bottom:12px" onclick="openMiniCounter()">🧮 Specifica il taglio di questa cifra</button>
   <button class="confirm" onclick="saveQuickMovement()">Salva movimento</button>
   <button class="modal-cancel" onclick="saveQuickMovement(true)">Salta dettagli</button>
@@ -125,12 +153,18 @@ input[type=number]{-moz-appearance:textfield}
   <div class="handle"></div>
   <div class="modal-title">🎯 Nuovo obiettivo</div>
   <div class="modal-sub">Crea un nuovo obiettivo di risparmio.</div>
-  <input id="goalName" type="text" maxlength="50" placeholder="Nome obiettivo">
-  <input id="goalTarget" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="Importo obiettivo (€)">
-  <select id="goalCategory">
+  <div class="row-between" style="margin-bottom:12px;align-items:flex-start">
+   <button type="button" id="goalCreateIconBtn" class="iconbox" onclick="openEmojiPicker('goalCreate')">🎯</button>
+   <div style="flex:1;margin-left:12px">
+    <input id="goalName" type="text" maxlength="50" placeholder="Nome obiettivo" autocomplete="off" style="margin-bottom:0">
+   </div>
+  </div>
+  <input id="goalTarget" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="Importo obiettivo (€)" autocomplete="off">
+  <select id="goalCategory" style="display:none">
    <option value="">Categoria (opzionale)</option><option>🏠 Casa</option><option>🚗 Auto</option><option>✈️ Viaggi</option>
    <option>🎓 Istruzione</option><option>💻 Tecnologia</option><option>🎁 Regalo</option><option>🛍️ Acquisto</option><option>📦 Altro</option>
   </select>
+  <button type="button" id="goalCategoryField" class="field-select placeholder" onclick="openCategoryPicker('goal')"><span id="goalCategoryLabel">Categoria (opzionale)</span><span class="field-select-arrow">⌄</span></button>
   <button class="confirm" onclick="createGoal()">Crea obiettivo</button>
   <button class="modal-cancel" onclick="closeGoalModal()">Annulla</button>
  </div>
@@ -143,7 +177,7 @@ input[type=number]{-moz-appearance:textfield}
   <div id="goalMoneyTitle" class="modal-title">Aggiungi</div>
   <div id="goalMoneySub" class="modal-sub"></div>
   <div class="amount-wrap">
-   <input id="goalMoneyAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+   <input id="goalMoneyAmount" autocomplete="off" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
    <div class="amount-stepper"><button type="button" onclick="stepAmount('goalMoneyAmount',1)">▲</button><button type="button" onclick="stepAmount('goalMoneyAmount',-1)">▼</button></div>
   </div>
   <div id="goalSourceChoice" class="source-choice">
@@ -162,16 +196,18 @@ input[type=number]{-moz-appearance:textfield}
   <div id="editTitle" class="modal-title">✏️ Modifica movimento</div>
   <div class="modal-sub">Aggiorna importo, conto, descrizione o categoria.</div>
   <div class="amount-wrap">
-   <input id="editAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+   <input id="editAmount" autocomplete="off" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
    <div class="amount-stepper"><button type="button" onclick="stepAmount('editAmount',1)">▲</button><button type="button" onclick="stepAmount('editAmount',-1)">▼</button></div>
   </div>
   <div id="editSourceChoice" class="source-choice">
    <button id="editCashBtn" class="choice" onclick="chooseEditSource('cash')"><span class="choice-label">💵 Contanti</span><span id="editCashBtnBal" class="choice-balance"></span></button>
    <button id="editCardBtn" class="choice" onclick="chooseEditSource('card')"><span class="choice-label">💳 Carta</span><span id="editCardBtnBal" class="choice-balance"></span></button>
   </div>
-  <input id="editDescription" type="text" maxlength="100" placeholder="Descrizione">
-  <select id="editCategory"><option value="">Categoria (opzionale)</option></select>
-  <input id="editDate" type="date">
+  <input id="editDescription" type="text" maxlength="100" placeholder="Descrizione" autocomplete="off">
+  <select id="editCategory" style="display:none"><option value="">Categoria (opzionale)</option></select>
+  <button type="button" id="editCategoryField" class="field-select placeholder" onclick="openCategoryPicker('edit')"><span id="editCategoryLabel">Categoria (opzionale)</span><span class="field-select-arrow">⌄</span></button>
+  <input id="editDate" type="date" style="display:none">
+  <button type="button" id="editDateField" class="field-select" onclick="openDatePicker('edit')"><span id="editDateLabel">Data</span><span class="field-select-arrow">📅</span></button>
   <button class="confirm" onclick="confirmEditMovement()">Salva modifiche</button>
   <button class="modal-cancel" onclick="closeEditModal()">Annulla</button>
  </div>
@@ -184,13 +220,14 @@ input[type=number]{-moz-appearance:textfield}
   <div class="modal-title">⚖️ Dividi equamente</div>
   <div class="modal-sub">Scegli la cifra e gli obiettivi da usare.</div>
   <div class="amount-wrap">
-   <input id="splitAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+   <input id="splitAmount" autocomplete="off" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
    <div class="amount-stepper"><button type="button" onclick="stepAmount('splitAmount',1)">▲</button><button type="button" onclick="stepAmount('splitAmount',-1)">▼</button></div>
   </div>
   <div id="splitGoals"></div>
-  <div id="splitSourceChoice" class="source-choice">
+  <div id="splitSourceChoice" class="source-choice" style="grid-template-columns:1fr 1fr 1fr">
    <button id="splitCashBtn" class="choice" onclick="chooseSplitSource('cash')"><span class="choice-label">💵 Contanti</span><span id="splitCashBtnBal" class="choice-balance"></span></button>
    <button id="splitCardBtn" class="choice" onclick="chooseSplitSource('card')"><span class="choice-label">💳 Carta</span><span id="splitCardBtnBal" class="choice-balance"></span></button>
+   <button id="splitTotalBtn" class="choice" onclick="chooseSplitSource('total')"><span class="choice-label">💰 Tutto</span><span id="splitTotalBtnBal" class="choice-balance"></span></button>
   </div>
   <button class="confirm" onclick="confirmSplit()">Dividi equamente</button>
   <button class="modal-cancel" onclick="closeSplitModal()">Annulla</button>
@@ -244,57 +281,150 @@ input[type=number]{-moz-appearance:textfield}
   </div>
   <div class="modal-sub" style="margin-top:14px">Personalizza l'app come preferisci.</div>
 
-  <div class="settings-group">
-   <div class="settings-group-title">👤 Profilo</div>
-   <div class="settings-section-title">Il tuo nome</div>
-   <input id="usernameSetting" type="text" maxlength="30" placeholder="Il tuo nome" oninput="markSettingsDirty()">
-   <div class="settings-section-title">Tema</div>
-   <div class="source-choice">
-    <button id="themeLightBtn" class="choice" onclick="setTheme('light')">☀️ Chiaro</button>
-    <button id="themeDarkBtn" class="choice" onclick="setTheme('dark')">🌙 Scuro</button>
+  <div class="settings-accordion">
+   <div class="settings-group">
+    <button type="button" class="row-between accordion-toggle" onclick="toggleSettingsSection('profile')">
+     <span class="settings-group-title">👤 Profilo</span><span id="settingsArrow_profile" class="arrow accordion-arrow">⌄</span>
+    </button>
+    <div id="settingsBody_profile" class="settings-accordion-body hidden">
+     <div class="settings-section-title" style="margin-top:2px">Il tuo nome</div>
+     <input id="usernameSetting" type="text" maxlength="30" placeholder="Il tuo nome" autocomplete="off" oninput="markSettingsDirty()">
+     <div class="settings-section-title">Tema</div>
+     <div class="source-choice">
+      <button id="themeLightBtn" class="choice" onclick="setTheme('light')">☀️ Chiaro</button>
+      <button id="themeDarkBtn" class="choice" onclick="setTheme('dark')">🌙 Scuro</button>
+     </div>
+    </div>
+   </div>
+
+   <div class="settings-group">
+    <button type="button" class="row-between accordion-toggle" onclick="toggleSettingsSection('categories')">
+     <span class="settings-group-title">🏷️ Categorie</span><span id="settingsArrow_categories" class="arrow accordion-arrow">⌄</span>
+    </button>
+    <div id="settingsBody_categories" class="settings-accordion-body hidden">
+     <div id="categoryList" class="category-list"></div>
+     <div class="cat-add-row">
+      <input id="newCategoryName" type="text" maxlength="30" placeholder="Nuova categoria (es. 🎉 Piaceri)" autocomplete="off">
+      <button onclick="addCategory()">＋</button>
+     </div>
+    </div>
+   </div>
+
+   <div class="settings-group">
+    <button type="button" class="row-between accordion-toggle" onclick="toggleSettingsSection('budget')">
+     <span class="settings-group-title">📊 Budget</span><span id="settingsArrow_budget" class="arrow accordion-arrow">⌄</span>
+    </button>
+    <div id="settingsBody_budget" class="settings-accordion-body hidden">
+     <div class="hint" style="margin-top:0">Imposta un tetto per categoria, vuoto = nessun limite. Appena una spesa lo supera ricevi un avviso.</div>
+     <div id="budgetList"></div>
+    </div>
+   </div>
+
+   <div class="settings-group">
+    <button type="button" class="row-between accordion-toggle" onclick="toggleSettingsSection('goals')">
+     <span class="settings-group-title">🎯 Obiettivi</span><span id="settingsArrow_goals" class="arrow accordion-arrow">⌄</span>
+    </button>
+    <div id="settingsBody_goals" class="settings-accordion-body hidden">
+     <div class="hint" style="margin-top:0">Crea, modifica o elimina i tuoi obiettivi di risparmio</div>
+     <div id="settingsGoalsList" class="category-list"></div>
+     <button class="action" style="width:100%;background:var(--bluebg);color:var(--blue)" onclick="closeSettingsModal();openGoalModal()">＋ Crea nuovo obiettivo</button>
+    </div>
+   </div>
+
+   <div class="settings-group">
+    <button type="button" class="row-between accordion-toggle" onclick="toggleSettingsSection('backup')">
+     <span class="settings-group-title">💾 Backup e salvataggi</span><span id="settingsArrow_backup" class="arrow accordion-arrow">⌄</span>
+    </button>
+    <div id="settingsBody_backup" class="settings-accordion-body hidden">
+     <div class="hint" style="margin-top:0">Salva o ripristina tutti i tuoi dati (saldi, movimenti, obiettivi, categorie)</div>
+     <div class="source-choice">
+      <button class="choice" onclick="exportBackup()">⬇️ Esporta</button>
+      <button class="choice" onclick="triggerImport()">⬆️ Importa</button>
+     </div>
+     <input id="importFileInput" type="file" accept="application/json" class="hidden" onchange="importBackup(event)">
+    </div>
+   </div>
+
+   <div class="settings-group danger-group">
+    <button type="button" class="row-between accordion-toggle" onclick="toggleSettingsSection('reset')">
+     <span class="settings-group-title danger">🗑️ Zona Reset</span><span id="settingsArrow_reset" class="arrow accordion-arrow">⌄</span>
+    </button>
+    <div id="settingsBody_reset" class="settings-accordion-body hidden">
+     <button class="action expense" style="width:100%;margin-top:4px" onclick="resetAll()">🗑️ Azzera conto e movimenti</button>
+     <div class="hint" style="margin:8px 0 4px">Cancella saldi, movimenti e risparmi ma mantiene categorie, nome e tema.</div>
+     <button class="action expense" style="width:100%;margin-top:8px" onclick="deleteAccount()">💣 Elimina account (reset totale)</button>
+     <div class="hint" style="margin:8px 0 0">Cancella davvero tutto, come alla primissima apertura dell'app.</div>
+    </div>
    </div>
   </div>
 
-  <div class="settings-group">
-   <div class="settings-group-title">🏷️ Categorie e budget</div>
-   <div class="settings-section-title">Categorie movimenti</div>
-   <div id="categoryList" class="category-list"></div>
-   <div class="cat-add-row">
-    <input id="newCategoryName" type="text" maxlength="30" placeholder="Nuova categoria (es. 🎉 Piaceri)">
-    <button onclick="addCategory()">＋</button>
-   </div>
-   <div class="settings-section-title">Budget mensili di spesa</div>
-   <div class="hint">Imposta un tetto per categoria, vuoto = nessun limite</div>
-   <div id="budgetList"></div>
-   <button id="settingsConfirmBtn" type="button" class="settings-confirm hidden" onclick="confirmSettingsChanges()">✅ Conferma modifiche</button>
-  </div>
-
-  <div class="settings-group">
-   <div class="settings-group-title">🎯 Obiettivi</div>
-   <div class="hint">Crea, controlla o elimina i tuoi obiettivi di risparmio</div>
-   <div id="settingsGoalsList" class="category-list"></div>
-   <button class="action" style="width:100%;background:var(--bluebg);color:var(--blue)" onclick="closeSettingsModal();openGoalModal()">＋ Crea nuovo obiettivo</button>
-  </div>
-
-  <div class="settings-group">
-   <div class="settings-group-title">💾 Backup dati</div>
-   <div class="hint">Salva o ripristina tutti i tuoi dati (saldi, movimenti, obiettivi, categorie)</div>
-   <div class="source-choice">
-    <button class="choice" onclick="exportBackup()">⬇️ Esporta</button>
-    <button class="choice" onclick="triggerImport()">⬆️ Importa</button>
-   </div>
-   <input id="importFileInput" type="file" accept="application/json" class="hidden" onchange="importBackup(event)">
-  </div>
-
-  <div class="settings-group danger-group">
-   <div class="settings-group-title danger">⚠️ Zona pericolosa</div>
-   <button class="action expense" style="width:100%;margin-top:4px" onclick="resetAll()">🗑️ Azzera conto e movimenti</button>
-   <div class="hint" style="margin:8px 0 4px">Cancella saldi, movimenti e risparmi ma mantiene categorie, nome e tema.</div>
-   <button class="action expense" style="width:100%;margin-top:8px" onclick="deleteAccount()">💣 Elimina account (reset totale)</button>
-   <div class="hint" style="margin:8px 0 0">Cancella davvero tutto, come alla primissima apertura dell'app.</div>
-  </div>
-
+  <button id="settingsConfirmBtn" type="button" class="settings-confirm hidden" onclick="confirmSettingsChanges()">✅ Conferma modifiche</button>
   <button class="modal-cancel" onclick="closeSettingsModal()">Chiudi</button>
+ </div>
+</div>
+
+<!-- Modal selezione generica (categoria ecc.) -->
+<div id="pickerSheetModal" class="modal-overlay" style="z-index:600">
+ <div class="modal">
+  <div class="handle"></div>
+  <div id="pickerSheetTitle" class="modal-title">Scegli</div>
+  <div id="pickerSheetList" class="picker-list"></div>
+  <button class="modal-cancel" onclick="closePickerSheet()">Annulla</button>
+ </div>
+</div>
+
+<!-- Modal calendario -->
+<div id="calendarModal" class="modal-overlay" style="z-index:600">
+ <div class="modal">
+  <div class="handle"></div>
+  <div class="modal-title">📅 Scegli una data</div>
+  <div class="cal-head">
+   <button type="button" class="cal-nav" onclick="calNav(-1)">‹</button>
+   <span id="calTitle" class="cal-title"></span>
+   <button type="button" class="cal-nav" onclick="calNav(1)">›</button>
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+  <button class="modal-cancel" onclick="closeCalendar()">Annulla</button>
+ </div>
+</div>
+
+<!-- Modal selezione emoji -->
+<div id="emojiPickerModal" class="modal-overlay" style="z-index:600">
+ <div class="modal">
+  <div class="handle"></div>
+  <div class="modal-title">Scegli un'icona</div>
+  <div class="modal-sub">Tocca un'emoji per l'obiettivo</div>
+  <div class="emoji-grid" id="emojiGrid"></div>
+  <button class="modal-cancel" onclick="closeEmojiPicker()">Annulla</button>
+ </div>
+</div>
+
+<!-- Modal modifica obiettivo -->
+<div id="goalEditModal" class="modal-overlay">
+ <div class="modal">
+  <div class="handle"></div>
+  <div class="modal-title">✏️ Modifica obiettivo</div>
+  <div class="modal-sub">Cambia icona, nome, importo obiettivo o saldo. Il saldo qui è una correzione manuale e non sposta soldi da contanti/carta.</div>
+  <div class="row-between" style="margin-bottom:12px;align-items:flex-start">
+   <button type="button" id="goalEditIconBtn" class="iconbox" onclick="openEmojiPicker('goalEdit')">🎯</button>
+   <div style="flex:1;margin-left:12px">
+     <input id="goalEditName" type="text" maxlength="50" placeholder="Nome obiettivo" autocomplete="off" style="margin-bottom:0">
+   </div>
+  </div>
+  <input id="goalEditTarget" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="Importo obiettivo (€)" autocomplete="off">
+  <input id="goalEditAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Saldo attuale (€)" autocomplete="off">
+  <button class="confirm" onclick="confirmGoalEdit()">Salva modifiche</button>
+  <button class="modal-cancel" onclick="closeGoalEditModal()">Annulla</button>
+ </div>
+</div>
+
+<!-- Modal avviso budget superato -->
+<div id="budgetAlertModal" class="modal-overlay" style="z-index:650">
+ <div class="modal">
+  <div class="handle"></div>
+  <div class="modal-title">⚠️ Budget superato</div>
+  <div class="modal-sub" id="budgetAlertMessage"></div>
+  <button class="confirm" onclick="closeBudgetAlert()">Ho capito</button>
  </div>
 </div>
 
@@ -317,7 +447,7 @@ input[type=number]{-moz-appearance:textfield}
   <div class="handle"></div>
   <div class="modal-title">👋 Benvenuto!</div>
   <div class="modal-sub">Come ti chiami? Userò il tuo nome per darti il benvenuto ogni volta che apri l'app.</div>
-  <input id="welcomeNameInput" type="text" maxlength="30" placeholder="Il tuo nome">
+  <input id="welcomeNameInput" type="text" maxlength="30" placeholder="Il tuo nome" autocomplete="off" autocapitalize="words">
   <button class="confirm" onclick="saveUsername()">Continua</button>
   <button class="modal-cancel" onclick="skipUsername()">Salta</button>
  </div>
@@ -371,7 +501,7 @@ input[type=number]{-moz-appearance:textfield}
   <div id="movementsPagination" class="source-choice" style="margin-top:10px;margin-bottom:0"></div>
  </div>
 </section>
-<div class="version">Gestione Soldi · Versione 2.42</div>
+<div class="version">Gestione Soldi · Versione 2.50</div>
 </main>
 
 <main id="trendsPage" class="app page">
@@ -383,14 +513,14 @@ input[type=number]{-moz-appearance:textfield}
 </section>
 
 <section class="card section"><h2 class="section-title">Spese di questo mese</h2><div class="month-summary"><span id="monthName">Mese corrente</span><span id="monthTotal" class="month-total">€0,00</span></div><div id="categories"></div></section>
-<div class="version">Gestione Soldi · Versione 2.42</div>
+<div class="version">Gestione Soldi · Versione 2.50</div>
 </main>
 
 <main id="goalsPage" class="app page">
 <header class="header"><button class="back-button" onclick="showHome()">←</button><h1 class="title">Obiettivi</h1></header>
 <section class="card section"><h2 class="section-title">I tuoi obiettivi</h2><div id="allGoals" class="goal-grid"></div></section>
 <div class="actions"><button class="action income" onclick="openGoalModal()">＋ Nuovo</button><button class="action" style="background:var(--bluebg);color:var(--blue)" onclick="openSplitModal()">⚖️ Dividi</button></div>
-<div class="version">Gestione Soldi · Versione 2.42</div>
+<div class="version">Gestione Soldi · Versione 2.50</div>
 </main>
 
 <main id="savingsPage" class="app page">
@@ -406,7 +536,7 @@ input[type=number]{-moz-appearance:textfield}
 </section>
 <section class="card section"><h2 class="section-title">Movimenti del salvadanaio</h2><div id="savingsTransactions"></div></section>
 <div class="info card">💡 Il salvadanaio è separato dagli obiettivi. Usa i pulsanti qui sopra per aggiungere o prelevare denaro: i saldi si aggiornano automaticamente.</div>
-<div class="version">Gestione Soldi · Versione 2.42</div>
+<div class="version">Gestione Soldi · Versione 2.50</div>
 </main>
 
 <main id="counterPage" class="app page">
@@ -433,7 +563,7 @@ input[type=number]{-moz-appearance:textfield}
 <section class="card section"><h2 class="section-title">Dettaglio conteggio</h2><div id="counterReceipt"></div></section>
 
 <div class="finish-bar"><button class="action income" style="width:100%" onclick="openCounterConfirm()">✅ Fine conteggio</button></div>
-<div class="version">Gestione Soldi · Versione 2.42</div>
+<div class="version">Gestione Soldi · Versione 2.50</div>
 </main>
 
 <script>
@@ -463,12 +593,19 @@ let movementsOpen=true;
 let movementsPage=0;
 let settingsDirty=false;
 let pendingBudgets={};
+let settingsOpenSections={};
+let pickerContext=null;
+let calContext=null,calViewDate=new Date(),calSelected=null;
+let emojiContext=null;
+let goalEditId=null;
+const goalEmojis=["🎯","🏠","🚗","✈️","🎓","💻","🎁","🛍️","📦","💰","💍","👶","🐶","🐱","⚽","🎸","📚","🎮","💊","🏖️","🚲","⛺","🎨","💐","🍽️","🏥","👗","👟","📱","💼","🌱","🏋️","🎂","🕹️","🖥️","📷","🎵","🚀","🏦","🧳","🛠️","🎗️","🌍","💵","🎬","🍕","🐷","⭐"];
 
 function save(){localStorage.setItem(KEY,JSON.stringify(data));refreshSourceBalances()}
 function refreshSourceBalances(){
- const c=money(data.cash),d=money(data.card);
+ const c=money(data.cash),d=money(data.card),t=money(totalAvailable());
  ["cashBtnBal","goalCashBtnBal","editCashBtnBal","splitCashBtnBal"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=c});
- ["cardBtnBal","goalCardBtnBal","editCardBtnBal","splitCardBtnBal"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=d})
+ ["cardBtnBal","goalCardBtnBal","editCardBtnBal","splitCardBtnBal"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=d});
+ const totEl=document.getElementById("splitTotalBtnBal");if(totEl)totEl.textContent=t
 }
 function money(n){return "€"+Number(n||0).toFixed(2).replace(".",",")}
 function stepAmount(id,dir){
@@ -488,6 +625,80 @@ function openConfirm(msg,cb){confirmMessage.textContent=msg;confirmCallback=cb;c
 function closeConfirmModal(){confirmModal.classList.remove("open");confirmCallback=null}
 function runConfirm(){const cb=confirmCallback;closeConfirmModal();if(cb)cb()}
 
+/* Selettore categoria personalizzato (sostituisce le select native) */
+function updateDetailCategoryLabel(){const v=detailCategory.value;detailCategoryLabel.textContent=v||"Categoria (opzionale)";detailCategoryField.classList.toggle("placeholder",!v)}
+function updateEditCategoryLabel(){const v=editCategory.value;editCategoryLabel.textContent=v||"Categoria (opzionale)";editCategoryField.classList.toggle("placeholder",!v)}
+function updateGoalCategoryLabel(){const v=goalCategory.value;goalCategoryLabel.textContent=v||"Categoria (opzionale)";goalCategoryField.classList.toggle("placeholder",!v)}
+function openCategoryPicker(ctx){
+ pickerContext=ctx;
+ const sel=ctx==="goal"?goalCategory:ctx==="detail"?detailCategory:editCategory;
+ const current=sel.value;
+ const opts=[...sel.options].map(o=>({v:o.value,l:o.textContent||"Nessuna categoria"}));
+ pickerSheetTitle.textContent="Scegli una categoria";
+ pickerSheetList.innerHTML=opts.map(o=>`<button type="button" class="picker-item ${o.v===current?"selected":""}" data-v="${esc(o.v)}"><span>${esc(o.l)}</span>${o.v===current?'<span class="picker-check">✓</span>':""}</button>`).join("");
+ pickerSheetModal.classList.add("open")
+}
+function closePickerSheet(){pickerSheetModal.classList.remove("open")}
+function selectCategoryPick(v){
+ if(pickerContext==="goal"){goalCategory.value=v;updateGoalCategoryLabel()}
+ else if(pickerContext==="detail"){detailCategory.value=v;updateDetailCategoryLabel()}
+ else{editCategory.value=v;updateEditCategoryLabel()}
+ closePickerSheet()
+}
+pickerSheetList.addEventListener("click",e=>{const b=e.target.closest(".picker-item");if(!b)return;selectCategoryPick(b.dataset.v)});
+
+/* Calendario personalizzato per la data */
+function updateEditDateLabel(){editDateLabel.textContent=editDate.value?fmt(editDate.value):"Data"}
+function openDatePicker(ctx){
+ calContext=ctx;
+ const cur=ctx==="edit"&&editDate.value?editDate.value:today();
+ calSelected=cur;
+ const[y,m]=cur.split("-").map(Number);
+ calViewDate=new Date(y,m-1,1);
+ renderCalendar();calendarModal.classList.add("open")
+}
+function closeCalendar(){calendarModal.classList.remove("open")}
+function calNav(d){calViewDate=new Date(calViewDate.getFullYear(),calViewDate.getMonth()+d,1);renderCalendar()}
+function renderCalendar(){
+ const y=calViewDate.getFullYear(),m=calViewDate.getMonth();
+ calTitle.textContent=calViewDate.toLocaleDateString("it-IT",{month:"long",year:"numeric"});
+ const first=new Date(y,m,1).getDay();
+ const startOffset=(first+6)%7;
+ const daysInMonth=new Date(y,m+1,0).getDate();
+ const dows=["L","M","M","G","V","S","D"];
+ let html=dows.map(d=>`<div class="cal-dow">${d}</div>`).join("");
+ for(let i=0;i<startOffset;i++)html+=`<div class="cal-day empty"></div>`;
+ const todayStr=today();
+ for(let d=1;d<=daysInMonth;d++){
+   const ds=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+   const cls=["cal-day"];
+   if(ds===todayStr)cls.push("today");
+   if(ds===calSelected)cls.push("selected");
+   html+=`<button type="button" class="${cls.join(" ")}" data-date="${ds}">${d}</button>`
+ }
+ calGrid.innerHTML=html
+}
+calGrid.addEventListener("click",e=>{const b=e.target.closest(".cal-day");if(!b||!b.dataset.date)return;calSelected=b.dataset.date;selectDatePick(b.dataset.date)});
+function selectDatePick(ds){
+ if(calContext==="edit"){editDate.value=ds;updateEditDateLabel()}
+ closeCalendar()
+}
+
+/* Selettore emoji per icona obiettivo */
+function openEmojiPicker(ctx){
+ emojiContext=ctx;
+ const current=ctx==="goalEdit"?goalEditIconBtn.textContent:ctx==="goalCreate"?goalCreateIconBtn.textContent:"";
+ emojiGrid.innerHTML=goalEmojis.map(e=>`<button type="button" class="emoji-cell ${e===current?"selected":""}" data-e="${e}">${e}</button>`).join("");
+ emojiPickerModal.classList.add("open")
+}
+function closeEmojiPicker(){emojiPickerModal.classList.remove("open")}
+emojiGrid.addEventListener("click",e=>{const b=e.target.closest(".emoji-cell");if(!b)return;selectEmoji(b.dataset.e)});
+function selectEmoji(e){
+ if(emojiContext==="goalEdit")goalEditIconBtn.textContent=e;
+ else if(emojiContext==="goalCreate")goalCreateIconBtn.textContent=e;
+ closeEmojiPicker()
+}
+
 function openMenu(){sideMenu.classList.add("open");overlay.classList.add("open")}
 function closeMenu(){sideMenu.classList.remove("open");overlay.classList.remove("open")}
 function showPage(id){["homePage","goalsPage","savingsPage","trendsPage","counterPage"].forEach(x=>document.getElementById(x).style.display=x===id?"block":"none");closeMenu();window.scrollTo(0,0)}
@@ -499,9 +710,18 @@ function showCounter(){loadCounterItems();renderCounter();showPage("counterPage"
 
 function setTheme(t){data.theme=t;document.body.classList.toggle("dark",t==="dark");save();updateTheme()}
 function updateTheme(){let d=data.theme==="dark";themeLightBtn.classList.toggle("selected",!d);themeDarkBtn.classList.toggle("selected",d)}
+const settingsSections=["profile","categories","budget","goals","backup","reset"];
+function toggleSettingsSection(key){
+ const open=!settingsOpenSections[key];
+ settingsOpenSections[key]=open;
+ document.getElementById("settingsBody_"+key).classList.toggle("hidden",!open);
+ document.getElementById("settingsArrow_"+key).style.transform=open?"rotate(180deg)":"rotate(0)"
+}
 function openSettingsModal(){
  closeMenu();updateTheme();renderCategoryList();
  pendingBudgets={...(data.budgets||{})};settingsDirty=false;settingsConfirmBtn.classList.add("hidden");
+ settingsOpenSections={};
+ settingsSections.forEach(k=>{document.getElementById("settingsBody_"+k).classList.add("hidden");document.getElementById("settingsArrow_"+k).style.transform="rotate(0)"});
  renderBudgetList();renderSettingsGoalsList();usernameSetting.value=data.username||"";newCategoryName.value="";settingsModal.classList.add("open")
 }
 function closeSettingsModal(){
@@ -591,9 +811,9 @@ function importBackup(e){
 
 function chooseSource(s){quick.source=s;cashBtn.classList.toggle("selected",s==="cash");cardBtn.classList.toggle("selected",s==="card")}
 function chooseGoalSource(s){goalOp.source=s;goalCashBtn.classList.toggle("selected",s==="cash");goalCardBtn.classList.toggle("selected",s==="card")}
-function chooseSplitSource(s){window.splitSource=s;splitCashBtn.classList.toggle("selected",s==="cash");splitCardBtn.classList.toggle("selected",s==="card")}
-function availableSource(s){return s==="cash"?Number(data.cash):Number(data.card)}
-function sourceName(s){return s==="cash"?"Contanti":"Carta"}
+function chooseSplitSource(s){window.splitSource=s;splitCashBtn.classList.toggle("selected",s==="cash");splitCardBtn.classList.toggle("selected",s==="card");splitTotalBtn.classList.toggle("selected",s==="total")}
+function availableSource(s){if(s==="total")return totalAvailable();return s==="cash"?Number(data.cash):Number(data.card)}
+function sourceName(s){return s==="cash"?"Contanti":s==="card"?"Carta":"Saldo totale"}
 
 function openMoneyModal(type){
  quick={type,amount:0,source:"cash"};
@@ -608,7 +828,7 @@ function confirmMoney(){
  if(quick.type==="expense"&&a>availableSource(quick.source)){toast("Saldo insufficiente","⚠️");return}
  quick.amount=a;quick.denominations=null;closeMoneyModal();
  setTimeout(()=>{
-   detailDescription.value="";detailCategory.value="";
+   detailDescription.value="";detailCategory.value="";updateDetailCategoryLabel();
    if(quick.type==="income"&&quick.source==="cash"){
      specifyDenomBtn.style.display="block";
      specifyDenomBtn.textContent="🧮 Specifica il taglio di questa cifra";
@@ -624,15 +844,38 @@ function saveQuickMovement(skip=false){
  const denom=(!skip&&quick.denominations)?quick.denominations:null;
  if(quick.type==="income"){if(quick.source==="cash")data.cash+=a;else data.card+=a;data.movements.push({type:"income",amount:a,description:desc,category:cat,source:quick.source,date:today(),denominations:denom});toast("Entrata aggiunta","💰")}
  else{if(quick.source==="cash")data.cash-=a;else data.card-=a;data.movements.push({type:"expense",amount:a,description:desc,category:cat,source:quick.source,date:today()});toast("Spesa registrata","💸")}
- save();detailsModal.classList.remove("open");renderAll()
+ save();detailsModal.classList.remove("open");renderAll();
+ if(quick.type==="expense")checkBudgetAfterExpense(cat,a)
 }
 
-function openGoalModal(){goalName.value="";goalTarget.value="";goalCategory.value="";goalModal.classList.add("open");setTimeout(()=>goalName.focus(),220)}
+function currentMonthCategoryTotal(cat){
+ const now=new Date(),mo=now.getMonth(),yr=now.getFullYear();let t=0;
+ data.movements.forEach(m=>{if(m.type==="expense"&&!m.savings&&(m.category||"")===cat){const d=new Date((m.date||today())+"T12:00:00");if(d.getMonth()===mo&&d.getFullYear()===yr)t+=Number(m.amount)}});
+ return t
+}
+function checkBudgetAfterExpense(cat,amount){
+ if(!cat)return;
+ const budget=data.budgets&&data.budgets[cat];
+ if(!budget)return;
+ const total=currentMonthCategoryTotal(cat);
+ const prev=total-Number(amount||0);
+ if(total>budget){
+   if(prev<=budget){
+     budgetAlertMessage.textContent=`Hai superato il budget mensile per "${cat}": hai speso ${money(total)} su un limite di ${money(budget)}.`;
+     budgetAlertModal.classList.add("open")
+   }else{
+     toast(`⚠️ Budget "${cat}" ancora superato`,"⚠️")
+   }
+ }
+}
+function closeBudgetAlert(){budgetAlertModal.classList.remove("open")}
+
+function openGoalModal(){goalName.value="";goalTarget.value="";goalCategory.value="";updateGoalCategoryLabel();goalCreateIconBtn.textContent="🎯";goalModal.classList.add("open");setTimeout(()=>goalName.focus(),220)}
 function closeGoalModal(){goalModal.classList.remove("open")}
 function createGoal(){
  const n=goalName.value.trim(),t=Number(goalTarget.value),c=goalCategory.value;
  if(!n)return goalName.focus();if(!(t>0))return goalTarget.focus();
- data.goals.push({id:Date.now().toString(),name:n,target:t,amount:0,category:c,transactions:[]});
+ data.goals.push({id:Date.now().toString(),name:n,target:t,amount:0,category:c,icon:goalCreateIconBtn.textContent||"🎯",transactions:[]});
  save();closeGoalModal();renderAll();toast("Obiettivo creato","🎯")
 }
 function goalById(id){return data.goals.find(g=>g.id===id)}
@@ -672,7 +915,8 @@ function confirmSplit(){
  if(a>availableSource(window.splitSource))return toast("Saldo insufficiente","⚠️");
  const each=a/ids.length;
  if(ids.some(id=>{let g=goalById(id);return g.amount+each>g.target+0.000001}))return toast("La divisione supera un obiettivo","⚠️");
- if(window.splitSource==="cash")data.cash-=a;else data.card-=a;
+ if(window.splitSource==="total"){let rem=a;const fromCash=Math.min(data.cash,rem);data.cash-=fromCash;rem-=fromCash;data.card-=rem}
+ else if(window.splitSource==="cash")data.cash-=a;else data.card-=a;
  ids.forEach(id=>{let g=goalById(id);g.amount+=each;g.transactions.push({type:"add",amount:each,source:window.splitSource,date:today(),split:true})});
  save();closeSplitModal();renderAll();toast("Cifra divisa equamente","⚖️")
 }
@@ -680,7 +924,7 @@ function confirmSplit(){
 function goalHTML(g,compact=false){
  const pct=g.target?Math.min(100,g.amount/g.target*100):0,done=g.amount>=g.target;
  return `<div class="goal-card ${done?"done-card":""}">
- <div class="row-between"><div class="mini-left"><div class="iconbox">🎯</div><div><div class="name">${esc(g.name)}</div><div class="goal-category">${esc(g.category||"Nessuna categoria")}</div></div></div><div class="${done?"done-text":"goal-amount"}">${done?"COMPLETATO":money(g.amount)}</div></div>
+ <div class="row-between"><div class="mini-left"><div class="iconbox">${esc(g.icon||"🎯")}</div><div><div class="name">${esc(g.name)}</div><div class="goal-category">${esc(g.category||"Nessuna categoria")}</div></div></div><div style="display:flex;align-items:center;gap:8px"><div class="${done?"done-text":"goal-amount"}">${done?"COMPLETATO":money(g.amount)}</div>${!compact?`<button type="button" class="goal-edit-btn" onclick="openGoalEditModal('${g.id}')">✏️</button>`:""}</div></div>
  <div class="sub" style="margin-top:10px">${money(g.amount)} / ${money(g.target)}</div><div class="progress"><div class="fill ${done?"done":""}" style="width:${pct}%"></div></div>
  <div class="sub" style="text-align:right;margin-top:5px">${done?"🎉 Completato":Math.round(pct)+"%"}</div>
  ${!compact?`<div class="goal-actions"><button class="goal-btn goal-add" onclick="openGoalMoneyModal('${g.id}','add')">＋ Aggiungi</button><button class="goal-btn goal-remove" onclick="openGoalMoneyModal('${g.id}','remove')">− Preleva</button></div>
@@ -734,9 +978,9 @@ function openEditModal(i){
  editTitle.textContent=m.type==="income"?"✏️ Modifica entrata":"✏️ Modifica spesa";
  editAmount.value=m.amount;
  editDescription.value=m.description||"";
- editDate.value=m.date||today();
  editCategory.innerHTML=`<option value="">Categoria (opzionale)</option>`+data.categories.map(c=>`<option>${esc(c)}</option>`).join("");
- editCategory.value=m.category||"";
+ editCategory.value=m.category||"";updateEditCategoryLabel();
+ editDate.value=m.date||today();updateEditDateLabel();
  chooseEditSource(m.source||"cash");
  editModal.classList.add("open")
 }
@@ -760,7 +1004,8 @@ function confirmEditMovement(){
  if(m.type==="income"){if(newSource==="cash")data.cash+=a;else data.card+=a}
  else{if(newSource==="cash")data.cash-=a;else data.card-=a}
  m.amount=a;m.description=desc;m.category=cat;m.source=newSource;m.date=date;
- save();closeEditModal();renderAll();toast("Movimento aggiornato","✏️")
+ save();closeEditModal();renderAll();toast("Movimento aggiornato","✏️");
+ if(m.type==="expense")checkBudgetAfterExpense(cat,a)
 }
 function filterByCategory(cat){search.value=cat;showHome();movementsPage=0;openMovementsSection();renderMovements()}
 function deleteMovement(i){
@@ -902,7 +1147,25 @@ function openMovementsSection(){
 
 /* Obiettivi dalle impostazioni */
 function renderSettingsGoalsList(){
- settingsGoalsList.innerHTML=data.goals.length?data.goals.map(g=>`<div class="category-chip"><span>🎯 ${esc(g.name)} (${money(g.amount)})</span><button onclick="deleteGoal('${g.id}')">×</button></div>`).join(""):`<div class="empty">Nessun obiettivo creato</div>`
+ settingsGoalsList.innerHTML=data.goals.length?data.goals.map(g=>`<div class="category-chip"><span>${esc(g.icon||"🎯")} ${esc(g.name)} (${money(g.amount)})</span><button onclick="openGoalEditModal('${g.id}')">✏️</button><button onclick="deleteGoal('${g.id}')">×</button></div>`).join(""):`<div class="empty">Nessun obiettivo creato</div>`
+}
+function openGoalEditModal(id){
+ const g=goalById(id);if(!g)return;
+ goalEditId=id;
+ goalEditIconBtn.textContent=g.icon||"🎯";
+ goalEditName.value=g.name;
+ goalEditTarget.value=g.target;
+ goalEditAmount.value=g.amount;
+ goalEditModal.classList.add("open")
+}
+function closeGoalEditModal(){goalEditModal.classList.remove("open");goalEditId=null}
+function confirmGoalEdit(){
+ const g=goalById(goalEditId);if(!g)return;
+ const n=goalEditName.value.trim();if(!n)return goalEditName.focus();
+ const t=Number(goalEditTarget.value);if(!(t>0))return goalEditTarget.focus();
+ const a=Number(goalEditAmount.value);if(!(a>=0))return goalEditAmount.focus();
+ g.name=n;g.target=t;g.amount=a;g.icon=goalEditIconBtn.textContent||"🎯";
+ save();closeGoalEditModal();renderAll();renderSettingsGoalsList();toast("Obiettivo aggiornato","✏️")
 }
 function deleteGoal(id){
  const g=goalById(id);if(!g)return;
