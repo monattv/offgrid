@@ -7,7 +7,7 @@
 <title>Gestione Soldi</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#f5f6f8;--card:#fff;--text:#17181a;--muted:#7b7e85;--border:#e5e7eb;--green:#159447;--greenbg:#e7f7ed;--red:#d93838;--redbg:#ffebeb;--blue:#3478f6;--bluebg:#eaf1ff;--yellow:#d99600;--yellowbg:#fff4d6;--shadow:0 5px 24px rgba(0,0,0,.06)}
+:root{--bg:#e9ebef;--card:#fff;--text:#17181a;--muted:#5b5e66;--border:#d7dade;--green:#159447;--greenbg:#e7f7ed;--red:#d93838;--redbg:#ffebeb;--blue:#3478f6;--bluebg:#eaf1ff;--yellow:#d99600;--yellowbg:#fff4d6;--shadow:0 5px 24px rgba(0,0,0,.08)}
 body.dark{--bg:#101112;--card:#1b1d20;--text:#f5f5f5;--muted:#a4a6ab;--border:#2b2e32;--green:#45d77d;--greenbg:#173725;--red:#ff6969;--redbg:#3c2020;--blue:#70a0ff;--bluebg:#202f4d;--yellow:#ffc94d;--yellowbg:#3d3118;--shadow:0 5px 24px rgba(0,0,0,.25)}
 html{background:var(--bg)}body{margin:0;padding:calc(10px + env(safe-area-inset-top)) 14px calc(30px + env(safe-area-inset-bottom));background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:100vh}
 button,input,select{font:inherit}button{border:0;cursor:pointer;color:var(--text)}button:active{transform:scale(.97)}
@@ -25,9 +25,26 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 .movement{padding:15px 0;border-bottom:1px solid var(--border)}.movement:last-child{border-bottom:0}.movement-top{display:flex;justify-content:space-between;gap:10px}.movement-info{min-width:0;flex:1}.movement-title{font-size:15px;font-weight:700;overflow-wrap:anywhere}.movement-date{margin-top:5px;color:var(--muted);font-size:12px}.tag{display:inline-block;margin-top:7px;padding:5px 9px;border-radius:8px;background:var(--bg);color:var(--muted);font-size:11px}.buttons{display:flex;gap:5px}.smallbtn{width:36px;height:36px;border-radius:10px;background:var(--bg)}.delete{color:var(--red)}
 .page{display:none}.home{display:block}.hidden{display:none!important}.empty{padding:10px 0;text-align:center;color:var(--muted);font-size:13px}
 .savings-card,.goal-card{padding:20px;margin-bottom:13px}.big-head{display:flex;align-items:center;gap:13px;margin-bottom:18px}.big-icon{width:55px;height:55px;display:flex;align-items:center;justify-content:center;border-radius:17px;background:var(--yellowbg);font-size:30px}.big-name{font-size:20px;font-weight:800}.big-amount{font-size:37px;font-weight:850;margin-bottom:4px}.target{color:var(--muted);font-size:13px;margin-bottom:14px}.info{padding:18px;line-height:1.6;color:var(--muted);font-size:13px}.goal-grid{display:grid;gap:11px}.goal-card{margin:0;padding:17px}.goal-card.done-card{border-color:var(--green)}.goal-amount{font-size:22px;font-weight:850}.goal-category{font-size:11px;color:var(--muted);margin-top:3px}.goal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.goal-btn{height:45px;border-radius:12px;font-weight:750}.goal-add{background:var(--greenbg);color:var(--green)}.goal-remove{background:var(--redbg);color:var(--red)}.goal-tx{margin-top:13px;padding-top:10px;border-top:1px solid var(--border)}.goal-tx-title{font-size:12px;font-weight:750;margin-bottom:6px}.goal-tx-row{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;color:var(--muted)}
-.modal-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.22s}.modal-overlay.open{opacity:1;pointer-events:auto}.modal{width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:22px 18px 18px;background:var(--card);border-radius:25px;box-shadow:0 -8px 40px rgba(0,0,0,.2);transform:translateY(30px);transition:.25s}.modal-overlay.open .modal{transform:translateY(0)}.handle{width:42px;height:5px;margin:0 auto 20px;border-radius:10px;background:var(--border)}.modal-title{text-align:center;font-size:20px;font-weight:800;margin-bottom:5px}.modal-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px}.amount{height:70px;margin:0 0 12px;padding:0 15px;border-radius:17px;border:2px solid var(--border);font-size:32px;font-weight:800;text-align:center}.source-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.choice{height:51px;border-radius:13px;background:var(--bg);border:2px solid transparent;font-weight:750}.choice.selected{border-color:var(--blue);background:var(--bluebg);color:var(--blue)}.confirm{width:100%;height:56px;border-radius:15px;background:var(--text);color:var(--card);font-weight:800}.modal-cancel{width:100%;height:46px;margin-top:7px;border-radius:14px;background:transparent;color:var(--muted);font-weight:650}.check-row{display:flex;align-items:center;gap:10px;padding:10px 0}.check-row input{width:22px;height:22px;margin:0}.toast{position:fixed;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,30px) scale(.95);opacity:0;pointer-events:none;z-index:700;display:flex;gap:10px;align-items:center;padding:13px 17px;border-radius:15px;background:var(--text);color:var(--card);box-shadow:0 10px 35px rgba(0,0,0,.22);font-size:14px;font-weight:700;white-space:nowrap;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
+.modal-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0 12px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.22s}.modal-overlay.open{opacity:1;pointer-events:auto}.modal{width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:22px 18px 18px;background:var(--card);border-radius:25px;box-shadow:0 -8px 40px rgba(0,0,0,.2);transform:translateY(30px);transition:.25s}.modal-overlay.open .modal{transform:translateY(0)}.handle{width:42px;height:5px;margin:0 auto 20px;border-radius:10px;background:var(--border)}.modal-title{text-align:center;font-size:20px;font-weight:800;margin-bottom:5px}.modal-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px}.amount{height:70px;margin:0 0 12px;padding:0 15px;border-radius:17px;border:2px solid var(--border);font-size:32px;font-weight:800;text-align:center}.source-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.choice{height:56px;border-radius:13px;background:var(--bg);border:2px solid transparent;font-weight:750;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.15}.choice.selected{border-color:var(--blue);background:var(--bluebg);color:var(--blue)}
+.choice-label{font-size:14px;font-weight:750}.choice-balance{font-size:10.5px;font-weight:650;color:var(--muted)}.choice.selected .choice-balance{color:var(--blue)}.confirm{width:100%;height:56px;border-radius:15px;background:var(--text);color:var(--card);font-weight:800}.modal-cancel{width:100%;height:46px;margin-top:7px;border-radius:14px;background:transparent;color:var(--muted);font-weight:650}.check-row{display:flex;align-items:center;gap:10px;padding:10px 0}.check-row input{width:22px;height:22px;margin:0}.toast{position:fixed;left:50%;bottom:calc(25px + env(safe-area-inset-bottom));transform:translate(-50%,30px) scale(.95);opacity:0;pointer-events:none;z-index:700;display:flex;gap:10px;align-items:center;padding:13px 17px;border-radius:15px;background:var(--text);color:var(--card);box-shadow:0 10px 35px rgba(0,0,0,.22);font-size:14px;font-weight:700;white-space:nowrap;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
 .version{text-align:center;color:var(--muted);font-size:11px;margin:20px 0 5px}
-.settings-section-title{margin:20px 0 10px;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}.settings-section-title.danger{color:var(--red)}
+.settings-section-title{margin:16px 0 10px;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}.settings-section-title.danger{color:var(--red)}.settings-section-title:first-of-type{margin-top:0}
+.modal-sticky-header{position:sticky;top:-22px;margin:-22px -18px 0;padding:16px 18px 14px;background:var(--card);z-index:20;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);border-radius:25px 25px 0 0}
+.modal-sticky-title{font-size:19px;font-weight:800}
+.modal-close-x{width:38px;height:38px;border-radius:12px;background:var(--bg);font-size:17px;flex-shrink:0}
+.settings-group{padding:18px 0;border-bottom:1px solid var(--border)}.settings-group:last-of-type{border-bottom:0;padding-bottom:6px}
+.settings-group-title{font-size:15px;font-weight:800;display:flex;align-items:center;gap:6px}.settings-group-title.danger{color:var(--red)}
+.danger-group .action{margin-top:0}
+input[type=checkbox]{-webkit-appearance:none;appearance:none;width:23px;height:23px;border:2px solid var(--border);border-radius:8px;background:var(--card);position:relative;cursor:pointer;flex-shrink:0;margin:0;transition:.15s}
+input[type=checkbox]:checked{background:var(--blue);border-color:var(--blue)}
+input[type=checkbox]:checked::after{content:"€";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);color:#fff;font-size:13px;font-weight:800}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+.amount-wrap{position:relative}
+.amount-wrap input.amount{padding-right:48px}
+.amount-stepper{position:absolute;right:8px;top:8px;bottom:8px;display:flex;flex-direction:column;width:34px;gap:4px}
+.amount-stepper button{flex:1;border-radius:9px;background:var(--bg);color:var(--muted);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:800;line-height:1}
+.amount-stepper button:active{background:var(--bluebg);color:var(--blue)}
 .category-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.category-chip{display:flex;align-items:center;gap:7px;padding:9px 8px 9px 13px;border-radius:12px;background:var(--bg);font-size:13px;font-weight:650}.category-chip button{background:transparent;color:var(--muted);font-size:16px;line-height:1;padding:2px 4px}
 .cat-add-row{display:flex;gap:8px;align-items:flex-start}.cat-add-row input{margin:0}.cat-add-row button{width:51px;height:51px;flex-shrink:0;border-radius:13px;background:var(--text);color:var(--card);font-size:21px}
 .budget-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.budget-row .budget-cat{font-size:13px;font-weight:650;overflow-wrap:anywhere}.budget-row input{width:105px;height:42px;margin:0;flex-shrink:0;padding:0 10px;font-size:14px;text-align:right}
@@ -39,6 +56,11 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 .counter-receipt-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)}.counter-receipt-row:last-child{border-bottom:0}
 .confirm:disabled{opacity:.4;cursor:not-allowed}
 .finish-bar{margin-top:4px}
+.choice:disabled{opacity:.35;pointer-events:none}
+.accordion-toggle{width:100%;background:transparent;text-align:left;padding:0}
+.accordion-arrow{transition:transform .25s}
+.pagination-label{pointer-events:none}
+.settings-confirm{width:100%;height:52px;border-radius:14px;background:var(--blue);color:#fff;font-weight:800;margin-top:14px}
 @media(max-width:370px){body{padding-left:10px;padding-right:10px}.balance{font-size:36px}}
 </style>
 </head>
@@ -68,10 +90,13 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
   <div class="handle"></div>
   <div id="moneyTitle" class="modal-title">Nuovo movimento</div>
   <div id="moneySub" class="modal-sub">Inserisci l'importo</div>
-  <input id="moneyAmount" class="amount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="€ 0,00">
+  <div class="amount-wrap">
+   <input id="moneyAmount" class="amount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="€ 0,00">
+   <div class="amount-stepper"><button type="button" onclick="stepAmount('moneyAmount',1)">▲</button><button type="button" onclick="stepAmount('moneyAmount',-1)">▼</button></div>
+  </div>
   <div id="sourceChoice" class="source-choice">
-   <button id="cashBtn" class="choice" onclick="chooseSource('cash')">💵 Contanti</button>
-   <button id="cardBtn" class="choice" onclick="chooseSource('card')">💳 Carta</button>
+   <button id="cashBtn" class="choice" onclick="chooseSource('cash')"><span class="choice-label">💵 Contanti</span><span id="cashBtnBal" class="choice-balance"></span></button>
+   <button id="cardBtn" class="choice" onclick="chooseSource('card')"><span class="choice-label">💳 Carta</span><span id="cardBtnBal" class="choice-balance"></span></button>
   </div>
   <button class="confirm" onclick="confirmMoney()">Continua</button>
   <button class="modal-cancel" onclick="closeMoneyModal()">Annulla</button>
@@ -117,10 +142,13 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
   <div class="handle"></div>
   <div id="goalMoneyTitle" class="modal-title">Aggiungi</div>
   <div id="goalMoneySub" class="modal-sub"></div>
-  <input id="goalMoneyAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+  <div class="amount-wrap">
+   <input id="goalMoneyAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+   <div class="amount-stepper"><button type="button" onclick="stepAmount('goalMoneyAmount',1)">▲</button><button type="button" onclick="stepAmount('goalMoneyAmount',-1)">▼</button></div>
+  </div>
   <div id="goalSourceChoice" class="source-choice">
-   <button id="goalCashBtn" class="choice" onclick="chooseGoalSource('cash')">💵 Contanti</button>
-   <button id="goalCardBtn" class="choice" onclick="chooseGoalSource('card')">💳 Carta</button>
+   <button id="goalCashBtn" class="choice" onclick="chooseGoalSource('cash')"><span class="choice-label">💵 Contanti</span><span id="goalCashBtnBal" class="choice-balance"></span></button>
+   <button id="goalCardBtn" class="choice" onclick="chooseGoalSource('card')"><span class="choice-label">💳 Carta</span><span id="goalCardBtnBal" class="choice-balance"></span></button>
   </div>
   <button class="confirm" onclick="confirmGoalMoney()">Conferma</button>
   <button class="modal-cancel" onclick="closeGoalMoneyModal()">Annulla</button>
@@ -133,10 +161,13 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
   <div class="handle"></div>
   <div id="editTitle" class="modal-title">✏️ Modifica movimento</div>
   <div class="modal-sub">Aggiorna importo, conto, descrizione o categoria.</div>
-  <input id="editAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+  <div class="amount-wrap">
+   <input id="editAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+   <div class="amount-stepper"><button type="button" onclick="stepAmount('editAmount',1)">▲</button><button type="button" onclick="stepAmount('editAmount',-1)">▼</button></div>
+  </div>
   <div id="editSourceChoice" class="source-choice">
-   <button id="editCashBtn" class="choice" onclick="chooseEditSource('cash')">💵 Contanti</button>
-   <button id="editCardBtn" class="choice" onclick="chooseEditSource('card')">💳 Carta</button>
+   <button id="editCashBtn" class="choice" onclick="chooseEditSource('cash')"><span class="choice-label">💵 Contanti</span><span id="editCashBtnBal" class="choice-balance"></span></button>
+   <button id="editCardBtn" class="choice" onclick="chooseEditSource('card')"><span class="choice-label">💳 Carta</span><span id="editCardBtnBal" class="choice-balance"></span></button>
   </div>
   <input id="editDescription" type="text" maxlength="100" placeholder="Descrizione">
   <select id="editCategory"><option value="">Categoria (opzionale)</option></select>
@@ -152,11 +183,14 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
   <div class="handle"></div>
   <div class="modal-title">⚖️ Dividi equamente</div>
   <div class="modal-sub">Scegli la cifra e gli obiettivi da usare.</div>
-  <input id="splitAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+  <div class="amount-wrap">
+   <input id="splitAmount" class="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="€ 0,00">
+   <div class="amount-stepper"><button type="button" onclick="stepAmount('splitAmount',1)">▲</button><button type="button" onclick="stepAmount('splitAmount',-1)">▼</button></div>
+  </div>
   <div id="splitGoals"></div>
   <div id="splitSourceChoice" class="source-choice">
-   <button id="splitCashBtn" class="choice" onclick="chooseSplitSource('cash')">💵 Contanti</button>
-   <button id="splitCardBtn" class="choice" onclick="chooseSplitSource('card')">💳 Carta</button>
+   <button id="splitCashBtn" class="choice" onclick="chooseSplitSource('cash')"><span class="choice-label">💵 Contanti</span><span id="splitCashBtnBal" class="choice-balance"></span></button>
+   <button id="splitCardBtn" class="choice" onclick="chooseSplitSource('card')"><span class="choice-label">💳 Carta</span><span id="splitCardBtnBal" class="choice-balance"></span></button>
   </div>
   <button class="confirm" onclick="confirmSplit()">Dividi equamente</button>
   <button class="modal-cancel" onclick="closeSplitModal()">Annulla</button>
@@ -204,45 +238,61 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 <!-- Modal impostazioni -->
 <div id="settingsModal" class="modal-overlay">
  <div class="modal">
-  <div class="handle"></div>
-  <div class="modal-title">⚙️ Impostazioni</div>
-  <div class="modal-sub">Personalizza l'app come preferisci.</div>
+  <div class="modal-sticky-header">
+   <span class="modal-sticky-title">⚙️ Impostazioni</span>
+   <button class="modal-close-x" onclick="closeSettingsModal()">✕</button>
+  </div>
+  <div class="modal-sub" style="margin-top:14px">Personalizza l'app come preferisci.</div>
 
-  <div class="settings-section-title">Il tuo nome</div>
-  <input id="usernameSetting" type="text" maxlength="30" placeholder="Il tuo nome" onchange="setUsername(this.value)">
-
-  <div class="settings-section-title">Tema</div>
-  <div class="source-choice">
-   <button id="themeLightBtn" class="choice" onclick="setTheme('light')">☀️ Chiaro</button>
-   <button id="themeDarkBtn" class="choice" onclick="setTheme('dark')">🌙 Scuro</button>
+  <div class="settings-group">
+   <div class="settings-group-title">👤 Profilo</div>
+   <div class="settings-section-title">Il tuo nome</div>
+   <input id="usernameSetting" type="text" maxlength="30" placeholder="Il tuo nome" oninput="markSettingsDirty()">
+   <div class="settings-section-title">Tema</div>
+   <div class="source-choice">
+    <button id="themeLightBtn" class="choice" onclick="setTheme('light')">☀️ Chiaro</button>
+    <button id="themeDarkBtn" class="choice" onclick="setTheme('dark')">🌙 Scuro</button>
+   </div>
   </div>
 
-  <div class="settings-section-title">Obiettivi</div>
-  <div class="hint">Crea, controlla o elimina i tuoi obiettivi di risparmio</div>
-  <div id="settingsGoalsList" class="category-list"></div>
-  <button class="action" style="width:100%;background:var(--bluebg);color:var(--blue)" onclick="closeSettingsModal();openGoalModal()">＋ Crea nuovo obiettivo</button>
-
-  <div class="settings-section-title">Categorie movimenti</div>
-  <div id="categoryList" class="category-list"></div>
-  <div class="cat-add-row">
-   <input id="newCategoryName" type="text" maxlength="30" placeholder="Nuova categoria (es. 🎉 Piaceri)">
-   <button onclick="addCategory()">＋</button>
+  <div class="settings-group">
+   <div class="settings-group-title">🏷️ Categorie e budget</div>
+   <div class="settings-section-title">Categorie movimenti</div>
+   <div id="categoryList" class="category-list"></div>
+   <div class="cat-add-row">
+    <input id="newCategoryName" type="text" maxlength="30" placeholder="Nuova categoria (es. 🎉 Piaceri)">
+    <button onclick="addCategory()">＋</button>
+   </div>
+   <div class="settings-section-title">Budget mensili di spesa</div>
+   <div class="hint">Imposta un tetto per categoria, vuoto = nessun limite</div>
+   <div id="budgetList"></div>
+   <button id="settingsConfirmBtn" type="button" class="settings-confirm hidden" onclick="confirmSettingsChanges()">✅ Conferma modifiche</button>
   </div>
 
-  <div class="settings-section-title">Budget mensili di spesa</div>
-  <div class="hint">Imposta un tetto per categoria, vuoto = nessun limite</div>
-  <div id="budgetList"></div>
-
-  <div class="settings-section-title">Backup dati</div>
-  <div class="hint">Salva o ripristina tutti i tuoi dati (saldi, movimenti, obiettivi, categorie)</div>
-  <div class="source-choice">
-   <button class="choice" onclick="exportBackup()">⬇️ Esporta</button>
-   <button class="choice" onclick="triggerImport()">⬆️ Importa</button>
+  <div class="settings-group">
+   <div class="settings-group-title">🎯 Obiettivi</div>
+   <div class="hint">Crea, controlla o elimina i tuoi obiettivi di risparmio</div>
+   <div id="settingsGoalsList" class="category-list"></div>
+   <button class="action" style="width:100%;background:var(--bluebg);color:var(--blue)" onclick="closeSettingsModal();openGoalModal()">＋ Crea nuovo obiettivo</button>
   </div>
-  <input id="importFileInput" type="file" accept="application/json" class="hidden" onchange="importBackup(event)">
 
-  <div class="settings-section-title danger">Zona pericolosa</div>
-  <button class="action expense" style="width:100%" onclick="resetAll()">🗑️ Azzera conto e movimenti</button>
+  <div class="settings-group">
+   <div class="settings-group-title">💾 Backup dati</div>
+   <div class="hint">Salva o ripristina tutti i tuoi dati (saldi, movimenti, obiettivi, categorie)</div>
+   <div class="source-choice">
+    <button class="choice" onclick="exportBackup()">⬇️ Esporta</button>
+    <button class="choice" onclick="triggerImport()">⬆️ Importa</button>
+   </div>
+   <input id="importFileInput" type="file" accept="application/json" class="hidden" onchange="importBackup(event)">
+  </div>
+
+  <div class="settings-group danger-group">
+   <div class="settings-group-title danger">⚠️ Zona pericolosa</div>
+   <button class="action expense" style="width:100%;margin-top:4px" onclick="resetAll()">🗑️ Azzera conto e movimenti</button>
+   <div class="hint" style="margin:8px 0 4px">Cancella saldi, movimenti e risparmi ma mantiene categorie, nome e tema.</div>
+   <button class="action expense" style="width:100%;margin-top:8px" onclick="deleteAccount()">💣 Elimina account (reset totale)</button>
+   <div class="hint" style="margin:8px 0 0">Cancella davvero tutto, come alla primissima apertura dell'app.</div>
+  </div>
 
   <button class="modal-cancel" onclick="closeSettingsModal()">Chiudi</button>
  </div>
@@ -285,26 +335,43 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
  <section class="card source-card"><div class="source-label">💳 Saldo carta</div><div id="cardBalance" class="source-value">€0,00</div></section>
 </div>
 
-<section class="card savings-mini" onclick="showCounter()">
- <div class="row-between"><div class="mini-left"><div class="iconbox">🧮</div><div><div class="name">Conta soldi</div><div class="sub">Conta monete e banconote a mano</div></div></div><div class="arrow">›</div></div>
-</section>
-
-<section class="card savings-mini" onclick="showSavings()">
- <div class="row-between"><div class="mini-left"><div class="iconbox">🐷</div><div><div id="savingsNameHome" class="name">Risparmi protetti</div><div id="savingsHomeAmount" class="sub">€0,00</div></div></div><div class="arrow">›</div></div>
+<section id="homeActions" class="card goal-list-card">
+ <button id="homeActionsToggle" class="row-between accordion-toggle" onclick="toggleHomeActions()">
+  <h2 class="section-title" style="margin:0">🔧 Azioni rapide</h2>
+  <span id="homeActionsArrow" class="arrow accordion-arrow">⌄</span>
+ </button>
+ <div id="homeActionsList" class="hidden" style="margin-top:14px">
+  <section class="card savings-mini" onclick="showCounter()" style="margin-bottom:11px">
+   <div class="row-between"><div class="mini-left"><div class="iconbox">🧮</div><div><div class="name">Conta soldi</div><div class="sub">Conta monete e banconote a mano</div></div></div><div class="arrow">›</div></div>
+  </section>
+  <section class="card savings-mini" onclick="showSavings()" style="margin-bottom:0">
+   <div class="row-between"><div class="mini-left"><div class="iconbox">🐷</div><div><div id="savingsNameHome" class="name">Risparmi protetti</div><div id="savingsHomeAmount" class="sub">€0,00</div></div></div><div class="arrow">›</div></div>
+  </section>
+ </div>
 </section>
 
 <section id="homeGoals" class="card goal-list-card">
- <button id="homeGoalsToggle" class="row-between" onclick="toggleHomeGoals()" style="width:100%;background:transparent;text-align:left;padding:0">
+ <button id="homeGoalsToggle" class="row-between accordion-toggle" onclick="toggleHomeGoals()">
   <h2 class="section-title" style="margin:0">🎯 Obiettivi</h2>
-  <span id="homeGoalsArrow" class="arrow">⌄</span>
+  <span id="homeGoalsArrow" class="arrow accordion-arrow">⌄</span>
  </button>
  <div id="homeGoalsList" class="hidden" style="margin-top:14px"></div>
 </section>
 
 <div class="actions"><button class="action income" onclick="openMoneyModal('income')">＋ Entrata</button><button class="action expense" onclick="openMoneyModal('expense')">− Spesa</button></div>
 
-<section class="card section"><h2 class="section-title">Movimenti</h2><div class="search"><span class="search-icon">🔎</span><input id="search" type="search" placeholder="Cerca movimento..." oninput="renderMovements()"></div><div id="movements"></div></section>
-<div class="version">Gestione Soldi · Versione 2.40</div>
+<section class="card section">
+ <button id="movementsToggle" class="row-between accordion-toggle" style="margin-bottom:14px" onclick="toggleMovements()">
+  <h2 class="section-title" style="margin:0">Movimenti</h2>
+  <span id="movementsArrow" class="arrow accordion-arrow" style="transform:rotate(180deg)">⌄</span>
+ </button>
+ <div id="movementsBody">
+  <div class="search"><span class="search-icon">🔎</span><input id="search" type="search" placeholder="Cerca movimento..." oninput="movementsPage=0;renderMovements()"></div>
+  <div id="movements"></div>
+  <div id="movementsPagination" class="source-choice" style="margin-top:10px;margin-bottom:0"></div>
+ </div>
+</section>
+<div class="version">Gestione Soldi · Versione 2.42</div>
 </main>
 
 <main id="trendsPage" class="app page">
@@ -316,14 +383,14 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 </section>
 
 <section class="card section"><h2 class="section-title">Spese di questo mese</h2><div class="month-summary"><span id="monthName">Mese corrente</span><span id="monthTotal" class="month-total">€0,00</span></div><div id="categories"></div></section>
-<div class="version">Gestione Soldi · Versione 2.40</div>
+<div class="version">Gestione Soldi · Versione 2.42</div>
 </main>
 
 <main id="goalsPage" class="app page">
 <header class="header"><button class="back-button" onclick="showHome()">←</button><h1 class="title">Obiettivi</h1></header>
 <section class="card section"><h2 class="section-title">I tuoi obiettivi</h2><div id="allGoals" class="goal-grid"></div></section>
 <div class="actions"><button class="action income" onclick="openGoalModal()">＋ Nuovo</button><button class="action" style="background:var(--bluebg);color:var(--blue)" onclick="openSplitModal()">⚖️ Dividi</button></div>
-<div class="version">Gestione Soldi · Versione 2.40</div>
+<div class="version">Gestione Soldi · Versione 2.42</div>
 </main>
 
 <main id="savingsPage" class="app page">
@@ -339,7 +406,7 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 </section>
 <section class="card section"><h2 class="section-title">Movimenti del salvadanaio</h2><div id="savingsTransactions"></div></section>
 <div class="info card">💡 Il salvadanaio è separato dagli obiettivi. Usa i pulsanti qui sopra per aggiungere o prelevare denaro: i saldi si aggiornano automaticamente.</div>
-<div class="version">Gestione Soldi · Versione 2.40</div>
+<div class="version">Gestione Soldi · Versione 2.42</div>
 </main>
 
 <main id="counterPage" class="app page">
@@ -366,7 +433,7 @@ input,select{width:100%;height:51px;margin-bottom:10px;padding:0 14px;border:1px
 <section class="card section"><h2 class="section-title">Dettaglio conteggio</h2><div id="counterReceipt"></div></section>
 
 <div class="finish-bar"><button class="action income" style="width:100%" onclick="openCounterConfirm()">✅ Fine conteggio</button></div>
-<div class="version">Gestione Soldi · Versione 2.40</div>
+<div class="version">Gestione Soldi · Versione 2.42</div>
 </main>
 
 <script>
@@ -391,9 +458,27 @@ let homeGoalsOpen=false;
 let confirmCallback=null;
 let miniCounterItems=[];
 let miniCounterTarget=0;
+let homeActionsOpen=false;
+let movementsOpen=true;
+let movementsPage=0;
+let settingsDirty=false;
+let pendingBudgets={};
 
-function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));refreshSourceBalances()}
+function refreshSourceBalances(){
+ const c=money(data.cash),d=money(data.card);
+ ["cashBtnBal","goalCashBtnBal","editCashBtnBal","splitCashBtnBal"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=c});
+ ["cardBtnBal","goalCardBtnBal","editCardBtnBal","splitCardBtnBal"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=d})
+}
 function money(n){return "€"+Number(n||0).toFixed(2).replace(".",",")}
+function stepAmount(id,dir){
+ const el=document.getElementById(id);
+ if(!el)return;
+ let v=(Number(el.value)||0)+dir*1;
+ if(v<0)v=0;
+ el.value=Math.round(v*100)/100;
+ el.dispatchEvent(new Event("input",{bubbles:true}))
+}
 function totalAvailable(){return Math.max(0,Number(data.cash)+Number(data.card))}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function today(){return new Date().toISOString().slice(0,10)}
@@ -414,8 +499,30 @@ function showCounter(){loadCounterItems();renderCounter();showPage("counterPage"
 
 function setTheme(t){data.theme=t;document.body.classList.toggle("dark",t==="dark");save();updateTheme()}
 function updateTheme(){let d=data.theme==="dark";themeLightBtn.classList.toggle("selected",!d);themeDarkBtn.classList.toggle("selected",d)}
-function openSettingsModal(){closeMenu();updateTheme();renderCategoryList();renderBudgetList();renderSettingsGoalsList();usernameSetting.value=data.username||"";newCategoryName.value="";settingsModal.classList.add("open")}
-function closeSettingsModal(){settingsModal.classList.remove("open")}
+function openSettingsModal(){
+ closeMenu();updateTheme();renderCategoryList();
+ pendingBudgets={...(data.budgets||{})};settingsDirty=false;settingsConfirmBtn.classList.add("hidden");
+ renderBudgetList();renderSettingsGoalsList();usernameSetting.value=data.username||"";newCategoryName.value="";settingsModal.classList.add("open")
+}
+function closeSettingsModal(){
+ if(settingsDirty){
+   openConfirm("Ci sono modifiche non salvate nelle impostazioni. Vuoi scartarle?",()=>{settingsDirty=false;settingsModal.classList.remove("open")});
+   return
+ }
+ settingsModal.classList.remove("open")
+}
+function markSettingsDirty(){
+ settingsDirty=true;
+ settingsConfirmBtn.classList.remove("hidden")
+}
+function confirmSettingsChanges(){
+ data.budgets={...pendingBudgets};
+ const n=usernameSetting.value.trim();
+ data.username=n||"Utente";
+ save();settingsDirty=false;settingsConfirmBtn.classList.add("hidden");
+ renderGreeting();renderMonth();renderBudgetList();
+ toast("Modifiche salvate","✅")
+}
 function renderCategoryList(){
  categoryList.innerHTML=data.categories.length?data.categories.map((c,i)=>`<div class="category-chip"><span>${esc(c)}</span><button onclick="removeCategory(${i})">×</button></div>`).join(""):`<div class="empty">Nessuna categoria</div>`
 }
@@ -430,6 +537,7 @@ function removeCategory(i){
  openConfirm("Eliminare questa categoria?",()=>{
    data.categories.splice(i,1);
    if(data.budgets&&data.budgets[c])delete data.budgets[c];
+   if(pendingBudgets&&pendingBudgets[c])delete pendingBudgets[c];
    save();renderCategoryList();renderCategoryOptions();renderBudgetList()
  })
 }
@@ -437,13 +545,18 @@ function renderCategoryOptions(){
  detailCategory.innerHTML=`<option value="">Categoria (opzionale)</option>`+data.categories.map(c=>`<option>${esc(c)}</option>`).join("")
 }
 function renderBudgetList(){
- budgetList.innerHTML=data.categories.length?data.categories.map(c=>`<div class="budget-row"><span class="budget-cat">${esc(c)}</span><input type="number" inputmode="decimal" min="0" step="1" placeholder="Nessuno" value="${data.budgets&&data.budgets[c]?data.budgets[c]:""}" onchange="setBudget(this,${JSON.stringify(c)})"></div>`).join(""):`<div class="empty">Aggiungi prima una categoria</div>`
+ budgetList.innerHTML=data.categories.length?data.categories.map(c=>`<div class="budget-row"><span class="budget-cat">${esc(c)}</span><input class="budget-input" type="number" inputmode="decimal" min="0" step="1" placeholder="Nessuno" value="${pendingBudgets&&pendingBudgets[c]?pendingBudgets[c]:""}" data-cat="${esc(c)}"></div>`).join(""):`<div class="empty">Aggiungi prima una categoria</div>`
 }
-function setBudget(input,cat){
- const n=Number(input.value);
- if(n>0)data.budgets[cat]=n;else delete data.budgets[cat];
- save()
+function markBudgetChange(cat,val){
+ const n=Number(val);
+ if(n>0)pendingBudgets[cat]=n;else delete pendingBudgets[cat];
+ markSettingsDirty()
 }
+budgetList.addEventListener("input",e=>{
+ const inp=e.target.closest(".budget-input");
+ if(!inp)return;
+ markBudgetChange(inp.dataset.cat,inp.value)
+});
 function exportBackup(){
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  const url=URL.createObjectURL(blob);
@@ -469,7 +582,7 @@ function importBackup(e){
          budgets:p.budgets&&typeof p.budgets==="object"?p.budgets:{},
          username:p.username||data.username
        };
-       save();document.body.classList.toggle("dark",data.theme==="dark");updateTheme();closeSettingsModal();renderAll();renderGreeting();toast("Backup importato","✅")
+       save();document.body.classList.toggle("dark",data.theme==="dark");updateTheme();settingsDirty=false;closeSettingsModal();renderAll();renderGreeting();toast("Backup importato","✅")
      })
    }catch(err){toast("File non valido","⚠️")}
  };
@@ -598,7 +711,21 @@ function renderMonth(){
 }
 function renderMovements(){
  const q=(search.value||"").trim().toLowerCase();let arr=data.movements.map((m,i)=>({m,i})).reverse().filter(x=>!q||(`${x.m.description} ${x.m.category||""} ${x.m.source||""}`).toLowerCase().includes(q));
- movements.innerHTML=arr.length?arr.map(x=>{let m=x.m;return `<div class="movement"><div class="movement-top"><div class="movement-info"><div class="movement-title ${m.type==="income"?"green":"red"}">${m.type==="income"?"+":"−"} ${money(m.amount)} — ${esc(m.description)}</div><div class="movement-date">${fmt(m.date)} · ${sourceName(m.source||"cash")}</div>${m.category?`<span class="tag">${esc(m.category)}</span>`:""}</div><div class="buttons">${m.savings?"":`<button class="smallbtn" onclick="openEditModal(${x.i})">✏️</button>`}<button class="smallbtn delete" onclick="deleteMovement(${x.i})">🗑️</button></div></div></div>`}).join(""):`<div class="empty">Nessun movimento</div>`
+ const perPage=10;
+ const totalPages=Math.max(1,Math.ceil(arr.length/perPage));
+ if(movementsPage>totalPages-1)movementsPage=totalPages-1;
+ if(movementsPage<0)movementsPage=0;
+ const pageArr=arr.slice(movementsPage*perPage,movementsPage*perPage+perPage);
+ movements.innerHTML=pageArr.length?pageArr.map(x=>{let m=x.m;return `<div class="movement"><div class="movement-top"><div class="movement-info"><div class="movement-title ${m.type==="income"?"green":"red"}">${m.type==="income"?"+":"−"} ${money(m.amount)} — ${esc(m.description)}</div><div class="movement-date">${fmt(m.date)} · ${sourceName(m.source||"cash")}</div>${m.category?`<span class="tag">${esc(m.category)}</span>`:""}</div><div class="buttons">${m.savings?"":`<button class="smallbtn" onclick="openEditModal(${x.i})">✏️</button>`}<button class="smallbtn delete" onclick="deleteMovement(${x.i})">🗑️</button></div></div></div>`}).join(""):`<div class="empty">Nessun movimento</div>`;
+ renderMovementsPagination(totalPages,arr.length)
+}
+function renderMovementsPagination(totalPages,count){
+ if(!count||totalPages<=1){movementsPagination.innerHTML="";return}
+ movementsPagination.innerHTML=`<button class="choice" ${movementsPage===0?"disabled":""} onclick="changeMovementsPage(-1)">‹ Prec</button><button class="choice pagination-label">${movementsPage+1} / ${totalPages}</button><button class="choice" ${movementsPage>=totalPages-1?"disabled":""} onclick="changeMovementsPage(1)">Succ ›</button>`
+}
+function changeMovementsPage(d){
+ movementsPage+=d;renderMovements();
+ movementsBody.scrollIntoView({behavior:"smooth",block:"start"})
 }
 function openEditModal(i){
  const m=data.movements[i];
@@ -635,7 +762,7 @@ function confirmEditMovement(){
  m.amount=a;m.description=desc;m.category=cat;m.source=newSource;m.date=date;
  save();closeEditModal();renderAll();toast("Movimento aggiornato","✏️")
 }
-function filterByCategory(cat){search.value=cat;showHome();renderMovements()}
+function filterByCategory(cat){search.value=cat;showHome();movementsPage=0;openMovementsSection();renderMovements()}
 function deleteMovement(i){
  const m=data.movements[i];
  openConfirm("Eliminare questo movimento?",()=>{
@@ -649,6 +776,13 @@ function resetAll(){
  openConfirm("Vuoi cancellare tutti i saldi, movimenti, obiettivi e risparmi?",()=>{
    data={cash:0,card:0,savings:0,goals:[],movements:[],theme:data.theme,categories:data.categories,budgets:data.budgets,username:data.username};
    save();renderAll();renderSettingsGoalsList();toast("Conto azzerato","🗑️")
+ })
+}
+function deleteAccount(){
+ openConfirm("⚠️ Questo eliminerà DEFINITIVAMENTE tutti i dati: saldi, movimenti, obiettivi, categorie, budget, tema e nome. L'app tornerà come alla primissima apertura. Continuare?",()=>{
+   localStorage.removeItem(KEY);
+   localStorage.removeItem("gs_v2_counter");
+   location.reload()
  })
 }
 function renderAll(){renderSummary();renderGoals();renderSavings();renderMonth();renderMovements();renderCategoryOptions()}
@@ -749,6 +883,23 @@ function toggleHomeGoals(){
  homeGoalsArrow.style.transform=homeGoalsOpen?"rotate(180deg)":"rotate(0)"
 }
 
+/* Tendina azioni rapide in home */
+function toggleHomeActions(){
+ homeActionsOpen=!homeActionsOpen;
+ homeActionsList.classList.toggle("hidden",!homeActionsOpen);
+ homeActionsArrow.style.transform=homeActionsOpen?"rotate(180deg)":"rotate(0)"
+}
+
+/* Tendina movimenti in home */
+function toggleMovements(){
+ movementsOpen=!movementsOpen;
+ movementsBody.classList.toggle("hidden",!movementsOpen);
+ movementsArrow.style.transform=movementsOpen?"rotate(180deg)":"rotate(0)"
+}
+function openMovementsSection(){
+ if(!movementsOpen)toggleMovements()
+}
+
 /* Obiettivi dalle impostazioni */
 function renderSettingsGoalsList(){
  settingsGoalsList.innerHTML=data.goals.length?data.goals.map(g=>`<div class="category-chip"><span>🎯 ${esc(g.name)} (${money(g.amount)})</span><button onclick="deleteGoal('${g.id}')">×</button></div>`).join(""):`<div class="empty">Nessun obiettivo creato</div>`
@@ -778,7 +929,7 @@ function maybeShowWelcome(){
 
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&moneyModal.classList.contains("open"))confirmMoney();if(e.key==="Enter"&&goalMoneyModal.classList.contains("open"))confirmGoalMoney();if(e.key==="Enter"&&editModal.classList.contains("open"))confirmEditMovement();if(e.key==="Enter"&&welcomeModal.classList.contains("open"))saveUsername();if(e.key==="Enter"&&settingsModal.classList.contains("open")&&document.activeElement===newCategoryName)addCategory()});
 categories.addEventListener("click",e=>{const row=e.target.closest(".category-row");if(row&&row.dataset.cat)filterByCategory(row.dataset.cat)});
-document.body.classList.toggle("dark",data.theme==="dark");updateTheme();renderAll();renderDenominations();renderSettingsGoalsList();renderGreeting();maybeShowWelcome();
+document.body.classList.toggle("dark",data.theme==="dark");updateTheme();renderAll();renderDenominations();renderSettingsGoalsList();renderGreeting();refreshSourceBalances();maybeShowWelcome();
 </script>
 </body>
 </html>
