@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101010"><title>OFFGRID — Catalogo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./">OFF<span>GRID</span><i>.</i></a>
+  <button id="menuToggle" class="icon-btn" aria-label="Apri menu">☰</button>
+  <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Cerca in tutto il catalogo…"></label>
+  <div class="top-actions"><button id="themeToggle" class="icon-btn" title="Cambia tema">◐</button><button id="cartOpen" class="cart-btn">Carrello <b id="cartCount">0</b></button></div>
+</header>
+<div class="layout">
+  <aside id="sidebar" class="sidebar">
+    <p class="eyebrow">ESPLORA</p><h3>Categorie</h3>
+    <nav id="categoryNav">
+      <button class="cat active" data-category="Tutti">✳ Tutti i prodotti</button>
+      <button class="cat" data-category="Abbigliamento">▧ Abbigliamento</button>
+      <button class="cat" data-category="Scarpe">◈ Scarpe</button>
+      <button class="cat" data-category="Oggetti 3D">⬡ Oggetti 3D</button>
+      <button class="cat" data-category="NFC">⌁ NFC</button>
+      <button class="cat" data-category="Portachiavi">⚿ Portachiavi</button>
+      <button class="cat" data-category="Accessori Moto 3D">⚙ Accessori Moto 3D</button>
+      <button class="cat" data-category="Vario">＋ Vario</button>
+    </nav>
+    <div class="sidebar-note"><span class="live-dot"></span> Catalogo aggiornato<br><small>Ordini senza pagamento online</small></div>
+    <a class="admin-link" href="admin.html">Area proprietario ↗</a>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">SELEZIONE INDIPENDENTE · 2026</p><h1>Trova il tuo<br><em>prossimo pezzo.</em></h1><p>Oggetti selezionati, accessori e creazioni. Esplora il catalogo e inviaci la tua richiesta.</p><a href="#catalogo" class="outline-btn">Esplora il catalogo <span>↘</span></a></div>
+      <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="hero-mark">OG<span>®</span></div><div class="hero-caption">DESIGN / OBJECTS / STREET</div></div>
+    </section>
+    <section id="catalogo" class="catalog-head"><div><p class="eyebrow">LA COLLEZIONE</p><h2 id="sectionTitle">Tutti i prodotti <span class="muted" id="productCount">0</span></h2></div><select id="sortSelect" aria-label="Ordina prodotti"><option value="featured">In evidenza</option><option value="name">Nome A–Z</option><option value="price-low">Prezzo crescente</option><option value="price-high">Prezzo decrescente</option></select></section>
+    <div id="productGrid" class="product-grid"></div>
+    <div id="emptyState" class="empty-state hidden"><span>⌕</span><h3>Nessun prodotto trovato</h3><p>Prova un'altra categoria o una ricerca diversa.</p></div>
+    <section class="contact-band"><div><p class="eyebrow">HAI UNA DOMANDA?</p><h2>Parliamone.</h2><p>Scrivici un messaggio: ti risponderemo per confermare disponibilità e dettagli.</p></div><form id="messageForm" class="message-form"><input name="name" placeholder="Il tuo nome" required><input name="email" type="email" placeholder="Email (facoltativa)"><textarea name="message" placeholder="Come possiamo aiutarti?" required rows="3"></textarea><button class="solid-btn">Invia messaggio ↗</button><p class="form-note" id="messageStatus"></p></form></section>
+    <footer><a class="brand" href="./">OFF<span>GRID</span><i>.</i></a><span>Oggetti interessanti. Nessun pagamento online.</span><span>© <span id="year"></span> OFFGRID</span></footer>
+  </main>
+</div>
+<div id="cartBackdrop" class="backdrop hidden"></div>
+<aside id="cartDrawer" class="cart-drawer" aria-label="Carrello">
+  <div class="drawer-head"><div><p class="eyebrow">IL TUO ORDINE</p><h2>Carrello <span id="drawerCount" class="muted">0</span></h2></div><button id="cartClose" class="icon-btn">✕</button></div>
+  <div id="cartItems" class="cart-items"></div><div id="cartEmpty" class="empty-cart">Il tuo carrello è vuoto.</div>
+  <div class="cart-total"><span>Totale indicativo</span><strong id="cartTotal">€ 0,00</strong></div>
+  <button id="checkoutOpen" class="solid-btn full">Continua con la richiesta ↗</button><p class="form-note">Nessun pagamento richiesto. Ti contatteremo per confermare l'ordine.</p>
+</aside>
+<div id="checkoutModal" class="modal-backdrop hidden"><section class="modal"><button id="checkoutClose" class="icon-btn modal-close">✕</button><p class="eyebrow">RICHIESTA ORDINE</p><h2>Dove ti contattiamo?</h2><p class="muted">Invia i tuoi dati; l'ordine resta in attesa di conferma telefonica.</p>
+<form id="checkoutForm" class="checkout-form">
+<div class="two"><input name="firstName" placeholder="Nome" required><input name="lastName" placeholder="Cognome" required></div>
+<input name="street" placeholder="Via e numero civico" required><div class="two"><input name="zip" placeholder="CAP" required><input name="country" placeholder="Paese" required></div>
+<input name="phone" type="tel" placeholder="Numero di telefono" required>
+<label class="consent"><input type="checkbox" required> Confermo che i dati inseriti sono corretti e acconsento a essere ricontattato per questa richiesta.</label>
+<button class="solid-btn full">Conferma richiesta ↗</button><p id="checkoutStatus" class="form-note"></p>
+</form></section></div>
+<div id="toast" class="toast" role="status"></div>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
